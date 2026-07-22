@@ -38,13 +38,13 @@ func _input(event: InputEvent) -> void:
 func _on_close_button_pressed():
     fade_out()
 
-func _on_master_value_changed(idx : int):
+func _on_master_value_changed():
     AudioServer.set_bus_volume_linear(_master_idx, master_slider.value)
 
-func _on_music_value_changed(idx : int):
+func _on_music_value_changed():
     AudioServer.set_bus_volume_linear(_music_idx, music_slider.value)
 
-func _on_sfx_value_changed(idx : int):
+func _on_sfx_value_changed():
     AudioServer.set_bus_volume_linear(_sfx_idx, sfx_slider.value)
 
 func fade_in() -> void:
