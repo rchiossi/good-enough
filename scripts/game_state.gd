@@ -1,6 +1,14 @@
 extends Node
 
 var all_abilities: Dictionary = {}
+enum NodeTypes {
+    Start,
+    Fight,
+    Event,
+    Count,
+}
+
+var map = {}
 
 var player_stats : EntityStats = EntityStats.new()
 var player_abilities: Dictionary = {}
