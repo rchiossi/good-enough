@@ -9,7 +9,8 @@ enum NodeTypes {
     Count,
 }
 
-var map = {}
+var map: Dictionary = {}
+var current_position: Vector2i = Vector2i(0, 0)
 
 var player_stats : EntityStats = EntityStats.new()
 var player_abilities: Dictionary = {}
