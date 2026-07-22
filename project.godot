@@ -14,9 +14,14 @@ config/name="Good Enough"
 run/main_scene="uid://dtorqehcnwdl6"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="uid://bx78aklq1eiob"
+
 [autoload]
 
 SceneLoader="*uid://ctwmg81wj7af2"
+GameState="*uid://ctulq8slech4t"
 
 [display]
 
