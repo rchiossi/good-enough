@@ -57,24 +57,35 @@ func reset_state() -> void:
 
     current_turn = max_turns
 
+func _add_ability(ability):
+    all_abilities.get_or_add(ability.Name, ability)
+    player_abilities.get_or_add(ability.Name, ability)
+
 func _init_abilities():
     var fireball := Ability.new()
     fireball.Name = "Fireball"
-    fireball.ShieldDamage = 10
-    fireball.ArmorDamage = 10
-    fireball.HealthDamage = 10
+    fireball.ShieldDamage = 15
+    fireball.ArmorDamage = 5
+    fireball.HealthDamage = 5
     fireball.Name = "Fireball"
     fireball.Icon = preload("uid://n1peuh4vn6i0")
     fireball.Description = "Some description"
-    all_abilities.get_or_add("Fireball", fireball)
-    player_abilities.get_or_add("Fireball", fireball)
-    
+    _add_ability(fireball)
+
     var ice_dart := Ability.new()
     ice_dart.ShieldDamage = 25
     ice_dart.ArmorDamage = 0
-    ice_dart.HealthDamage = 3
+    ice_dart.HealthDamage = 10
     ice_dart.Name = "Ice Dart"
     ice_dart.Icon = preload("uid://qscf336gkfa4")
     ice_dart.Description = "An ice dart that shoots towards your enemy. Piercing them dealing significant magic damage, but fails to penetrate armor."
-    all_abilities.get_or_add("IceDart", ice_dart)
-    player_abilities.get_or_add("Ice Dart", ice_dart)
+    _add_ability(ice_dart)
+
+    var visceral_bleed := Ability.new()
+    visceral_bleed.ShieldDamage = 0
+    visceral_bleed.ArmorDamage = 0
+    visceral_bleed.HealthDamage = 25
+    visceral_bleed.Name = "Visceral Bleed"
+    visceral_bleed.Icon = preload("uid://bxm2bno0ekkfh")
+    visceral_bleed.Description = "You cut the veins of your enemies from the inside. Inflicts massive health damage."
+    _add_ability(visceral_bleed)

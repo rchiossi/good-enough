@@ -23,6 +23,9 @@ func _ready() -> void:
         button.add_theme_constant_override("icon_max_width", ICON_SIZE)
         button.custom_minimum_size = Vector2(ICON_SIZE, ICON_SIZE)
 
+        var animation = AnimationScaleTwitch.new()
+        button.add_child(animation)
+
         for state in ["normal", "hover", "pressed", "focus", "disabled"]:
             button.add_theme_stylebox_override(state, empty)
 
