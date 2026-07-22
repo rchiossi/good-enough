@@ -15,6 +15,7 @@ func init() -> void:
     health = max_health
     armor = max_armor
     shield = max_shield
+<<<<<<< HEAD
 
 func apply_damage(shield_damage: int, armor_damage: int, health_damage: int):
     shield = max(shield - shield_damage, 0)
@@ -24,3 +25,5 @@ func apply_damage(shield_damage: int, armor_damage: int, health_damage: int):
     if armor > 0:
         return
     health = max(health - health_damage, 0)
+=======
+>>>>>>> 9f008a3 (add map: version 0)

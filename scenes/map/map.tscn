@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bqa756pyqync2"]
+
+[ext_resource type="Theme" uid="uid://81xj75vwbcjg" path="res://assets/themes/map_theme.tres" id="1_sxf4j"]
+[ext_resource type="Script" uid="uid://crwlg463ssqi4" path="res://scripts/map/map.gd" id="2_ph54e"]
+
+[node name="MapScene" type="Control" unique_id=1321419604]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sxf4j")
+script = ExtResource("2_ph54e")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1277744514]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer" unique_id=1319514048]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"MapPanelContainer"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/PanelContainer" unique_id=10030059]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"MapMarginContainer"
+
+[node name="MapNodesContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/MarginContainer" unique_id=955652825]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1

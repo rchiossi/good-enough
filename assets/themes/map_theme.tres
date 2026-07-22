@@ -1,0 +1,26 @@
+[gd_resource type="Theme" format=3 uid="uid://81xj75vwbcjg"]
+
+[ext_resource type="Texture2D" uid="uid://0p6uf3b2jdda" path="res://assets/map/parchmentFoldedCrinkled.png" id="1_ky26x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdhkq"]
+texture = ExtResource("1_ky26x")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ky26x"]
+load_path = "res://.godot/imported/parchmentFoldedCrinkled.png-01fc019edb8cdf90829071aaa8a89161.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8b0q7"]
+texture = SubResource("CompressedTexture2D_ky26x")
+modulate_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+
+[resource]
+MapBackground/base_type = &"Panel"
+MapBackground/styles/panel = SubResource("StyleBoxTexture_fdhkq")
+MapChoiceButton/base_type = &"CheckBox"
+MapChoiceButton/constants/icon_max_width = 128
+MapMarginContainer/base_type = &"MarginContainer"
+MapMarginContainer/constants/margin_bottom = 8
+MapMarginContainer/constants/margin_left = 8
+MapMarginContainer/constants/margin_right = 8
+MapMarginContainer/constants/margin_top = 8
+MapPanelContainer/base_type = &"PanelContainer"
+MapPanelContainer/styles/panel = SubResource("StyleBoxTexture_8b0q7")
