@@ -75,4 +75,4 @@ func _init_abilities():
     ice_dart.Icon = preload("uid://qscf336gkfa4")
     ice_dart.Description = "An ice dart that shoots towards your enemy. Piercing them dealing significant magic damage, but fails to penetrate armor."
     all_abilities.get_or_add("IceDart", ice_dart)
-    player_abilities.get_or_add("IceDart", ice_dart)
+    player_abilities.get_or_add("Ice Dart", ice_dart)
