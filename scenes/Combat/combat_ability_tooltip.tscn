@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bof2v1eb6a2nt" path="res://scripts/combat/combat_ability_tooltip.gd" id="1_6n13o"]
 [ext_resource type="Texture2D" uid="uid://n1peuh4vn6i0" path="res://assets/abilities/Fire Spell Pack64.png" id="1_nbg2d"]
+[ext_resource type="Texture2D" uid="uid://ckxwuklnhuldg" path="res://assets/combat/hp.png" id="3_y4psc"]
+[ext_resource type="Texture2D" uid="uid://dvlsd6i5qeehe" path="res://assets/combat/armor.png" id="4_x6avr"]
+[ext_resource type="Texture2D" uid="uid://5p535fe5dxkt" path="res://assets/combat/shield.png" id="5_fcowo"]
 
 [node name="CombatAbilityTooltip" type="MarginContainer" unique_id=1931624610]
 offset_right = 40.0
@@ -44,6 +47,7 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2035724065]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "HP Damage        "
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=773719006]
@@ -52,13 +56,14 @@ custom_maximum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("1_nbg2d")
+texture = ExtResource("3_y4psc")
 expand_mode = 3
 stretch_mode = 4
 
 [node name="HpDamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=379138728]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
 text = "10"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1285489235]
@@ -67,21 +72,24 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1950499498]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Armor Damage "
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=889913374]
 custom_minimum_size = Vector2(20, 20)
 custom_maximum_size = Vector2(20, 20)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("1_nbg2d")
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("4_x6avr")
 expand_mode = 3
 stretch_mode = 4
 
 [node name="ArmorDamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1553623445]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 text = "10"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=89155815]
@@ -90,6 +98,7 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1567716473]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Shield Damage "
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=2086968780]
@@ -98,7 +107,7 @@ custom_maximum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("1_nbg2d")
+texture = ExtResource("5_fcowo")
 expand_mode = 3
 stretch_mode = 4
 

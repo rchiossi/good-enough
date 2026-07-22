@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://rnxjcfv0re2a" path="res://scripts/combat/entity_scene.gd" id="1_fm8sl"]
 [ext_resource type="Texture2D" uid="uid://c6csinb1ka78k" path="res://assets/combat/player.png" id="1_rc3w3"]
+[ext_resource type="Texture2D" uid="uid://ckxwuklnhuldg" path="res://assets/combat/hp.png" id="2_c153h"]
+[ext_resource type="Texture2D" uid="uid://dvlsd6i5qeehe" path="res://assets/combat/armor.png" id="3_vovsn"]
+[ext_resource type="Texture2D" uid="uid://5p535fe5dxkt" path="res://assets/combat/shield.png" id="4_6yqqy"]
 
 [node name="EntityScene" type="MarginContainer" unique_id=2088207339]
 anchors_preset = 15
@@ -19,21 +22,48 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="HealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=2142605283]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=626022878]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=1595864002]
+layout_mode = 2
+texture = ExtResource("2_c153h")
+expand_mode = 3
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer" unique_id=2142605283]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 step = 1.0
 value = 100.0
 
-[node name="ArmorBar" type="ProgressBar" parent="VBoxContainer" unique_id=990116961]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1669485683]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer2" unique_id=1515456972]
+layout_mode = 2
+texture = ExtResource("3_vovsn")
+expand_mode = 3
+
+[node name="ArmorBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer2" unique_id=990116961]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 step = 1.0
 value = 100.0
 
-[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer" unique_id=102897590]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=929568068]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer3" unique_id=1939718767]
+layout_mode = 2
+texture = ExtResource("4_6yqqy")
+expand_mode = 3
+
+[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer3" unique_id=102897590]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 step = 1.0
 value = 100.0
 
