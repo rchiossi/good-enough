@@ -34,7 +34,3 @@ func _animate_out():
 
 	tween.tween_property(_target, "offset_transform_scale", Vector2.ONE, duration)
 	tween.parallel().tween_property(_target, "offset_transform_rotation", 0.0, duration)
-
-
-
-

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://clhtpadgac6l7"]
+
+[ext_resource type="Script" uid="uid://dtwkscpo7dmcu" path="res://scripts/abilities_window.gd" id="1_3rflj"]
+
+[node name="AbilitiesWindow" type="Control" unique_id=1256689411]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3rflj")
+
+[node name="BackButton" type="Button" parent="." unique_id=541309002]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 954.0
+offset_right = 419.0
+offset_bottom = 1052.0
+theme_override_font_sizes/font_size = 32
+text = "Back
+"
+
+[node name="ApplyButton" type="Button" parent="." unique_id=106850369]
+layout_mode = 0
+offset_left = 1482.0
+offset_top = 954.0
+offset_right = 1866.0
+offset_bottom = 1052.0
+theme_override_font_sizes/font_size = 32
+text = "Apply"
+
+[node name="AbilitiesList" type="HBoxContainer" parent="." unique_id=934910264]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 345.0
+offset_right = 1522.0
+offset_bottom = 550.0

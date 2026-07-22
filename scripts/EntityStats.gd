@@ -12,8 +12,15 @@ var armor : int
 var shield : int
 
 func init() -> void:
-    health = max_health
-    armor = max_armor
-    shield = max_shield
+	health = max_health
+	armor = max_armor
+	shield = max_shield
 
-
+func apply_damage(shield_damage: int, armor_damage: int, health_damage: int):
+	shield = max(shield - shield_damage, 0)
+	if shield > 0:
+		return
+	armor = max(armor - armor_damage, 0)
+	if armor > 0:
+		return
+	health = max(health - health_damage, 0)

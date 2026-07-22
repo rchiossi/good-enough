@@ -1,6 +1,9 @@
 extends Node
 
 var player_stats : EntityStats = EntityStats.new()
+var player_abilities: Array = [
+	Fireball.new()
+]
 
 const max_turns : int = 10
 var current_turn : int

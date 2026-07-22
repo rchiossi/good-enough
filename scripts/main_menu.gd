@@ -27,7 +27,7 @@ func _on_exit() -> void:
 	get_tree().quit()
 
 func _on_start_button_pressed() -> void:
-	SceneLoader.load_scene("res://scenes/dummy_scene.tscn")
+	SceneLoader.load_scene("res://scenes/abilities_window.tscn")
 
 func _on_settings_button_pressed() -> void:
 	_settings_panel.fade_in()
