@@ -5,6 +5,8 @@ class_name SettingsPanel
 @onready var music_slider : HSlider = %MusicSlider
 @onready var sfx_slider : HSlider = %SfxSlider
 
+@onready var close_button : Button = %CloseButton
+
 var _master_idx : int
 var _music_idx : int
 var _sfx_idx : int
@@ -25,6 +27,16 @@ func _ready() -> void:
 	master_slider.value_changed.connect(_on_master_value_changed)
 	music_slider.value_changed.connect(_on_music_value_changed)
 	sfx_slider.value_changed.connect(_on_sfx_value_changed)
+
+	close_button.pressed.connect(_on_close_button_pressed)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
+		fade_out()
+
+func _on_close_button_pressed():
+	fade_out()
 
 func _on_master_value_changed(idx : int):
 	AudioServer.set_bus_volume_linear(_master_idx, master_slider.value)

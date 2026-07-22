@@ -90,3 +90,11 @@ size_flags_vertical = 1
 max_value = 1.0
 step = 0.01
 value = 1.0
+
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=31129866]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Close"
