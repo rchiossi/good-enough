@@ -44,7 +44,7 @@ func generate_map():
             }
         if not at_least_one_node:
             map[i]["nodes"][randi_range(0, 3)] = {
-                "type": GameState.NodeTypes.values()[randi_range(1, 2)],
+                "type": GameState.NodeTypes.values()[randi_range(2, 3)],
             }
         
     map[GameState.max_turns] = {
@@ -56,3 +56,4 @@ func generate_map():
         "status": 1,
     }
     GameState.map = map
+    GameState.current_position = Vector2i(0, 0)

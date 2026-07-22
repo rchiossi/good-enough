@@ -2,6 +2,8 @@ class_name MapChoiceButton extends CheckBox
 
 var node_type: GameState.NodeTypes
 
+var coords: Vector2i
+
 var types_definitions: Dictionary[GameState.NodeTypes, Dictionary] = {
     GameState.NodeTypes.Start: {
         "icon": preload("uid://mwgfvnpw5xme"),
@@ -28,9 +30,16 @@ var types_definitions: Dictionary[GameState.NodeTypes, Dictionary] = {
 func _ready() -> void:
     pass
 
-func set_type(n_type: GameState.NodeTypes):
-    node_type = n_type
+func set_coords(c: Vector2i):
+    coords = c
+    node_type = GameState.map[coords.x]["nodes"][coords.y]["type"]
     icon = types_definitions[node_type]["icon"]
+    if GameState.current_position.x != coords.x - 1:
+        disabled = true
+    if GameState.map[coords.x]["status"] == 0:
+        disabled = true
+    if GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1:
+        %Completed.visible = true
 
 func on_pressed():
     SceneLoader.load_scene(types_definitions[node_type]["scene"])

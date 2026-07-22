@@ -12,7 +12,7 @@ func _ready():
     button_group.pressed.connect(node_selected)
     for n in GameState.map[level_id]["nodes"].keys():
         var node: MapChoiceButton = node_scene.instantiate()
-        node.set_type(GameState.map[level_id]["nodes"][n]["type"])
+        node.set_coords(Vector2i(level_id, n))
         node.button_group = button_group
         add_child(node)
         if node.node_type == GameState.NodeTypes.Null:
@@ -21,10 +21,10 @@ func _ready():
         var separator = HSeparator.new()
         separator.custom_minimum_size.y = 128
         add_child(separator)
-        if GameState.map[level_id]["status"] == 0:
-            node.disabled = true
 
 func node_selected(button: MapChoiceButton):
     print("[%s] selected" % [level_id, ])
     GameState.map[level_id]["status"]  = 0
+    GameState.current_position = button.coords
+    GameState.map[GameState.current_position.x]["nodes"][GameState.current_position.y]["visited"] = 1
     button.on_pressed()
