@@ -23,8 +23,6 @@ func _animate_in():
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_OUT)
 
-	print(_target.offset_transform_pivot)
-
 	tween.tween_property(_target, "offset_transform_scale", Vector2.ONE * 1.1, duration)
 	tween.parallel().tween_property(_target, "offset_transform_rotation", deg_to_rad(2.0 * [-1.0, 1.0].pick_random()), duration)
 
