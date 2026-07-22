@@ -11,6 +11,7 @@ var _enemy_stats : EntityStats
 
 @onready var _attack_button : Button = %AttackButton
 @onready var _damage_button : Button = %DamageButton
+@onready var _skip_button : Button = %SkipCombatButton
 
 @onready var _ability_grid : GridContainer = %AbilityGrid
 
@@ -26,9 +27,13 @@ func _ready() -> void:
 
     _attack_button.pressed.connect(player.animate_attack)
     _damage_button.pressed.connect(enemy.animate_take_damage)
+    _skip_button.pressed.connect(_skip_combat)
 
     for ability in GameState.player_abilities.values():
         var scene = _ability_scene.instantiate()
         _ability_grid.add_child(scene)
         scene.size_flags_horizontal = Control.SIZE_FILL
         scene.set_ability(ability.Name)
+
+func _skip_combat():
+    SceneLoader.load_scene("uid://clhtpadgac6l7")

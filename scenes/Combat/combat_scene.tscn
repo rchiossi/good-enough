@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bmovv10hvyq4x" path="res://assets/combat/bg_combat.png" id="1_krbf5"]
 [ext_resource type="Script" uid="uid://diusl0i8btv3q" path="res://scripts/combat/combat_scene.gd" id="1_njxow"]
 [ext_resource type="PackedScene" uid="uid://8j2q7im3vpa3" path="res://scenes/Combat/entity_scene.tscn" id="2_njxow"]
+[ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="4_idueh"]
 
 [node name="CombatScene" type="Control" unique_id=1486274649]
 layout_mode = 3
@@ -54,7 +55,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 8
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1701603087]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -71,6 +71,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Damage
 "
+
+[node name="SkipCombatButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" unique_id=2006814516]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Skip Combat"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=146095222]
 layout_mode = 2
@@ -89,4 +94,5 @@ theme_override_constants/margin_bottom = 50
 [node name="AbilityGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer" unique_id=899673169]
 unique_name_in_owner = true
 layout_mode = 2
-columns = 2
+columns = 10
+script = ExtResource("4_idueh")
