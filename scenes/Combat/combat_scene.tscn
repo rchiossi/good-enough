@@ -56,3 +56,17 @@ size_flags_vertical = 8
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1701603087]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2" unique_id=1264574745]
+layout_mode = 2
+
+[node name="AttackButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" unique_id=1184887773]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Attack"
+
+[node name="DamageButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" unique_id=1999168296]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Damage
+"

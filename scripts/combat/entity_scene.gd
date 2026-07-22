@@ -7,7 +7,12 @@ class_name EntityScene
 
 @onready var _sprite : TextureRect = %Sprite
 
+const animation_attack_duration : float = 0.3
+const animation_damage_duration : float = 0.3
+
 func init(health : int, armor : int, shield : int, sprite : Texture2D):
+	offset_transform_enabled = true
+
 	_health_bar.max_value = health
 	_health_bar.value = health
 
@@ -19,11 +24,22 @@ func init(health : int, armor : int, shield : int, sprite : Texture2D):
 
 	_sprite.texture = sprite
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func animate_attack():
+	print("attack")
+	var tween = create_tween()
 
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	tween.tween_property(self, "offset_transform_position", offset_transform_position + Vector2(100, 0), animation_attack_duration)
+	tween.chain().tween_property(self, "offset_transform_position", offset_transform_position, animation_attack_duration)
+
+func animate_take_damage():
+	print("attack")
+	var tween = create_tween()
+
+	tween.set_trans(Tween.TRANS_BOUNCE)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(self, "offset_transform_scale", Vector2.ONE * 0.8, animation_attack_duration)
+	tween.chain().tween_property(self, "offset_transform_scale", Vector2.ONE, animation_attack_duration)

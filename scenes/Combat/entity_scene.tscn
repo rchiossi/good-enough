@@ -11,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+offset_transform_enabled = true
 script = ExtResource("1_fm8sl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2010614689]
