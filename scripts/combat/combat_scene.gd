@@ -13,7 +13,7 @@ var _enemy_stats : EntityStats
 @onready var _damage_button : Button = %DamageButton
 @onready var _skip_button : Button = %SkipCombatButton
 
-@onready var _ability_grid : GridContainer = %AbilityGrid
+@onready var _ability_grid : CombatAbilityGrid = %AbilityGrid
 
 var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.tscn")
 
@@ -31,8 +31,7 @@ func _ready() -> void:
 
     for ability in GameState.player_abilities.values():
         var scene = _ability_scene.instantiate()
-        _ability_grid.add_child(scene)
-        scene.size_flags_horizontal = Control.SIZE_FILL
+        _ability_grid.add_item(scene)
         scene.set_ability(ability.Name)
 
 func _skip_combat():
