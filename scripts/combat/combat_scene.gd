@@ -15,7 +15,7 @@ var _enemy_stats : EntityStats
 func _ready() -> void:
 	_player_stats = GameState.player_stats
 
-	_enemy_stats = EntityStats.new()
+	_enemy_stats = GameState.enemy_list.values().pick_random()
 
 	player.init(_player_stats.max_health, _player_stats.armor, _player_stats.shield, _player_sprite )
 	enemy.init(_enemy_stats.max_health, _enemy_stats.max_armor, _enemy_stats.max_shield, _enemy_sprite)
