@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://clhtpadgac6l7"]
 
 [ext_resource type="Script" uid="uid://dtwkscpo7dmcu" path="res://scripts/abilities_window.gd" id="1_3rflj"]
+[ext_resource type="Texture2D" uid="uid://c8yv8y81aru0e" path="res://assets/abilities/shield_icon.png" id="2_7bhlu"]
+[ext_resource type="Texture2D" uid="uid://b8jpc5mlsmcnp" path="res://assets/abilities/armor_icon.png" id="3_1ijv4"]
+[ext_resource type="Texture2D" uid="uid://b4wibg24bkciq" path="res://assets/abilities/health_icon.png" id="4_j5keh"]
 
 [node name="AbilitiesWindow" type="Control" unique_id=1256689411]
 layout_mode = 3
@@ -11,16 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3rflj")
 
-[node name="BackButton" type="Button" parent="." unique_id=541309002]
-layout_mode = 0
-offset_left = 35.0
-offset_top = 954.0
-offset_right = 419.0
-offset_bottom = 1052.0
-theme_override_font_sizes/font_size = 32
-text = "Back
-"
-
 [node name="ApplyButton" type="Button" parent="." unique_id=106850369]
 layout_mode = 0
 offset_left = 1482.0
@@ -28,11 +21,99 @@ offset_top = 954.0
 offset_right = 1866.0
 offset_bottom = 1052.0
 theme_override_font_sizes/font_size = 32
-text = "Apply"
+text = "Forget"
 
 [node name="AbilitiesList" type="HBoxContainer" parent="." unique_id=934910264]
 layout_mode = 0
-offset_left = 460.0
-offset_top = 345.0
-offset_right = 1522.0
-offset_bottom = 550.0
+offset_left = 79.0
+offset_top = 222.0
+offset_right = 1846.0
+offset_bottom = 427.0
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1513729093]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 50.0
+offset_right = 1615.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 48
+text = "Choose an ability to forget"
+
+[node name="AbilityDetails" type="Control" parent="." unique_id=878899343]
+anchors_preset = 0
+
+[node name="NameLabel" type="Label" parent="AbilityDetails" unique_id=202549696]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 437.0
+offset_right = 1503.0
+offset_bottom = 518.0
+theme_override_font_sizes/font_size = 48
+
+[node name="DescriptionText" type="RichTextLabel" parent="AbilityDetails" unique_id=1630121528]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 624.0
+offset_right = 1577.0
+offset_bottom = 890.0
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="ShieldDamageContainer" type="HBoxContainer" parent="AbilityDetails" unique_id=139086952]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 521.0
+offset_right = 351.0
+offset_bottom = 590.0
+theme_override_constants/separation = 16
+
+[node name="ShieldDamageIcon" type="TextureRect" parent="AbilityDetails/ShieldDamageContainer" unique_id=1622227457]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Shield Damage"
+texture = ExtResource("2_7bhlu")
+stretch_mode = 5
+
+[node name="ShieldDamageLabel" type="Label" parent="AbilityDetails/ShieldDamageContainer" unique_id=1585401239]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="ArmorDamageContainer" type="HBoxContainer" parent="AbilityDetails" unique_id=1912459471]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 521.0
+offset_right = 508.0
+offset_bottom = 590.0
+theme_override_constants/separation = 16
+
+[node name="ArmorDamageIcon" type="TextureRect" parent="AbilityDetails/ArmorDamageContainer" unique_id=1389324949]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Armor Damage"
+texture = ExtResource("3_1ijv4")
+stretch_mode = 5
+
+[node name="ArmorDamageLabel" type="Label" parent="AbilityDetails/ArmorDamageContainer" unique_id=502815030]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="HealthDamageContainer" type="HBoxContainer" parent="AbilityDetails" unique_id=153672073]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 521.0
+offset_right = 667.0
+offset_bottom = 590.0
+theme_override_constants/separation = 16
+
+[node name="HealthDamageIcon" type="TextureRect" parent="AbilityDetails/HealthDamageContainer" unique_id=480841617]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Health Damage"
+texture = ExtResource("4_j5keh")
+stretch_mode = 5
+
+[node name="HealthDamageLabel" type="Label" parent="AbilityDetails/HealthDamageContainer" unique_id=576032071]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
