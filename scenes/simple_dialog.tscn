@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://boi3xgni82is0"]
+
+[ext_resource type="Script" uid="uid://b3e02sgopbl62" path="res://scripts/confirmation_dialog.gd" id="1_yxsac"]
+[ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="2_3m66n"]
+
+[node name="SimpleDialog" type="PanelContainer" unique_id=312538735]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_yxsac")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1037863356]
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0.37254903, 0.37254903, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1238971454]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=795363269]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="DialogTextLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=601826371]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Simple Dialog"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=863495069]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=547764712]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Confirm
+"
+
+[node name="AnimationScaleTwitch" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton" unique_id=1889976484]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_3m66n")
+metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
+
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2053833945]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Cancel
+"
+
+[node name="AnimationScaleTwitch" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer/CancelButton" unique_id=1333289911]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_3m66n")
+metadata/_custom_type_script = "uid://cdv8tc4yuh41w"

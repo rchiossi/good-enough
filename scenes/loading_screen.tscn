@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cyhbc3iv5820b"]
+
+[ext_resource type="Script" uid="uid://cn1wnhx43b5pk" path="res://scripts/loading_screen.gd" id="1_ep5rh"]
+
+[node name="LoadingScreen" type="CanvasLayer" unique_id=212112493]
+layer = 10
+script = ExtResource("1_ep5rh")
+
+[node name="BasePanel" type="PanelContainer" parent="." unique_id=2145213276]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BasePanel" unique_id=1438647065]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BasePanel" unique_id=33282494]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Label" type="Label" parent="BasePanel/MarginContainer" unique_id=1825388746]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 40
+text = "Loading..."
