@@ -117,3 +117,5 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
+
+[connection signal="pressed" from="ApplyButton" to="." method="_on_forget_button_pressed"]

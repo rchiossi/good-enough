@@ -43,3 +43,10 @@ func _on_ability_button_pressed(ability: Ability) -> void:
     armor_damage_label.text = str(ability.ArmorDamage)
     health_damage_label.text = str(ability.HealthDamage)
     selected_ability = ability
+
+
+func _on_forget_button_pressed() -> void:
+    if not selected_ability:
+        return
+    GameState.player_abilities.erase(selected_ability.Name)
+    SceneLoader.load_scene("res://scenes/map/map.tscn")
