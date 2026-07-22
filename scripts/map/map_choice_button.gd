@@ -27,6 +27,6 @@ func _ready() -> void:
 func set_type(n_type: GameState.NodeTypes):
     node_type = n_type
     icon = types_definitions[node_type]["icon"]
-    
+
 func on_pressed():
     SceneLoader.load_scene(types_definitions[node_type]["scene"])

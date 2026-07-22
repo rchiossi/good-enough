@@ -15,12 +15,33 @@ func _ready() -> void:
 
 
 func generate_map():
+    if GameState.map:
+        return
     var map = {}
-    map[0] = [GameState.NodeTypes.Start]
+    map[0] = {
+        "nodes": {
+            0: {
+                "type": GameState.NodeTypes.Start
+            }
+        },
+        "status": 0,
+    }
     for i in range(1, GameState.max_turns):
         var nr_nodes = randi() % 4 + 1
-        map[i] = []
+        map[i] = {
+            "nodes": {},
+            "status": 1,
+        }
         for j in range(nr_nodes):
-            map[i].append(GameState.NodeTypes.values()[randi_range(1, 2)])
-    map[GameState.max_turns] = [GameState.NodeTypes.Count]
+            map[i]["nodes"][j] = {
+                "type": GameState.NodeTypes.values()[randi_range(1, 2)],
+            }
+    map[GameState.max_turns] = {
+        "nodes": {
+            0: {
+                "type": GameState.NodeTypes.Count,
+            }
+        },
+        "status": 1,
+    }
     GameState.map = map
