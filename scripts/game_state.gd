@@ -2,6 +2,7 @@ extends Node
 
 var all_abilities: Dictionary = {}
 enum NodeTypes {
+    Null,
     Start,
     Fight,
     Event,

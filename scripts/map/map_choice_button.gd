@@ -7,6 +7,10 @@ var types_definitions: Dictionary[GameState.NodeTypes, Dictionary] = {
         "icon": preload("uid://mwgfvnpw5xme"),
         "scene": null,
     },
+    GameState.NodeTypes.Null: {
+        "icon": null,
+        "scene": null,
+    },
     GameState.NodeTypes.Fight: {
         "icon": preload("uid://c7j2jmc6jv7cv"),
         "scene": "uid://csqef5bpcx1cc",

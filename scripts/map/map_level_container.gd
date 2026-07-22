@@ -15,6 +15,9 @@ func _ready():
         node.set_type(GameState.map[level_id]["nodes"][n]["type"])
         node.button_group = button_group
         add_child(node)
+        if node.node_type == GameState.NodeTypes.Null:
+            node.visible = false
+            continue
         var separator = HSeparator.new()
         separator.custom_minimum_size.y = 128
         add_child(separator)

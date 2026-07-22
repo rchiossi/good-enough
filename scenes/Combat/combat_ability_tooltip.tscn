@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cmoy6iwwyo4qd"]
 
-[ext_resource type="Script" uid="uid://bof2v1eb6a2nt" path="res://scenes/Combat/combat_ability_tooltip.gd" id="1_6n13o"]
+[ext_resource type="Script" uid="uid://bof2v1eb6a2nt" path="res://scripts/combat/combat_ability_tooltip.gd" id="1_6n13o"]
 [ext_resource type="Texture2D" uid="uid://n1peuh4vn6i0" path="res://assets/abilities/Fire Spell Pack64.png" id="1_nbg2d"]
 
 [node name="CombatAbilityTooltip" type="MarginContainer" unique_id=1931624610]

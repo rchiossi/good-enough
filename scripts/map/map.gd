@@ -17,6 +17,9 @@ func _ready() -> void:
 func generate_map():
     if GameState.map:
         return
+    var rng = RandomNumberGenerator.new()
+    var possible_nodes = [GameState.NodeTypes.Null, GameState.NodeTypes.Fight, GameState.NodeTypes.Event]
+    var weights = PackedFloat32Array([1, 1, 0.5])
     var map = {}
     map[0] = {
         "nodes": {
@@ -27,15 +30,23 @@ func generate_map():
         "status": 0,
     }
     for i in range(1, GameState.max_turns):
-        var nr_nodes = randi() % 4 + 1
         map[i] = {
             "nodes": {},
             "status": 1,
         }
-        for j in range(nr_nodes):
+        var at_least_one_node = false
+        for j in range(4):
+            var type =  possible_nodes[rng.rand_weighted(weights)]
+            if type != GameState.NodeTypes.Null:
+                at_least_one_node = true
             map[i]["nodes"][j] = {
+                "type": type,
+            }
+        if not at_least_one_node:
+            map[i]["nodes"][randi_range(0, 3)] = {
                 "type": GameState.NodeTypes.values()[randi_range(1, 2)],
             }
+        
     map[GameState.max_turns] = {
         "nodes": {
             0: {
