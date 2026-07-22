@@ -4,7 +4,7 @@ extends Control
 const ICON_SIZE := 128
 
 func _ready() -> void:
-    for ability in GameState.player_abilities:
+    for ability in GameState.player_abilities.values():
         var button := Button.new()
         button.icon = ability.Icon
         button.expand_icon = true
