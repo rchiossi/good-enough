@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://8j2q7im3vpa3"]
+
+[ext_resource type="Script" uid="uid://rnxjcfv0re2a" path="res://scripts/combat/entity_scene.gd" id="1_fm8sl"]
+[ext_resource type="Texture2D" uid="uid://c6csinb1ka78k" path="res://assets/combat/player.png" id="1_rc3w3"]
+
+[node name="EntityScene" type="MarginContainer" unique_id=2088207339]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_fm8sl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2010614689]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=2142605283]
+unique_name_in_owner = true
+layout_mode = 2
+step = 1.0
+value = 100.0
+
+[node name="ArmorBar" type="ProgressBar" parent="VBoxContainer" unique_id=990116961]
+unique_name_in_owner = true
+layout_mode = 2
+step = 1.0
+value = 100.0
+
+[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer" unique_id=102897590]
+unique_name_in_owner = true
+layout_mode = 2
+step = 1.0
+value = 100.0
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer" unique_id=935468676]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_rc3w3")
