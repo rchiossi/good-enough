@@ -12,7 +12,7 @@ func _ready() -> void:
 	load_ability()
 
 func load_ability():
-	var ability : Ability = GameState.player_abilities[ability_name]
+	var ability : Ability = GameState.all_abilities[ability_name]
 
 	ability_name_label.text = ability.Name
 	hp_damage_label.text = str(ability.HealthDamage)
