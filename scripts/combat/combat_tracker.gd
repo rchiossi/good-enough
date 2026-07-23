@@ -11,52 +11,52 @@ signal new_turn(entity_name: String)
 signal combat_ended
 
 func is_active(entity_name: String) -> bool:
-	return _turn_order.front().name == entity_name
+    return _turn_order.front().name == entity_name
 
 func start_combat(entities: Dictionary[String, EntityStats], active: EntityStats):
-	_entities = entities
+    _entities = entities
 
-	for entity in entities.values():
-		if entity == active:
-			_turn_order.push_front(entity)
-		else:
-			_turn_order.push_back(entity)
+    for entity in entities.values():
+        if entity == active:
+            _turn_order.push_front(entity)
+        else:
+            _turn_order.push_back(entity)
 
-		entity.damage_taken.connect(on_damage_taken.bind(entity))
+        entity.damage_taken.connect(on_damage_taken.bind(entity))
 
 func step():
-	var last = _turn_order.pop_front()
-	_turn_order.push_back(last)
+    var last = _turn_order.pop_front()
+    _turn_order.push_back(last)
 
-	new_turn.emit(_turn_order.front().name)
+    new_turn.emit(_turn_order.front().name)
 
-	if not _turn_order.front().is_player:
-		take_enemy_turn()
+    if not _turn_order.front().is_player:
+        take_enemy_turn()
 
 func take_action(ability_name: String):
-	var ability : Ability = GameState.all_abilities[ability_name]
+    var ability : Ability = GameState.all_abilities[ability_name]
 
-	ability.take_action(_turn_order.back())
+    ability.take_action(_turn_order.back())
 
 func take_enemy_turn():
-	var enemy : EntityStats = _turn_order.front()
-	var ability : Ability = enemy.abilities.values().pick_random()
+    var enemy : EntityStats = _turn_order.front()
+    var ability : Ability = enemy.abilities.values().pick_random()
 
-	take_action(ability.name)
+    take_action(ability.name)
 
 func on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, entity: EntityStats):
-	var event = CombatEvent.new()
+    var event = CombatEvent.new()
 
-	event.type = CombatEvent.CombatEventType.DAMAGE
-	event.shield_damage = shield_damage
-	event.armor_damage = armor_damage
-	event.hp_damage = hp_damage
+    event.type = CombatEvent.CombatEventType.DAMAGE
+    event.shield_damage = shield_damage
+    event.armor_damage = armor_damage
+    event.hp_damage = hp_damage
 
-	event.target = entity
+    event.target = entity
 
-	combat_events.push_back(event)
+    combat_events.push_back(event)
 
-	if entity.health == 0:
-		combat_ended.emit()
-	else:
-		step()
+    if entity.health == 0:
+        combat_ended.emit()
+    else:
+        step()

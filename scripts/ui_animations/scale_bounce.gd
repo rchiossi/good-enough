@@ -7,29 +7,29 @@ class_name AnimationScaleBounce
 var _target : TextureButton
 
 func _ready() -> void:
-	_target = get_parent()
-	_target.offset_transform_enabled = true
+    _target = get_parent()
+    _target.offset_transform_enabled = true
 
-	mouse_filter = Control.MOUSE_FILTER_PASS
+    mouse_filter = Control.MOUSE_FILTER_PASS
 
-	_target.button_down.connect(_animate_in)
-	_target.button_up.connect(_animate_out)
+    _target.button_down.connect(_animate_in)
+    _target.button_up.connect(_animate_out)
 
 func _animate_in():
-	_target.z_index += 1
+    _target.z_index += 1
 
-	var tween = create_tween()
+    var tween = create_tween()
 
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_OUT)
+    tween.set_trans(Tween.TRANS_SINE)
+    tween.set_ease(Tween.EASE_OUT)
 
-	tween.tween_property(_target, "offset_transform_scale", Vector2.ONE * scale_percentage, duration)
-	
+    tween.tween_property(_target, "offset_transform_scale", Vector2.ONE * scale_percentage, duration)
+    
 func _animate_out():
-	var tween = create_tween()
+    var tween = create_tween()
 
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_OUT)
+    tween.set_trans(Tween.TRANS_SINE)
+    tween.set_ease(Tween.EASE_OUT)
 
-	tween.tween_property(_target, "offset_transform_scale", Vector2.ONE, duration)
-	tween.tween_callback(func (): _target.z_index -= 1)
+    tween.tween_property(_target, "offset_transform_scale", Vector2.ONE, duration)
+    tween.tween_callback(func (): _target.z_index -= 1)
