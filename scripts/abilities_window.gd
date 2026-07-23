@@ -6,6 +6,9 @@ extends Control
 @onready var shield_damage_label: Label = $AbilityDetails/ShieldDamageContainer/ShieldDamageLabel
 @onready var armor_damage_label: Label = $AbilityDetails/ArmorDamageContainer/ArmorDamageLabel
 @onready var health_damage_label: Label = $AbilityDetails/HealthDamageContainer/HealthDamageLabel
+@onready var confirmation_dialog: SimpleDialog = $ConfirmationDialog
+@onready var hover_sound_1: AudioStreamPlayer2D = $HoverSound1
+@onready var click_sound: AudioStreamPlayer2D = $ClickSound
 
 @onready var abilities_list: HBoxContainer = $AbilitiesList
 const ICON_SIZE := 128
@@ -15,6 +18,7 @@ var selected_ability: Ability = null
 func _ready() -> void:
     title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     var empty := StyleBoxEmpty.new()
+    confirmation_dialog.confirmed.connect(_on_forget_button_pressed)
 
     for ability in GameState.player_abilities.values():
         var button := Button.new()
@@ -29,21 +33,30 @@ func _ready() -> void:
         for state in ["normal", "hover", "pressed", "focus", "disabled"]:
             button.add_theme_stylebox_override(state, empty)
 
-        button.mouse_entered.connect(func(): button.modulate = Color(1.2, 1.2, 1.2))
-        button.mouse_exited.connect(func(): button.modulate = Color.WHITE)
+        #button.mouse_entered.connect(func(): button.modulate = Color(1.2, 1.2, 1.2))
+        #button.mouse_exited.connect(func(): button.modulate = Color.WHITE)
+        button.mouse_entered.connect(_on_ability_button_hovered.bind(ability))
 
         button.pressed.connect(_on_ability_button_pressed.bind(ability))
         abilities_list.add_child(button)
     print("ready on ", self, " label=", shield_damage_label)
 
-func _on_ability_button_pressed(ability: Ability) -> void:
+func _on_ability_button_hovered(ability: Ability) -> void:
     name_label.text = ability.Name
     description_text.text = ability.Description
     shield_damage_label.text = str(ability.ShieldDamage)
     armor_damage_label.text = str(ability.ArmorDamage)
     health_damage_label.text = str(ability.HealthDamage)
     selected_ability = ability
+    hover_sound_1.play()
 
+func _on_ability_button_pressed(ability: Ability) -> void:
+    selected_ability = ability
+    confirmation_dialog.dialog_text_label.text = "Forget " + ability.Name + "?"
+    confirmation_dialog.confirm_button.text = "Forget"
+    confirmation_dialog.cancel_button.text = "KEEP"
+    confirmation_dialog.fade_in()
+    click_sound.play()
 
 func _on_forget_button_pressed() -> void:
     if not selected_ability:

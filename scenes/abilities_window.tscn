@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c8yv8y81aru0e" path="res://assets/abilities/shield_icon.png" id="2_7bhlu"]
 [ext_resource type="Texture2D" uid="uid://b8jpc5mlsmcnp" path="res://assets/abilities/armor_icon.png" id="3_1ijv4"]
 [ext_resource type="Texture2D" uid="uid://b4wibg24bkciq" path="res://assets/abilities/health_icon.png" id="4_j5keh"]
+[ext_resource type="PackedScene" uid="uid://boi3xgni82is0" path="res://scenes/simple_dialog.tscn" id="5_1ijv4"]
+[ext_resource type="AudioStream" uid="uid://dgnmyji1yijho" path="res://assets/sounds/Hover Wooden 1.ogg" id="6_j5keh"]
+[ext_resource type="AudioStream" uid="uid://drooitmjvka4i" path="res://assets/sounds/Click.ogg" id="7_q1qg4"]
 
 [node name="AbilitiesWindow" type="Control" unique_id=1256689411]
 layout_mode = 3
@@ -13,15 +16,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3rflj")
-
-[node name="ApplyButton" type="Button" parent="." unique_id=106850369]
-layout_mode = 0
-offset_left = 1482.0
-offset_top = 954.0
-offset_right = 1866.0
-offset_bottom = 1052.0
-theme_override_font_sizes/font_size = 32
-text = "Forget"
 
 [node name="AbilitiesList" type="HBoxContainer" parent="." unique_id=934910264]
 layout_mode = 0
@@ -118,4 +112,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
 
-[connection signal="pressed" from="ApplyButton" to="." method="_on_forget_button_pressed"]
+[node name="ConfirmationDialog" parent="." unique_id=312538735 instance=ExtResource("5_1ijv4")]
+visible = false
+layout_mode = 1
+
+[node name="HoverSound1" type="AudioStreamPlayer2D" parent="." unique_id=869664974]
+stream = ExtResource("6_j5keh")
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="." unique_id=1251974734]
+stream = ExtResource("7_q1qg4")

@@ -51,4 +51,3 @@ func apply_damage(shield_damage: int, armor_damage: int, health_damage: int):
         total_hp_damage = health - new_health
         damage_taken.emit(total_shield_damage, total_armor_damage, total_hp_damage)
     health = new_health
-
