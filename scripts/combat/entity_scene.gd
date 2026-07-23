@@ -110,5 +110,8 @@ func animate_death():
     tween.set_trans(Tween.TRANS_SINE)
     tween.set_ease(Tween.EASE_OUT)
 
-    tween.tween_property(_sprite, "offset_transform_scale", Vector2(1.0, 0.1), death_animation_duration)
+    tween.tween_property(_sprite, "material:shader_parameter/flash_color", Color.RED, death_animation_duration)
+    tween.parallel().tween_property(_sprite, "material:shader_parameter/flash_percentage", 1.0, death_animation_duration)
+    tween.parallel().tween_property(self, "modulate:a", 0.0, death_animation_duration)
+
     tween.tween_callback(func(): death_animation_complete.emit())
