@@ -52,7 +52,7 @@ func _on_ability_button_hovered(ability: Ability) -> void:
 
 func _on_ability_button_pressed(ability: Ability) -> void:
     selected_ability = ability
-    confirmation_dialog.dialog_text_label.text = "Forget " + ability.Name + "?"
+    confirmation_dialog.dialog_text_label.text = "Forget " + ability.name + "?"
     confirmation_dialog.confirm_button.text = "Forget"
     confirmation_dialog.cancel_button.text = "KEEP"
     confirmation_dialog.fade_in()
