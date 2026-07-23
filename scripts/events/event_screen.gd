@@ -5,13 +5,31 @@ extends Control
 
 var available_events: Array[GameEvent] = []
 
+func _get_removeable_ability() -> Ability:
+    var has_removeable_ability: bool = false
+    for ability in GameState.player_stats.abilities.values():
+        if ability.ability_type != Ability.AbilityType.NORMAL:
+            has_removeable_ability = true
+            break
+
+    if not has_removeable_ability:
+        return null
+
+    var index_to_remove = randi_range(0, len(GameState.player_stats.abilities.values())-1)
+
+    while true:
+        var found_ability: Ability = GameState.player_stats.abilities.values()[index_to_remove]
+        if found_ability.ability_type != Ability.AbilityType.NORMAL:
+            return found_ability
+        index_to_remove += 1
+        if index_to_remove == len(GameState.player_stats.abilities):
+            index_to_remove = 0
+    return null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     accept_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     reject_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    var index_to_remove = randi_range(0, len(GameState.player_stats.abilities.values())-1)
-    var ability_1 = GameState.player_stats.abilities.values()[index_to_remove].name
-    
+    var ability_1 = _get_removeable_ability().name
     #event1
     var existential_event: GameEvent = GameEvent.new()
     existential_event.text = "
@@ -49,8 +67,10 @@ func _ready() -> void:
     helpmove_event.reject_text = "I don't have time"
     helpmove_event.take_action_func = Callable(helpmove_event_callback.bind(ability_1))
     available_events.append(helpmove_event)
-    choose_random_event()
-
+    
+    
+    
+    choose_random_event() 
 
 func choose_random_event():
     var event_index = randi_range(0, len(available_events)-1)
