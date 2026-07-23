@@ -5,7 +5,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	label.text = "Unionized Bandits
+    label.text = "Unionized Bandits
 
 You stumble upon a gang of bandits picketing instead of pillaging.
 

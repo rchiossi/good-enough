@@ -4,8 +4,8 @@ var node_scene: PackedScene = preload("uid://dytp76daenoys")
 var level_id: int = 0
 
 func _init(id: int = 0) -> void:
-	level_id = id
-	alignment = BoxContainer.ALIGNMENT_CENTER
+    level_id = id
+    alignment = BoxContainer.ALIGNMENT_CENTER
 
 func _ready():
     var button_group = ButtonGroup.new()
@@ -24,8 +24,8 @@ func _ready():
         add_child(separator)
 
 func node_selected(button: MapChoiceButton):
-	print("[%s] selected" % [level_id, ])
-	GameState.map[level_id]["status"]  = 0
-	GameState.current_position = button.coords
-	GameState.map[GameState.current_position.x]["nodes"][GameState.current_position.y]["visited"] = 1
-	button.on_pressed()
+    print("[%s] selected" % [level_id, ])
+    GameState.map[level_id]["status"]  = 0
+    GameState.current_position = button.coords
+    GameState.map[GameState.current_position.x]["nodes"][GameState.current_position.y]["visited"] = 1
+    button.on_pressed()

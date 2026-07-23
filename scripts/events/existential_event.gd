@@ -7,10 +7,10 @@ extends Control
 var index_to_remove: int = 0
 
 func _ready() -> void:
-	pass
+    pass
 
 func _on_accept_button_button_up() -> void:
-	return
+    return
 
 func _on_deny_button_button_up() -> void:
-	return
+    return

@@ -10,4 +10,4 @@ var description: String = ""
 var cooldown: int = 0
 
 func take_action(stats: EntityStats) -> void:
-	stats.apply_damage(shield_damage, armor_damage, health_damage)
+    stats.apply_damage(shield_damage, armor_damage, health_damage)
