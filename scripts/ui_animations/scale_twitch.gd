@@ -18,6 +18,8 @@ func _ready() -> void:
     _target.focus_exited.connect(_animate_out)
 
 func _animate_in():
+    _target.z_index += 1
+
     var tween = create_tween()
 
     tween.set_trans(Tween.TRANS_BACK)
@@ -34,3 +36,5 @@ func _animate_out():
 
     tween.tween_property(_target, "offset_transform_scale", Vector2.ONE, duration)
     tween.parallel().tween_property(_target, "offset_transform_rotation", 0.0, duration)
+
+    _target.z_index -= 1
