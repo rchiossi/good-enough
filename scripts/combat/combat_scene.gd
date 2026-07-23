@@ -103,6 +103,7 @@ func _activate_ability(ability_name):
         return
 
     _combat_manager.take_player_action(ability_name,[enemy.stats.name])
+    _update_turn_indicator(enemy.stats.name)
     #This will trigger damage taken, which will call _on_damage_taken
 
 func _on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, scene: EntityScene):
@@ -134,10 +135,10 @@ func _on_player_animation_complete():
 
 func _on_state_changed(state):
     match state:
-        CombatManager.CombatState.WAITING_FOR_PLAYER_ACTION:
-            _update_turn_indicator()
-        CombatManager.CombatState.WAITING_FOR_ENEMY_ACTION:
-            _update_turn_indicator()
+        #CombatManager.CombatState.WAITING_FOR_PLAYER_ACTION:
+        #    _update_turn_indicator()
+        CombatManager.CombatState.ENEMY_ACTION_STARTED:
+            _update_turn_indicator(player.stats.name)
         CombatManager.CombatState.COMBAT_ENDED:
             _play_death_animation()
 
@@ -168,18 +169,15 @@ func show_damage_numbers(value: int, color: Color, offset: Vector2, scene: Entit
     tween.parallel().tween_property(label, "modulate:a", 0.0, damage_number_duration)
     tween.tween_callback(func(): label.queue_free())
 
-func _update_turn_indicator(animate : bool = true):
+func _update_turn_indicator(target_name: String):
     var indicator_position : Vector2
-    var active = _entity_scenes[_combat_manager.get_active_entity_name()]
+    var target = _entity_scenes[target_name]
     
-    indicator_position = active.global_position + Vector2(active.size.x / 2, 0)
+    indicator_position = target.global_position + Vector2(target.size.x / 2, 0)
     indicator_position += turn_indicator_offset
 
     if not _turn_indicator.visible:
         _turn_indicator.show()
-        animate = false
-
-    if not animate:
         _turn_indicator.position = indicator_position
         return
 
