@@ -5,13 +5,15 @@ class_name SettingsPanel
 @onready var music_slider : HSlider = %MusicSlider
 @onready var sfx_slider : HSlider = %SfxSlider
 
-@onready var close_button : Button = %CloseButton
+@onready var back_button : Button = %BackButton
+@onready var main_menu_button : Button = %MainMenuButton
 
 var _master_idx : int
 var _music_idx : int
 var _sfx_idx : int
 
 @export var fade_duration : float = 0.3
+@export var show_main_menu_button : bool = false
 
 var _last_focus : Control
 
@@ -28,15 +30,21 @@ func _ready() -> void:
     music_slider.value_changed.connect(_on_music_value_changed)
     sfx_slider.value_changed.connect(_on_sfx_value_changed)
 
-    close_button.pressed.connect(_on_close_button_pressed)
+    back_button.pressed.connect(_on_back_button_pressed)
+    main_menu_button.pressed.connect(_on_main_menu_button_pressed)
+
+    main_menu_button.visible = show_main_menu_button
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):
         get_viewport().set_input_as_handled()
         fade_out()
 
-func _on_close_button_pressed():
+func _on_back_button_pressed():
     fade_out()
+
+func _on_main_menu_button_pressed():
+    SceneLoader.load_scene("uid://dtorqehcnwdl6")
 
 func _on_master_value_changed():
     AudioServer.set_bus_volume_linear(_master_idx, master_slider.value)

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c8f3ytn0h5rs6" path="res://scenes/Combat/victory_panel.tscn" id="7_jaejr"]
 [ext_resource type="PackedScene" uid="uid://d4b6rgp3dtcuu" path="res://scenes/Combat/defeat_panel.tscn" id="8_j8oqs"]
 [ext_resource type="Script" uid="uid://dcwybhvhic1fi" path="res://scripts/ui_animations/screen_shake.gd" id="9_338db"]
+[ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="10_vhh5q"]
 
 [node name="CombatScene" type="Control" unique_id=1486274649]
 layout_mode = 3
@@ -175,3 +176,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="SettingsPanel" parent="." unique_id=1446633356 instance=ExtResource("10_vhh5q")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -312.5
+offset_right = 420.0
+offset_bottom = 312.5
+show_main_menu_button = true

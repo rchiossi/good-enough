@@ -17,6 +17,10 @@ script = ExtResource("1_qtqyt")
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1254245361]
 layout_mode = 2
 
+[node name="ColorRect" type="ColorRect" parent="PanelContainer" unique_id=94745273]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1618611935]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -91,10 +95,23 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=31129866]
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=662570373]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=31129866]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 10
-text = "Close"
+text = "Back"
+
+[node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1115411318]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+text = "Main Menu"

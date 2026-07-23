@@ -25,6 +25,8 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 
 @onready var screen_shake : AnimationScreenShake = %AnimationScreenShake
 
+@onready var _settings_panel : SettingsPanel = %SettingsPanel
+
 @export var end_battle_animation_duration : float = 0.5
 
 @export var turn_indicator_offset : Vector2 = Vector2(0, -75)
@@ -76,6 +78,9 @@ func _ready() -> void:
 
     _animate_start_combat.call_deferred()
 
+func _input(event: InputEvent) -> void:
+    if event.is_action_pressed("ui_cancel"):
+        _settings_panel.fade_in()
 
 func _on_new_turn(turn_count: int):
     print('next_turn_called: %s', turn_count)
