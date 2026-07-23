@@ -9,12 +9,12 @@ class_name CombatAbilityTooltip
 var ability_name : String = "Fireball"
 
 func _ready() -> void:
-	load_ability()
+    load_ability()
 
 func load_ability():
-	var ability : Ability = GameState.all_abilities[ability_name]
+    var ability : Ability = GameState.all_abilities[ability_name]
 
-	ability_name_label.text = ability.Name
-	hp_damage_label.text = str(ability.HealthDamage)
-	armor_damage_label.text = str(ability.ArmorDamage)
-	shield_damage_label.text = str(ability.ShieldDamage)
+    ability_name_label.text = ability.Name
+    hp_damage_label.text = str(ability.HealthDamage)
+    armor_damage_label.text = str(ability.ArmorDamage)
+    shield_damage_label.text = str(ability.ShieldDamage)
