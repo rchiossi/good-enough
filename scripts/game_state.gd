@@ -136,12 +136,23 @@ func _init_abilities():
     _add_ability(pillar_bonk)
 
     var incinerate := Ability.new()
-    incinerate.shield_damage = 25
+    incinerate.shield_damage = 30
     incinerate.armor_damage = 0
-    incinerate.health_damage = 25
+    incinerate.health_damage = 10
     incinerate.name = "Incinerate"
     incinerate.icon = preload("uid://5abb2wxisclh")
     incinerate.description = "You set your enemy on fire burning through their magical shield. This also affects health due to the severe heat."
     incinerate.cooldown = 3
-    incinerate.ability_type = Ability.AbilityType.BLUNT
+    incinerate.ability_type = Ability.AbilityType.MAGIC
     _add_ability(incinerate)
+
+    var blood_weave := Ability.new()
+    blood_weave.shield_damage = 0
+    blood_weave.armor_damage = 0
+    blood_weave.health_damage = 50
+    blood_weave.name = "Blood Weave"
+    blood_weave.icon = preload("uid://dyxfch1jvsk5x")
+    blood_weave.description = "You manipulate the blood of your enemies, causing it to leak into their muscle. Significantly damaging their ability to breathe."
+    blood_weave.cooldown = 6
+    blood_weave.ability_type = Ability.AbilityType.BLUNT
+    _add_ability(blood_weave)
