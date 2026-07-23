@@ -28,6 +28,9 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 func _ready() -> void:
 	_player_stats = GameState.player_stats
 	_player_stats.hp_changed.connect(_on_hp_changed.bind(_player_stats, player))
+	_player_stats.armor_changed.connect(_on_armor_changed.bind(_player_stats, player))
+	_player_stats.shield_changed.connect(_on_shield_changed.bind(_player_stats, player))
+	_player_stats.damage_taken.connect(_on_damage_taken.bind(_player_stats, player))
 
 	_enemy_stats = GameState.enemy_list.values().pick_random()
 	_enemy_stats.hp_changed.connect(_on_hp_changed.bind(_enemy_stats, enemy))
@@ -36,7 +39,10 @@ func _ready() -> void:
 	_enemy_stats.damage_taken.connect(_on_damage_taken.bind(enemy))
 
 	player.init(_player_stats.max_health, _player_stats.armor, _player_stats.shield, _player_sprite )
+	player.death_animation_complete.connect(on_player_death)
+
 	enemy.init(_enemy_stats.max_health, _enemy_stats.max_armor, _enemy_stats.max_shield, _enemy_sprite)
+	enemy.death_animation_complete.connect(on_enemy_death)
 
 	_attack_button.pressed.connect(player.animate_attack)
 	_damage_button.pressed.connect(enemy.animate_take_damage)
@@ -68,7 +74,6 @@ func _on_hp_changed(old_value: int, new_value: int, _stats: EntityStats, scene: 
 	scene.animate_health_bar(old_value, new_value)
 
 	if new_value == 0:
-		print("death?")
 		scene.animate_death()
 
 func _on_armor_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
@@ -116,3 +121,11 @@ func show_damage_numbers(value: int, color: Color, offset: Vector2, scene: Entit
 	tween.tween_property(label, "offset_transform_position", Vector2(0, damage_number_slide), damage_number_duration)
 	tween.parallel().tween_property(label, "modulate:a", 0.0, damage_number_duration)
 	tween.tween_callback(func(): label.queue_free())
+
+func on_player_death():
+	# TODO: Show Victory Popup
+	SceneLoader.load_scene("uid://clhtpadgac6l7")
+
+func on_enemy_death():
+	# TODO: Show Defeat Poupup
+	SceneLoader.load_scene("uid://clhtpadgac6l7")

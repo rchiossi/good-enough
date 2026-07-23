@@ -24,6 +24,8 @@ var _tween : Tween
 @export var bar_animation_duration : float = 2.0
 @export var death_animation_duration : float = 2.0
 
+signal death_animation_complete
+
 func init(health : int, armor : int, shield : int, sprite : Texture2D):
     offset_transform_enabled = true
 
@@ -95,3 +97,4 @@ func animate_death():
     tween.set_ease(Tween.EASE_OUT)
 
     tween.tween_property(_sprite, "offset_transform_scale", Vector2(1.0, 0.1), death_animation_duration)
+    tween.tween_callback(func(): death_animation_complete.emit())
