@@ -1,10 +1,13 @@
 [gd_resource type="Theme" format=3 uid="uid://81xj75vwbcjg"]
 
-[ext_resource type="Texture2D" uid="uid://0p6uf3b2jdda" path="res://assets/map/background.png" id="1_ky26x"]
+[ext_resource type="Texture2D" uid="uid://bnvjjxqxpt051" path="res://assets/map/background.png" id="1_ky26x"]
 [ext_resource type="FontFile" uid="uid://bep51vmupui4e" path="res://assets/BoldPixels.ttf" id="2_8b0q7"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8b0q7"]
+load_path = "res://.godot/imported/background.png-0c479fde61e410e7d2a7d9541b458248.ctex"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdhkq"]
-texture = ExtResource("1_ky26x")
+texture = SubResource("CompressedTexture2D_8b0q7")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxwrl"]
 bg_color = Color(0.06666667, 0.8, 0.007843138, 0.1764706)
@@ -13,11 +16,8 @@ corner_radius_top_right = 75
 corner_radius_bottom_right = 75
 corner_radius_bottom_left = 75
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ky26x"]
-load_path = "res://.godot/imported/parchmentFoldedCrinkled.png-01fc019edb8cdf90829071aaa8a89161.ctex"
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8b0q7"]
-texture = SubResource("CompressedTexture2D_ky26x")
+texture = ExtResource("1_ky26x")
 modulate_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
 
 [resource]
