@@ -26,10 +26,20 @@ const player_shield : int = 100
 var enemy_list : Dictionary = {}
 
 func _ready() -> void:
+    reset()
+
+func reset() -> void:
     _init_abilities()
     _init_player()
     _init_enemies()
+    _reset_map()
     reset_state()
+
+func _reset_map() -> void:
+    map = {}
+    current_position = Vector2i(0, 0)
+    nodes = {}
+    connections = {}
 
 func _init_player() -> void:
     player_stats.name = "Player"
