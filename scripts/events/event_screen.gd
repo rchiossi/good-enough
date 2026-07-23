@@ -63,19 +63,22 @@ func choose_random_event():
 #event1callback
 func existential_event_callback(ability_to_toss: String):
     GameState.player_stats.abilities[ability_to_toss].is_disabled = true
-    GameState.player_stats.health = min(GameState.player_stats.health + 25, GameState.player_stats.max_health)
+    GameState.player_stats.max_health += 25
+    GameState.player_stats.health += 25
     SceneLoader.load_scene("res://scenes/map/map.tscn")
 
 #event2callback
 func unionized_event_callback(ability_to_toss: String):
     GameState.player_stats.abilities[ability_to_toss].is_disabled = true
-    GameState.player_stats.armor = min(GameState.player_stats.armor + 15, GameState.player_stats.max_armor)
+    GameState.player_stats.max_armor += 15
+    GameState.player_stats.armor += 15
     SceneLoader.load_scene("res://scenes/map/map.tscn")
 
 #event3callback
 func helpmove_event_callback(ability_to_toss: String):
     GameState.player_stats.abilities[ability_to_toss].is_disabled = true
-    GameState.player_stats.shield = min(GameState.player_stats.shield + 25, GameState.player_stats.max_shield)
+    GameState.player_stats.max_shield += 25
+    GameState.player_stats.shield += 25
     SceneLoader.load_scene("res://scenes/map/map.tscn")
 
 func _on_reject_button_pressed() -> void:
