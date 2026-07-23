@@ -28,7 +28,7 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var end_battle_animation_duration : float = 0.5
 
 @export var turn_indicator_offset : Vector2 = Vector2(0, -75)
-@export var turn_indicator_speed : float = 0.3
+@export var turn_indicator_speed : float = 0.5
 
 @export var damage_font_size : int = 30
 @export var damage_number_offset : Vector2 = Vector2(0, -100)
@@ -128,13 +128,14 @@ func _on_damage_taken(source: EntityStats, target: EntityStats, shield_damage: i
     screen_shake.shake()
 
     var tween = create_tween()
-    tween.tween_interval(damage_number_duration)
+    tween.tween_interval(turn_indicator_speed)
     if source.is_player:
         tween.tween_callback(_on_player_animation_complete)
     else:
         tween.tween_callback(_on_enemy_animation_complete)
 
 func _on_player_animation_complete():
+    print("Here")
     _combat_manager.conclude_player_action()
 
 func _on_state_changed(state):
