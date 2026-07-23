@@ -16,6 +16,10 @@ theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 200
 script = ExtResource("1_0m8fq")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1839893018]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=983984697]
 layout_mode = 2
 
