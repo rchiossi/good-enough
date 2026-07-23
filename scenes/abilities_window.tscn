@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://clhtpadgac6l7"]
 
 [ext_resource type="Script" uid="uid://dtwkscpo7dmcu" path="res://scripts/abilities_window.gd" id="1_3rflj"]
-[ext_resource type="Texture2D" uid="uid://c8yv8y81aru0e" path="res://assets/abilities/shield_icon.png" id="2_7bhlu"]
-[ext_resource type="Texture2D" uid="uid://b8jpc5mlsmcnp" path="res://assets/abilities/armor_icon.png" id="3_1ijv4"]
-[ext_resource type="Texture2D" uid="uid://b4wibg24bkciq" path="res://assets/abilities/health_icon.png" id="4_j5keh"]
+[ext_resource type="Texture2D" uid="uid://5p535fe5dxkt" path="res://assets/combat/shield.png" id="2_vkpq0"]
+[ext_resource type="Texture2D" uid="uid://dvlsd6i5qeehe" path="res://assets/combat/armor.png" id="3_olwxs"]
+[ext_resource type="Texture2D" uid="uid://ckxwuklnhuldg" path="res://assets/combat/hp.png" id="4_pmglp"]
 [ext_resource type="PackedScene" uid="uid://boi3xgni82is0" path="res://scenes/simple_dialog.tscn" id="5_1ijv4"]
+[ext_resource type="Texture2D" uid="uid://qscf336gkfa4" path="res://assets/abilities/Ice Spells13.png" id="5_vt126"]
 [ext_resource type="AudioStream" uid="uid://dgnmyji1yijho" path="res://assets/sounds/Hover Wooden 1.ogg" id="6_j5keh"]
 [ext_resource type="AudioStream" uid="uid://drooitmjvka4i" path="res://assets/sounds/Click.ogg" id="7_q1qg4"]
 
@@ -64,7 +65,8 @@ theme_override_constants/separation = 16
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Shield Damage"
-texture = ExtResource("2_7bhlu")
+texture = ExtResource("2_vkpq0")
+expand_mode = 2
 stretch_mode = 5
 
 [node name="ShieldDamageLabel" type="Label" parent="AbilityDetails/ShieldDamageContainer" unique_id=1585401239]
@@ -84,7 +86,8 @@ theme_override_constants/separation = 16
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Armor Damage"
-texture = ExtResource("3_1ijv4")
+texture = ExtResource("3_olwxs")
+expand_mode = 2
 stretch_mode = 5
 
 [node name="ArmorDamageLabel" type="Label" parent="AbilityDetails/ArmorDamageContainer" unique_id=502815030]
@@ -104,10 +107,31 @@ theme_override_constants/separation = 16
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Health Damage"
-texture = ExtResource("4_j5keh")
+texture = ExtResource("4_pmglp")
+expand_mode = 2
 stretch_mode = 5
 
 [node name="HealthDamageLabel" type="Label" parent="AbilityDetails/HealthDamageContainer" unique_id=576032071]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="CooldownContainer" type="HBoxContainer" parent="AbilityDetails" unique_id=2006836530]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 521.0
+offset_right = 822.0
+offset_bottom = 590.0
+theme_override_constants/separation = 16
+
+[node name="CooldownIcon" type="TextureRect" parent="AbilityDetails/CooldownContainer" unique_id=1208983891]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Ability cooldown"
+texture = ExtResource("5_vt126")
+stretch_mode = 5
+
+[node name="CooldownLabel" type="Label" parent="AbilityDetails/CooldownContainer" unique_id=1182671763]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"

@@ -6,6 +6,7 @@ extends Control
 @onready var shield_damage_label: Label = $AbilityDetails/ShieldDamageContainer/ShieldDamageLabel
 @onready var armor_damage_label: Label = $AbilityDetails/ArmorDamageContainer/ArmorDamageLabel
 @onready var health_damage_label: Label = $AbilityDetails/HealthDamageContainer/HealthDamageLabel
+@onready var cooldown_label: Label = $AbilityDetails/CooldownContainer/CooldownLabel
 @onready var confirmation_dialog: SimpleDialog = $ConfirmationDialog
 @onready var hover_sound_1: AudioStreamPlayer2D = $HoverSound1
 @onready var click_sound: AudioStreamPlayer2D = $ClickSound
@@ -33,8 +34,6 @@ func _ready() -> void:
         for state in ["normal", "hover", "pressed", "focus", "disabled"]:
             button.add_theme_stylebox_override(state, empty)
 
-        #button.mouse_entered.connect(func(): button.modulate = Color(1.2, 1.2, 1.2))
-        #button.mouse_exited.connect(func(): button.modulate = Color.WHITE)
         button.mouse_entered.connect(_on_ability_button_hovered.bind(ability))
 
         button.pressed.connect(_on_ability_button_pressed.bind(ability))
@@ -47,6 +46,7 @@ func _on_ability_button_hovered(ability: Ability) -> void:
     shield_damage_label.text = str(ability.shield_damage)
     armor_damage_label.text = str(ability.armor_damage)
     health_damage_label.text = str(ability.health_damage)
+    cooldown_label.text = str(ability.cooldown) + " turns"
     selected_ability = ability
     hover_sound_1.play()
 

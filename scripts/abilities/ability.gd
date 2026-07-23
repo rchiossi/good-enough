@@ -7,6 +7,7 @@ var health_damage: int = 0
 var name: String = ""
 var icon := preload("uid://n1peuh4vn6i0")
 var description: String = ""
+var cooldown: int = 0
 
 func take_action(stats: EntityStats) -> void:
     stats.apply_damage(shield_damage, armor_damage, health_damage)

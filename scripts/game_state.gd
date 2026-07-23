@@ -76,6 +76,7 @@ func _init_abilities():
     fireball.name = "Fireball"
     fireball.icon = preload("uid://n1peuh4vn6i0")
     fireball.description = "Some description"
+    fireball.cooldown = 1
     _add_ability(fireball)
 
     var ice_dart := Ability.new()
@@ -85,6 +86,7 @@ func _init_abilities():
     ice_dart.name = "Ice Dart"
     ice_dart.icon = preload("uid://qscf336gkfa4")
     ice_dart.description = "An ice dart that shoots towards your enemy. Piercing them dealing significant magic damage, but fails to penetrate armor."
+    ice_dart.cooldown = 2
     _add_ability(ice_dart)
 
     var visceral_bleed := Ability.new()
@@ -94,4 +96,5 @@ func _init_abilities():
     visceral_bleed.name = "Visceral Bleed"
     visceral_bleed.icon = preload("uid://bxm2bno0ekkfh")
     visceral_bleed.description = "You cut the veins of your enemies from the inside. Inflicts massive health damage."
+    visceral_bleed.cooldown = 3
     _add_ability(visceral_bleed)
