@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://81xj75vwbcjg" path="res://assets/themes/map_theme.tres" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://crwlg463ssqi4" path="res://scripts/map/map.gd" id="2_ph54e"]
+[ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="3_a2pkv"]
 
 [node name="MapScene" type="Control" unique_id=1321419604]
 layout_mode = 3
@@ -49,3 +50,18 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="SettingsPanel" parent="." unique_id=1446633356 instance=ExtResource("3_a2pkv")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -312.5
+offset_right = 420.0
+offset_bottom = 312.5
+show_main_menu_button = true
