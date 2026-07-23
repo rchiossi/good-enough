@@ -20,16 +20,16 @@ func _animate_in():
 
 	var tween = create_tween()
 
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	#tween.set_ease(Tween.EASE_OUT)
 
 	tween.tween_property(_target, "offset_transform_scale", Vector2.ONE * scale_percentage, duration)
 	
 func _animate_out():
 	var tween = create_tween()
 
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	#tween.set_ease(Tween.EASE_OUT)
 
 	tween.tween_property(_target, "offset_transform_scale", Vector2.ONE, duration)
 	tween.tween_callback(func (): _target.z_index -= 1)

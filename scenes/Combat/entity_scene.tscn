@@ -30,12 +30,38 @@ layout_mode = 2
 texture = ExtResource("2_c153h")
 expand_mode = 3
 
-[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer" unique_id=2142605283]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=1897674245]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=2142605283]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 step = 1.0
 value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=229736841]
+layout_mode = 2
+
+[node name="CurrentHpLabel" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2066335853]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "10"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2015084037]
+layout_mode = 2
+text = "/"
+
+[node name="MaxHpLabel" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2007491071]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+text = "10"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1669485683]
 layout_mode = 2
@@ -45,12 +71,38 @@ layout_mode = 2
 texture = ExtResource("3_vovsn")
 expand_mode = 3
 
-[node name="ArmorBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer2" unique_id=990116961]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer2" unique_id=1929207996]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ArmorBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=990116961]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 step = 1.0
 value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=192968150]
+layout_mode = 2
+
+[node name="CurrentArmorLabel" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/HBoxContainer" unique_id=1426969349]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "10"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/HBoxContainer" unique_id=915510615]
+layout_mode = 2
+text = "/"
+
+[node name="MaxArmorLabel" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/HBoxContainer" unique_id=1139428485]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+text = "10"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=929568068]
 layout_mode = 2
@@ -60,12 +112,38 @@ layout_mode = 2
 texture = ExtResource("4_6yqqy")
 expand_mode = 3
 
-[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer3" unique_id=102897590]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer3" unique_id=1672715345]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer3/MarginContainer3" unique_id=102897590]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 step = 1.0
 value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer3/MarginContainer3" unique_id=955553678]
+layout_mode = 2
+
+[node name="CurrentShieldLabel" type="Label" parent="VBoxContainer/HBoxContainer3/MarginContainer3/HBoxContainer" unique_id=73085806]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "10"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer3/MarginContainer3/HBoxContainer" unique_id=170613544]
+layout_mode = 2
+text = "/"
+
+[node name="MaxShieldLabel" type="Label" parent="VBoxContainer/HBoxContainer3/MarginContainer3/HBoxContainer" unique_id=2080195497]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+text = "10"
 
 [node name="Sprite" type="TextureRect" parent="VBoxContainer" unique_id=935468676]
 unique_name_in_owner = true

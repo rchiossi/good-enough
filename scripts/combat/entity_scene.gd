@@ -5,6 +5,13 @@ class_name EntityScene
 @onready var _armor_bar : ProgressBar = %ArmorBar
 @onready var _shield_bar : ProgressBar = %ShieldBar
 
+@onready var _current_hp_label : Label = %CurrentHpLabel
+@onready var _max_hp_label : Label = %MaxHpLabel
+@onready var _current_armor_label : Label = %CurrentArmorLabel
+@onready var _max_armor_label : Label = %MaxArmorLabel
+@onready var _current_shield_label : Label = %CurrentShieldLabel
+@onready var _max_shield_label : Label = %MaxShieldLabel
+
 @onready var _sprite : TextureRect = %Sprite
 
 const animation_attack_duration : float = 0.3
@@ -12,17 +19,25 @@ const animation_damage_duration : float = 0.3
 
 var _tween : Tween
 
+@export var bar_animation_duration : float = 1.0
+
 func init(health : int, armor : int, shield : int, sprite : Texture2D):
     offset_transform_enabled = true
 
     _health_bar.max_value = health
     _health_bar.value = health
+    _current_hp_label.text = str(health)
+    _max_hp_label.text = str(health)
 
     _armor_bar.max_value = armor
     _armor_bar.value = armor
+    _current_armor_label.text = str(armor)
+    _max_armor_label.text = str(armor)
 
     _shield_bar.max_value = shield
     _shield_bar.value = shield
+    _current_shield_label.text = str(shield)
+    _max_shield_label.text = str(shield)
 
     _sprite.texture = sprite
 
@@ -46,5 +61,26 @@ func animate_take_damage():
     _tween.set_trans(Tween.TRANS_BOUNCE)
     _tween.set_ease(Tween.EASE_OUT)
 
-    _tween.tween_property(self, "offset_transform_scale", Vector2.ONE * 0.8, animation_attack_duration)
+    _tween.tween_property(self, "offset_transform_scale", Vector2.ONE * 0.95, animation_attack_duration)
     _tween.chain().tween_property(self, "offset_transform_scale", Vector2.ONE, animation_attack_duration)
+
+func _animate_bar(bar: ProgressBar, label: Label, old_value: int, new_value : int):
+    var tween = create_tween()
+
+    tween.set_trans(Tween.TRANS_BACK)
+    tween.set_ease(Tween.EASE_OUT)
+
+    tween.tween_property(bar, "value", new_value, bar_animation_duration)
+    tween.parallel().tween_method(_tween_label.bind(label), old_value, new_value, bar_animation_duration)
+
+func _tween_label(new_value: int, label: Label):
+    label.text = str(new_value)
+
+func animate_health_bar(old_value: int, new_value: int):
+    _animate_bar(_health_bar, _current_hp_label, old_value, new_value)
+
+func animate_armor_bar(old_value: int, new_value: int):
+    _animate_bar(_armor_bar, _current_armor_label, old_value, new_value)
+
+func animate_shield_bar(old_value: int, new_value: int):
+    _animate_bar(_shield_bar, _current_shield_label, old_value, new_value)

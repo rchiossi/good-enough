@@ -19,30 +19,52 @@ var _enemy_stats : EntityStats
 var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.tscn")
 
 func _ready() -> void:
-    _player_stats = GameState.player_stats
+	_player_stats = GameState.player_stats
+	_player_stats.hp_changed.connect(_on_hp_changed.bind(_player_stats, player))
 
-    _enemy_stats = GameState.enemy_list.values().pick_random()
+	_enemy_stats = GameState.enemy_list.values().pick_random()
+	_enemy_stats.hp_changed.connect(_on_hp_changed.bind(_enemy_stats, enemy))
+	_enemy_stats.armor_changed.connect(_on_armor_changed.bind(_enemy_stats, enemy))
+	_enemy_stats.shield_changed.connect(_on_shield_changed.bind(_enemy_stats, enemy))
+	_enemy_stats.damage_taken.connect(_on_damage_taken.bind(enemy))
 
-    player.init(_player_stats.max_health, _player_stats.armor, _player_stats.shield, _player_sprite )
-    enemy.init(_enemy_stats.max_health, _enemy_stats.max_armor, _enemy_stats.max_shield, _enemy_sprite)
+	player.init(_player_stats.max_health, _player_stats.armor, _player_stats.shield, _player_sprite )
+	enemy.init(_enemy_stats.max_health, _enemy_stats.max_armor, _enemy_stats.max_shield, _enemy_sprite)
 
-    _attack_button.pressed.connect(player.animate_attack)
-    _damage_button.pressed.connect(enemy.animate_take_damage)
-    _skip_button.pressed.connect(_skip_combat)
+	_attack_button.pressed.connect(player.animate_attack)
+	_damage_button.pressed.connect(enemy.animate_take_damage)
+	_skip_button.pressed.connect(_skip_combat)
 
-    for ability in GameState.player_abilities.values():
-        var scene : CombatAbilityScene = _ability_scene.instantiate()
-        _ability_grid.add_item(scene)
-        scene.set_ability(ability.Name)
-        scene.show_tooltip.connect(_show_ability_info)
+	for ability in GameState.player_abilities.values():
+		var scene : CombatAbilityScene = _ability_scene.instantiate()
+		_ability_grid.add_item(scene)
+		scene.set_ability(ability.Name)
+		scene.show_tooltip.connect(_show_ability_info)
+		scene.ability_activated.connect(_activate_ability)
 
-    _ability_info.hide()
+	_ability_info.hide()
 
 func _skip_combat():
-    SceneLoader.load_scene("uid://clhtpadgac6l7")
+	SceneLoader.load_scene("uid://clhtpadgac6l7")
 
 func _show_ability_info(ability_name : String):
-    print("here")
-    _ability_info.set_ability(ability_name)
+	_ability_info.set_ability(ability_name)
 
-    _ability_info.show()
+	_ability_info.show()
+
+func _activate_ability(ability_name):
+	var ability : Ability = GameState.all_abilities[ability_name]
+
+	ability.take_action(_enemy_stats)
+
+func _on_hp_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
+	scene.animate_health_bar(old_value, new_value)
+
+func _on_armor_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
+	scene.animate_armor_bar(old_value, new_value)
+
+func _on_shield_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
+	scene.animate_shield_bar(old_value, new_value)
+
+func _on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, scene: EntityScene):
+	scene.animate_take_damage()
