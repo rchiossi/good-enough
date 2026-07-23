@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://h2hj2t66tejv" path="res://scripts/combat/combat_ability.gd" id="1_8yx28"]
 [ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="2_8yx28"]
 [ext_resource type="Script" uid="uid://ccrs8miu2ao26" path="res://scripts/ui_animations/scale_bounce.gd" id="4_xaxtc"]
+[ext_resource type="Script" uid="uid://bp3ukxo6aqps6" path="res://scripts/sounds/hover_sound.gd" id="5_i4rwy"]
+[ext_resource type="Script" uid="uid://ota37prga8g7" path="res://scripts/sounds/press_sound.gd" id="6_hlkpl"]
 
 [node name="CombatAbility" type="MarginContainer" unique_id=1546287525]
 offset_right = 40.0
@@ -30,3 +32,27 @@ layout_mode = 1
 anchors_preset = 0
 script = ExtResource("4_xaxtc")
 metadata/_custom_type_script = "uid://ccrs8miu2ao26"
+
+[node name="HoverSound" type="Control" parent="AbilitySprite" unique_id=1732014421]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_i4rwy")
+metadata/_custom_type_script = "uid://bp3ukxo6aqps6"
+
+[node name="PressSound" type="Control" parent="AbilitySprite" unique_id=940855294]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_hlkpl")
+metadata/_custom_type_script = "uid://ota37prga8g7"
+
+[node name="CooldownLabel" type="Label" parent="." unique_id=1007592797]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 0.6666667)
+theme_override_font_sizes/font_size = 64
+text = "10"
