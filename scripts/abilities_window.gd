@@ -24,6 +24,8 @@ func _ready() -> void:
     confirmation_dialog.confirmed.connect(_on_forget_button_pressed)
 
     for ability in GameState.player_stats.abilities.values():
+        if ability.ability_type == Ability.AbilityType.NORMAL:
+            continue
         var button := Button.new()
         button.icon = ability.icon
         button.expand_icon = true

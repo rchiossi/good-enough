@@ -79,12 +79,22 @@ func _add_ability(ability):
     all_abilities.get_or_add(ability.name, ability)
 
 func _init_abilities():
+    var punch := Ability.new()
+    punch.name = "Punch"
+    punch.shield_damage = 2
+    punch.armor_damage = 2
+    punch.health_damage = 2
+    punch.icon = preload("uid://ddpt2hr3n7xhd")
+    punch.description = "You punch with all your might. Not your strongsuit, but hey. At least we deal some damage!"
+    punch.cooldown = 0
+    punch.ability_type = Ability.AbilityType.NORMAL
+    _add_ability(punch)
+
     var fireball := Ability.new()
     fireball.name = "Fireball"
     fireball.shield_damage = 15
     fireball.armor_damage = 5
     fireball.health_damage = 5
-    fireball.name = "Fireball"
     fireball.icon = preload("uid://n1peuh4vn6i0")
     fireball.description = "Some description"
     fireball.cooldown = 1
