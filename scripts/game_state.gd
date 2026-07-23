@@ -99,3 +99,13 @@ func _init_abilities():
     visceral_bleed.description = "You cut the veins of your enemies from the inside. Inflicts massive health damage."
     visceral_bleed.cooldown = 3
     _add_ability(visceral_bleed)
+
+    var pillar_bonk := Ability.new()
+    pillar_bonk.shield_damage = 0
+    pillar_bonk.armor_damage = 40
+    pillar_bonk.health_damage = 10
+    pillar_bonk.name = "Pillar Bonk"
+    pillar_bonk.icon = preload("uid://b4u3ocj05xk2e")
+    pillar_bonk.description = "You smash a giant pillar onto the enemy. Dealing significant armor damage."
+    pillar_bonk.cooldown = 5
+    _add_ability(pillar_bonk)
