@@ -34,7 +34,7 @@ func set_coords(c: Vector2i):
     coords = c
     node_type = GameState.map[coords.x]["nodes"][coords.y]["type"]
     icon = types_definitions[node_type]["icon"]
-
+    tooltip_text = GameState.NodeTypes.keys()[node_type]
     if GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1:
         %DoneHighlight.visible = true
 
