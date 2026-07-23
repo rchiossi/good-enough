@@ -44,6 +44,20 @@ func init(health : int, armor : int, shield : int, sprite : Texture2D):
 
     _sprite.texture = sprite
 
+    animate_idle()
+
+func animate_idle():
+    var tween = create_tween()
+
+    tween.set_loops()
+
+    tween.tween_interval(randf() * 3.0)
+    tween.tween_property(_sprite, "offset_transform_position", Vector2(10, -5), 0.5)
+    tween.tween_property(_sprite, "offset_transform_position", Vector2(20, 0), 0.5)
+    tween.tween_interval(randf() * 3.0)
+    tween.tween_property(_sprite, "offset_transform_position", Vector2(10, -5), 0.5)
+    tween.tween_property(_sprite, "offset_transform_position", Vector2(0, 0), 0.5)
+
 func animate_attack():
     if _tween and _tween.is_running():
         return
