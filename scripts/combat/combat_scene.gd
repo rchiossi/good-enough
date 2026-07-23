@@ -22,9 +22,11 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var damage_number_offset : Vector2 = Vector2(0, -100)
 @export var damage_number_slide : int = -50
 @export var damage_number_duration : float = 2.0
-@export var damage_numer_spread : int = 50
+@export var damage_number_spread : int = 50
 
 var _combat_tracker : CombatTracker = CombatTracker.new()
+
+signal damage_animation_complete
 
 func _ready() -> void:
     _player_stats = GameState.player_stats
@@ -65,6 +67,10 @@ func _ready() -> void:
     entities[_enemy_stats.name] = _enemy_stats
     _combat_tracker.start_combat(entities, _player_stats)
 
+    _combat_tracker.new_turn.connect(_on_new_turn)
+
+    damage_animation_complete.connect(_combat_tracker.step)
+
 func _skip_combat():
     SceneLoader.load_scene("uid://clhtpadgac6l7")
 
@@ -74,6 +80,9 @@ func _show_ability_info(ability_name : String):
     _ability_info.show()
 
 func _activate_ability(ability_name):
+    if not _combat_tracker.is_active(_player_stats.name):
+        return
+
     var ability : Ability = GameState.all_abilities[ability_name]
 
     _combat_tracker.take_action(ability.name)
@@ -94,7 +103,7 @@ func _on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, sce
     scene.animate_take_damage()
 
     if shield_damage != 0:
-        var offset = Vector2(scene.size.x / 2 - damage_numer_spread, 0)
+        var offset = Vector2(scene.size.x / 2 - damage_number_spread, 0)
         show_damage_numbers(shield_damage, Color.BLUE, offset, scene)
 
     if armor_damage != 0:
@@ -102,8 +111,15 @@ func _on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, sce
         show_damage_numbers(armor_damage, Color.GRAY, offset, scene)
 
     if hp_damage != 0:
-        var offset = Vector2(scene.size.x / 2 + damage_numer_spread, 0)
+        var offset = Vector2(scene.size.x / 2 + damage_number_spread, 0)
         show_damage_numbers(hp_damage, Color.RED, offset, scene)
+
+    var tween = create_tween()
+    tween.tween_interval(damage_number_duration)
+    tween.tween_callback(_on_damage_animation_complete)
+
+func _on_damage_animation_complete():
+    damage_animation_complete.emit()
 
 func show_damage_numbers(value: int, color: Color, offset: Vector2, scene: EntityScene):
     var label = Label.new()
@@ -137,3 +153,15 @@ func on_player_death():
 func on_enemy_death():
     # TODO: Show Defeat Poupup
     SceneLoader.load_scene("uid://clhtpadgac6l7")
+
+func _on_new_turn(entity_name: String):
+    if entity_name == _player_stats.name:
+        _on_player_turn()
+    else:
+        _on_enemy_turn()
+
+func _on_player_turn():
+    pass
+
+func _on_enemy_turn():
+    pass

@@ -1,6 +1,7 @@
 extends RefCounted
 class_name CombatTracker
 
+var _active_entity : EntityStats
 var _entities : Dictionary[String, EntityStats]
 
 var _turn_order : Array[EntityStats]
@@ -11,9 +12,10 @@ signal new_turn(entity_name: String)
 signal combat_ended
 
 func is_active(entity_name: String) -> bool:
-    return _turn_order.front().name == entity_name
+    return _active_entity && _active_entity.name == entity_name
 
 func start_combat(entities: Dictionary[String, EntityStats], active: EntityStats):
+    _active_entity = active
     _entities = entities
 
     for entity in entities.values():
@@ -28,18 +30,26 @@ func step():
     var last = _turn_order.pop_front()
     _turn_order.push_back(last)
 
-    new_turn.emit(_turn_order.front().name)
+    _active_entity = _turn_order.front()
 
-    if not _turn_order.front().is_player:
+    print("Turn: " + _active_entity.name)
+
+    if _active_entity.health == 0:
+        combat_ended.emit()
+
+    new_turn.emit(_active_entity.name)
+
+    if not _active_entity.is_player:
         take_enemy_turn()
 
 func take_action(ability_name: String):
+    _active_entity = null
     var ability : Ability = GameState.all_abilities[ability_name]
 
     ability.take_action(_turn_order.back())
 
 func take_enemy_turn():
-    var enemy : EntityStats = _turn_order.front()
+    var enemy : EntityStats = _active_entity
     var ability : Ability = enemy.abilities.values().pick_random()
 
     take_action(ability.name)
@@ -55,8 +65,3 @@ func on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, enti
     event.target = entity
 
     combat_events.push_back(event)
-
-    if entity.health == 0:
-        combat_ended.emit()
-    else:
-        step()
