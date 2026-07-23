@@ -20,6 +20,11 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 
 @onready var _turn_indicator : TextureRect = %TurnIndicator
 
+@onready var victory_panel : MarginContainer = %VictoryPanel
+@onready var defeat_panel : MarginContainer = %DefeatPanel
+
+@export var end_battle_animation_duration : float = 0.5
+
 @export var turn_indicator_offset : Vector2 = Vector2(0, -75)
 @export var turn_indicator_speed : float = 0.3
 
@@ -184,12 +189,26 @@ func _update_turn_indicator(animate : bool = true):
     tween.tween_property(_turn_indicator, "position", indicator_position, turn_indicator_speed)
 
 func on_player_death():
-    # TODO: Show Victory Popup
-    SceneLoader.load_scene("uid://clhtpadgac6l7")
+    defeat_panel.modulate.a = 0.0
+    defeat_panel.show()
+
+    var tween = create_tween()
+
+    tween.set_trans(Tween.TRANS_SINE)
+    tween.set_ease(Tween.EASE_OUT)
+
+    tween.tween_property(defeat_panel, "modulate:a", 1.0, end_battle_animation_duration)
 
 func on_enemy_death():
-    # TODO: Show Defeat Poupup
-    SceneLoader.load_scene("uid://clhtpadgac6l7")
+    victory_panel.modulate.a = 0.0
+    victory_panel.show()
+
+    var tween = create_tween()
+
+    tween.set_trans(Tween.TRANS_SINE)
+    tween.set_ease(Tween.EASE_OUT)
+
+    tween.tween_property(victory_panel, "modulate:a", 1.0, end_battle_animation_duration)
 
 func _on_new_turn(entity_name: String):
     pass

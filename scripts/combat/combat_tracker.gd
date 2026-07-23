@@ -39,9 +39,6 @@ func step():
     _active_entity = _turn_order.front()
 
 func take_turn():
-    if _active_entity.health == 0:
-        combat_ended.emit()
-
     new_turn.emit(_active_entity.name)
 
     if not _active_entity.is_player:
@@ -69,3 +66,6 @@ func on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, enti
     event.target = entity
 
     combat_events.push_back(event)
+
+    if _active_entity.health == 0:
+        combat_ended.emit()

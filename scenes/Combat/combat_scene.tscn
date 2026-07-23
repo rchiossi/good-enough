@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="4_idueh"]
 [ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="5_h64lv"]
 [ext_resource type="Texture2D" uid="uid://curnbgbe7hmci" path="res://assets/combat/turn_indicator.png" id="6_4v6y1"]
+[ext_resource type="PackedScene" uid="uid://c8f3ytn0h5rs6" path="res://scenes/Combat/victory_panel.tscn" id="7_jaejr"]
+[ext_resource type="PackedScene" uid="uid://d4b6rgp3dtcuu" path="res://scenes/Combat/defeat_panel.tscn" id="8_j8oqs"]
 
 [node name="CombatScene" type="Control" unique_id=1486274649]
 layout_mode = 3
@@ -143,3 +145,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 offset_transform_enabled = true
 texture = ExtResource("6_4v6y1")
+
+[node name="VictoryPanel" parent="." unique_id=2026097363 instance=ExtResource("7_jaejr")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="DefeatPanel" parent="." unique_id=2057956013 instance=ExtResource("8_j8oqs")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
