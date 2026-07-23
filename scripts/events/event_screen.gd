@@ -70,7 +70,21 @@ func _ready() -> void:
     helpmove_event.take_action_func = Callable(helpmove_event_callback.bind(ability_to_remove))
     available_events.append(helpmove_event)
     
+    #event4
+    var tax_event: GameEvent = GameEvent.new()
+    tax_event.text = "
+        The royal tax collector approaches.
+        The count requires a tax on.. existing
+        
+        Pay the tax, but you can't afford a meal for a week (-20 Health) 
+        or Refuse to pay and fight the tax collector. You lose 1 ability.
+    "
+    tax_event.accept_text = "Pay the tax"
+    tax_event.reject_text = "Refuse to pay"
+    tax_event.take_action_func = Callable(tax_event_callback.bind(ability_1))
+    available_events.append(tax_event)
     
+   
     
     choose_random_event() 
 
@@ -105,6 +119,14 @@ func helpmove_event_callback(ability_to_toss: String):
     GameState.player_stats.max_shield += 25
     GameState.player_stats.shield += 25
     SceneLoader.load_scene("res://scenes/map/map.tscn")
+    
+#event4callback
+func tax_event_callback(ability_to_toss: String):
+    GameState.player_stats.abilities[ability_to_toss].is_disabled = false
+    GameState.player_stats.max_health -= 20
+    GameState.player_stats.health -= 20
+    SceneLoader.load_scene("res://scenes/map/map.tscn")    
+    
 
 func _on_reject_button_pressed() -> void:
     SceneLoader.load_scene("res://scenes/abilities_window.tscn")
