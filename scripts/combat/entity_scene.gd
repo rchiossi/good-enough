@@ -14,12 +14,15 @@ class_name EntityScene
 
 @onready var _sprite : TextureRect = %Sprite
 
+@onready var _canvas_modulate : CanvasModulate = %CanvasModulate
+
 const animation_attack_duration : float = 0.3
 const animation_damage_duration : float = 0.3
 
 var _tween : Tween
 
 @export var bar_animation_duration : float = 2.0
+@export var death_animation_duration : float = 2.0
 
 func init(health : int, armor : int, shield : int, sprite : Texture2D):
     offset_transform_enabled = true
@@ -50,8 +53,8 @@ func animate_attack():
     _tween.set_trans(Tween.TRANS_SINE)
     _tween.set_ease(Tween.EASE_OUT)
 
-    _tween.tween_property(self, "offset_transform_position", offset_transform_position + Vector2(100, 0), animation_attack_duration)
-    _tween.chain().tween_property(self, "offset_transform_position", offset_transform_position, animation_attack_duration)
+    _tween.tween_property(_sprite, "offset_transform_position", offset_transform_position + Vector2(100, 0), animation_attack_duration)
+    _tween.chain().tween_property(_sprite, "offset_transform_position", offset_transform_position, animation_attack_duration)
 
 func animate_take_damage():
     if _tween and _tween.is_running():
@@ -61,8 +64,8 @@ func animate_take_damage():
     _tween.set_trans(Tween.TRANS_BOUNCE)
     _tween.set_ease(Tween.EASE_OUT)
 
-    _tween.tween_property(self, "offset_transform_scale", Vector2.ONE * 0.95, animation_attack_duration)
-    _tween.chain().tween_property(self, "offset_transform_scale", Vector2.ONE, animation_attack_duration)
+    _tween.tween_property(_sprite, "offset_transform_scale", Vector2.ONE * 0.95, animation_attack_duration)
+    _tween.chain().tween_property(_sprite, "offset_transform_scale", Vector2.ONE, animation_attack_duration)
 
 func _animate_bar(bar: ProgressBar, label: Label, old_value: int, new_value : int):
     var tween = create_tween()
@@ -84,3 +87,11 @@ func animate_armor_bar(old_value: int, new_value: int):
 
 func animate_shield_bar(old_value: int, new_value: int):
     _animate_bar(_shield_bar, _current_shield_label, old_value, new_value)
+
+func animate_death():
+    var tween = create_tween()
+
+    tween.set_trans(Tween.TRANS_SINE)
+    tween.set_ease(Tween.EASE_OUT)
+
+    tween.tween_property(_sprite, "offset_transform_scale", Vector2(1.0, 0.1), death_animation_duration)

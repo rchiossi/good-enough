@@ -67,6 +67,10 @@ func _activate_ability(ability_name):
 func _on_hp_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
 	scene.animate_health_bar(old_value, new_value)
 
+	if new_value == 0:
+		print("death?")
+		scene.animate_death()
+
 func _on_armor_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
 	scene.animate_armor_bar(old_value, new_value)
 

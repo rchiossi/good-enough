@@ -148,4 +148,5 @@ text = "10"
 [node name="Sprite" type="TextureRect" parent="VBoxContainer" unique_id=935468676]
 unique_name_in_owner = true
 layout_mode = 2
+offset_transform_enabled = true
 texture = ExtResource("1_rc3w3")
