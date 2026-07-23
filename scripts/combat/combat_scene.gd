@@ -24,6 +24,7 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var damage_number_duration : float = 2.0
 @export var damage_numer_spread : int = 50
 
+var _combat_tracker : CombatTracker = CombatTracker.new()
 
 func _ready() -> void:
     _player_stats = GameState.player_stats
@@ -56,6 +57,11 @@ func _ready() -> void:
         scene.ability_activated.connect(_activate_ability)
 
     _ability_info.hide()
+
+	var entities : Dictionary[String, EntityStats] = {}
+	entities[_player_stats.name] = _player_stats
+	entities[_enemy_stats.name] = _enemy_stats
+	_combat_tracker.start_combat(entities, _player_stats)
 
 func _skip_combat():
     SceneLoader.load_scene("uid://clhtpadgac6l7")

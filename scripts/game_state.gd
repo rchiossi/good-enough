@@ -52,6 +52,9 @@ func _init_enemies() -> void:
 	enemy.max_armor = 10
 	enemy.max_shield = 10
 	enemy.is_player = false
+	#TODO: Add proper abilities
+	var ability = all_abilities.values()[0]
+	enemy.abilities[ability.name] = ability
 	enemy.init()
 
 	enemy_list[enemy.name] = enemy
