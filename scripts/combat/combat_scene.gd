@@ -37,54 +37,53 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var damage_number_spread : int = 50
 
 
-var _combat_tracker : CombatTracker = CombatTracker.new()
-
-signal damage_animation_complete
+#var _combat_tracker : CombatTracker = CombatTracker.new()
+var _combat_manager : CombatManager = CombatManager.new()
+var _entity_scenes : Dictionary[String, EntityScene] = {}
 
 func _ready() -> void:
     _player_stats = GameState.player_stats
-    _player_stats.hp_changed.connect(_on_hp_changed.bind(_player_stats, player))
-    _player_stats.armor_changed.connect(_on_armor_changed.bind(_player_stats, player))
-    _player_stats.shield_changed.connect(_on_shield_changed.bind(_player_stats, player))
     _player_stats.damage_taken.connect(_on_damage_taken.bind(player))
     _player_stats.init()
 
     _enemy_stats = GameState.enemy_list.values().pick_random()
-    _enemy_stats.hp_changed.connect(_on_hp_changed.bind(_enemy_stats, enemy))
-    _enemy_stats.armor_changed.connect(_on_armor_changed.bind(_enemy_stats, enemy))
-    _enemy_stats.shield_changed.connect(_on_shield_changed.bind(_enemy_stats, enemy))
     _enemy_stats.damage_taken.connect(_on_damage_taken.bind(enemy))
     _enemy_stats.init()
 
-    player.init(_player_stats.max_health, _player_stats.armor, _player_stats.shield, _player_sprite )
-    player.death_animation_complete.connect(on_player_death)
+    player.init(_player_stats, _player_sprite )
+    player.death_animation_complete.connect(_on_player_death)
+    _entity_scenes[player.stats.name] = player
 
-    enemy.init(_enemy_stats.max_health, _enemy_stats.max_armor, _enemy_stats.max_shield, _enemy_sprite)
-    enemy.death_animation_complete.connect(on_enemy_death)
+    enemy.init(_enemy_stats, _enemy_sprite)
+    enemy.death_animation_complete.connect(_on_enemy_death)
+    _entity_scenes[enemy.stats.name] = enemy
 
+    load_abilities_to_grid()
+
+    _ability_info.hide()
+
+    # Debug Panel --
     _attack_button.pressed.connect(player.animate_attack)
     _damage_button.pressed.connect(enemy.animate_take_damage)
     _skip_button.pressed.connect(_skip_combat)
+    # -------------
 
+    var entities : Dictionary[String, EntityStats] = {}
+    entities[_player_stats.name] = _player_stats
+    entities[_enemy_stats.name] = _enemy_stats
+    _combat_manager.state_changed.connect(_on_state_changed)
+    _combat_manager.init_combat(entities, _player_stats.name)
+
+    _animate_start_combat()
+
+
+func load_abilities_to_grid():
     for ability in _player_stats.abilities.values():
         var scene : CombatAbilityScene = _ability_scene.instantiate()
         _ability_grid.add_item(scene)
         scene.set_ability(ability.name)
         scene.show_tooltip.connect(_show_ability_info)
         scene.ability_activated.connect(_activate_ability)
-
-    _ability_info.hide()
-
-    var entities : Dictionary[String, EntityStats] = {}
-    entities[_player_stats.name] = _player_stats
-    entities[_enemy_stats.name] = _enemy_stats
-    _combat_tracker.new_turn.connect(_on_new_turn)
-    _combat_tracker.enemy_turn.connect(_on_enemy_turn)
-    _combat_tracker.start_combat(entities, _player_stats)
-
-    damage_animation_complete.connect(_combat_tracker.take_turn)
-
-    _update_turn_indicator.call_deferred(false)
 
 func _skip_combat():
     SceneLoader.load_scene("uid://clhtpadgac6l7")
@@ -94,33 +93,18 @@ func _show_ability_info(ability_name : String):
 
     _ability_info.show()
 
+# Combat Flow --------------------
+
+func _animate_start_combat():
+    #TODO: Add something nice here
+    _combat_manager.start_combat()
+
 func _activate_ability(ability_name):
-    if not _combat_tracker.is_active(_player_stats.name):
+    if not _combat_manager.state == CombatManager.CombatState.WAITING_FOR_PLAYER_ACTION:
         return
 
-    var ability : Ability = GameState.all_abilities[ability_name]
-
-    _combat_tracker.step()
-    _update_turn_indicator()
-
-    _combat_tracker.take_action(ability.name, _enemy_stats)
-
-func _on_enemy_turn():
-    _combat_tracker.take_enemy_turn()
-    _combat_tracker.step()
-    _update_turn_indicator()
-
-func _on_hp_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
-    scene.animate_health_bar(old_value, new_value)
-
-    if new_value == 0:
-        scene.animate_death()
-
-func _on_armor_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
-    scene.animate_armor_bar(old_value, new_value)
-
-func _on_shield_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
-    scene.animate_shield_bar(old_value, new_value)
+    _combat_manager.take_player_action(ability_name,[enemy.stats.name])
+    #This will trigger damage taken, which will call _on_damage_taken
 
 func _on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, scene: EntityScene):
     scene.animate_take_damage()
@@ -141,10 +125,25 @@ func _on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, sce
 
     var tween = create_tween()
     tween.tween_interval(damage_number_duration)
-    tween.tween_callback(_on_damage_animation_complete)
+    if not scene.stats.is_player:
+        tween.tween_callback(_on_player_animation_complete)
+    else:
+        tween.tween_callback(_on_enemy_animation_complete)
 
-func _on_damage_animation_complete():
-    damage_animation_complete.emit()
+func _on_player_animation_complete():
+    _combat_manager.conclude_player_action()
+
+func _on_state_changed(state):
+    match state:
+        CombatManager.CombatState.WAITING_FOR_PLAYER_ACTION:
+            _update_turn_indicator()
+        CombatManager.CombatState.WAITING_FOR_ENEMY_ACTION:
+            _update_turn_indicator()
+        CombatManager.CombatState.COMBAT_ENDED:
+            _play_death_animation()
+
+func _on_enemy_animation_complete():
+    _combat_manager.conclude_enemy_action()
 
 func show_damage_numbers(value: int, color: Color, offset: Vector2, scene: EntityScene):
     var label = Label.new()
@@ -172,12 +171,9 @@ func show_damage_numbers(value: int, color: Color, offset: Vector2, scene: Entit
 
 func _update_turn_indicator(animate : bool = true):
     var indicator_position : Vector2
-    if _combat_tracker.is_active(_player_stats.name):
-        indicator_position = player.global_position + Vector2(player.size.x / 2, 0)
-        print(player.global_position)
-    else:
-        indicator_position = enemy.global_position + Vector2(enemy.size.x / 2, 0)
-
+    var active = _entity_scenes[_combat_manager.get_active_entity_name()]
+    
+    indicator_position = active.global_position + Vector2(active.size.x / 2, 0)
     indicator_position += turn_indicator_offset
 
     _turn_indicator.show()
@@ -193,7 +189,13 @@ func _update_turn_indicator(animate : bool = true):
 
     tween.tween_property(_turn_indicator, "position", indicator_position, turn_indicator_speed)
 
-func on_player_death():
+func _play_death_animation():
+    if player.stats.health == 0:
+        player.animate_death()
+    else:
+        enemy.animate_death()
+
+func _on_player_death():
     defeat_panel.modulate.a = 0.0
     defeat_panel.show()
 
@@ -204,7 +206,7 @@ func on_player_death():
 
     tween.tween_property(defeat_panel, "modulate:a", 1.0, end_battle_animation_duration)
 
-func on_enemy_death():
+func _on_enemy_death():
     victory_panel.modulate.a = 0.0
     victory_panel.show()
 
@@ -214,6 +216,3 @@ func on_enemy_death():
     tween.set_ease(Tween.EASE_OUT)
 
     tween.tween_property(victory_panel, "modulate:a", 1.0, end_battle_animation_duration)
-
-func _on_new_turn(entity_name: String):
-    pass

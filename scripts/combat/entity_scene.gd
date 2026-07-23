@@ -24,23 +24,30 @@ var _tween : Tween
 
 signal death_animation_complete
 
-func init(health : int, armor : int, shield : int, sprite : Texture2D):
+var stats : EntityStats
+
+func init(entity_stats: EntityStats, sprite : Texture2D):
     offset_transform_enabled = true
 
-    _health_bar.max_value = health
-    _health_bar.value = health
-    _current_hp_label.text = str(health)
-    _max_hp_label.text = str(health)
+    stats = entity_stats
+    stats.hp_changed.connect(animate_health_bar)
+    stats.armor_changed.connect(animate_armor_bar)
+    stats.shield_changed.connect(animate_shield_bar)
 
-    _armor_bar.max_value = armor
-    _armor_bar.value = armor
-    _current_armor_label.text = str(armor)
-    _max_armor_label.text = str(armor)
+    _health_bar.max_value = stats.max_health
+    _health_bar.value = stats.health
+    _current_hp_label.text = str(stats.health)
+    _max_hp_label.text = str(stats.max_health)
 
-    _shield_bar.max_value = shield
-    _shield_bar.value = shield
-    _current_shield_label.text = str(shield)
-    _max_shield_label.text = str(shield)
+    _armor_bar.max_value = stats.max_armor
+    _armor_bar.value = stats.armor
+    _current_armor_label.text = str(stats.armor)
+    _max_armor_label.text = str(stats.max_armor)
+
+    _shield_bar.max_value = stats.max_shield
+    _shield_bar.value = stats.shield
+    _current_shield_label.text = str(stats.shield)
+    _max_shield_label.text = str(stats.max_shield)
 
     _sprite.texture = sprite
 
