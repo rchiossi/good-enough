@@ -36,6 +36,7 @@ func update_cooldown():
         sprite.add_child(_cooldown_label)
     else:
         sprite.remove_child(_cooldown_label)
+        sprite.self_modulate = Color.WHITE
 
 func _make_custom_tooltip(for_text: String) -> Object:
     var tooltip : CombatAbilityTooltip = _tooltip_scene.instantiate()

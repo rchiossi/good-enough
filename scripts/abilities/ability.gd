@@ -14,3 +14,4 @@ var is_disabled: bool = false
 func take_action(source: EntityStats, target: EntityStats) -> void:
     source.deal_damage(source, shield_damage, armor_damage, health_damage)
     target.take_damage(source, shield_damage, armor_damage, health_damage)
+    remaining_cooldown = cooldown
