@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://8m56dhcqa170"]
+
+[ext_resource type="Script" uid="uid://tg46uqpcaerm" path="res://scripts/events/event_screen.gd" id="1_opc24"]
+
+[node name="EventScreen" type="Control" unique_id=598374047]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_opc24")
+
+[node name="EventText" type="RichTextLabel" parent="." unique_id=1906528478]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 137.0
+offset_right = 824.0
+offset_bottom = 435.0
+
+[node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=671040026]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 486.0
+offset_right = 758.0
+offset_bottom = 560.0
+
+[node name="AcceptButton" type="Button" parent="ButtonContainer" unique_id=795525899]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "bla"
+
+[node name="RejectButton" type="Button" parent="ButtonContainer" unique_id=1810824781]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "meh"
+
+[connection signal="pressed" from="ButtonContainer/RejectButton" to="." method="_on_reject_button_pressed"]
