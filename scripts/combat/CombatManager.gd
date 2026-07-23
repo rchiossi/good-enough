@@ -65,6 +65,8 @@ var _turn_count : int = 0
 
 var combat_events : Array[CombatEvent]
 
+signal new_turn(turn_count : int)
+
 func init_combat(entities: Dictionary[String, EntityStats], active_entity: String):
     state = CombatState.PRE_COMBAT
 
@@ -97,6 +99,8 @@ func _advance_turn():
     _active = _turn_order.front()
 
     print("Turn: " + str(_turn_count) + " active: " + _active)
+
+    new_turn.emit(_turn_count)
 
     step()
 
