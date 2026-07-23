@@ -49,10 +49,18 @@ offset_bottom = 40.0
 script = ExtResource("6_hlkpl")
 metadata/_custom_type_script = "uid://ota37prga8g7"
 
-[node name="CooldownLabel" type="Label" parent="." unique_id=1007592797]
+[node name="CenterContainer" type="CenterContainer" parent="AbilitySprite" unique_id=189101399]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CooldownLabel" type="Label" parent="AbilitySprite/CenterContainer" unique_id=1007592797]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 0.6666667)
 theme_override_font_sizes/font_size = 64
 text = "10"
