@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://81rbkmiw7hyl"]
+
+[ext_resource type="Texture2D" uid="uid://bmovv10hvyq4x" path="res://assets/combat/bg_combat.png" id="1_h5p2b"]
+[ext_resource type="Script" uid="uid://mk2wuf2m70g3" path="res://scripts/player_stats.gd" id="1_otub4"]
+[ext_resource type="PackedScene" uid="uid://8j2q7im3vpa3" path="res://scenes/Combat/entity_scene.tscn" id="2_otub4"]
+[ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="3_s5dc6"]
+[ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="4_620dg"]
+
+[node name="PlayerStats" type="Control" unique_id=25672370]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_otub4")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1845910008]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h5p2b")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1216750029]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=600007654]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1849436501]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1621451413]
+layout_mode = 2
+
+[node name="Player" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=2032320449 instance=ExtResource("2_otub4")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=146095222]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3" unique_id=1061887864]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer" unique_id=399812285]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HVBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer" unique_id=1302729691]
+layout_mode = 2
+
+[node name="AbilitiesPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer" unique_id=209494528]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AbilityGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer/AbilitiesPanel" unique_id=899673169]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 10
+script = ExtResource("3_s5dc6")
+
+[node name="AbilityInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer" unique_id=211702601]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AbilityInfo" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer/AbilityInfoPanel" unique_id=1931624610 instance=ExtResource("4_620dg")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer" unique_id=1424637151]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/CanvasLayer" unique_id=547963568]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
