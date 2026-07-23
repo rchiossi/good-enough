@@ -54,16 +54,16 @@ func generate_map():
     map[GameState.max_turns] = {
         "nodes": {
             0: {
-                "type": GameState.NodeTypes.Count,
+                "type": GameState.NodeTypes.Null,
             },
             1: {
-                "type": GameState.NodeTypes.Count,
+                "type": GameState.NodeTypes.Null,
             },
             2: {
                 "type": GameState.NodeTypes.Count,
             },
             3: {
-                "type": GameState.NodeTypes.Count,
+                "type": GameState.NodeTypes.Null,
             },
         },
         "status": 1,

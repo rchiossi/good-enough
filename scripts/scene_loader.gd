@@ -7,7 +7,7 @@ var _target : String
 var _progress : Array[float]
 var _last_progress : float = 0.0
 
-const use_threads : bool = true
+const use_threads : bool = false
 
 signal loading_progress_update(progress : float)
 signal loading_complete

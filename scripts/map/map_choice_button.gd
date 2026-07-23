@@ -34,16 +34,16 @@ func set_coords(c: Vector2i):
     coords = c
     node_type = GameState.map[coords.x]["nodes"][coords.y]["type"]
     icon = types_definitions[node_type]["icon"]
-    if GameState.current_position.x != coords.x - 1:
-        disabled = true
-    if GameState.map[coords.x]["status"] == 0:
-        disabled = true
+    #if GameState.current_position.x != coords.x - 1:
+        #disabled = true
+    #if GameState.map[coords.x]["status"] == 0:
+        #disabled = true
     if GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1:
-        %Completed.visible = true
+        %DoneHighlight.visible = true
 
 func on_pressed():
     SceneLoader.load_scene(types_definitions[node_type]["scene"])
-    # get_tree().change_scene_to_file(types_definitions[node_type]["scene"])
+    #get_tree().change_scene_to_file(types_definitions[node_type]["scene"])
 
 func show_highlight():
     %HoverHighlight.visible = true

@@ -27,6 +27,7 @@ script = ExtResource("4_pqsog")
 metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
 
 [node name="DoneHighlight" type="PanelContainer" parent="." unique_id=1524537327]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
