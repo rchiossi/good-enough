@@ -58,10 +58,10 @@ func _ready() -> void:
 
     _ability_info.hide()
 
-	var entities : Dictionary[String, EntityStats] = {}
-	entities[_player_stats.name] = _player_stats
-	entities[_enemy_stats.name] = _enemy_stats
-	_combat_tracker.start_combat(entities, _player_stats)
+    var entities : Dictionary[String, EntityStats] = {}
+    entities[_player_stats.name] = _player_stats
+    entities[_enemy_stats.name] = _enemy_stats
+    _combat_tracker.start_combat(entities, _player_stats)
 
 func _skip_combat():
     SceneLoader.load_scene("uid://clhtpadgac6l7")
