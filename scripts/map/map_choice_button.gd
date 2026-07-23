@@ -34,16 +34,12 @@ func set_coords(c: Vector2i):
     coords = c
     node_type = GameState.map[coords.x]["nodes"][coords.y]["type"]
     icon = types_definitions[node_type]["icon"]
-    #if GameState.current_position.x != coords.x - 1:
-        #disabled = true
-    #if GameState.map[coords.x]["status"] == 0:
-        #disabled = true
+
     if GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1:
         %DoneHighlight.visible = true
 
 func on_pressed():
     SceneLoader.load_scene(types_definitions[node_type]["scene"])
-    #get_tree().change_scene_to_file(types_definitions[node_type]["scene"])
 
 func show_highlight():
     %HoverHighlight.visible = true
@@ -53,11 +49,10 @@ func hide_highlight():
 
 func _on_mouse_entered() -> void:
     show_highlight()
-    for n in GameState.connections.get(coords, []).get("children", []):
+    for n in GameState.connections.get(coords, {}).get("children", []):
         GameState.nodes[n].show_highlight()
 
 func _on_mouse_exited() -> void:
-    #if not get_rect().has_point(get_local_mouse_position()):
     hide_highlight()
-    for n in GameState.connections[coords].get("children", []):
+    for n in GameState.connections.get(coords, {}).get("children", []):
         GameState.nodes[n].hide_highlight()
