@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0p6uf3b2jdda"
-path="res://.godot/imported/parchmentFoldedCrinkled.png-01fc019edb8cdf90829071aaa8a89161.ctex"
+uid="uid://c8yv8y81aru0e"
+path="res://.godot/imported/shield_icon.png-871f2f453da12942282920a99129d150.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/parchmentFoldedCrinkled.png"
-dest_files=["res://.godot/imported/parchmentFoldedCrinkled.png-01fc019edb8cdf90829071aaa8a89161.ctex"]
+source_file="res://assets/abilities/shield_icon.png"
+dest_files=["res://.godot/imported/shield_icon.png-871f2f453da12942282920a99129d150.ctex"]
 
 [params]
 

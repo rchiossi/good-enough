@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bsi4jnmxwng3t"
+path="res://.godot/imported/Hover Wooden 2.ogg-1ff6fa65b0072974dc366bd468a8de43.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Hover Wooden 2.ogg"
+dest_files=["res://.godot/imported/Hover Wooden 2.ogg-1ff6fa65b0072974dc366bd468a8de43.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

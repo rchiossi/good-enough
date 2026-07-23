@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bmovv10hvyq4x" path="res://assets/combat/bg_combat.png" id="1_krbf5"]
 [ext_resource type="Script" uid="uid://diusl0i8btv3q" path="res://scripts/combat/combat_scene.gd" id="1_njxow"]
 [ext_resource type="PackedScene" uid="uid://8j2q7im3vpa3" path="res://scenes/Combat/entity_scene.tscn" id="2_njxow"]
+[ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="4_idueh"]
+[ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="5_h64lv"]
+[ext_resource type="Texture2D" uid="uid://curnbgbe7hmci" path="res://assets/combat/turn_indicator.png" id="6_4v6y1"]
 
 [node name="CombatScene" type="Control" unique_id=1486274649]
 layout_mode = 3
@@ -53,20 +56,90 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 8
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1701603087]
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=146095222]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2" unique_id=1264574745]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3" unique_id=1061887864]
 layout_mode = 2
 
-[node name="AttackButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" unique_id=1184887773]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer" unique_id=399812285]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HVBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer" unique_id=1302729691]
+layout_mode = 2
+
+[node name="AbilitiesPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer" unique_id=209494528]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AbilityGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer/AbilitiesPanel" unique_id=899673169]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 10
+script = ExtResource("4_idueh")
+
+[node name="AbilityInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer" unique_id=211702601]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AbilityInfo" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer/AbilityInfoPanel" unique_id=1931624610 instance=ExtResource("5_h64lv")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DebugContainer" type="MarginContainer" parent="." unique_id=1701603087]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_bottom = 74.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugContainer" unique_id=1264574745]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="DebugContainer/VBoxContainer" unique_id=1926339660]
+layout_mode = 2
+text = "Debug Panel:"
+
+[node name="AttackButton" type="Button" parent="DebugContainer/VBoxContainer" unique_id=1184887773]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Attack"
 
-[node name="DamageButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" unique_id=1999168296]
+[node name="DamageButton" type="Button" parent="DebugContainer/VBoxContainer" unique_id=1999168296]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Damage
 "
+
+[node name="SkipCombatButton" type="Button" parent="DebugContainer/VBoxContainer" unique_id=2006814516]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Skip Combat"
+
+[node name="TurnIndicator" type="TextureRect" parent="." unique_id=327042807]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+texture = ExtResource("6_4v6y1")

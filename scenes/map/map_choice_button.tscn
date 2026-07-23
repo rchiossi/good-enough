@@ -2,6 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://81xj75vwbcjg" path="res://assets/themes/map_theme.tres" id="1_7pqfr"]
 [ext_resource type="Texture2D" uid="uid://ck4832tptslp2" path="res://assets/map/castle.png" id="1_s2r1q"]
+[ext_resource type="Script" uid="uid://cv4jscks5yj32" path="res://scripts/map/map_choice_button.gd" id="3_nsik4"]
+[ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="4_pqsog"]
+[ext_resource type="Texture2D" uid="uid://3p1x75pjx6qk" path="res://assets/map/done.png" id="5_vxwrl"]
 
 [node name="MapChoiceButton" type="CheckBox" unique_id=523716358]
 anchors_preset = 15
@@ -12,4 +15,34 @@ grow_vertical = 2
 theme = ExtResource("1_7pqfr")
 theme_type_variation = &"MapChoiceButton"
 icon = ExtResource("1_s2r1q")
+script = ExtResource("3_nsik4")
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimationScaleTwitch" type="Control" parent="." unique_id=840345928]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_pqsog")
+metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
+
+[node name="Completed" type="ColorRect" parent="." unique_id=1266683725]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06666667, 0.8, 0.007843138, 0.1764706)
+
+[node name="TextureRect" type="TextureRect" parent="Completed" unique_id=2141475729]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_vxwrl")
+expand_mode = 1
+stretch_mode = 4
