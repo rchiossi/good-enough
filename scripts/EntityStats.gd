@@ -53,5 +53,7 @@ func apply_damage(shield_damage: int, armor_damage: int, health_damage: int):
     if new_health != health:
         hp_changed.emit(health, new_health)
         total_hp_damage = health - new_health
-        damage_taken.emit(total_shield_damage, total_armor_damage, total_hp_damage)
     health = new_health
+
+    #Always emit, or the turn can get stuck
+    damage_taken.emit(total_shield_damage, total_armor_damage, total_hp_damage)

@@ -14,8 +14,6 @@ class_name EntityScene
 
 @onready var _sprite : TextureRect = %Sprite
 
-@onready var _canvas_modulate : CanvasModulate = %CanvasModulate
-
 const animation_attack_duration : float = 0.3
 const animation_damage_duration : float = 0.3
 

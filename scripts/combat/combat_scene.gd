@@ -31,13 +31,15 @@ func _ready() -> void:
     _player_stats.hp_changed.connect(_on_hp_changed.bind(_player_stats, player))
     _player_stats.armor_changed.connect(_on_armor_changed.bind(_player_stats, player))
     _player_stats.shield_changed.connect(_on_shield_changed.bind(_player_stats, player))
-    _player_stats.damage_taken.connect(_on_damage_taken.bind(_player_stats, player))
+    _player_stats.damage_taken.connect(_on_damage_taken.bind(player))
+    _player_stats.init()
 
     _enemy_stats = GameState.enemy_list.values().pick_random()
     _enemy_stats.hp_changed.connect(_on_hp_changed.bind(_enemy_stats, enemy))
     _enemy_stats.armor_changed.connect(_on_armor_changed.bind(_enemy_stats, enemy))
     _enemy_stats.shield_changed.connect(_on_shield_changed.bind(_enemy_stats, enemy))
     _enemy_stats.damage_taken.connect(_on_damage_taken.bind(enemy))
+    _enemy_stats.init()
 
     player.init(_player_stats.max_health, _player_stats.armor, _player_stats.shield, _player_sprite )
     player.death_animation_complete.connect(on_player_death)
@@ -74,7 +76,7 @@ func _show_ability_info(ability_name : String):
 func _activate_ability(ability_name):
     var ability : Ability = GameState.all_abilities[ability_name]
 
-    ability.take_action(_enemy_stats)
+    _combat_tracker.take_action(ability.name)
 
 func _on_hp_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
     scene.animate_health_bar(old_value, new_value)
