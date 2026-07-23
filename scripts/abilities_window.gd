@@ -9,7 +9,9 @@ extends Control
 @onready var cooldown_label: Label = $AbilityDetails/CooldownContainer/CooldownLabel
 @onready var confirmation_dialog: SimpleDialog = $ConfirmationDialog
 @onready var hover_sound_1: AudioStreamPlayer2D = $HoverSound1
+@onready var hover_bad_sound: AudioStreamPlayer2D = $HoverBadSound
 @onready var click_sound: AudioStreamPlayer2D = $ClickSound
+@onready var click_bad_sound: AudioStreamPlayer2D = $ClickBadSound
 
 @onready var abilities_list: HBoxContainer = $AbilitiesList
 const ICON_SIZE := 128
@@ -21,12 +23,14 @@ func _ready() -> void:
     var empty := StyleBoxEmpty.new()
     confirmation_dialog.confirmed.connect(_on_forget_button_pressed)
 
-    for ability in GameState.player_stats.abilities.values():
+    for ability in GameState.all_abilities.values():
         var button := Button.new()
         button.icon = ability.icon
         button.expand_icon = true
         button.add_theme_constant_override("icon_max_width", ICON_SIZE)
         button.custom_minimum_size = Vector2(ICON_SIZE, ICON_SIZE)
+        if ability.name not in GameState.player_stats.abilities:
+            button.self_modulate = Color(0.35, 0.35, 0.35)
 
         var animation = AnimationScaleTwitch.new()
         button.add_child(animation)
@@ -41,6 +45,9 @@ func _ready() -> void:
     print("ready on ", self, " label=", shield_damage_label)
 
 func _on_ability_button_hovered(ability: Ability) -> void:
+    if ability.name not in GameState.player_stats.abilities:
+        hover_bad_sound.play()
+        return
     name_label.text = ability.name
     description_text.text = ability.description
     shield_damage_label.text = str(ability.shield_damage)
@@ -51,6 +58,9 @@ func _on_ability_button_hovered(ability: Ability) -> void:
     hover_sound_1.play()
 
 func _on_ability_button_pressed(ability: Ability) -> void:
+    if ability.name not in GameState.player_stats.abilities:
+        click_bad_sound.play()
+        return
     selected_ability = ability
     confirmation_dialog.dialog_text_label.text = "Forget " + ability.name + "?"
     confirmation_dialog.confirm_button.text = "Forget"
