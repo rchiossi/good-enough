@@ -19,6 +19,10 @@ func _ready() -> void:
     for n in GameState.connections[GameState.current_position]["children"]:
         GameState.nodes[n].disabled = false
 
+func _input(event: InputEvent) -> void:
+    if event.is_action_pressed("ui_cancel"):
+        %SettingsPanel.fade_in()
+
 func add_countdown_label(countdown: String):
     var header_label = RichTextLabel.new()
     header_label.text = "%s" % countdown
