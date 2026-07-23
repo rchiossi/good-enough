@@ -86,10 +86,6 @@ func _on_new_turn(turn_count: int):
     print('next_turn_called: %s', turn_count)
     if turn_count % 2 != 0:
         return
-    for ability in GameState.player_stats.abilities.values():
-        if ability.remaining_cooldown > 0:
-            ability.remaining_cooldown -= 1
-    _ability_grid.update_abilities()
 
 func load_abilities_to_grid():
     for ability in _player_stats.abilities.values():
@@ -123,6 +119,7 @@ func _activate_ability(ability_name):
 
     _combat_manager.take_player_action(ability_name,[enemy.stats.name])
     _update_turn_indicator(enemy.stats.name)
+    _update_abilities_cooldown()
     _play_ability_effect(player, enemy, GameState.all_abilities[ability_name])
     #This will trigger damage taken, which will call _on_damage_taken
 
@@ -221,6 +218,11 @@ func _play_ability_effect(_source: EntityScene, target: EntityScene, ability: Ab
     add_child(effect)
     move_child(effect, target.get_index())
 
+func _update_abilities_cooldown():
+    for ability in GameState.player_stats.abilities.values():
+        if ability.remaining_cooldown > 0:
+            ability.remaining_cooldown -= 1
+    _ability_grid.update_abilities()
 
 func _play_death_animation():
     if player.stats.health == 0:
