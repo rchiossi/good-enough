@@ -88,6 +88,7 @@ func _init_abilities():
     fireball.icon = preload("uid://n1peuh4vn6i0")
     fireball.description = "Some description"
     fireball.cooldown = 1
+    fireball.ability_type = Ability.AbilityType.MAGIC
     _add_ability(fireball)
 
     var ice_dart := Ability.new()
@@ -98,6 +99,7 @@ func _init_abilities():
     ice_dart.icon = preload("uid://qscf336gkfa4")
     ice_dart.description = "An ice dart that shoots towards your enemy. Piercing them dealing significant magic damage, but fails to penetrate armor."
     ice_dart.cooldown = 2
+    ice_dart.ability_type = Ability.AbilityType.MAGIC
     _add_ability(ice_dart)
 
     var visceral_bleed := Ability.new()
@@ -108,6 +110,7 @@ func _init_abilities():
     visceral_bleed.icon = preload("uid://bxm2bno0ekkfh")
     visceral_bleed.description = "You cut the veins of your enemies from the inside. Inflicts massive health damage."
     visceral_bleed.cooldown = 3
+    visceral_bleed.ability_type = Ability.AbilityType.BLUNT
     _add_ability(visceral_bleed)
 
     var pillar_bonk := Ability.new()
@@ -119,4 +122,5 @@ func _init_abilities():
     pillar_bonk.description = "You smash a giant pillar onto the enemy. Dealing significant armor damage."
     pillar_bonk.cooldown = 5
     pillar_bonk.remaining_cooldown = 3
+    pillar_bonk.ability_type = Ability.AbilityType.PIERCING
     _add_ability(pillar_bonk)
