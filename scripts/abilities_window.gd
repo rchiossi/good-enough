@@ -23,13 +23,13 @@ func _ready() -> void:
     var empty := StyleBoxEmpty.new()
     confirmation_dialog.confirmed.connect(_on_forget_button_pressed)
 
-    for ability in GameState.all_abilities.values():
+    for ability in GameState.player_stats.abilities.values():
         var button := Button.new()
         button.icon = ability.icon
         button.expand_icon = true
         button.add_theme_constant_override("icon_max_width", ICON_SIZE)
         button.custom_minimum_size = Vector2(ICON_SIZE, ICON_SIZE)
-        if ability.name not in GameState.player_stats.abilities:
+        if ability.is_disabled:
             button.self_modulate = Color(0.35, 0.35, 0.35)
 
         var animation = AnimationScaleTwitch.new()
@@ -45,7 +45,7 @@ func _ready() -> void:
     print("ready on ", self, " label=", shield_damage_label)
 
 func _on_ability_button_hovered(ability: Ability) -> void:
-    if ability.name not in GameState.player_stats.abilities:
+    if ability.is_disabled:
         hover_bad_sound.play()
         return
     name_label.text = ability.name
@@ -58,7 +58,7 @@ func _on_ability_button_hovered(ability: Ability) -> void:
     hover_sound_1.play()
 
 func _on_ability_button_pressed(ability: Ability) -> void:
-    if ability.name not in GameState.player_stats.abilities:
+    if ability.is_disabled:
         click_bad_sound.play()
         return
     selected_ability = ability
@@ -71,5 +71,5 @@ func _on_ability_button_pressed(ability: Ability) -> void:
 func _on_forget_button_pressed() -> void:
     if not selected_ability:
         return
-    GameState.player_stats.abilities.erase(selected_ability.name)
+    GameState.player_stats.abilities[selected_ability.name].is_disabled = true
     SceneLoader.load_scene("res://scenes/map/map.tscn")

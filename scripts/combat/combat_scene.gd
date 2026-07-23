@@ -71,13 +71,25 @@ func _ready() -> void:
     entities[_player_stats.name] = _player_stats
     entities[_enemy_stats.name] = _enemy_stats
     _combat_manager.state_changed.connect(_on_state_changed)
+    _combat_manager.new_turn.connect(_on_new_turn)
     _combat_manager.init_combat(entities, _player_stats.name)
 
     _animate_start_combat.call_deferred()
 
 
+func _on_new_turn(turn_count: int):
+    print('next_turn_called: %s', turn_count)
+    if turn_count % 2 != 0:
+        return
+    for ability in GameState.player_stats.abilities.values():
+        if ability.remaining_cooldown > 0:
+            ability.remaining_cooldown -= 1
+    _ability_grid.update_abilities()
+
 func load_abilities_to_grid():
     for ability in _player_stats.abilities.values():
+        if ability.is_disabled:
+            continue
         var scene : CombatAbilityScene = _ability_scene.instantiate()
         _ability_grid.add_item(scene)
         scene.set_ability(ability.name)

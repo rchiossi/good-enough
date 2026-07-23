@@ -35,7 +35,7 @@ func choose_random_event():
     reject_button.text = picked_event.reject_text
 
 func existential_event_callback(ability_to_toss: String):
-    GameState.player_stats.abilities.erase(ability_to_toss)
+    GameState.player_stats.abilities[ability_to_toss].is_disabled = true
     GameState.player_stats.health = min(GameState.player_stats.health + 5, GameState.player_stats.max_health)
     SceneLoader.load_scene("res://scenes/map/map.tscn")
 
