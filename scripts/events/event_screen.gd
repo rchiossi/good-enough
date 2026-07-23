@@ -5,7 +5,7 @@ extends Control
 
 var available_events: Array[GameEvent] = []
 
-func _get_removeable_ability_name() -> String:
+func _get_removeable_ability_name():
     var has_removeable_ability: bool = false
     for ability in GameState.player_stats.abilities.values():
         if ability.ability_type != Ability.AbilityType.NORMAL:
@@ -81,7 +81,7 @@ func _ready() -> void:
     "
     tax_event.accept_text = "Pay the tax"
     tax_event.reject_text = "Refuse to pay"
-    tax_event.take_action_func = Callable(tax_event_callback.bind(ability_1))
+    tax_event.take_action_func = Callable(tax_event_callback.bind(ability_to_remove))
     available_events.append(tax_event)
     
    
