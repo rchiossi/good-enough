@@ -18,6 +18,13 @@ var _enemy_stats : EntityStats
 
 var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.tscn")
 
+@export var damage_font_size : int = 30
+@export var damage_number_offset : Vector2 = Vector2(0, -100)
+@export var damage_number_slide : int = -50
+@export var damage_number_duration : float = 2.0
+@export var damage_numer_spread : int = 50
+
+
 func _ready() -> void:
 	_player_stats = GameState.player_stats
 	_player_stats.hp_changed.connect(_on_hp_changed.bind(_player_stats, player))
@@ -68,3 +75,40 @@ func _on_shield_changed(old_value: int, new_value: int, _stats: EntityStats, sce
 
 func _on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, scene: EntityScene):
 	scene.animate_take_damage()
+
+	if shield_damage != 0:
+		var offset = Vector2(scene.size.x / 2 - damage_numer_spread, 0)
+		show_damage_numbers(shield_damage, Color.BLUE, offset, scene)
+
+	if armor_damage != 0:
+		var offset = Vector2(scene.size.x / 2, 0)
+		show_damage_numbers(armor_damage, Color.GRAY, offset, scene)
+
+	if hp_damage != 0:
+		var offset = Vector2(scene.size.x / 2 + damage_numer_spread, 0)
+		show_damage_numbers(hp_damage, Color.RED, offset, scene)
+
+func show_damage_numbers(value: int, color: Color, offset: Vector2, scene: EntityScene):
+	var label = Label.new()
+	label.text = str(value)
+
+	label.label_settings = LabelSettings.new()
+	label.label_settings.font_color = color
+	label.label_settings.font_size = damage_font_size
+	label.label_settings.outline_color = Color.BLACK
+
+	label.offset_transform_enabled = true
+
+	label.global_position = scene.global_position + damage_number_offset + offset
+	label.z_index = 2
+
+	add_child(label)
+
+	var tween = create_tween()
+
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(label, "offset_transform_position", Vector2(0, damage_number_slide), damage_number_duration)
+	tween.parallel().tween_property(label, "modulate:a", 0.0, damage_number_duration)
+	tween.tween_callback(func(): label.queue_free())

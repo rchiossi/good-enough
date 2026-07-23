@@ -19,7 +19,7 @@ const animation_damage_duration : float = 0.3
 
 var _tween : Tween
 
-@export var bar_animation_duration : float = 1.0
+@export var bar_animation_duration : float = 2.0
 
 func init(health : int, armor : int, shield : int, sprite : Texture2D):
     offset_transform_enabled = true
