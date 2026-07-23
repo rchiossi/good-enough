@@ -21,9 +21,14 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):
-        %SettingsPanel.fade_in()
+        if %HelpContainer.visible:
+            %HelpContainer.visible = false
+        else:
+            %SettingsPanel.fade_in()
     if event.is_action_pressed("show_player_info"):
         SceneLoader.load_scene("uid://81rbkmiw7hyl")
+    if event.is_action_pressed("show_help"):
+        %HelpContainer.visible = not %HelpContainer.visible
 
 func add_countdown_label(countdown: String):
     var header_label = RichTextLabel.new()
