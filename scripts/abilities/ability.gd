@@ -19,6 +19,8 @@ var remaining_cooldown: int = 0
 var ability_type: AbilityType = AbilityType.NORMAL
 var is_disabled: bool = false
 
+var effect_scene: PackedScene = preload("uid://bpx7ga87e5jcc")
+
 func take_action(source: EntityStats, target: EntityStats) -> void:
     source.deal_damage(source, shield_damage, armor_damage, health_damage)
     target.take_damage(source, shield_damage, armor_damage, health_damage)

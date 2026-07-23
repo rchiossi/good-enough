@@ -123,6 +123,7 @@ func _activate_ability(ability_name):
 
     _combat_manager.take_player_action(ability_name,[enemy.stats.name])
     _update_turn_indicator(enemy.stats.name)
+    _play_ability_effect(player, enemy, GameState.all_abilities[ability_name])
     #This will trigger damage taken, which will call _on_damage_taken
 
 func _on_damage_taken(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int):
@@ -152,7 +153,6 @@ func _on_damage_taken(source: EntityStats, target: EntityStats, shield_damage: i
         tween.tween_callback(_on_enemy_animation_complete)
 
 func _on_player_animation_complete():
-    print("Here")
     _combat_manager.conclude_player_action()
 
 func _on_state_changed(state):
@@ -210,6 +210,17 @@ func _update_turn_indicator(target_name: String):
     tween.set_ease(Tween.EASE_OUT)
 
     tween.tween_property(_turn_indicator, "position", indicator_position, turn_indicator_speed)
+
+func _play_ability_effect(_source: EntityScene, target: EntityScene, ability: Ability):
+    var effect : GPUParticles2D = ability.effect_scene.instantiate()
+
+    effect.global_position = target.global_position + target.size / 2
+    effect.emitting = true
+    effect.finished.connect(effect.queue_free)
+
+    add_child(effect)
+    move_child(effect, target.get_index())
+
 
 func _play_death_animation():
     if player.stats.health == 0:
