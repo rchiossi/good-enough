@@ -97,7 +97,7 @@ func _init_abilities():
     fireball.health_damage = 5
     fireball.icon = preload("uid://n1peuh4vn6i0")
     fireball.description = "Some description"
-    fireball.cooldown = 1
+    fireball.cooldown = 2
     fireball.ability_type = Ability.AbilityType.MAGIC
     _add_ability(fireball)
 
@@ -108,7 +108,7 @@ func _init_abilities():
     ice_dart.name = "Ice Dart"
     ice_dart.icon = preload("uid://qscf336gkfa4")
     ice_dart.description = "An ice dart that shoots towards your enemy. Piercing them dealing significant magic damage, but fails to penetrate armor."
-    ice_dart.cooldown = 2
+    ice_dart.cooldown = 3
     ice_dart.ability_type = Ability.AbilityType.MAGIC
     _add_ability(ice_dart)
 
@@ -131,6 +131,17 @@ func _init_abilities():
     pillar_bonk.icon = preload("uid://b4u3ocj05xk2e")
     pillar_bonk.description = "You smash a giant pillar onto the enemy. Dealing significant armor damage."
     pillar_bonk.cooldown = 5
-    pillar_bonk.remaining_cooldown = 3
+    pillar_bonk.remaining_cooldown = 0
     pillar_bonk.ability_type = Ability.AbilityType.PIERCING
     _add_ability(pillar_bonk)
+
+    var incinerate := Ability.new()
+    incinerate.shield_damage = 25
+    incinerate.armor_damage = 0
+    incinerate.health_damage = 25
+    incinerate.name = "Incinerate"
+    incinerate.icon = preload("uid://5abb2wxisclh")
+    incinerate.description = "You set your enemy on fire burning through their magical shield. This also affects health due to the severe heat."
+    incinerate.cooldown = 3
+    incinerate.ability_type = Ability.AbilityType.BLUNT
+    _add_ability(incinerate)
