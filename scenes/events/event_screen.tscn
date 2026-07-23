@@ -13,17 +13,22 @@ script = ExtResource("1_opc24")
 
 [node name="EventText" type="RichTextLabel" parent="." unique_id=1906528478]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 137.0
-offset_right = 824.0
-offset_bottom = 435.0
+offset_left = 153.0
+offset_top = 95.0
+offset_right = 1773.0
+offset_bottom = 735.0
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
 
 [node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=671040026]
 layout_mode = 0
-offset_left = 277.0
-offset_top = 486.0
-offset_right = 758.0
-offset_bottom = 560.0
+offset_left = 159.0
+offset_top = 877.0
+offset_right = 1787.0
+offset_bottom = 1019.0
 
 [node name="AcceptButton" type="Button" parent="ButtonContainer" unique_id=795525899]
 layout_mode = 2
