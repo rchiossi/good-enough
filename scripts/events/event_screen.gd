@@ -8,7 +8,7 @@ var available_events: Array[GameEvent] = []
 func _get_removeable_ability_name():
     var has_removeable_ability: bool = false
     for ability in GameState.player_stats.abilities.values():
-        if ability.ability_type != Ability.AbilityType.NORMAL:
+        if ability.ability_type != Ability.AbilityType.NORMAL and not ability.is_disabled:
             has_removeable_ability = true
             break
 
@@ -19,7 +19,7 @@ func _get_removeable_ability_name():
 
     while true:
         var found_ability: Ability = GameState.player_stats.abilities.values()[index_to_remove]
-        if found_ability.ability_type != Ability.AbilityType.NORMAL:
+        if found_ability.ability_type != Ability.AbilityType.NORMAL and not found_ability.is_disabled:
             return found_ability.name
         index_to_remove += 1
         if index_to_remove == len(GameState.player_stats.abilities):
@@ -81,9 +81,22 @@ func _ready() -> void:
     "
     tax_event.accept_text = "Pay the tax"
     tax_event.reject_text = "Refuse to pay"
-    tax_event.take_action_func = Callable(tax_event_callback.bind(ability_to_remove))
+    tax_event.take_action_func = Callable(tax_event_callback)
     available_events.append(tax_event)
     
+    #event5
+    var wildgoose_event: GameEvent = GameEvent.new()
+    wildgoose_event.text = "
+        A wild mega goose blocks the road. 
+        He's an agressive boy and looks very confident. 
+        
+        Fight the wild goose and damage your armor (-15 Armor)
+        Give it bread, you coward. You lose 1 ability.
+    "
+    wildgoose_event.accept_text = "You won. Barely.. "
+    wildgoose_event.reject_text = "The goose considers you beneath violence"
+    wildgoose_event.take_action_func = Callable(wildgoose_event_callback)
+    available_events.append(wildgoose_event)
    
     
     choose_random_event() 
@@ -121,12 +134,16 @@ func helpmove_event_callback(ability_to_toss: String):
     SceneLoader.load_scene("res://scenes/map/map.tscn")
     
 #event4callback
-func tax_event_callback(ability_to_toss: String):
-    GameState.player_stats.abilities[ability_to_toss].is_disabled = false
-    GameState.player_stats.max_health -= 20
-    GameState.player_stats.health -= 20
+func tax_event_callback():
+    GameState.player_stats.max_health = max(GameState.player_stats.max_health - 20, 1)
+    GameState.player_stats.health = max(GameState.player_stats.health - 20, 1)
     SceneLoader.load_scene("res://scenes/map/map.tscn")    
-    
+ 
+#event5callback   
+func wildgoose_event_callback():
+    GameState.player_stats.max_armor = max(GameState.player_stats.max_armor - 15, 1)
+    GameState.player_stats.armor = max(GameState.player_stats.armor - 15, 1)
+    SceneLoader.load_scene("res://scenes/map/map.tscn")  
 
 func _on_reject_button_pressed() -> void:
     SceneLoader.load_scene("res://scenes/abilities_window.tscn")
