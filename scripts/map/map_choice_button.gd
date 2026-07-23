@@ -19,7 +19,7 @@ var types_definitions: Dictionary[GameState.NodeTypes, Dictionary] = {
     },
     GameState.NodeTypes.Event: {
         "icon": preload("uid://2xwi22qnlxkx"),
-        "scene": "uid://bdphiv180ieyo",
+        "scene": "uid://8m56dhcqa170",
     },
     GameState.NodeTypes.Count: {
         "icon": preload("uid://ck4832tptslp2"),
