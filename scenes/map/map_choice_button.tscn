@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://ck4832tptslp2" path="res://assets/map/castle.png" id="1_s2r1q"]
 [ext_resource type="Script" uid="uid://cv4jscks5yj32" path="res://scripts/map/map_choice_button.gd" id="3_nsik4"]
 [ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="4_pqsog"]
+[ext_resource type="Script" uid="uid://bp3ukxo6aqps6" path="res://scripts/sounds/hover_sound.gd" id="5_nr205"]
 [ext_resource type="Texture2D" uid="uid://3p1x75pjx6qk" path="res://assets/map/done.png" id="5_vxwrl"]
+[ext_resource type="Script" uid="uid://ota37prga8g7" path="res://scripts/sounds/press_sound.gd" id="6_nl8tb"]
 
 [node name="MapChoiceButton" type="CheckBox" unique_id=523716358]
 anchors_preset = 15
@@ -25,6 +27,20 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_pqsog")
 metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
+
+[node name="HoverSound" type="Control" parent="." unique_id=1908189535]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_nr205")
+metadata/_custom_type_script = "uid://bp3ukxo6aqps6"
+
+[node name="PressSound" type="Control" parent="." unique_id=2054418712]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_nl8tb")
+metadata/_custom_type_script = "uid://ota37prga8g7"
 
 [node name="DoneHighlight" type="PanelContainer" parent="." unique_id=1524537327]
 unique_name_in_owner = true
@@ -54,6 +70,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_7pqfr")
 theme_type_variation = &"MapHighlightPanelContainer"
 metadata/_edit_use_anchors_ = true

@@ -97,7 +97,6 @@ func _generate_paths():
                 GameState.connections[Vector2i(i, j)]["children"].append(n)
                 if not neighbours:
                     break
-    print(GameState.connections)
 
 func _get_nr_of_nodes(level: int) -> int:
     var result: int = 0

@@ -51,12 +51,13 @@ func show_highlight():
 func hide_highlight():
     %HoverHighlight.visible = false
 
-#func _on_mouse_entered() -> void:
-    #show_highlight()
-    #for n in GameState.connections.get(coords, []).get("children", []):
-        #GameState.nodes[n].show_highlight()
-#
-#func _on_mouse_exited() -> void:
-    #hide_highlight()
-    #for n in GameState.connections[coords].get("children", []):
-        #GameState.nodes[n].hide_highlight()
+func _on_mouse_entered() -> void:
+    show_highlight()
+    for n in GameState.connections.get(coords, []).get("children", []):
+        GameState.nodes[n].show_highlight()
+
+func _on_mouse_exited() -> void:
+    #if not get_rect().has_point(get_local_mouse_position()):
+    hide_highlight()
+    for n in GameState.connections[coords].get("children", []):
+        GameState.nodes[n].hide_highlight()
