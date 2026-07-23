@@ -9,4 +9,4 @@ var Icon := preload("uid://n1peuh4vn6i0")
 var Description: String = ""
 
 func take_action(stats: EntityStats) -> void:
-    stats.apply_damage(ShieldDamage, ArmorDamage, HealthDamage)
+	stats.apply_damage(ShieldDamage, ArmorDamage, HealthDamage)
