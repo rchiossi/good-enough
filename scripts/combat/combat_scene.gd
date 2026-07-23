@@ -18,6 +18,11 @@ var _enemy_stats : EntityStats
 
 var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.tscn")
 
+@onready var _turn_indicator : TextureRect = %TurnIndicator
+
+@export var turn_indicator_offset : Vector2 = Vector2(0, -75)
+@export var turn_indicator_speed : float = 0.3
+
 @export var damage_font_size : int = 30
 @export var damage_number_offset : Vector2 = Vector2(0, -100)
 @export var damage_number_slide : int = -50
@@ -65,11 +70,13 @@ func _ready() -> void:
     var entities : Dictionary[String, EntityStats] = {}
     entities[_player_stats.name] = _player_stats
     entities[_enemy_stats.name] = _enemy_stats
+    _combat_tracker.new_turn.connect(_on_new_turn)
+    _combat_tracker.enemy_turn.connect(_on_enemy_turn)
     _combat_tracker.start_combat(entities, _player_stats)
 
-    _combat_tracker.new_turn.connect(_on_new_turn)
+    damage_animation_complete.connect(_combat_tracker.take_turn)
 
-    damage_animation_complete.connect(_combat_tracker.step)
+    _update_turn_indicator.call_deferred(false)
 
 func _skip_combat():
     SceneLoader.load_scene("uid://clhtpadgac6l7")
@@ -85,7 +92,15 @@ func _activate_ability(ability_name):
 
     var ability : Ability = GameState.all_abilities[ability_name]
 
-    _combat_tracker.take_action(ability.name)
+    _combat_tracker.step()
+    _update_turn_indicator()
+
+    _combat_tracker.take_action(ability.name, _enemy_stats)
+
+func _on_enemy_turn():
+    _combat_tracker.take_enemy_turn()
+    _combat_tracker.step()
+    _update_turn_indicator()
 
 func _on_hp_changed(old_value: int, new_value: int, _stats: EntityStats, scene: EntityScene):
     scene.animate_health_bar(old_value, new_value)
@@ -140,11 +155,33 @@ func show_damage_numbers(value: int, color: Color, offset: Vector2, scene: Entit
     var tween = create_tween()
 
     tween.set_trans(Tween.TRANS_SINE)
-    tween.set_ease(Tween.EASE_OUT)
 
     tween.tween_property(label, "offset_transform_position", Vector2(0, damage_number_slide), damage_number_duration)
     tween.parallel().tween_property(label, "modulate:a", 0.0, damage_number_duration)
     tween.tween_callback(func(): label.queue_free())
+
+func _update_turn_indicator(animate : bool = true):
+    var indicator_position : Vector2
+    if _combat_tracker.is_active(_player_stats.name):
+        indicator_position = player.global_position + Vector2(player.size.x / 2, 0)
+        print(player.global_position)
+    else:
+        indicator_position = enemy.global_position + Vector2(enemy.size.x / 2, 0)
+
+    indicator_position += turn_indicator_offset
+
+    _turn_indicator.show()
+
+    if not animate:
+        _turn_indicator.position = indicator_position
+        return
+
+    var tween = create_tween()
+
+    tween.set_trans(Tween.TRANS_SINE)
+    tween.set_ease(Tween.EASE_OUT)
+
+    tween.tween_property(_turn_indicator, "position", indicator_position, turn_indicator_speed)
 
 func on_player_death():
     # TODO: Show Victory Popup
@@ -155,13 +192,4 @@ func on_enemy_death():
     SceneLoader.load_scene("uid://clhtpadgac6l7")
 
 func _on_new_turn(entity_name: String):
-    if entity_name == _player_stats.name:
-        _on_player_turn()
-    else:
-        _on_enemy_turn()
-
-func _on_player_turn():
-    pass
-
-func _on_enemy_turn():
     pass
