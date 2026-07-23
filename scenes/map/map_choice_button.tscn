@@ -14,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_7pqfr")
 theme_type_variation = &"MapChoiceButton"
+disabled = true
 icon = ExtResource("1_s2r1q")
 script = ExtResource("3_nsik4")
 metadata/_edit_use_anchors_ = true
@@ -25,7 +26,25 @@ offset_bottom = 40.0
 script = ExtResource("4_pqsog")
 metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
 
-[node name="Completed" type="ColorRect" parent="." unique_id=1266683725]
+[node name="DoneHighlight" type="PanelContainer" parent="." unique_id=1524537327]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7pqfr")
+theme_type_variation = &"MapHighlightPanelContainer"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="DoneHighlight" unique_id=2141475729]
+layout_mode = 2
+texture = ExtResource("5_vxwrl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HoverHighlight" type="PanelContainer" parent="." unique_id=1066889223]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -34,15 +53,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.06666667, 0.8, 0.007843138, 0.1764706)
+theme = ExtResource("1_7pqfr")
+theme_type_variation = &"MapHighlightPanelContainer"
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Completed" unique_id=2141475729]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureRect" type="TextureRect" parent="HoverHighlight" unique_id=1943308331]
+visible = false
+layout_mode = 2
 texture = ExtResource("5_vxwrl")
 expand_mode = 1
 stretch_mode = 4
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -6,6 +6,7 @@ var max_nodes = 4
 
 func _ready() -> void:
     generate_map()
+    _generate_paths()
     for i in range(GameState.max_turns):
         var level = MapLevelScene.new(i)
         %MapNodesContainer.add_child(level)
@@ -13,7 +14,9 @@ func _ready() -> void:
         separator.custom_minimum_size.x = 128
         %MapNodesContainer.add_child(separator)
     %MapNodesContainer.add_child(MapLevelScene.new(GameState.max_turns))
-
+    for n in GameState.connections[GameState.current_position]["children"]:
+        GameState.nodes[n].disabled = false
+        
 
 func generate_map():
     if GameState.map:
@@ -70,7 +73,8 @@ func generate_map():
     _generate_paths()
 
 func _generate_paths():
-    var connections = {}
+    if GameState.connections:
+        return
     for i in range(GameState.max_turns):
         var nr_nodes = _get_nr_of_nodes(i)
 
@@ -78,21 +82,22 @@ func _generate_paths():
             if GameState.map[i]["nodes"][j]["type"] == GameState.NodeTypes.Null:
                 continue
             var neighbours = _get_next_neighbours(Vector2i(i, j))
-            connections[Vector2i(i, j)] = {"children": []}
-            if nr_nodes == 1:
+            GameState.connections[Vector2i(i, j)] = {"children": []}
+            if nr_nodes == 1 or not neighbours:
+                # TODO: for the case when there are no neighbours we should go to the closes node
+                # As a temporary fix I allow any node
                 for n in range(max_nodes):
                     if GameState.map[i + 1]["nodes"][n]["type"] != GameState.NodeTypes.Null:
-                        connections[Vector2i(i, j)]["children"].append(n)
+                        GameState.connections[Vector2i(i, j)]["children"].append(Vector2i(i+1, n))
                 continue
-            if not neighbours:
-                break
+
             for r in range(randi_range(1, 3)):
                 var n = neighbours[randi() % neighbours.size()]
                 neighbours.erase(n)
-                connections[Vector2i(i, j)]["children"].append(n)
+                GameState.connections[Vector2i(i, j)]["children"].append(n)
                 if not neighbours:
                     break
-    print(connections)
+    print(GameState.connections)
 
 func _get_nr_of_nodes(level: int) -> int:
     var result: int = 0

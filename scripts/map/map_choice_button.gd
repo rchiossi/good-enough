@@ -43,3 +43,20 @@ func set_coords(c: Vector2i):
 
 func on_pressed():
 	SceneLoader.load_scene(types_definitions[node_type]["scene"])
+    # get_tree().change_scene_to_file(types_definitions[node_type]["scene"])
+
+func show_highlight():
+    %HoverHighlight.visible = true
+    
+func hide_highlight():
+    %HoverHighlight.visible = false
+
+func _on_mouse_entered() -> void:
+    show_highlight()
+    for n in GameState.connections.get(coords, []).get("children", []):
+        GameState.nodes[n].show_highlight()
+
+func _on_mouse_exited() -> void:
+    hide_highlight()
+    for n in GameState.connections[coords].get("children", []):
+        GameState.nodes[n].hide_highlight()

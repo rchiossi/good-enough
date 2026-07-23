@@ -5,6 +5,13 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdhkq"]
 texture = ExtResource("1_ky26x")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxwrl"]
+bg_color = Color(0.06666667, 0.8, 0.007843138, 0.1764706)
+corner_radius_top_left = 75
+corner_radius_top_right = 75
+corner_radius_bottom_right = 75
+corner_radius_bottom_left = 75
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ky26x"]
 load_path = "res://.godot/imported/parchmentFoldedCrinkled.png-01fc019edb8cdf90829071aaa8a89161.ctex"
 
@@ -17,6 +24,8 @@ MapBackground/base_type = &"Panel"
 MapBackground/styles/panel = SubResource("StyleBoxTexture_fdhkq")
 MapChoiceButton/base_type = &"CheckBox"
 MapChoiceButton/constants/icon_max_width = 128
+MapHighlightPanelContainer/base_type = &"PanelContainer"
+MapHighlightPanelContainer/styles/panel = SubResource("StyleBoxFlat_vxwrl")
 MapMarginContainer/base_type = &"MarginContainer"
 MapMarginContainer/constants/margin_bottom = 8
 MapMarginContainer/constants/margin_left = 8

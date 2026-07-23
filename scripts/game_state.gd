@@ -11,6 +11,8 @@ enum NodeTypes {
 
 var map: Dictionary = {}
 var current_position: Vector2i = Vector2i(0, 0)
+var nodes: Dictionary[Vector2i, MapChoiceButton] = {}
+var connections: Dictionary[Vector2i, Dictionary] = {}
 
 var player_stats : EntityStats = EntityStats.new()
 
