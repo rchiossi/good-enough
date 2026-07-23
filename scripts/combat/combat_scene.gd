@@ -37,7 +37,6 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var damage_number_spread : int = 50
 
 
-#var _combat_tracker : CombatTracker = CombatTracker.new()
 var _combat_manager : CombatManager = CombatManager.new()
 var _entity_scenes : Dictionary[String, EntityScene] = {}
 
@@ -74,7 +73,7 @@ func _ready() -> void:
     _combat_manager.state_changed.connect(_on_state_changed)
     _combat_manager.init_combat(entities, _player_stats.name)
 
-    _animate_start_combat()
+    _animate_start_combat.call_deferred()
 
 
 func load_abilities_to_grid():
@@ -176,7 +175,9 @@ func _update_turn_indicator(animate : bool = true):
     indicator_position = active.global_position + Vector2(active.size.x / 2, 0)
     indicator_position += turn_indicator_offset
 
-    _turn_indicator.show()
+    if not _turn_indicator.visible:
+        _turn_indicator.show()
+        animate = false
 
     if not animate:
         _turn_indicator.position = indicator_position
