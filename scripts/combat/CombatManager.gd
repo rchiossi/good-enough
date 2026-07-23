@@ -83,9 +83,9 @@ func init_combat(entities: Dictionary[String, EntityStats], active_entity: Strin
         
         if entity.is_player:
             _player = entity.name
-            entity.damage_taken.connect(_resolve_player_action.bind(entity.name))
+            entity.damage_dealt.connect( _resolve_player_action)
         else:
-            entity.damage_taken.connect(_resolve_enemy_action.bind(entity.name))
+            entity.damage_dealt.connect(_resolve_enemy_action)
 
     print(_turn_order)
             
@@ -118,12 +118,10 @@ func take_player_action(ability_name : String, targets : Array[String]) -> void:
 
     for target_name in targets:
         var target : EntityStats = _entities[target_name]
-        ability.take_action(target)
+        ability.take_action(_entities[_player], target)
         # This will trigger a damage_taken signal that will call _resolve_player_action
 
-func _resolve_player_action(shield_damage: int, armor_damage: int, hp_damage: int, entity_name: String):
-    var entity = _entities[entity_name]
-
+func _resolve_player_action(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int):
     var event = CombatEvent.new()
 
     event.type = CombatEvent.CombatEventType.DAMAGE
@@ -131,7 +129,8 @@ func _resolve_player_action(shield_damage: int, armor_damage: int, hp_damage: in
     event.armor_damage = armor_damage
     event.hp_damage = hp_damage
 
-    event.target = entity
+    event.source = source
+    event.target = target
 
     combat_events.push_back(event)
 
@@ -152,13 +151,11 @@ func _take_enemy_action() -> void:
     var ability : Ability = enemy.abilities.values().pick_random()
     var target : EntityStats = _entities[_player] 
 
-    ability.take_action(target)
+    ability.take_action(enemy, target)
     # This will trigger a damage_taken signal that will call _resolve_enemy_action
 
 
-func _resolve_enemy_action(shield_damage: int, armor_damage: int, hp_damage: int, entity_name: String):
-    var entity = _entities[entity_name]
-
+func _resolve_enemy_action(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int):
     var event = CombatEvent.new()
 
     event.type = CombatEvent.CombatEventType.DAMAGE
@@ -166,7 +163,8 @@ func _resolve_enemy_action(shield_damage: int, armor_damage: int, hp_damage: int
     event.armor_damage = armor_damage
     event.hp_damage = hp_damage
 
-    event.target = entity
+    event.source = source
+    event.target = target
 
     combat_events.push_back(event)
 

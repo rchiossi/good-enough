@@ -19,14 +19,18 @@ var shield : int
 signal hp_changed(old : int, new : int)
 signal armor_changed(old : int, new : int)
 signal shield_changed(old : int, new : int)
-signal damage_taken(shield: int, armor: int, hp: int)
+signal damage_dealt(source: EntityStats, target: EntityStats, shield: int, armor: int, hp: int)
+signal damage_taken(source: EntityStats, target: EntityStats, shield: int, armor: int, hp: int)
 
 func init() -> void:
     health = max_health
     armor = max_armor
     shield = max_shield
 
-func apply_damage(shield_damage: int, armor_damage: int, health_damage: int):
+func deal_damage(target: EntityStats, shield_damage: int, armor_damage: int, health_damage: int):
+    damage_dealt.emit(self, target, shield_damage, armor_damage, health_damage)
+
+func take_damage(source: EntityStats, shield_damage: int, armor_damage: int, health_damage: int):
     var total_shield_damage = 0
     var total_armor_damage = 0
     var total_hp_damage = 0
@@ -37,7 +41,7 @@ func apply_damage(shield_damage: int, armor_damage: int, health_damage: int):
         total_shield_damage = shield - new_shield
     shield = new_shield
     if shield > 0:
-        damage_taken.emit(total_shield_damage, total_armor_damage, total_hp_damage)
+        damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage)
         return
 
     var new_armor : int = max(armor - armor_damage, 0)
@@ -46,7 +50,7 @@ func apply_damage(shield_damage: int, armor_damage: int, health_damage: int):
         total_armor_damage = armor - new_armor
     armor = new_armor
     if armor > 0:
-        damage_taken.emit(total_shield_damage, total_armor_damage, total_hp_damage)
+        damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage)
         return
 
     var new_health : int = max(health - health_damage, 0)
@@ -56,4 +60,4 @@ func apply_damage(shield_damage: int, armor_damage: int, health_damage: int):
     health = new_health
 
     #Always emit, or the turn can get stuck
-    damage_taken.emit(total_shield_damage, total_armor_damage, total_hp_damage)
+    damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage)

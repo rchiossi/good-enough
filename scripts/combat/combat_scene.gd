@@ -42,11 +42,11 @@ var _entity_scenes : Dictionary[String, EntityScene] = {}
 
 func _ready() -> void:
     _player_stats = GameState.player_stats
-    _player_stats.damage_taken.connect(_on_damage_taken.bind(player))
+    _player_stats.damage_taken.connect(_on_damage_taken)
     _player_stats.init()
 
     _enemy_stats = GameState.enemy_list.values().pick_random()
-    _enemy_stats.damage_taken.connect(_on_damage_taken.bind(enemy))
+    _enemy_stats.damage_taken.connect(_on_damage_taken)
     _enemy_stats.init()
 
     player.init(_player_stats, _player_sprite )
@@ -96,6 +96,8 @@ func _show_ability_info(ability_name : String):
 
 func _animate_start_combat():
     #TODO: Add something nice here
+    if not player.is_node_ready():
+        await get_tree().process_frame
     _combat_manager.start_combat()
 
 func _activate_ability(ability_name):
@@ -106,26 +108,28 @@ func _activate_ability(ability_name):
     _update_turn_indicator(enemy.stats.name)
     #This will trigger damage taken, which will call _on_damage_taken
 
-func _on_damage_taken(shield_damage: int, armor_damage: int, hp_damage: int, scene: EntityScene):
-    scene.animate_take_damage()
+func _on_damage_taken(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int):
+    var target_scene = _entity_scenes[target.name]
+
+    target_scene.animate_take_damage()
 
     if shield_damage != 0:
-        var offset = Vector2(scene.size.x / 2 - damage_number_spread, 0)
-        show_damage_numbers(shield_damage, Color.BLUE, offset, scene)
+        var offset = Vector2(target_scene.size.x / 2 - damage_number_spread, 0)
+        show_damage_numbers(shield_damage, Color.BLUE, offset, target_scene)
 
     if armor_damage != 0:
-        var offset = Vector2(scene.size.x / 2, 0)
-        show_damage_numbers(armor_damage, Color.GRAY, offset, scene)
+        var offset = Vector2(target_scene.size.x / 2, 0)
+        show_damage_numbers(armor_damage, Color.GRAY, offset, target_scene)
 
     if hp_damage != 0:
-        var offset = Vector2(scene.size.x / 2 + damage_number_spread, 0)
-        show_damage_numbers(hp_damage, Color.RED, offset, scene)
+        var offset = Vector2(target_scene.size.x / 2 + damage_number_spread, 0)
+        show_damage_numbers(hp_damage, Color.RED, offset, target_scene)
 
     screen_shake.shake()
 
     var tween = create_tween()
     tween.tween_interval(damage_number_duration)
-    if not scene.stats.is_player:
+    if source.is_player:
         tween.tween_callback(_on_player_animation_complete)
     else:
         tween.tween_callback(_on_enemy_animation_complete)
@@ -135,8 +139,9 @@ func _on_player_animation_complete():
 
 func _on_state_changed(state):
     match state:
-        #CombatManager.CombatState.WAITING_FOR_PLAYER_ACTION:
-        #    _update_turn_indicator()
+        CombatManager.CombatState.WAITING_FOR_PLAYER_ACTION:
+            if not _turn_indicator.visible:
+                _update_turn_indicator(player.stats.name)
         CombatManager.CombatState.ENEMY_ACTION_STARTED:
             _update_turn_indicator(player.stats.name)
         CombatManager.CombatState.COMBAT_ENDED:
