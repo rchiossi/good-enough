@@ -17,7 +17,7 @@ func _ready() -> void:
 func set_ability(ability_name : String):
 	_ability_name = ability_name
 
-	sprite.texture_normal = GameState.all_abilities[ability_name].Icon
+	sprite.texture_normal = GameState.all_abilities[ability_name].icon
 
 	tooltip_text = ability_name
 

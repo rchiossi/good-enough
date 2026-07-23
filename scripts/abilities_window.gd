@@ -20,9 +20,9 @@ func _ready() -> void:
     var empty := StyleBoxEmpty.new()
     confirmation_dialog.confirmed.connect(_on_forget_button_pressed)
 
-    for ability in GameState.player_abilities.values():
+    for ability in GameState.player_stats.abilities.values():
         var button := Button.new()
-        button.icon = ability.Icon
+        button.icon = ability.icon
         button.expand_icon = true
         button.add_theme_constant_override("icon_max_width", ICON_SIZE)
         button.custom_minimum_size = Vector2(ICON_SIZE, ICON_SIZE)
@@ -42,11 +42,11 @@ func _ready() -> void:
     print("ready on ", self, " label=", shield_damage_label)
 
 func _on_ability_button_hovered(ability: Ability) -> void:
-    name_label.text = ability.Name
-    description_text.text = ability.Description
-    shield_damage_label.text = str(ability.ShieldDamage)
-    armor_damage_label.text = str(ability.ArmorDamage)
-    health_damage_label.text = str(ability.HealthDamage)
+    name_label.text = ability.name
+    description_text.text = ability.description
+    shield_damage_label.text = str(ability.shield_damage)
+    armor_damage_label.text = str(ability.armor_damage)
+    health_damage_label.text = str(ability.health_damage)
     selected_ability = ability
     hover_sound_1.play()
 
@@ -61,5 +61,5 @@ func _on_ability_button_pressed(ability: Ability) -> void:
 func _on_forget_button_pressed() -> void:
     if not selected_ability:
         return
-    GameState.player_abilities.erase(selected_ability.Name)
+    GameState.player_stats.abilities.erase(selected_ability.name)
     SceneLoader.load_scene("res://scenes/map/map.tscn")

@@ -19,9 +19,9 @@ func set_ability(id : String):
 func load_ability():
     var ability : Ability = GameState.all_abilities[ability_name]
 
-    ability_name_label.text = ability.Name
-    ability_sprite.texture = ability.Icon
+    ability_name_label.text = ability.name
+    ability_sprite.texture = ability.icon
 
-    hp_damage_label.text = str(ability.HealthDamage)
-    armor_damage_label.text = str(ability.ArmorDamage)
-    shield_damage_label.text = str(ability.ShieldDamage)
+    hp_damage_label.text = str(ability.health_damage)
+    armor_damage_label.text = str(ability.armor_damage)
+    shield_damage_label.text = str(ability.shield_damage)

@@ -6,7 +6,11 @@ class_name EntityStats
 
 @export var max_health : int
 @export var max_armor : int
-@export var max_shield :int
+@export var max_shield : int
+
+@export var is_player : bool
+
+@export var abilities : Dictionary[String, Ability] = {}
 
 var health : int
 var armor : int

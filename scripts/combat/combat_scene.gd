@@ -48,10 +48,10 @@ func _ready() -> void:
     _damage_button.pressed.connect(enemy.animate_take_damage)
     _skip_button.pressed.connect(_skip_combat)
 
-    for ability in GameState.player_abilities.values():
+    for ability in _player_stats.abilities.values():
         var scene : CombatAbilityScene = _ability_scene.instantiate()
         _ability_grid.add_item(scene)
-        scene.set_ability(ability.Name)
+        scene.set_ability(ability.name)
         scene.show_tooltip.connect(_show_ability_info)
         scene.ability_activated.connect(_activate_ability)
 
