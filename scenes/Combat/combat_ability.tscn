@@ -16,6 +16,7 @@ script = ExtResource("1_8yx28")
 unique_name_in_owner = true
 layout_mode = 2
 offset_transform_enabled = true
+mouse_filter = 1
 texture_normal = ExtResource("1_8tubs")
 stretch_mode = 4
 
@@ -25,8 +26,7 @@ script = ExtResource("2_8yx28")
 metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
 
 [node name="AnimationScaleBounce" type="Control" parent="AbilitySprite" unique_id=741037614]
+layout_mode = 1
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("4_xaxtc")
 metadata/_custom_type_script = "uid://ccrs8miu2ao26"

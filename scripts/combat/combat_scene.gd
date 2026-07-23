@@ -14,6 +14,7 @@ var _enemy_stats : EntityStats
 @onready var _skip_button : Button = %SkipCombatButton
 
 @onready var _ability_grid : CombatAbilityGrid = %AbilityGrid
+@onready var _ability_info : CombatAbilityTooltip = %AbilityInfo
 
 var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.tscn")
 
@@ -30,9 +31,18 @@ func _ready() -> void:
     _skip_button.pressed.connect(_skip_combat)
 
     for ability in GameState.player_abilities.values():
-        var scene = _ability_scene.instantiate()
+        var scene : CombatAbilityScene = _ability_scene.instantiate()
         _ability_grid.add_item(scene)
         scene.set_ability(ability.Name)
+        scene.show_tooltip.connect(_show_ability_info)
+
+    _ability_info.hide()
 
 func _skip_combat():
     SceneLoader.load_scene("uid://clhtpadgac6l7")
+
+func _show_ability_info(ability_name : String):
+    print("here")
+    _ability_info.set_ability(ability_name)
+
+    _ability_info.show()
