@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name LoadingScreen
 
-@export var fade_duration : float = 0.5
+@export var fade_duration : float = 0.2
 
 @onready var _base_panel : PanelContainer = %BasePanel
 

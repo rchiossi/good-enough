@@ -20,7 +20,7 @@ const animation_damage_duration : float = 0.3
 var _tween : Tween
 
 @export var bar_animation_duration : float = 2.0
-@export var death_animation_duration : float = 2.0
+@export var death_animation_duration : float = 0.5
 
 signal death_animation_complete
 

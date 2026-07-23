@@ -27,6 +27,8 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 
 @onready var _settings_panel : SettingsPanel = %SettingsPanel
 
+@onready var _background : TextureRect = %Background
+
 @export var end_battle_animation_duration : float = 0.5
 
 @export var turn_indicator_offset : Vector2 = Vector2(0, -75)
@@ -229,6 +231,13 @@ func _play_death_animation():
         player.animate_death()
     else:
         enemy.animate_death()
+
+    var tween = create_tween()
+
+    tween.set_trans(Tween.TRANS_BACK)
+    tween.set_ease(Tween.EASE_OUT)
+
+    tween.tween_property(_background, "material:shader_parameter/flash_percentage", 1.0, 0.5)
 
 func _on_player_death():
     defeat_panel.modulate.a = 0.0

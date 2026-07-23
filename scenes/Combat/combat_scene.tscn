@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bmovv10hvyq4x" path="res://assets/combat/bg_combat.png" id="1_krbf5"]
 [ext_resource type="Script" uid="uid://diusl0i8btv3q" path="res://scripts/combat/combat_scene.gd" id="1_njxow"]
+[ext_resource type="Shader" uid="uid://bjudakokgcufk" path="res://shaders/combat/damage_flash.gdshader" id="2_e66v7"]
 [ext_resource type="PackedScene" uid="uid://8j2q7im3vpa3" path="res://scenes/Combat/entity_scene.tscn" id="2_njxow"]
 [ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="4_idueh"]
 [ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="5_h64lv"]
@@ -10,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://d4b6rgp3dtcuu" path="res://scenes/Combat/defeat_panel.tscn" id="8_j8oqs"]
 [ext_resource type="Script" uid="uid://dcwybhvhic1fi" path="res://scripts/ui_animations/screen_shake.gd" id="9_338db"]
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="10_vhh5q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8b0q7"]
+resource_local_to_scene = true
+shader = ExtResource("2_e66v7")
+shader_parameter/flash_color = Color(0.26657534, 0.26657513, 0.2665752, 1)
+shader_parameter/flash_percentage = 0.0
 
 [node name="CombatScene" type="Control" unique_id=1486274649]
 layout_mode = 3
@@ -20,7 +27,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_njxow")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1845910008]
+[node name="Background" type="TextureRect" parent="." unique_id=1845910008]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_8b0q7")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
