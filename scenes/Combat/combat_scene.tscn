@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://curnbgbe7hmci" path="res://assets/combat/turn_indicator.png" id="6_4v6y1"]
 [ext_resource type="PackedScene" uid="uid://c8f3ytn0h5rs6" path="res://scenes/Combat/victory_panel.tscn" id="7_jaejr"]
 [ext_resource type="PackedScene" uid="uid://d4b6rgp3dtcuu" path="res://scenes/Combat/defeat_panel.tscn" id="8_j8oqs"]
+[ext_resource type="Script" uid="uid://dcwybhvhic1fi" path="res://scripts/ui_animations/screen_shake.gd" id="9_338db"]
 
 [node name="CombatScene" type="Control" unique_id=1486274649]
 layout_mode = 3
@@ -155,3 +156,22 @@ layout_mode = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+
+[node name="AnimationScreenShake" type="Control" parent="." unique_id=1664222064]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_338db")
+metadata/_custom_type_script = "uid://dcwybhvhic1fi"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1424637151]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=547963568]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
