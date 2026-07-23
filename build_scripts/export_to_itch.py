@@ -16,19 +16,22 @@ def zip_target(folder, destination):
 
 def upload_to_itch(target):
     print("Uploading")
-    subprocess.call(["butler", "push", target, target_link])
+    subprocess.call(["butler", "push", target, "alexandrusurdu/the-curse-of-ct-downcula:html"])
 
 
 def main():
     args_parser = argparse.ArgumentParser("export_to_itch")
     args_parser.add_argument("--export-target", default="Web")
-    args_parser.add_argument("--destination", default=os.path.join(os.getcwd(), "build\\web\\good_enough.zip"))
+    args_parser.add_argument("--destination", default=os.path.join(os.getcwd(), ".builds\\web\\the_curse_of_ct_downcula.zip"))
     args = args_parser.parse_args()
+    os.makedirs(".build\\web", exist_ok=True)
+    os.makedirs(os.path.dirname(args.destination), exist_ok=True)
     export(args.export_target)
-    zip_target(location_disk, args.destination)
+    zip_target("E:\\programming\\godot\\good-enough\\.build\\web", args.destination)
     upload_to_itch(args.destination)
 
 
 if __name__ == "__main__":
     main()
 
+    
