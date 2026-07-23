@@ -1,6 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://81xj75vwbcjg"]
 
 [ext_resource type="Texture2D" uid="uid://0p6uf3b2jdda" path="res://assets/map/background.png" id="1_ky26x"]
+[ext_resource type="FontFile" uid="uid://bep51vmupui4e" path="res://assets/BoldPixels.ttf" id="2_8b0q7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdhkq"]
 texture = ExtResource("1_ky26x")
@@ -33,3 +34,7 @@ MapMarginContainer/constants/margin_right = 8
 MapMarginContainer/constants/margin_top = 8
 MapPanelContainer/base_type = &"PanelContainer"
 MapPanelContainer/styles/panel = SubResource("StyleBoxTexture_8b0q7")
+MapRichTextLabel/base_type = &"RichTextLabel"
+MapRichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+MapRichTextLabel/font_sizes/normal_font_size = 50
+MapRichTextLabel/fonts/normal_font = ExtResource("2_8b0q7")

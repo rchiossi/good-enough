@@ -34,9 +34,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"MapMarginContainer"
 
-[node name="MapNodesContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/MarginContainer" unique_id=955652825]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/PanelContainer/MarginContainer" unique_id=437135677]
+layout_mode = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=605262278]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1155381053]
+layout_mode = 2
+
+[node name="MapNodesContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=955652825]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 1

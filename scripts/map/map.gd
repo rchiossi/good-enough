@@ -8,15 +8,38 @@ func _ready() -> void:
     generate_map()
     _generate_paths()
     for i in range(GameState.max_turns):
-        var level = MapLevelScene.new(i)
-        %MapNodesContainer.add_child(level)
-        var separator = VSeparator.new()
-        separator.custom_minimum_size.x = 128
-        %MapNodesContainer.add_child(separator)
-    %MapNodesContainer.add_child(MapLevelScene.new(GameState.max_turns))
+        add_node(i)
+        add_countdown_label(str(GameState.max_turns - i))
+
+    # add Count
+    add_node(GameState.max_turns)
+    add_countdown_label("Count")
+
+    # enable initial nodes
     for n in GameState.connections[GameState.current_position]["children"]:
         GameState.nodes[n].disabled = false
-        
+
+func add_countdown_label(countdown: String):
+    var header_label = RichTextLabel.new()
+    header_label.text = "%s" % countdown
+    header_label.custom_minimum_size.x = 136
+    header_label.custom_maximum_size.x = 136
+    header_label.custom_minimum_size.y = 64
+    header_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    header_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    header_label.theme_type_variation = "MapRichTextLabel"
+    %HeaderContainer.add_child(header_label)
+    var separator2 = VSeparator.new()
+    separator2.custom_minimum_size.x = 96
+    %HeaderContainer.add_child(separator2)
+
+func add_node(countdown: int):
+    var level = level_scene.instantiate()
+    level.level_id = countdown
+    %MapNodesContainer.add_child(level)
+    var separator = VSeparator.new()
+    separator.custom_minimum_size.x = 96
+    %MapNodesContainer.add_child(separator)
 
 func generate_map():
     if GameState.map:
