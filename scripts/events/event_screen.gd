@@ -42,6 +42,7 @@ func _ready() -> void:
 
             You gain + 25 health but can't ever cast " + ability_to_remove + "."
         existential_event.accept_text = "Accept enlightment"
+        existential_event.accept_text += "\n[color=red](Lose [i]%s[/i])[/color]" % ability_to_remove
         existential_event.reject_text = "Purge"
         existential_event.take_action_func = Callable(existential_event_callback.bind(ability_to_remove))
         available_events.append(existential_event)
@@ -55,6 +56,8 @@ func _ready() -> void:
 
         You gain + 15 on your armor when you help unionizing the bandits"
     unionized_event.accept_text = "Unionize bandits!"
+    if ability_to_remove:
+        unionized_event.accept_text += "\n[color=red](Lose [i]%s[/i])[/color]" % ability_to_remove
     unionized_event.reject_text = "Not my problem"
     unionized_event.take_action_func = Callable(unionized_event_callback.bind(ability_to_remove))
     available_events.append(unionized_event)
@@ -66,6 +69,8 @@ func _ready() -> void:
         
         Help move the old lady and receive +25 on your magic shield."
     helpmove_event.accept_text = "Move the couch"
+    if ability_to_remove:
+        helpmove_event.accept_text += "\n[color=red](Lose [i]%s[/i])[/color]" % ability_to_remove
     helpmove_event.reject_text = "I don't have time"
     helpmove_event.take_action_func = Callable(helpmove_event_callback.bind(ability_to_remove))
     available_events.append(helpmove_event)
@@ -80,6 +85,7 @@ func _ready() -> void:
         or Refuse to pay and fight the tax collector. You lose 1 ability.
     "
     tax_event.accept_text = "Pay the tax"
+    tax_event.accept_text += "\n[color=red](Lose [i]-20 HP[/i])[/color]"
     tax_event.reject_text = "Refuse to pay"
     tax_event.take_action_func = Callable(tax_event_callback)
     available_events.append(tax_event)
@@ -94,7 +100,8 @@ func _ready() -> void:
         Give it bread, you coward. You lose 1 ability.
     "
     wildgoose_event.accept_text = "You won. Barely.. "
-    wildgoose_event.reject_text = "The goose considers you beneath violence"
+    wildgoose_event.accept_text += "\n[color=red](Lose [i]-15 Armor[/i])[/color]"
+    wildgoose_event.reject_text = "The goose considers you beneath violence."
     wildgoose_event.take_action_func = Callable(wildgoose_event_callback)
     available_events.append(wildgoose_event)
    
@@ -105,7 +112,9 @@ func choose_random_event():
     var event_index = randi_range(0, len(available_events)-1)
     var picked_event = available_events[event_index]
     event_text.text = picked_event.text
-    accept_button.text = picked_event.accept_text
+    #accept_button.text = picked_event.accept_text
+    %AcceptButtonText.text = picked_event.accept_text
+    
     accept_button.pressed.connect(picked_event.take_action_func)
     reject_button.text = picked_event.reject_text
 
