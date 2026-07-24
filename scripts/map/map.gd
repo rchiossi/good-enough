@@ -38,6 +38,7 @@ func _process(_delta: float) -> void:
             GameState.nodes[GameState.current_position].global_position.x + GameState.nodes[GameState.current_position].size.x / 2,
             0
         )
+        %FirePanel.size.y = %HeaderContainer.size.y + 20
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):
