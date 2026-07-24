@@ -32,7 +32,12 @@ func _process(_delta: float) -> void:
         current_node.global_position.y + current_node.size.y / 2
     )
     if GameState.current_position in GameState.nodes:
-        %FirePanel.custom_maximum_size.x = max(GameState.nodes[GameState.current_position].global_position.x, 0)
+        %FirePanel.global_position.x = 0
+        %FirePanel.global_position.y = 0
+        %FirePanel.size.x = max(
+            GameState.nodes[GameState.current_position].global_position.x + GameState.nodes[GameState.current_position].size.x / 2,
+            0
+        )
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):

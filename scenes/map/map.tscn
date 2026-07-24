@@ -54,13 +54,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="FirePanel" type="Panel" parent="ScrollContainer/PanelContainer" unique_id=532340985]
-unique_name_in_owner = true
-material = ExtResource("3_fcby6")
-custom_maximum_size = Vector2(1, -1)
-layout_mode = 2
-mouse_filter = 2
-
 [node name="SettingsPanel" parent="." unique_id=1446633356 instance=ExtResource("3_a2pkv")]
 unique_name_in_owner = true
 visible = false
@@ -118,3 +111,13 @@ visible = false
 position = Vector2(200.99997, 294)
 scale = Vector2(0.30666667, 0.3125)
 texture = ExtResource("5_jcaow")
+
+[node name="FireEffectLayer" type="CanvasLayer" parent="." unique_id=1740088739]
+
+[node name="FirePanel" type="Panel" parent="FireEffectLayer" unique_id=532340985]
+unique_name_in_owner = true
+material = ExtResource("3_fcby6")
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+mouse_filter = 2
