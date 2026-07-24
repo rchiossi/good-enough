@@ -36,7 +36,6 @@ func step():
                 _change_state(CombatState.COMBAT_ENDED)
             else:
                 _change_state(CombatState.WAITING_FOR_ENEMY_ACTION)
-                _take_enemy_action()
 
         CombatState.WAITING_FOR_ENEMY_ACTION:
             _change_state(CombatState.ENEMY_ACTION_STARTED)
@@ -144,7 +143,7 @@ func conclude_player_action() -> void:
     step() #Move to PLAYER_ACTION_ENDED
 
 
-func _take_enemy_action() -> void:
+func take_enemy_action() -> void:
     step() #Move to ENEMY_ACTION_STARTED
 
     var enemy : EntityStats = _entities[_turn_order.front()]

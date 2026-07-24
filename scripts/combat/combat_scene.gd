@@ -159,6 +159,11 @@ func _on_state_changed(state):
         CombatManager.CombatState.WAITING_FOR_PLAYER_ACTION:
             if not _turn_indicator.visible:
                 _update_turn_indicator(player.stats.name)
+        CombatManager.CombatState.WAITING_FOR_ENEMY_ACTION:
+            var tween = create_tween()
+            tween.tween_interval(1.0)
+            tween.tween_callback(_combat_manager.take_enemy_action)
+            #_combat_manager.take_enemy_action()
         CombatManager.CombatState.ENEMY_ACTION_STARTED:
             _update_turn_indicator(player.stats.name)
         CombatManager.CombatState.COMBAT_ENDED:
