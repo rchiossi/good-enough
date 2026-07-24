@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="3_a2pkv"]
 [ext_resource type="Material" uid="uid://88dmy0l0iwxt" path="res://shaders/map/burning_material_v2.tres" id="3_fcby6"]
 [ext_resource type="Texture2D" uid="uid://c6csinb1ka78k" path="res://assets/combat/player.png" id="5_jcaow"]
+[ext_resource type="PackedScene" uid="uid://cvm36ryb3n5mj" path="res://scenes/map/map_line.tscn" id="6_jcaow"]
 
 [node name="MapScene" type="Control" unique_id=1321419604]
 layout_mode = 3
@@ -121,3 +122,17 @@ anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Paths" type="Control" parent="FireEffectLayer" unique_id=1141169718]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Line2D" parent="FireEffectLayer/Paths" unique_id=1491142998 instance=ExtResource("6_jcaow")]
+visible = false
+position = Vector2(13, -1)

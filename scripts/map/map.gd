@@ -1,9 +1,10 @@
 extends Control
 
 var level_scene: PackedScene = preload("uid://00urot6twxdg")
+var line_scene: PackedScene = preload("res://scenes/map/map_line.tscn")
 
 var max_nodes = 4
-
+var show_line = false
 func _ready() -> void:
     generate_map()
     _generate_paths()
@@ -22,6 +23,7 @@ func _ready() -> void:
         GameState.nodes[Vector2i(0, 0)].enable_button()
     else:
         %PlayerSprite2D.visible = true
+    show_line = true
 
 func _process(_delta: float) -> void:
     var current_node: MapChoiceButton = GameState.nodes.get(GameState.current_position)
@@ -40,6 +42,25 @@ func _process(_delta: float) -> void:
         )
         %FirePanel.size.y = %HeaderContainer.size.y + 20
 
+func show_paths():
+    for n in GameState.nodes.keys():
+        var current = GameState.nodes[n]
+        for c in GameState.connections.get(n, {}).get("children", []):
+            var next = GameState.nodes[c]
+            var start = current.global_position
+            start.x += current.size.x
+            start.y += current.size.y / 2
+            var end = next.global_position
+            end.y += next.size.y / 2 
+            var line = line_scene.instantiate()
+            line.default_color = Color.BLACK
+            line.add(start, end)
+            %Paths.add_child(line)
+
+func hide_paths():
+    for c in %Paths.get_children():
+        %Paths.remove_child(c)
+
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):
         if %HelpContainer.visible:
@@ -50,6 +71,10 @@ func _input(event: InputEvent) -> void:
         SceneLoader.load_scene("uid://81rbkmiw7hyl")
     if event.is_action_pressed("show_help"):
         %HelpContainer.visible = not %HelpContainer.visible
+    if Input.is_action_just_pressed("show_paths"):
+        show_paths()
+    if Input.is_action_just_released("show_paths") or event is InputEventMouseButton:
+        hide_paths()
 
 func add_countdown_label(countdown: String):
     var header_label = RichTextLabel.new()
