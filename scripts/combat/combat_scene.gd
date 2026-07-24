@@ -76,6 +76,7 @@ func _ready() -> void:
     entities[_enemy_stats.name] = _enemy_stats
     _combat_manager.state_changed.connect(_on_state_changed)
     _combat_manager.new_turn.connect(_on_new_turn)
+    _combat_manager.action_taken.connect(_on_action_taken)
     _combat_manager.init_combat(entities, _player_stats.name)
 
     _animate_start_combat.call_deferred()
@@ -85,7 +86,6 @@ func _input(event: InputEvent) -> void:
         _settings_panel.fade_in()
 
 func _on_new_turn(turn_count: int):
-    print('next_turn_called: %s', turn_count)
     if turn_count % 2 != 0:
         return
 
@@ -122,7 +122,6 @@ func _activate_ability(ability_name):
     _combat_manager.take_player_action(ability_name,[enemy.stats.name])
     _update_turn_indicator(enemy.stats.name)
     _update_abilities_cooldown()
-    _play_ability_effect(player, enemy, GameState.all_abilities[ability_name])
     #This will trigger damage taken, which will call _on_damage_taken
 
 func _on_damage_taken(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int):
@@ -163,7 +162,6 @@ func _on_state_changed(state):
             var tween = create_tween()
             tween.tween_interval(1.0)
             tween.tween_callback(_combat_manager.take_enemy_action)
-            #_combat_manager.take_enemy_action()
         CombatManager.CombatState.ENEMY_ACTION_STARTED:
             _update_turn_indicator(player.stats.name)
         CombatManager.CombatState.COMBAT_ENDED:
@@ -223,7 +221,7 @@ func _play_ability_effect(_source: EntityScene, target: EntityScene, ability: Ab
     effect.finished.connect(effect.queue_free)
 
     add_child(effect)
-    move_child(effect, target.get_index())
+#    move_child(effect, target.get_index())
 
 func _update_abilities_cooldown():
     for ability in GameState.player_stats.abilities.values():
@@ -265,3 +263,10 @@ func _on_enemy_death():
     tween.set_ease(Tween.EASE_OUT)
 
     tween.tween_property(victory_panel, "modulate:a", 1.0, end_battle_animation_duration)
+
+func _on_action_taken(_source_name: String, target_name: String, ability_name: String):
+    var ability = GameState.all_abilities[ability_name]
+    var source = _entity_scenes[_source_name]
+    var target = _entity_scenes[target_name]
+
+    _play_ability_effect(source, target, ability)

@@ -65,6 +65,7 @@ var _turn_count : int = 0
 var combat_events : Array[CombatEvent]
 
 signal new_turn(turn_count : int)
+signal action_taken(source: String, target: String, ability_name: String)
 
 func init_combat(entities: Dictionary[String, EntityStats], active_entity: String):
     state = CombatState.PRE_COMBAT
@@ -118,6 +119,7 @@ func take_player_action(ability_name : String, targets : Array[String]) -> void:
     for target_name in targets:
         var target : EntityStats = _entities[target_name]
         ability.take_action(_entities[_player], target)
+        action_taken.emit(_player, target.name, ability.name)
         # This will trigger a damage_taken signal that will call _resolve_player_action
 
 func _resolve_player_action(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int):
@@ -151,6 +153,8 @@ func take_enemy_action() -> void:
     var target : EntityStats = _entities[_player] 
 
     ability.take_action(enemy, target)
+    action_taken.emit(enemy.name, target.name, ability.name)
+
     # This will trigger a damage_taken signal that will call _resolve_enemy_action
 
 
