@@ -26,6 +26,9 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 
 @onready var _background : TextureRect = %Background
 
+@onready var _hero_portrait : TextureRect = %HeroPortrait
+@onready var _enemy_portrait : TextureRect = %EnemyPortrait
+
 @export var end_battle_animation_duration : float = 0.5
 
 @export var turn_indicator_offset : Vector2 = Vector2(0, -75)
@@ -58,7 +61,9 @@ func _ready() -> void:
     enemy.death_animation_complete.connect(_on_enemy_death)
     _entity_scenes[enemy.stats.name] = enemy
 
-    load_abilities_to_grid()
+    _load_portraits()
+
+    _load_abilities_to_grid()
 
     _ability_info.hide()
 
@@ -86,7 +91,7 @@ func _on_new_turn(turn_count: int):
     if turn_count % 2 != 0:
         return
 
-func load_abilities_to_grid():
+func _load_abilities_to_grid():
     for ability in _player_stats.abilities.values():
         if ability.is_disabled:
             continue
@@ -95,6 +100,10 @@ func load_abilities_to_grid():
         scene.set_ability(ability.name)
         scene.show_tooltip.connect(_show_ability_info)
         scene.ability_activated.connect(_activate_ability)
+
+func _load_portraits():
+    _hero_portrait.texture = _player_stats.portrait
+    _enemy_portrait.texture = _enemy_stats.portrait
 
 func _skip_combat():
     SceneLoader.load_scene("uid://clhtpadgac6l7")

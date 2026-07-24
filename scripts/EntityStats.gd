@@ -2,7 +2,8 @@ extends Resource
 class_name EntityStats
 
 @export var name : String
-@export var sprite : Texture2D
+@export var sprite : Texture2D = preload("uid://d0p6syokv5sd7")
+@export var portrait : Texture2D = preload("uid://b6vdmyguytleb")
 
 @export var max_health : int
 @export var max_armor : int
