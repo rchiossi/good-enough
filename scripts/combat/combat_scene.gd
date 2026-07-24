@@ -40,6 +40,12 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var damage_number_duration : float = 2.0
 @export var damage_number_spread : int = 50
 
+var _backgrounds : Dictionary[String, Texture2D]= {
+    "forest" : preload("uid://7uxcl0v0ljwg"),
+    "castle_entrance": preload("uid://bq0ry2cdwpsse"),
+    "castle_hall": preload("uid://bvn3beexnjjgw"),
+    "throne_room": preload("uid://d2fkj7dowepop"),
+}
 
 var _combat_manager : CombatManager = CombatManager.new()
 var _entity_scenes : Dictionary[String, EntityScene] = {}
@@ -67,6 +73,8 @@ func _ready() -> void:
 
     _ability_info.hide()
 
+    _load_background()
+
     # Debug Panel --
     _attack_button.pressed.connect(player.animate_attack)
     _damage_button.pressed.connect(enemy.animate_take_damage)
@@ -90,6 +98,18 @@ func _input(event: InputEvent) -> void:
 func _on_new_turn(turn_count: int):
     if turn_count % 2 != 0:
         return
+
+func _load_background():
+    var repeat : int = int(float(GameState.max_turns - 1) / 3)
+
+    if GameState.current_turn < repeat:
+        _background.texture = _backgrounds["forest"]
+    elif GameState.current_turn < repeat * 2:
+        _background.texture = _backgrounds["castle_entrance"]
+    elif GameState.current_turn < repeat * 3:
+        _background.texture = _backgrounds["castle_hall"]
+    else:
+        _background.texture = _backgrounds["throne_room"]
 
 func _load_abilities_to_grid():
     for ability in _player_stats.abilities.values():
