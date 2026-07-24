@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://81xj75vwbcjg"]
 
-[ext_resource type="Texture2D" uid="uid://dcery0phumn1n" path="res://scenes/map/0.png" id="1_8b0q7"]
+[ext_resource type="Texture2D" uid="uid://bnvjjxqxpt051" path="res://assets/map/background.png" id="1_8b0q7"]
 [ext_resource type="FontFile" uid="uid://bep51vmupui4e" path="res://assets/BoldPixels.ttf" id="2_8b0q7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8b0q7"]
