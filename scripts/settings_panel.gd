@@ -46,13 +46,13 @@ func _on_back_button_pressed():
 func _on_main_menu_button_pressed():
     SceneLoader.load_scene("uid://dtorqehcnwdl6")
 
-func _on_master_value_changed():
+func _on_master_value_changed(_value: float):
     AudioServer.set_bus_volume_linear(_master_idx, master_slider.value)
 
-func _on_music_value_changed():
+func _on_music_value_changed(_value: float):
     AudioServer.set_bus_volume_linear(_music_idx, music_slider.value)
 
-func _on_sfx_value_changed():
+func _on_sfx_value_changed(_value: float):
     AudioServer.set_bus_volume_linear(_sfx_idx, sfx_slider.value)
 
 func fade_in() -> void:
