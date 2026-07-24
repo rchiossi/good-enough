@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://c7f7ypqju21gh"]
+
+[ext_resource type="Script" uid="uid://cl54il7y10sna" path="res://scripts/events/start_event.gd" id="1_roqhu"]
+
+[node name="StartEventScreen" type="Control" unique_id=598374047]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_roqhu")
+
+[node name="EventText" type="RichTextLabel" parent="." unique_id=1906528478]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 95.0
+offset_right = 1773.0
+offset_bottom = 735.0
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+text = "[i]You are the strongest hero in the world. You took down countless evil Counts. But now your target is the strongest Count, \"Downcula\". [/i]
+
+[b]The hero:[/b] I will stop you CountDowncula, your days are numbered!
+[b]The count:[/b] You are too late, hahahaha!
+[b]The hero:[/b] ... huh ...
+[b]The count:[/b] You are under my curse! Your powers are draining as we speek!
+[b]The hero:[/b] .... [i](you start to feel weaker)[/i]
+[b]The count:[/b] Your final countdown has started! Come to me if you dare!
+
+[i]After every day you feel weaker, you forget some of who you used to be. Can you reach the count before you are too weak to fight?[/i]
+
+Will you be able to get to the Count before you lose your powers?
+
+Or will you die trying?
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=671040026]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 877.0
+offset_right = 1787.0
+offset_bottom = 1019.0
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="ButtonContainer" unique_id=795525899]
+custom_minimum_size = Vector2(164, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="ButtonText" type="RichTextLabel" parent="ButtonContainer/ContinueButton" unique_id=1223270072]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+text = "Continue"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ButtonContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

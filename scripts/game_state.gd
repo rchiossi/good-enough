@@ -37,7 +37,7 @@ func reset() -> void:
 
 func _reset_map() -> void:
     map = {}
-    current_position = Vector2i(0, 0)
+    current_position = Vector2i(-1, -1)
     nodes = {}
     connections = {}
 

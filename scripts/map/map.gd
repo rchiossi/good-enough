@@ -18,6 +18,19 @@ func _ready() -> void:
     # enable initial nodes
     for n in GameState.connections[GameState.current_position]["children"]:
         GameState.nodes[n].disabled = false
+    if GameState.current_position == Vector2i(-1, -1):
+        GameState.nodes[Vector2i(0, 0)].disabled = false
+    else:
+        %PlayerSprite2D.visible = true
+
+func _process(_delta: float) -> void:
+    var current_node: MapChoiceButton = GameState.nodes.get(GameState.current_position)
+    if not current_node:
+        return
+    %PlayerSprite2D.global_position = Vector2(
+        current_node.global_position.x + current_node.size.x,
+        current_node.global_position.y + current_node.size.y / 2
+    )
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):
@@ -58,14 +71,15 @@ func generate_map():
     var rng = RandomNumberGenerator.new()
     var possible_nodes = [GameState.NodeTypes.Null, GameState.NodeTypes.Fight, GameState.NodeTypes.Event]
     var weights = PackedFloat32Array([1, 1, 0.5])
-    var map = {}
-    map[0] = {
-        "nodes": {
-            0: {
-                "type": GameState.NodeTypes.Start
-            }
-        },
-        "status": 0,
+    var map = {
+        0: {
+            "nodes": {
+                0: {
+                    "type": GameState.NodeTypes.Start
+                }
+            },
+            "status": 1,
+        }
     }
     for i in range(1, GameState.max_turns):
         map[i] = {
@@ -103,12 +117,17 @@ func generate_map():
         "status": 1,
     }
     GameState.map = map
-    GameState.current_position = Vector2i(0, 0)
+    GameState.current_position = Vector2i(-1, -1)
     _generate_paths()
 
 func _generate_paths():
     if GameState.connections:
         return
+    GameState.connections = {
+        Vector2i(-1, -1): {
+            "children": []
+        }
+    }
     for i in range(GameState.max_turns):
         var nr_nodes = _get_nr_of_nodes(i)
 

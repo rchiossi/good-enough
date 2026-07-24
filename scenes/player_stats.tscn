@@ -92,4 +92,5 @@ offset_left = 10.0
 offset_top = 1057.0
 offset_right = 1924.0
 offset_bottom = 1078.0
-text = "Esc/I - back"
+bbcode_enabled = true
+text = "[b]Esc/I[/b]  - back"

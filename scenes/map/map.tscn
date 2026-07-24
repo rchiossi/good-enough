@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://81xj75vwbcjg" path="res://assets/themes/map_theme.tres" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://crwlg463ssqi4" path="res://scripts/map/map.gd" id="2_ph54e"]
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="3_a2pkv"]
+[ext_resource type="Texture2D" uid="uid://c6csinb1ka78k" path="res://assets/combat/player.png" id="5_jcaow"]
 
 [node name="MapScene" type="Control" unique_id=1321419604]
 layout_mode = 3
@@ -78,17 +79,32 @@ grow_vertical = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HelpContainer" unique_id=1543133740]
 layout_mode = 2
+bbcode_enabled = true
 text = "Controls:
-Esc - Show menu
-I - Show inventory (press I or Esc to go back)
-H - Show help"
+[b]Esc[/b] - Show menu
+[b]I[/b] - Show inventory (press I or Esc to go back)
+[b]H[/b] - Show help"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1251448186]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 1057.0
-offset_right = 1924.0
-offset_bottom = 1078.0
-text = "H - help I - inventory"
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0052083335
+anchor_top = 0.97037035
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[b]H[/b] - help [b]I[/b] - inventory"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerSprite2D" type="Sprite2D" parent="." unique_id=1812653244]
+unique_name_in_owner = true
+visible = false
+position = Vector2(200.99997, 294)
+scale = Vector2(0.30666667, 0.3125)
+texture = ExtResource("5_jcaow")

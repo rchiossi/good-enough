@@ -7,7 +7,7 @@ var coords: Vector2i
 var types_definitions: Dictionary[GameState.NodeTypes, Dictionary] = {
     GameState.NodeTypes.Start: {
         "icon": preload("uid://mwgfvnpw5xme"),
-        "scene": null,
+        "scene": "uid://c7f7ypqju21gh",
     },
     GameState.NodeTypes.Null: {
         "icon": null,
