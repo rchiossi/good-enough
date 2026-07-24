@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="4_idueh"]
 [ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="5_h64lv"]
 [ext_resource type="Texture2D" uid="uid://curnbgbe7hmci" path="res://assets/combat/turn_indicator.png" id="6_4v6y1"]
+[ext_resource type="PackedScene" uid="uid://bdhkv4bcpgrhy" path="res://scenes/Combat/combat_ability.tscn" id="6_kbemr"]
 [ext_resource type="Texture2D" uid="uid://ndqn73oovwp7" path="res://assets/combat/fg_panel.png" id="7_2wlmd"]
 [ext_resource type="PackedScene" uid="uid://c8f3ytn0h5rs6" path="res://scenes/Combat/victory_panel.tscn" id="7_jaejr"]
 [ext_resource type="PackedScene" uid="uid://d4b6rgp3dtcuu" path="res://scenes/Combat/defeat_panel.tscn" id="8_j8oqs"]
@@ -90,14 +91,178 @@ theme_override_constants/separation = 30
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.25
 
-[node name="AbilityGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel" unique_id=899673169]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel" unique_id=1063306358]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="AbilityGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer" unique_id=899673169]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-columns = 10
+columns = 8
 script = ExtResource("4_idueh")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=333602446]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer" unique_id=1546287525 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=1995893076]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer2" unique_id=1392684747 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=1761761994]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer3" unique_id=596943899 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer4" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=891343919]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer4" unique_id=517727761 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer5" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=928767814]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer5" unique_id=920900837 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer6" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=2046090918]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer6" unique_id=1042571847 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer7" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=204121195]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer7" unique_id=1232568626 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer8" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=1329486804]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer8" unique_id=734983863 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer9" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=274315703]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer9" unique_id=2068933548 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer10" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=1505293404]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer10" unique_id=419126673 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer11" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=1351460704]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer11" unique_id=1441352976 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer12" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=99994603]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer12" unique_id=678896430 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer13" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=1034582298]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer13" unique_id=574803804 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer14" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=1950376371]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer14" unique_id=1639141155 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer15" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=1203033995]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer15" unique_id=2054006361 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="AspectRatioContainer16" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid" unique_id=1695473143]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CombatAbility" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel/MarginContainer/AbilityGrid/AspectRatioContainer16" unique_id=58207940 instance=ExtResource("6_kbemr")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer" unique_id=283832348]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/HBoxContainer" unique_id=641910525]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/HBoxContainer" unique_id=825569230]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="AbilityInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer" unique_id=211702601]
 layout_mode = 2

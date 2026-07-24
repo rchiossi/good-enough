@@ -19,6 +19,9 @@ func _ready() -> void:
         _slots[i] = slot
 
 func add_item(control_node : CombatAbilityScene):
+    if current_size >= MAX_COLOUMNS * MAX_ROWS:
+        return
+
     _slots[current_size].add_child(control_node)
     _ability_scenes.append(control_node)
     current_size += 1
