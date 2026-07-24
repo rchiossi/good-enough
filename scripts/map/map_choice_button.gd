@@ -27,9 +27,9 @@ var types_definitions: Dictionary[GameState.NodeTypes, Dictionary] = {
     },
 }
 
-var color_enabled: Color = Color.GREEN
-var color_disabled: Color = Color("#fe816b")
-var color_highlight: Color = Color(0.158, 0.391, 1.0, 1.0)
+var color_enabled: Color = Color("#5bb362")
+var color_disabled: Color = Color("#b34947")
+var color_highlight: Color = Color("#5275a3")
 
 func _ready() -> void:
     pass
@@ -63,7 +63,7 @@ func enable_button():
     if coords.x == GameState.max_turns:
         material.set("shader_parameter/Width", 0)
     else:
-        material.set("shader_parameter/ColorParameter", Color.GREEN)
+        material.set("shader_parameter/ColorParameter", color_enabled)
 
 func _on_mouse_entered() -> void:
     show_highlight()
