@@ -105,6 +105,22 @@ func _ready() -> void:
     wildgoose_event.take_action_func = Callable(wildgoose_event_callback)
     available_events.append(wildgoose_event)
    
+    #event6
+    var well_event: GameEvent = GameEvent.new()
+    well_event.text = "
+        You come across an old wishing well. 
+        Someone scribbled: 
+            
+        <<definitley not cursed>>
+        
+        Throw a coin and see what happens.. 
+        If you do nothing you lose 1 ability.        
+    "
+    well_event.accept_text = "The well appreciates your donation. Your body.. maybe not"
+    well_event.accept_text += "\n[color=red](70% you gain [i]20 Health[/i] 30% you lose [i]20 Health[/i])[/color]"
+    well_event.reject_text = "Keep walking"
+    well_event.take_action_func = Callable(well_event_callback)
+    available_events.append(well_event)
     
     choose_random_event() 
 
@@ -153,6 +169,17 @@ func wildgoose_event_callback():
     GameState.player_stats.max_armor = max(GameState.player_stats.max_armor - 15, 1)
     GameState.player_stats.armor = max(GameState.player_stats.armor - 15, 1)
     SceneLoader.load_scene("res://scenes/map/map.tscn")  
+    
+#event6callback
+func well_event_callback():
+    var chance = randi_range(1,10)
+    if chance <= 7:
+        GameState.player_stats.max_health = max(GameState.player_stats.max_health +20, 1)
+        GameState.player_stats.health = max(GameState.player_stats.max_health +20, 1)
+    else:
+        GameState.player_stats.max_health = max(GameState.player_stats.max_health - 20, 1)
+        GameState.player_stats.health = max(GameState.player_stats.max_health - 20, 1)
+    SceneLoader.load_scene("res://scenes/map/map.tscn") 
 
 func _on_reject_button_pressed() -> void:
     SceneLoader.load_scene("res://scenes/abilities_window.tscn")
