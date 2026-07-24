@@ -22,10 +22,14 @@ var types_definitions: Dictionary[GameState.NodeTypes, Dictionary] = {
         "scene": "uid://8m56dhcqa170",
     },
     GameState.NodeTypes.Count: {
-        "icon": preload("uid://ck4832tptslp2"),
+        "icon": preload("uid://drev3okyfa374"),
         "scene": "uid://csqef5bpcx1cc",
     },
 }
+
+var color_enabled: Color = Color.GREEN
+var color_disabled: Color = Color("#fe816b")
+var color_highlight: Color = Color(0.158, 0.391, 1.0, 1.0)
 
 func _ready() -> void:
     pass
@@ -37,19 +41,29 @@ func set_coords(c: Vector2i):
     tooltip_text = GameState.NodeTypes.keys()[node_type]
     if GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1:
         %DoneHighlight.visible = true
+    if coords.x == GameState.max_turns:
+        material.set("shader_parameter/Width", 0)
 
 func on_pressed():
     SceneLoader.load_scene(types_definitions[node_type]["scene"])
 
 func show_highlight():
-    %HoverHighlight.visible = true
+    if disabled:
+        material.set("shader_parameter/ColorParameter", color_highlight)
     
 func hide_highlight():
-    %HoverHighlight.visible = false
+    if disabled:
+        material.set("shader_parameter/ColorParameter", color_disabled)
+    else:
+        material.set("shader_parameter/ColorParameter", color_enabled)
+        
 
 func enable_button():
     disabled = false
-    material.set("shader_parameter/ColorParameter", Color.GREEN)
+    if coords.x == GameState.max_turns:
+        material.set("shader_parameter/Width", 0)
+    else:
+        material.set("shader_parameter/ColorParameter", Color.GREEN)
 
 func _on_mouse_entered() -> void:
     show_highlight()

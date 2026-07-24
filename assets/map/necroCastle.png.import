@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chwo2c64016db"
-path="res://.godot/imported/Castle.png-0cad4e2ef229a29c53158517ae5f1e1a.ctex"
+uid="uid://7qq1f1402bi7"
+path="res://.godot/imported/necroCastle.png-2621cd81b7cb4d8617e2e89ec5c54789.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/Castle.png"
-dest_files=["res://.godot/imported/Castle.png-0cad4e2ef229a29c53158517ae5f1e1a.ctex"]
+source_file="res://assets/map/necroCastle.png"
+dest_files=["res://.godot/imported/necroCastle.png-2621cd81b7cb4d8617e2e89ec5c54789.ctex"]
 
 [params]
 

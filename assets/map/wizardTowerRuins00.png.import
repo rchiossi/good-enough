@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chwo2c64016db"
-path="res://.godot/imported/Castle.png-0cad4e2ef229a29c53158517ae5f1e1a.ctex"
+uid="uid://bpyr3c1cryqk7"
+path="res://.godot/imported/wizardTowerRuins00.png-c282991eba3cf7ee5ccd45da8491a58f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/Castle.png"
-dest_files=["res://.godot/imported/Castle.png-0cad4e2ef229a29c53158517ae5f1e1a.ctex"]
+source_file="res://assets/map/wizardTowerRuins00.png"
+dest_files=["res://.godot/imported/wizardTowerRuins00.png-c282991eba3cf7ee5ccd45da8491a58f.ctex"]
 
 [params]
 

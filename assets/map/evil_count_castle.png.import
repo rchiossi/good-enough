@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chwo2c64016db"
-path="res://.godot/imported/Castle.png-0cad4e2ef229a29c53158517ae5f1e1a.ctex"
+uid="uid://drev3okyfa374"
+path="res://.godot/imported/evil_count_castle.png-aae5c8382b26a258b03b6f639fcfc35d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/Castle.png"
-dest_files=["res://.godot/imported/Castle.png-0cad4e2ef229a29c53158517ae5f1e1a.ctex"]
+source_file="res://assets/map/evil_count_castle.png"
+dest_files=["res://.godot/imported/evil_count_castle.png-aae5c8382b26a258b03b6f639fcfc35d.ctex"]
 
 [params]
 
