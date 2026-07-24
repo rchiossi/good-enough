@@ -38,6 +38,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"MapMarginContainer"
+theme_override_constants/margin_right = 166
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/PanelContainer/MarginContainer" unique_id=437135677]
 layout_mode = 2

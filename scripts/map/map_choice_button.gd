@@ -45,12 +45,11 @@ func show_highlight():
     %HoverHighlight.visible = true
     
 func hide_highlight():
-    if disabled:
-        %HoverHighlight.visible = false
+    %HoverHighlight.visible = false
 
 func enable_button():
     disabled = false
-    show_highlight()
+    material.set("shader_parameter/ColorParameter", Color.GREEN)
 
 func _on_mouse_entered() -> void:
     show_highlight()

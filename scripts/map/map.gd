@@ -80,8 +80,8 @@ func _input(event: InputEvent) -> void:
         %HelpContainer.visible = not %HelpContainer.visible
     if Input.is_action_just_pressed("show_paths"):
         show_paths()
-    #if Input.is_action_just_released("show_paths") or event is InputEventMouseButton:
-        #hide_paths()
+    if Input.is_action_just_released("show_paths") or event is InputEventMouseButton:
+        hide_paths()
 
 func add_countdown_label(countdown: String):
     var header_label = RichTextLabel.new()

@@ -1,14 +1,22 @@
 [gd_scene format=3 uid="uid://dytp76daenoys"]
 
 [ext_resource type="Theme" uid="uid://81xj75vwbcjg" path="res://assets/themes/map_theme.tres" id="1_7pqfr"]
-[ext_resource type="Texture2D" uid="uid://ck4832tptslp2" path="res://assets/map/castle.png" id="1_s2r1q"]
+[ext_resource type="Shader" uid="uid://kvexuplhuex8" path="res://scenes/map/map_hightlight.tres" id="1_je7sh"]
+[ext_resource type="Texture2D" uid="uid://c7j2jmc6jv7cv" path="res://assets/map/fight.png" id="3_nd1dm"]
 [ext_resource type="Script" uid="uid://cv4jscks5yj32" path="res://scripts/map/map_choice_button.gd" id="3_nsik4"]
 [ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="4_pqsog"]
 [ext_resource type="Script" uid="uid://bp3ukxo6aqps6" path="res://scripts/sounds/hover_sound.gd" id="5_nr205"]
 [ext_resource type="Texture2D" uid="uid://3p1x75pjx6qk" path="res://assets/map/done.png" id="5_vxwrl"]
 [ext_resource type="Script" uid="uid://ota37prga8g7" path="res://scripts/sounds/press_sound.gd" id="6_nl8tb"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcaow"]
+resource_local_to_scene = true
+shader = ExtResource("1_je7sh")
+shader_parameter/ColorParameter = Color(0.76544535, 0.42601484, 0.41004553, 1)
+shader_parameter/Width = 16.0
+
 [node name="MapChoiceButton" type="CheckBox" unique_id=523716358]
+material = SubResource("ShaderMaterial_jcaow")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,7 +25,7 @@ grow_vertical = 2
 theme = ExtResource("1_7pqfr")
 theme_type_variation = &"MapChoiceButton"
 disabled = true
-icon = ExtResource("1_s2r1q")
+icon = ExtResource("3_nd1dm")
 script = ExtResource("3_nsik4")
 metadata/_edit_use_anchors_ = true
 
