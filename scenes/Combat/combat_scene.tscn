@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="4_idueh"]
 [ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="5_h64lv"]
 [ext_resource type="Texture2D" uid="uid://curnbgbe7hmci" path="res://assets/combat/turn_indicator.png" id="6_4v6y1"]
+[ext_resource type="Texture2D" uid="uid://ndqn73oovwp7" path="res://assets/combat/fg_panel.png" id="7_2wlmd"]
 [ext_resource type="PackedScene" uid="uid://c8f3ytn0h5rs6" path="res://scenes/Combat/victory_panel.tscn" id="7_jaejr"]
 [ext_resource type="PackedScene" uid="uid://d4b6rgp3dtcuu" path="res://scenes/Combat/defeat_panel.tscn" id="8_j8oqs"]
 [ext_resource type="Script" uid="uid://dcwybhvhic1fi" path="res://scripts/ui_animations/screen_shake.gd" id="9_338db"]
@@ -74,38 +75,42 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3" unique_id=1061887864]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer3" unique_id=399812285]
 layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer" unique_id=399812285]
+[node name="HVBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer" unique_id=1302729691]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/separation = 30
 
-[node name="HVBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer" unique_id=1302729691]
-layout_mode = 2
-
-[node name="AbilitiesPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer" unique_id=209494528]
+[node name="AbilitiesPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer" unique_id=209494528]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.25
 
-[node name="AbilityGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer/AbilitiesPanel" unique_id=899673169]
+[node name="AbilityGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilitiesPanel" unique_id=899673169]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 columns = 10
 script = ExtResource("4_idueh")
 
-[node name="AbilityInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer" unique_id=211702601]
+[node name="AbilityInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer" unique_id=211702601]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="AbilityInfo" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/MarginContainer/HVBoxContainer/AbilityInfoPanel" unique_id=1931624610 instance=ExtResource("5_h64lv")]
+[node name="AbilityInfo" parent="MarginContainer/VBoxContainer/MarginContainer3/MarginContainer/HVBoxContainer/AbilityInfoPanel" unique_id=1931624610 instance=ExtResource("5_h64lv")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer3" unique_id=553087407]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_2wlmd")
 
 [node name="DebugContainer" type="MarginContainer" parent="." unique_id=1701603087]
 layout_mode = 1
