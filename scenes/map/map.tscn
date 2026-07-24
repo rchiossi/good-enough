@@ -3,7 +3,42 @@
 [ext_resource type="Theme" uid="uid://81xj75vwbcjg" path="res://assets/themes/map_theme.tres" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://crwlg463ssqi4" path="res://scripts/map/map.gd" id="2_ph54e"]
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="3_a2pkv"]
+[ext_resource type="Shader" uid="uid://bx2e73i5bclkw" path="res://shaders/map/burning.gdshader" id="3_fcby6"]
 [ext_resource type="Texture2D" uid="uid://c6csinb1ka78k" path="res://assets/combat/player.png" id="5_jcaow"]
+
+[sub_resource type="Gradient" id="Gradient_vvrx0"]
+offsets = PackedFloat32Array(0, 0.0074626864, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.14179105, 0.14179105, 0.14179105, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sqgf4"]
+noise_type = 2
+seed = 1
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_04w0f"]
+noise = SubResource("FastNoiseLite_sqgf4")
+color_ramp = SubResource("Gradient_vvrx0")
+
+[sub_resource type="Gradient" id="Gradient_sqgf4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_04w0f"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fcby6"]
+noise = SubResource("FastNoiseLite_04w0f")
+color_ramp = SubResource("Gradient_sqgf4")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 0.249
+bump_strength = 8.7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ph54e"]
+shader = ExtResource("3_fcby6")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_fcby6")
+shader_parameter/gradient_tex = SubResource("NoiseTexture2D_04w0f")
+shader_parameter/brighter_color = Color(1, 0.8, 0, 1)
+shader_parameter/middle_color = Color(1, 0.56, 0, 1)
+shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 1)
+shader_parameter/spread = 1.0
 
 [node name="MapScene" type="Control" unique_id=1321419604]
 layout_mode = 3
@@ -31,6 +66,7 @@ size_flags_vertical = 3
 theme_type_variation = &"MapPanelContainer"
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/PanelContainer" unique_id=10030059]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -51,6 +87,13 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="FirePanel" type="Panel" parent="ScrollContainer/PanelContainer" unique_id=532340985]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ph54e")
+custom_maximum_size = Vector2(0, -1)
+layout_mode = 2
+mouse_filter = 1
 
 [node name="SettingsPanel" parent="." unique_id=1446633356 instance=ExtResource("3_a2pkv")]
 unique_name_in_owner = true
@@ -97,6 +140,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[b]H[/b] - help [b]I[/b] - inventory"
 vertical_alignment = 1
