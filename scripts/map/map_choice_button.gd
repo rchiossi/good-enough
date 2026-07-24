@@ -41,8 +41,6 @@ func set_coords(c: Vector2i):
     tooltip_text = GameState.NodeTypes.keys()[node_type]
     if GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1:
         %DoneHighlight.visible = true
-    if coords.x == GameState.max_turns:
-        material.set("shader_parameter/Width", 0)
     material.set("shader_parameter/ColorParameter", color_disabled)
 
 func on_pressed():
