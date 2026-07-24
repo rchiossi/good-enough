@@ -127,7 +127,7 @@ func _ready() -> void:
 func choose_random_event():
     var event_index = randi_range(0, len(available_events)-1)
     var picked_event = available_events[event_index]
-    event_text.text = picked_event.text
+    %FirstPageText.text = picked_event.text
     #accept_button.text = picked_event.accept_text
     %AcceptButtonText.text = picked_event.accept_text
     

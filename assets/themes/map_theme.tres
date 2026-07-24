@@ -4,7 +4,6 @@
 [ext_resource type="FontFile" uid="uid://bep51vmupui4e" path="res://assets/BoldPixels.ttf" id="2_8b0q7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8b0q7"]
-load_path = "res://.godot/imported/background.png-0c479fde61e410e7d2a7d9541b458248.ctex"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdhkq"]
 texture = SubResource("CompressedTexture2D_8b0q7")

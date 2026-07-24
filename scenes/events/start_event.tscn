@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cl54il7y10sna" path="res://scripts/events/start_event.gd" id="1_roqhu"]
 [ext_resource type="Texture2D" uid="uid://dal1d4dnol780" path="res://assets/main_menu/bg_castle.png" id="2_34ga4"]
-[ext_resource type="Texture2D" uid="uid://qquh3iw2p3xl" path="res://assets/map/shop_background.png" id="3_goenu"]
+[ext_resource type="Texture2D" uid="uid://qquh3iw2p3xl" path="res://assets/map/event_background.png" id="3_goenu"]
 
 [node name="StartEventScreen" type="Control" unique_id=598374047]
 layout_mode = 3
@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_roqhu")
 
-[node name="Panel" type="TextureRect" parent="." unique_id=1132622291]
+[node name="Background" type="TextureRect" parent="." unique_id=1132622291]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +25,7 @@ grow_vertical = 2
 texture = ExtResource("2_34ga4")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=2131790430]
+[node name="EventBackground" type="TextureRect" parent="." unique_id=2131790430]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.054166667
@@ -37,7 +37,7 @@ grow_vertical = 2
 texture = ExtResource("3_goenu")
 metadata/_edit_use_anchors_ = true
 
-[node name="EventText" type="RichTextLabel" parent="TextureRect" unique_id=1906528478]
+[node name="FirstPageText" type="RichTextLabel" parent="EventBackground" unique_id=1906528478]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.08628841
@@ -46,7 +46,9 @@ anchor_right = 0.47813237
 anchor_bottom = 0.88945043
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 theme_override_colors/default_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
+theme_override_colors/selection_color = Color(0.32156864, 0.45882353, 0.6392157, 0.8)
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32
@@ -55,12 +57,12 @@ theme_override_font_sizes/mono_font_size = 32
 bbcode_enabled = true
 text = "[i]You are the strongest hero in the world. You took down countless evil Counts. But now your target is the strongest Count, \"Downcula\". [/i]
 
-[b]The hero:[/b] I will stop you CountDowncula, your days are numbered!
-[b]The count:[/b] You are too late, hahahaha!
-[b]The hero:[/b] ... huh ...
-[b]The count:[/b] You are under my curse! Your powers are draining as we speek!
-[b]The hero:[/b] .... [i](you start to feel weaker)[/i]
-[b]The count:[/b] Your final countdown has started! Come to me if you dare!
+The hero: I will stop you CountDowncula, your days are numbered!
+The count: You are too late, hahahaha!
+The hero: ... huh ...
+The count: You are under my curse! Your powers are draining as we speek!
+The hero: .... [i](you start to feel weaker)[/i]
+The count: Your final countdown has started! Come to me if you dare!
 
 [i]After every day you feel weaker, you forget some of who you used to be. Can you reach the count before you are too weak to fight?[/i]
 
@@ -70,6 +72,7 @@ Or will you die trying?
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+selection_enabled = true
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=671040026]
