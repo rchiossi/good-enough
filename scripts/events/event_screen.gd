@@ -13,7 +13,7 @@ func _get_removeable_ability_name():
             break
 
     if not has_removeable_ability:
-        return null
+        return ""
 
     var index_to_remove = randi_range(0, len(GameState.player_stats.abilities.values())-1)
 
@@ -24,7 +24,7 @@ func _get_removeable_ability_name():
         index_to_remove += 1
         if index_to_remove == len(GameState.player_stats.abilities):
             index_to_remove = 0
-    return null
+    return ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
