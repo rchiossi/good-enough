@@ -43,6 +43,12 @@ func _process(_delta: float) -> void:
         %FirePanel.size.y = %HeaderContainer.size.y + 20
 
 func show_paths():
+    var offsets = {
+        0: -16,
+        1: -6,
+        2: 6,
+        3: 16
+    }
     for n in GameState.nodes.keys():
         var current = GameState.nodes[n]
         for c in GameState.connections.get(n, {}).get("children", []):
@@ -51,7 +57,8 @@ func show_paths():
             start.x += current.size.x
             start.y += current.size.y / 2
             var end = next.global_position
-            end.y += next.size.y / 2 
+            end.x -= 12
+            end.y += next.size.y / 2 + offsets[n.y]
             var line = line_scene.instantiate()
             line.default_color = Color.BLACK
             line.add(start, end)
@@ -73,8 +80,8 @@ func _input(event: InputEvent) -> void:
         %HelpContainer.visible = not %HelpContainer.visible
     if Input.is_action_just_pressed("show_paths"):
         show_paths()
-    if Input.is_action_just_released("show_paths") or event is InputEventMouseButton:
-        hide_paths()
+    #if Input.is_action_just_released("show_paths") or event is InputEventMouseButton:
+        #hide_paths()
 
 func add_countdown_label(countdown: String):
     var header_label = RichTextLabel.new()
