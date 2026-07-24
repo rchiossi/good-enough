@@ -1,9 +1,40 @@
 [gd_scene format=3 uid="uid://dtorqehcnwdl6"]
 
 [ext_resource type="Script" uid="uid://dmx3y0wcevai6" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://dal1d4dnol780" path="res://assets/main_menu/bg_castle.png" id="2_8ln24"]
 [ext_resource type="PackedScene" uid="uid://boi3xgni82is0" path="res://scenes/simple_dialog.tscn" id="2_bqqt6"]
 [ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="2_wu84c"]
+[ext_resource type="Script" uid="uid://m4shjygky4h1" path="res://scripts/ui_animations/float.gd" id="4_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://bnr7gk8mi2b4a" path="res://assets/main_menu/panel.png" id="4_oa1go"]
+[ext_resource type="Texture2D" uid="uid://d1ksm2430qlyh" path="res://assets/main_menu/Title.png" id="4_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="4_wu84c"]
+[ext_resource type="Script" uid="uid://bp3ukxo6aqps6" path="res://scripts/sounds/hover_sound.gd" id="8_flqon"]
+[ext_resource type="Shader" uid="uid://da67p4cynr3qu" path="res://shaders/menu/smoke.gdshader" id="9_5dd4i"]
+[ext_resource type="Shader" uid="uid://dq6es7vaxq2va" path="res://shaders/menu/vignette.gdshader" id="9_jk1qb"]
+[ext_resource type="Script" uid="uid://ota37prga8g7" path="res://scripts/sounds/press_sound.gd" id="9_rcqid"]
+[ext_resource type="Script" uid="uid://br4iwnaapjuvt" path="res://scripts/sounds/bg_music.gd" id="13_rcqid"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5dd4i"]
+width = 160
+height = 90
+seamless = true
+normalize = false
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mnnu"]
+shader = ExtResource("9_5dd4i")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_5dd4i")
+shader_parameter/smoke_color = Color(1, 1, 1, 1)
+shader_parameter/distortion_speed = 0.4770000226575
+shader_parameter/density = 0.1890000089775
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otrat"]
+shader = ExtResource("9_jk1qb")
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/radius = 0.2470000117325
+shader_parameter/softness = 0.7470000354825
+shader_parameter/intensity = 1.0
+shader_parameter/correct_aspect_ratio = false
 
 [node name="MainMenu" type="Control" unique_id=2089620908]
 layout_mode = 3
@@ -14,102 +45,236 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxnf")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1546176103]
-layout_mode = 1
+[node name="BgMusic" type="Control" parent="." unique_id=1074614164]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_rcqid")
+start_time = 4.0
+metadata/_custom_type_script = "uid://br4iwnaapjuvt"
+
+[node name="Bg" type="CanvasLayer" parent="." unique_id=197229716]
+
+[node name="TextureRect" type="TextureRect" parent="Bg" unique_id=2020306295]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.2509804, 0.2509804, 1)
+texture = ExtResource("2_8ln24")
+expand_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=749571189]
-layout_mode = 1
+[node name="SmokeLayer" type="CanvasLayer" parent="." unique_id=1082148771]
+
+[node name="ColorRect" type="ColorRect" parent="SmokeLayer" unique_id=1033478273]
+material = SubResource("ShaderMaterial_4mnnu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Ui" type="CanvasLayer" parent="." unique_id=317256561]
+layer = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui" unique_id=749571189]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 200
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1887567979]
+[node name="TextureRect" type="TextureRect" parent="Ui/MarginContainer" unique_id=384231740]
+custom_maximum_size = Vector2(1200, -1)
 layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("4_tbmy8")
+expand_mode = 3
+stretch_mode = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1973034834]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-theme_override_colors/font_color = Color(0, 0.6509804, 0.5764706, 1)
-theme_override_font_sizes/font_size = 80
-text = "The curse of Ct. Downcula"
+[node name="AnimationFloat" type="Control" parent="Ui/MarginContainer/TextureRect" unique_id=427495538]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_jk1qb")
+metadata/_custom_type_script = "uid://m4shjygky4h1"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=220260609]
+[node name="MarginContainer" type="MarginContainer" parent="Ui/MarginContainer" unique_id=1944211818]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 150
+
+[node name="TextureRect" type="TextureRect" parent="Ui/MarginContainer/MarginContainer" unique_id=1332038897]
+layout_mode = 2
+texture = ExtResource("4_oa1go")
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui/MarginContainer/MarginContainer" unique_id=1612195085]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Ui/MarginContainer/MarginContainer/MarginContainer" unique_id=220260609]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
 theme_override_constants/separation = 20
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=2061777932]
+[node name="StartButton" type="Button" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2" unique_id=2061777932]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 offset_transform_enabled = true
 text = "Start"
 
-[node name="AnimationScaleTwitch" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/StartButton" unique_id=369201362]
+[node name="AnimationScaleTwitch" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/StartButton" unique_id=369201362]
 layout_mode = 1
 anchors_preset = 0
 script = ExtResource("2_wu84c")
+enable_scale = false
+scale_amount = 1.05
 metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
 
-[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=96564630]
+[node name="HoverSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/StartButton" unique_id=1063631394]
+anchors_preset = 0
+offset_top = 2.0
+offset_right = 40.0
+offset_bottom = 42.0
+script = ExtResource("8_flqon")
+metadata/_custom_type_script = "uid://bp3ukxo6aqps6"
+
+[node name="PressSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/StartButton" unique_id=1776927580]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_rcqid")
+metadata/_custom_type_script = "uid://ota37prga8g7"
+
+[node name="SettingsButton" type="Button" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2" unique_id=96564630]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 text = "Settings"
 
-[node name="AnimationScaleTwitch2" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/SettingsButton" unique_id=315693337]
-layout_mode = 1
+[node name="AnimationScaleTwitch2" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/SettingsButton" unique_id=315693337]
+anchors_preset = 0
+offset_top = -20.0
+offset_right = 400.0
+offset_bottom = -20.0
+script = ExtResource("2_wu84c")
+enable_scale = false
+scale_amount = 1.05
+metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
+
+[node name="HoverSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/SettingsButton" unique_id=907083735]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_flqon")
+metadata/_custom_type_script = "uid://bp3ukxo6aqps6"
+
+[node name="PressSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/SettingsButton" unique_id=1160064570]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_rcqid")
+metadata/_custom_type_script = "uid://ota37prga8g7"
+
+[node name="Button" type="Button" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2" unique_id=1116495345]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+text = "Credits"
+
+[node name="AnimationScaleTwitch2" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/Button" unique_id=503260432]
 anchors_preset = 0
 offset_top = -70.0
 offset_bottom = -70.0
 script = ExtResource("2_wu84c")
+enable_scale = false
+scale_amount = 1.05
 metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=601963979]
+[node name="HoverSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/Button" unique_id=138023905]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_flqon")
+metadata/_custom_type_script = "uid://bp3ukxo6aqps6"
+
+[node name="PressSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/Button" unique_id=1458382829]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_rcqid")
+metadata/_custom_type_script = "uid://ota37prga8g7"
+
+[node name="ExitButton" type="Button" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2" unique_id=601963979]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 text = "Exit"
 
-[node name="AnimationScaleTwitch" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/ExitButton" unique_id=48976449]
+[node name="AnimationScaleTwitch" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/ExitButton" unique_id=48976449]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_wu84c")
+enable_scale = false
+scale_amount = 1.05
 metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
 
-[node name="ExitDialog" parent="." unique_id=312538735 instance=ExtResource("2_bqqt6")]
+[node name="HoverSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/ExitButton" unique_id=1740441834]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_flqon")
+metadata/_custom_type_script = "uid://bp3ukxo6aqps6"
+
+[node name="PressSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/ExitButton" unique_id=1240437615]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_rcqid")
+metadata/_custom_type_script = "uid://ota37prga8g7"
+
+[node name="ExitDialog" parent="Ui" unique_id=312538735 instance=ExtResource("2_bqqt6")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
 dialog_text = "Exit the Game?"
 confirm_text = "Exit"
 
-[node name="SettingsPanel" parent="." unique_id=1446633356 instance=ExtResource("4_wu84c")]
+[node name="SettingsPanel" parent="Ui" unique_id=1446633356 instance=ExtResource("4_wu84c")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(1000, 500)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -297.5
-offset_top = -311.5
-offset_right = 297.5
-offset_bottom = 311.5
+offset_left = -500.0
+offset_top = -312.5
+offset_right = 500.0
+offset_bottom = 312.5
+
+[node name="VignetteLayer" type="CanvasLayer" parent="." unique_id=1664271634]
+layer = 3
+
+[node name="VignetteColorRect" type="ColorRect" parent="VignetteLayer" unique_id=2063527238]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_otrat")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

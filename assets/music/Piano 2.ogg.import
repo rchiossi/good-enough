@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://di53iumxc34jq"
+path="res://.godot/imported/Piano 2.ogg-806d0126de7c03889dc7d35ca07663a4.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Piano 2.ogg"
+dest_files=["res://.godot/imported/Piano 2.ogg-806d0126de7c03889dc7d35ca07663a4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
