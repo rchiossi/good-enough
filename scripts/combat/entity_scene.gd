@@ -26,7 +26,7 @@ signal death_animation_complete
 
 var stats : EntityStats
 
-func init(entity_stats: EntityStats, sprite : Texture2D):
+func init(entity_stats: EntityStats):
     offset_transform_enabled = true
 
     stats = entity_stats
@@ -49,7 +49,7 @@ func init(entity_stats: EntityStats, sprite : Texture2D):
     _current_shield_label.text = str(stats.shield)
     _max_shield_label.text = str(stats.max_shield)
 
-    _sprite.texture = sprite
+    _sprite.texture = entity_stats.sprite
 
     animate_idle()
 

@@ -6,9 +6,6 @@ extends Control
 var _player_stats : EntityStats
 var _enemy_stats : EntityStats
 
-@onready var _player_sprite : Texture2D = preload("res://assets/combat/player.png")
-@onready var _enemy_sprite : Texture2D = preload("res://assets/combat/enemy.png")
-
 @onready var _attack_button : Button = %AttackButton
 @onready var _damage_button : Button = %DamageButton
 @onready var _skip_button : Button = %SkipCombatButton
@@ -53,11 +50,11 @@ func _ready() -> void:
     _enemy_stats.damage_taken.connect(_on_damage_taken)
     _enemy_stats.init()
 
-    player.init(_player_stats, _player_sprite )
+    player.init(_player_stats)
     player.death_animation_complete.connect(_on_player_death)
     _entity_scenes[player.stats.name] = player
 
-    enemy.init(_enemy_stats, _enemy_sprite)
+    enemy.init(_enemy_stats)
     enemy.death_animation_complete.connect(_on_enemy_death)
     _entity_scenes[enemy.stats.name] = enemy
 
