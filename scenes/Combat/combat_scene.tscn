@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://csqef5bpcx1cc"]
 
-[ext_resource type="Texture2D" uid="uid://bmovv10hvyq4x" path="res://assets/combat/bg_combat.png" id="1_krbf5"]
 [ext_resource type="Script" uid="uid://diusl0i8btv3q" path="res://scripts/combat/combat_scene.gd" id="1_njxow"]
 [ext_resource type="Shader" uid="uid://bjudakokgcufk" path="res://shaders/combat/damage_flash.gdshader" id="2_e66v7"]
 [ext_resource type="PackedScene" uid="uid://8j2q7im3vpa3" path="res://scenes/Combat/entity_scene.tscn" id="2_njxow"]
+[ext_resource type="Texture2D" uid="uid://7uxcl0v0ljwg" path="res://assets/combat/bg_dead forest.png" id="3_e66v7"]
 [ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="4_idueh"]
 [ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="5_h64lv"]
 [ext_resource type="Texture2D" uid="uid://curnbgbe7hmci" path="res://assets/combat/turn_indicator.png" id="6_4v6y1"]
@@ -36,7 +36,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_krbf5")
+texture = ExtResource("3_e66v7")
+expand_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1216750029]
 layout_mode = 1
