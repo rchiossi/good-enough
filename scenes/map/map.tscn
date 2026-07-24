@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="3_a2pkv"]
 [ext_resource type="Material" uid="uid://88dmy0l0iwxt" path="res://shaders/map/burning_material_v2.tres" id="3_fcby6"]
 [ext_resource type="AudioStream" uid="uid://cqqte8khf02jn" path="res://assets/music/Piano 8.ogg" id="4_sqgf4"]
-[ext_resource type="Texture2D" uid="uid://c6csinb1ka78k" path="res://assets/combat/player.png" id="5_jcaow"]
 [ext_resource type="PackedScene" uid="uid://cvm36ryb3n5mj" path="res://scenes/map/map_line.tscn" id="6_jcaow"]
+[ext_resource type="Texture2D" uid="uid://d0p6syokv5sd7" path="res://assets/combat/Hero/hero.png" id="6_sqgf4"]
 [ext_resource type="Script" uid="uid://br4iwnaapjuvt" path="res://scripts/sounds/bg_music.gd" id="7_04w0f"]
 
 [node name="MapScene" type="Control" unique_id=1321419604]
@@ -122,7 +122,7 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(200.99997, 294)
 scale = Vector2(0.30666667, 0.3125)
-texture = ExtResource("5_jcaow")
+texture = ExtResource("6_sqgf4")
 
 [node name="FireEffectLayer" type="CanvasLayer" parent="." unique_id=1740088739]
 

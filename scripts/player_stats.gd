@@ -4,8 +4,6 @@ extends Control
 
 var _player_stats : EntityStats
 
-@onready var _player_sprite : Texture2D = preload("res://assets/combat/player.png")
-
 @onready var _ability_grid : CombatAbilityGrid = %AbilityGrid
 @onready var _ability_info : CombatAbilityTooltip = %AbilityInfo
 
@@ -17,7 +15,8 @@ func _ready() -> void:
     _player_stats = GameState.player_stats
     _player_stats.init()
 
-    player.init(_player_stats, _player_sprite )
+
+    player.init(_player_stats)
     _entity_scenes[player.stats.name] = player
 
     load_abilities_to_grid()
