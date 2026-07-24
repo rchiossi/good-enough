@@ -19,7 +19,7 @@ layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="PanelContainer" unique_id=94745273]
 layout_mode = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.12941177, 0.13333334, 0.16078432, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1618611935]
 layout_mode = 2
