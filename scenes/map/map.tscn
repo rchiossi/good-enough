@@ -103,7 +103,7 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[b]H[/b] - help [b]I[/b] - inventory"
+text = "[b]H[/b] - help [b]I[/b] - inventory [b]P[/b] - paths"
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 

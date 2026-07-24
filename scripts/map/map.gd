@@ -176,15 +176,25 @@ func _generate_paths():
                 continue
             var neighbours = _get_next_neighbours(Vector2i(i, j))
             GameState.connections[Vector2i(i, j)] = {"children": []}
-            if nr_nodes == 1 or not neighbours:
-                # TODO: for the case when there are no neighbours we should go to the closes node
-                # As a temporary fix I allow any node
+            if nr_nodes == 1:
                 for n in range(max_nodes):
                     if GameState.map[i + 1]["nodes"][n]["type"] != GameState.NodeTypes.Null:
                         GameState.connections[Vector2i(i, j)]["children"].append(Vector2i(i+1, n))
                 continue
-
-            for r in range(randi_range(1, 3)):
+            if not neighbours:
+                var nodes =  []
+                for node in  GameState.map[i + 1]["nodes"]:
+                    if GameState.map[i + 1]["nodes"][node]["type"] != GameState.NodeTypes.Null:
+                        nodes.append(Vector2i(i+1, node))
+                for r in range(randi_range(1, 2)):
+                    var n = nodes[randi() % nodes.size()]
+                    nodes.erase(n)
+                    GameState.connections[Vector2i(i, j)]["children"].append(n)
+                    if not nodes:
+                        break
+                continue
+    
+            for r in range(randi_range(1, 2)):
                 var n = neighbours[randi() % neighbours.size()]
                 neighbours.erase(n)
                 GameState.connections[Vector2i(i, j)]["children"].append(n)
