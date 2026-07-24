@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://crwlg463ssqi4" path="res://scripts/map/map.gd" id="2_ph54e"]
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="3_a2pkv"]
 [ext_resource type="Material" uid="uid://88dmy0l0iwxt" path="res://shaders/map/burning_material_v2.tres" id="3_fcby6"]
+[ext_resource type="AudioStream" uid="uid://cqqte8khf02jn" path="res://assets/music/Piano 8.ogg" id="4_sqgf4"]
 [ext_resource type="Texture2D" uid="uid://c6csinb1ka78k" path="res://assets/combat/player.png" id="5_jcaow"]
 [ext_resource type="PackedScene" uid="uid://cvm36ryb3n5mj" path="res://scenes/map/map_line.tscn" id="6_jcaow"]
+[ext_resource type="Script" uid="uid://br4iwnaapjuvt" path="res://scripts/sounds/bg_music.gd" id="7_04w0f"]
 
 [node name="MapScene" type="Control" unique_id=1321419604]
 layout_mode = 3
@@ -16,6 +18,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_sxf4j")
 script = ExtResource("2_ph54e")
+
+[node name="BgMusic" type="Control" parent="." unique_id=1033809839]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_04w0f")
+hover_sound = ExtResource("4_sqgf4")
+metadata/_custom_type_script = "uid://br4iwnaapjuvt"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1277744514]
 layout_mode = 1

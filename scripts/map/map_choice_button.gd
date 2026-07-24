@@ -43,6 +43,7 @@ func set_coords(c: Vector2i):
         %DoneHighlight.visible = true
     if coords.x == GameState.max_turns:
         material.set("shader_parameter/Width", 0)
+    material.set("shader_parameter/ColorParameter", color_disabled)
 
 func on_pressed():
     SceneLoader.load_scene(types_definitions[node_type]["scene"])
