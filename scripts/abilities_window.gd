@@ -12,6 +12,7 @@ extends Control
 @onready var hover_bad_sound: AudioStreamPlayer2D = $HoverBadSound
 @onready var click_sound: AudioStreamPlayer2D = $ClickSound
 @onready var click_bad_sound: AudioStreamPlayer2D = $ClickBadSound
+@onready var skip_button: Button = %SkipButton
 
 @onready var abilities_list: HBoxContainer = $AbilitiesList
 const ICON_SIZE := 128
@@ -45,6 +46,12 @@ func _ready() -> void:
         button.pressed.connect(_on_ability_button_pressed.bind(ability))
         abilities_list.add_child(button)
     print("ready on ", self, " label=", shield_damage_label)
+
+    # Debug ----
+    skip_button.pressed.connect(_debug_skip)
+
+func _debug_skip():
+    SceneLoader.load_scene("res://scenes/map/map.tscn")
 
 func _on_ability_button_hovered(ability: Ability) -> void:
     if ability.is_disabled:
