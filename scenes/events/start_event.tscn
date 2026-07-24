@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://c7f7ypqju21gh"]
 
 [ext_resource type="Script" uid="uid://cl54il7y10sna" path="res://scripts/events/start_event.gd" id="1_roqhu"]
+[ext_resource type="Texture2D" uid="uid://dal1d4dnol780" path="res://assets/main_menu/bg_castle.png" id="2_34ga4"]
+[ext_resource type="Texture2D" uid="uid://qquh3iw2p3xl" path="res://assets/map/shop_background.png" id="3_goenu"]
 
 [node name="StartEventScreen" type="Control" unique_id=598374047]
 layout_mode = 3
@@ -13,12 +15,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_roqhu")
 
-[node name="EventText" type="RichTextLabel" parent="." unique_id=1906528478]
-layout_mode = 0
-offset_left = 153.0
-offset_top = 95.0
-offset_right = 1773.0
-offset_bottom = 735.0
+[node name="Panel" type="TextureRect" parent="." unique_id=1132622291]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_34ga4")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2131790430]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054166667
+anchor_top = 0.06481481
+anchor_right = 0.93541676
+anchor_bottom = 0.7976852
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_goenu")
+metadata/_edit_use_anchors_ = true
+
+[node name="EventText" type="RichTextLabel" parent="TextureRect" unique_id=1906528478]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08628841
+anchor_top = 0.06822489
+anchor_right = 0.47813237
+anchor_bottom = 0.88945043
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32
@@ -42,14 +70,17 @@ Or will you die trying?
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=671040026]
-layout_mode = 0
-offset_left = 159.0
-offset_top = 877.0
-offset_right = 1787.0
-offset_bottom = 1019.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6244792
+anchor_top = 0.37314814
+anchor_right = 0.7348958
+anchor_bottom = 0.5046296
 alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ContinueButton" type="Button" parent="ButtonContainer" unique_id=795525899]
 custom_minimum_size = Vector2(164, 0)
