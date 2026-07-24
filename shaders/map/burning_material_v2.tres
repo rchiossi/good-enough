@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://88dmy0l0iwxt"]
+
+[ext_resource type="Shader" uid="uid://bk06vsdixoas6" path="res://shaders/map/fired2d.gdshader" id="1_afuos"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_afuos"]
+frequency = 0.0166
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_afuos"]
+width = 128
+height = 1024
+noise = SubResource("FastNoiseLite_afuos")
+seamless = true
+
+[resource]
+shader = ExtResource("1_afuos")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_afuos")
+shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
+shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
+shader_parameter/fire_alpha = 0.6730000319675
+shader_parameter/fire_speed = Vector2(1, 0)
+shader_parameter/fire_aperture = 0.094000004465
