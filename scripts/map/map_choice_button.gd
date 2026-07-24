@@ -45,7 +45,12 @@ func show_highlight():
     %HoverHighlight.visible = true
     
 func hide_highlight():
-    %HoverHighlight.visible = false
+    if disabled:
+        %HoverHighlight.visible = false
+
+func enable_button():
+    disabled = false
+    show_highlight()
 
 func _on_mouse_entered() -> void:
     show_highlight()

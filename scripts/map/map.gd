@@ -17,9 +17,9 @@ func _ready() -> void:
 
     # enable initial nodes
     for n in GameState.connections[GameState.current_position]["children"]:
-        GameState.nodes[n].disabled = false
+        GameState.nodes[n].enable_button()
     if GameState.current_position == Vector2i(-1, -1):
-        GameState.nodes[Vector2i(0, 0)].disabled = false
+        GameState.nodes[Vector2i(0, 0)].enable_button()
     else:
         %PlayerSprite2D.visible = true
 
