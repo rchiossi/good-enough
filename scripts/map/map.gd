@@ -158,6 +158,7 @@ func generate_map():
     }
     GameState.map = map
     GameState.current_position = Vector2i(-1, -1)
+    GameState.current_turn = -1
     _generate_paths()
 
 func _generate_paths():

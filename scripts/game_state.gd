@@ -10,14 +10,14 @@ enum NodeTypes {
 }
 
 var map: Dictionary = {}
-var current_position: Vector2i = Vector2i(0, 0)
+var current_position: Vector2i = Vector2i(-1, -1)
 var nodes: Dictionary[Vector2i, MapChoiceButton] = {}
 var connections: Dictionary[Vector2i, Dictionary] = {}
 
 var player_stats : EntityStats = EntityStats.new()
 
 const max_turns : int = 10
-var current_turn : int
+var current_turn : int = -1
 
 const player_health : int = 100
 const player_armor : int = 100
@@ -75,7 +75,7 @@ func _init_enemies() -> void:
 func reset_state() -> void:
     player_stats.init()
 
-    current_turn = max_turns
+    current_turn = -1
 
 func _add_ability(ability):
     all_abilities.get_or_add(ability.name, ability)
