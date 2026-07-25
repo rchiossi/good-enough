@@ -27,7 +27,7 @@ script = ExtResource("1_13q6g")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1212721838]
 custom_minimum_size = Vector2(800, 400)
 layout_mode = 2
-color = Color(0.12941177, 0.13333334, 0.15686275, 1)
+color = Color(0.21960784, 0.21568628, 0.30588236, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=660287822]
 layout_mode = 2

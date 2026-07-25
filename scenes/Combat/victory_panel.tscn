@@ -19,7 +19,7 @@ custom_minimum_size = Vector2(800, 400)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(0.12941177, 0.13333334, 0.15686275, 1)
+color = Color(0.21960784, 0.21568628, 0.30588236, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=983984697]
 layout_mode = 2
