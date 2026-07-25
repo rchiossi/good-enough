@@ -64,3 +64,8 @@ func take_damage(source: EntityStats, shield_damage: int, armor_damage: int, hea
 
     #Always emit, or the turn can get stuck
     damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage)
+
+func heal(shield_regeneration: int, armor_regeneration: int, health_regeneration: int):
+    shield = min(health + shield_regeneration, max_shield)
+    armor = min(health + armor_regeneration, max_armor)
+    health = min(health + health_regeneration, max_health)

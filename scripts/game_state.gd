@@ -306,3 +306,35 @@ func _init_abilities():
     blood_weave.cooldown = 6
     blood_weave.ability_type = Ability.AbilityType.BLUNT
     _add_ability(blood_weave)
+
+    var blood_transfusion := Ability.new()
+    blood_transfusion.health_damage = 30
+    blood_transfusion.health_regeneration = 15
+    blood_transfusion.name = "Blood Transfusion"
+    blood_transfusion.icon = preload("uid://b4wibg24bkciq")
+    blood_transfusion.description = "You wound your target and ingest their blood. Causing you to heal for 50% of the damage dealt."
+    blood_transfusion.cooldown = 5
+    blood_transfusion.ability_type = Ability.AbilityType.BLUNT
+    _add_ability(blood_transfusion)
+
+    var frost_storm := Ability.new()
+    frost_storm.health_damage = 5
+    frost_storm.shield_damage = 50
+    frost_storm.health_regeneration = -5
+    frost_storm.name = "Frost Storm"
+    frost_storm.icon = preload("uid://dj785vcffstom")
+    frost_storm.description = "You cast a large storm of ice causing significant shield damage. Also induces frostbite 5 damage to the target and yourself."
+    frost_storm.cooldown = 4
+    frost_storm.ability_type = Ability.AbilityType.MAGIC
+    _add_ability(frost_storm)
+
+    var fire_spike := Ability.new()
+    fire_spike.health_damage = 0
+    fire_spike.armor_damage = 40
+    fire_spike.shield_damage = 0
+    fire_spike.name = "Fire Spike"
+    fire_spike.icon = preload("uid://dbqy1spahhy5o")
+    fire_spike.description = "You send a large spike of fire towards your enemy, it pierces their armor."
+    fire_spike.cooldown = 3
+    fire_spike.ability_type = Ability.AbilityType.PIERCING
+    _add_ability(fire_spike)
