@@ -277,6 +277,7 @@ func _init_abilities():
     visceral_bleed.description = "You cut the veins of your enemies from the inside. Inflicts massive health damage."
     visceral_bleed.cooldown = 3
     visceral_bleed.ability_type = Ability.AbilityType.BLUNT
+    visceral_bleed.animation_type = Ability.AnimationType.BLOOD_BEND_MEDIUM
     _add_ability(visceral_bleed)
 
     var pillar_bonk := Ability.new()
@@ -312,6 +313,7 @@ func _init_abilities():
     blood_weave.description = "You manipulate the blood of your enemies, causing it to leak into their muscle. Significantly damaging their ability to breathe."
     blood_weave.cooldown = 6
     blood_weave.ability_type = Ability.AbilityType.BLUNT
+    blood_weave.animation_type = Ability.AnimationType.BLOOD_BEND_BIG
     _add_ability(blood_weave)
 
     var blood_transfusion := Ability.new()

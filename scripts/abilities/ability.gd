@@ -17,7 +17,9 @@ enum AnimationType {
     FIRE_TORNADO,
     WATER_BLAST,
     WATER_SURGE,
-    PHOENIX_FLAME
+    PHOENIX_FLAME,
+    BLOOD_BEND_BIG,
+    BLOOD_BEND_MEDIUM
 }
 
 var shield_damage: int = 0

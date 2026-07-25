@@ -20,6 +20,12 @@ class_name SunStrikeAnimation
 @onready var phoenix_flame_animation: AnimatedSprite2D = $PhoenixFlameAnimation
 @onready var phoenix_flame_sound: AudioStreamPlayer2D = $PhoenixFlameSound
 
+@onready var blood_bend_big_animation: AnimatedSprite2D = $BloodBendBigAnimation
+@onready var blood_bend_big_sound: AudioStreamPlayer2D = $BloodBendBigSound
+
+@onready var blood_bend_medium_sound: AudioStreamPlayer2D = $BloodBendMediumSound
+@onready var blood_bend_medium_animation: AnimatedSprite2D = $BloodBendMediumAnimation
+
 signal animation_completed
 
 var _is_sound_done = false
@@ -56,6 +62,12 @@ func play(animation_type: Ability.AnimationType, position_to_paint : Vector2, si
     if animation_type == Ability.AnimationType.PHOENIX_FLAME:
         sound = phoenix_flame_sound
         animation = phoenix_flame_animation
+    if animation_type == Ability.AnimationType.BLOOD_BEND_BIG:
+        animation = blood_bend_big_animation
+        sound = blood_bend_big_sound
+    if animation_type == Ability.AnimationType.BLOOD_BEND_MEDIUM:
+        animation = blood_bend_medium_animation
+        sound = blood_bend_medium_sound
 
     animation.animation_finished.connect(_on_animation_completed)
 
