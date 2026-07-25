@@ -62,15 +62,161 @@ func _init_enemies() -> void:
     enemy.sprite = preload("uid://bihigvwvvgnm3")
     enemy.portrait = preload("uid://7kdx45dvnur8")
     enemy.max_health = 10
+    enemy.max_armor = 5
+    enemy.max_shield = 0
+    enemy.is_player = false
+    enemy.stage = 1
+    _register_ability(enemy, "Punch")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Wolf"
+    enemy.sprite = preload("uid://catthopdua8g4")
+    enemy.portrait = preload("uid://bniyhx2w6u431")
+    enemy.max_health = 15
     enemy.max_armor = 10
     enemy.max_shield = 10
     enemy.is_player = false
-    #TODO: Add proper abilities
-    var ability = all_abilities.values()[0]
-    enemy.abilities[ability.name] = ability
+    enemy.stage = 1
+    _register_ability(enemy, "Punch")
     enemy.init()
-
     enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Skeleton"
+    enemy.sprite = preload("uid://dyjemcig3qw8q")
+    enemy.portrait = preload("uid://erkrb87cardp")
+    enemy.max_health = 5
+    enemy.max_armor = 5
+    enemy.max_shield = 5
+    enemy.is_player = false
+    enemy.stage = 1
+    _register_ability(enemy, "Punch")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Skeletal Sludge"
+    enemy.sprite = preload("uid://bs6dmy37eey6f")
+    enemy.portrait = preload("uid://6ocbbtxsmq4e")
+    enemy.max_health = 50
+    enemy.max_armor = 0
+    enemy.max_shield = 30
+    enemy.is_player = false
+    enemy.stage = 2
+    _register_ability(enemy, "Punch")
+    _register_ability(enemy, "Fireball")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Wraith"
+    enemy.sprite = preload("uid://i8x6ipktxrdk")
+    enemy.portrait = preload("uid://xjyskh6ypqon")
+    enemy.max_health = 30
+    enemy.max_armor = 10
+    enemy.max_shield = 50
+    enemy.is_player = false
+    enemy.stage = 2
+    _register_ability(enemy, "Punch")
+    _register_ability(enemy, "Visceral Bleed")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Cursed Book"
+    enemy.sprite = preload("uid://wuhsiig2xuve")
+    enemy.portrait = preload("uid://ct82304pdnvs3")
+    enemy.max_health = 10
+    enemy.max_armor = 70
+    enemy.max_shield = 20
+    enemy.is_player = false
+    enemy.stage = 2
+    _register_ability(enemy, "Punch")
+    _register_ability(enemy, "Incinerate")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Cthulu"
+    enemy.sprite = preload("uid://1q2o5e4hg3hx")
+    enemy.portrait = preload("uid://ccjo8vvetkel0")
+    enemy.max_health = 200
+    enemy.max_armor = 100
+    enemy.max_shield = 200
+    enemy.is_player = false
+    enemy.stage = 3
+    _register_ability(enemy, "Punch")
+    _register_ability(enemy, "Blood Weave")
+    _register_ability(enemy, "Fireball")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Death Warrior"
+    enemy.sprite = preload("uid://dolrgr2cb6kqm")
+    enemy.portrait = preload("uid://berxvfyr26g1t")
+    enemy.max_health = 300
+    enemy.max_armor = 200
+    enemy.max_shield = 0
+    enemy.is_player = false
+    enemy.stage = 3
+    _register_ability(enemy, "Punch")
+    _register_ability(enemy, "Ice Dart")
+    _register_ability(enemy, "Incinerate")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Lich"
+    enemy.sprite = preload("uid://cgpdln8c2xrdl")
+    enemy.portrait = preload("uid://cio1h6ddhn6hs")
+    enemy.max_health = 50
+    enemy.max_armor = 200
+    enemy.max_shield = 250
+    enemy.is_player = false
+    enemy.stage = 3
+    _register_ability(enemy, "Punch")
+    _register_ability(enemy, "Ice Dart")
+    _register_ability(enemy, "Fireball")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Ct. Downcula"
+    enemy.sprite = preload("uid://bd4t8mmbdxtrh")
+    enemy.portrait = preload("uid://cs2oqgrjhj011")
+    enemy.max_health = 500
+    enemy.max_armor = 200
+    enemy.max_shield = 200
+    enemy.is_player = false
+    enemy.stage = 4
+    _register_ability(enemy, "Fireball")
+    _register_ability(enemy, "Ice Dart")
+    _register_ability(enemy, "Visceral Bleed")
+    _register_ability(enemy, "Incinerate")
+    _register_ability(enemy, "Blood Weave")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+    enemy = EntityStats.new()
+    enemy.name = "Downcula"
+    enemy.sprite = preload("uid://4i6y012x84ag")
+    enemy.portrait = preload("uid://bndiawknicwyq")
+    enemy.max_health = 1000
+    enemy.max_armor = 1000
+    enemy.max_shield = 0
+    enemy.is_player = false
+    enemy.stage = 5
+    _register_ability(enemy, "Incinerate")
+    _register_ability(enemy, "Pillar Bonk")
+    enemy.init()
+    enemy_list[enemy.name] = enemy
+
+func _register_ability(enemy: EntityStats, ability_name: String):
+    var ability = all_abilities[ability_name]
+    enemy.abilities[ability.name] = ability
 
 func reset_state() -> void:
     player_stats.init()

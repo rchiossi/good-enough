@@ -13,6 +13,8 @@ class_name EntityStats
 
 @export var abilities : Dictionary[String, Ability] = {}
 
+@export var stage : int = 1
+
 var health : int
 var armor : int
 var shield : int

@@ -40,6 +40,8 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var damage_number_duration : float = 2.0
 @export var damage_number_spread : int = 50
 
+var _game_stage : int = 1
+
 var _backgrounds : Dictionary[String, Texture2D]= {
     "forest" : preload("uid://7uxcl0v0ljwg"),
     "castle_entrance": preload("uid://bq0ry2cdwpsse"),
@@ -55,7 +57,12 @@ func _ready() -> void:
     _player_stats.damage_taken.connect(_on_damage_taken)
     _player_stats.init()
 
-    _enemy_stats = GameState.enemy_list.values().pick_random()
+    var threshold = int(float(GameState.max_turns - 1) / 3)
+    _game_stage = ceil(float(GameState.current_turn) / threshold)
+    if _game_stage < 1:
+        _game_stage = 1 #Allows running directly from the combat scene
+
+    _enemy_stats = GameState.enemy_list.values().filter(func(e): return e.stage == _game_stage).pick_random()
     _enemy_stats.damage_taken.connect(_on_damage_taken)
     _enemy_stats.init()
 
@@ -100,16 +107,17 @@ func _on_new_turn(turn_count: int):
         return
 
 func _load_background():
-    var repeat : int = int(float(GameState.max_turns - 1) / 3)
-
-    if GameState.current_turn < repeat:
-        _background.texture = _backgrounds["forest"]
-    elif GameState.current_turn < repeat * 2:
-        _background.texture = _backgrounds["castle_entrance"]
-    elif GameState.current_turn < repeat * 3:
-        _background.texture = _backgrounds["castle_hall"]
-    else:
-        _background.texture = _backgrounds["throne_room"]
+    match _game_stage:
+        1:
+            _background.texture = _backgrounds["forest"]
+        2:
+            _background.texture = _backgrounds["castle_entrance"]
+        3:
+            _background.texture = _backgrounds["castle_hall"]
+        4:
+            _background.texture = _backgrounds["throne_room"]
+        5:
+            _background.texture = _backgrounds["throne_room"]
 
 func _load_abilities_to_grid():
     for ability in _player_stats.abilities.values():
