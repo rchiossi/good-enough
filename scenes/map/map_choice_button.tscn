@@ -15,16 +15,18 @@ shader = ExtResource("1_je7sh")
 shader_parameter/ColorParameter = Color(0.9960608, 0.5078196, 0.41898406, 1)
 shader_parameter/Width = 12.0
 
-[node name="MapChoiceButton" type="CheckBox" unique_id=523716358]
+[node name="MapChoiceButton" type="Button" unique_id=135015083]
 material = SubResource("ShaderMaterial_jcaow")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
 theme = ExtResource("1_7pqfr")
 theme_type_variation = &"MapChoiceButton"
 disabled = true
+toggle_mode = true
 icon = ExtResource("3_je7sh")
 script = ExtResource("3_nsik4")
 
@@ -53,15 +55,15 @@ metadata/_custom_type_script = "uid://ota37prga8g7"
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_right = 0.8208333
 anchor_bottom = 1.0
-offset_left = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_7pqfr")
 theme_type_variation = &"MapHighlightPanelContainer"
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="DoneHighlight" unique_id=2141475729]
 layout_mode = 2

@@ -1,4 +1,4 @@
-class_name MapChoiceButton extends CheckBox
+class_name MapChoiceButton extends Button
 
 var node_type: GameState.NodeTypes
 
@@ -32,7 +32,7 @@ var color_disabled: Color = Color("#b34947")
 var color_highlight: Color = Color("#5275a3")
 
 func _ready() -> void:
-    pass
+    offset_transform_enabled = true
 
 func set_coords(c: Vector2i):
     coords = c
@@ -60,6 +60,7 @@ func hide_highlight():
 
 func enable_button():
     disabled = false
+    animate_idle()
     material.set("shader_parameter/ColorParameter", color_enabled)
 
 func _on_mouse_entered() -> void:
@@ -71,3 +72,13 @@ func _on_mouse_exited() -> void:
     hide_highlight()
     for n in GameState.connections.get(coords, {}).get("children", []):
         GameState.nodes[n].hide_highlight()
+
+func animate_idle():
+    if disabled:
+        return
+    var tween = create_tween()
+
+    tween.set_loops()
+    tween.set_trans(tween.TRANS_SINE)
+    tween.tween_property(self, "offset_transform_scale", Vector2(1.15, 1.15), 1.5)
+    tween.tween_property(self, "offset_transform_scale", Vector2(1, 1), 1.5)

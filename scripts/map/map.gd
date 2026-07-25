@@ -30,14 +30,17 @@ func _ready() -> void:
         %Node.placeholder_text = str(GameState.current_position.y)
     else:
         $MarginContainer.visible = false
+        
+    %PlayerSprite2D.offset_transform_enabled = true
+    animate_idle()
 
 func _process(_delta: float) -> void:
     var current_node: MapChoiceButton = GameState.nodes.get(GameState.current_position)
     if not current_node:
         return
     %PlayerSprite2D.global_position = Vector2(
-        current_node.global_position.x + current_node.size.x,
-        current_node.global_position.y + current_node.size.y / 2
+        current_node.global_position.x +  2 * current_node.size.x / 3,
+        current_node.global_position.y
     )
     if GameState.current_position in GameState.nodes:
         %FirePanel.global_position.x = 0
@@ -239,3 +242,16 @@ func goto(node: Vector2i) -> void:
     GameState.map[GameState.current_position.x]["status"]  = 0
     GameState.map[GameState.current_position.x]["nodes"][GameState.current_position.y]["visited"] = 1
     SceneLoader.load_scene("res://scenes/map/map.tscn")
+
+
+func animate_idle():
+    var tween = create_tween()
+
+    tween.set_loops()
+
+    tween.tween_interval(randf() * 3.0)
+    tween.tween_property(%PlayerSprite2D, "offset_transform_position", Vector2(10, -5), 0.5)
+    tween.tween_property(%PlayerSprite2D, "offset_transform_position", Vector2(20, 0), 0.5)
+    tween.tween_interval(randf() * 3.0)
+    tween.tween_property(%PlayerSprite2D, "offset_transform_position", Vector2(10, -5), 0.5)
+    tween.tween_property(%PlayerSprite2D, "offset_transform_position", Vector2(0, 0), 0.5)
