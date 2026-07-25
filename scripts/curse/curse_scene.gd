@@ -9,6 +9,7 @@ var ability_scene : PackedScene = preload("uid://bdhkv4bcpgrhy")
 @onready var _confirmation_dialog : MarginContainer = %ConfirmationDialog
 @onready var _confirm_button : Button = %ConfirmButton
 @onready var _cancel_button : Button = %CancelButton
+@onready var _skip_button : Button = %SkipButton
 
 var _selectable_abilities : Array[Ability]
 
@@ -36,6 +37,9 @@ func _load_abilities_to_grid():
         new_ability.set_ability(ability.name)
         new_ability.set_click_disabled(true)
         new_ability.ability_hover.connect(_on_hover)
+
+    # Debug -----
+    _skip_button.pressed.connect(_on_skip)
 
 
 func _load_options():
@@ -95,4 +99,7 @@ func _on_confirm():
         _dialog_fade_out()
 
     GameState.player_stats.abilities[_selected].is_disabled = true
+    SceneLoader.load_scene("res://scenes/map/map.tscn")
+
+func _on_skip():
     SceneLoader.load_scene("res://scenes/map/map.tscn")
