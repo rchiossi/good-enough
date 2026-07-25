@@ -7,9 +7,15 @@
 [ext_resource type="Shader" uid="uid://bjudakokgcufk" path="res://shaders/combat/damage_flash.gdshader" id="5_vovsn"]
 [ext_resource type="Texture2D" uid="uid://d0p6syokv5sd7" path="res://assets/combat/Hero/hero.png" id="6_vovsn"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6yqqy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eksbq"]
+bg_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6yqqy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3rwb"]
 bg_color = Color(0.7019608, 0.28627452, 0.2784314, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
@@ -17,7 +23,25 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix566"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6yqqy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6yqqy"]
+bg_color = Color(0.41960785, 0.1882353, 0.29411766, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffb1n"]
+bg_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxl6h"]
 bg_color = Color(0.8117647, 0.627451, 0.33333334, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
@@ -25,8 +49,27 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vovsn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix566"]
+bg_color = Color(0.7019608, 0.3882353, 0.24313726, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icwo2"]
+bg_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gg7b"]
 bg_color = Color(0.32156864, 0.45882353, 0.6392157, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vovsn"]
+bg_color = Color(0.23921569, 0.28235295, 0.4392157, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -72,6 +115,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_eksbq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_d3rwb")
 step = 1.0
 value = 100.0
 fill_mode = 1
@@ -131,6 +176,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_ffb1n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gxl6h")
 step = 1.0
 value = 100.0
 fill_mode = 1
@@ -190,6 +237,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_icwo2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6gg7b")
 step = 1.0
 value = 100.0
 fill_mode = 1
