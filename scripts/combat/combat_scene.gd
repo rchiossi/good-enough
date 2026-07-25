@@ -287,8 +287,9 @@ func _play_ability_effect(_source: EntityScene, target: EntityScene, ability: Ab
 
 func _update_abilities_cooldown():
     for ability in GameState.player_stats.abilities.values():
-        if ability.remaining_cooldown > 0:
-            ability.remaining_cooldown -= 1
+        var cooldown = ability.remaining_cooldown.get_or_add(GameState.player_stats.name, 0)
+        if cooldown > 0:
+            ability.remaining_cooldown[GameState.player_stats.name] -= 1
     _ability_grid.update_abilities()
 
 func _play_death_animation():

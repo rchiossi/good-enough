@@ -30,7 +30,7 @@ var name: String = ""
 var icon := preload("uid://n1peuh4vn6i0")
 var description: String = ""
 var cooldown: int = 0
-var remaining_cooldown: int = 0
+var remaining_cooldown: Dictionary[String, int] = {}
 var ability_type: AbilityType = AbilityType.NORMAL
 var is_disabled: bool = false
 var animation_type: AnimationType = AnimationType.CELESTIAL_BONK
@@ -41,4 +41,4 @@ func take_action(source: EntityStats, target: EntityStats) -> void:
     source.deal_damage(source, shield_damage, armor_damage, health_damage)
     target.take_damage(source, shield_damage, armor_damage, health_damage)
     source.heal(shield_regeneration, armor_regeneration, health_regeneration)
-    remaining_cooldown = cooldown
+    remaining_cooldown[source.name] = cooldown

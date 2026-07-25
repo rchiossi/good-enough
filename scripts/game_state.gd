@@ -287,7 +287,6 @@ func _init_abilities():
     pillar_bonk.icon = preload("uid://b4u3ocj05xk2e")
     pillar_bonk.description = "You smash a giant pillar onto the enemy. Dealing significant armor damage."
     pillar_bonk.cooldown = 5
-    pillar_bonk.remaining_cooldown = 0
     pillar_bonk.ability_type = Ability.AbilityType.PIERCING
     pillar_bonk.animation_type = Ability.AnimationType.CELESTIAL_BONK
     _add_ability(pillar_bonk)

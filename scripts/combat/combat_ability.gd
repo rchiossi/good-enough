@@ -42,9 +42,10 @@ func update_cooldown():
         return
 
     var ability = GameState.all_abilities[_ability_name]
-    if ability.remaining_cooldown > 0:
+    var cooldown : int = ability.remaining_cooldown.get_or_add(GameState.player_stats.name, 0)
+    if cooldown > 0:
         sprite.self_modulate = Color(0.45, 0.45, 0.45)
-        _cooldown_label.text = str(ability.remaining_cooldown)
+        _cooldown_label.text = str(cooldown)
         _cooldown_label.show()
     else:
         _cooldown_label.hide()
@@ -58,7 +59,10 @@ func _make_custom_tooltip(for_text: String) -> Object:
     return tooltip
 
 func _on_sprite_pressed() -> void:
-    if not _in_combat or GameState.player_stats.abilities[_ability_name].remaining_cooldown == 0:
+    var ability = GameState.all_abilities[_ability_name]
+    var cooldown : int = ability.remaining_cooldown.get_or_add(GameState.player_stats.name, 0)
+
+    if not _in_combat or cooldown == 0:
         ability_activated.emit(_ability_name)
 
 func set_click_disabled(disabled: bool) -> void:
