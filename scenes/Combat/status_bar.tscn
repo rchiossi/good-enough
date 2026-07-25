@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cjmpxumv44t3n"]
+
+[ext_resource type="Script" uid="uid://bfwm3fbc7n3pd" path="res://scripts/combat/status_bar.gd" id="1_gnigj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otrat"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mnnu"]
+bg_color = Color(0.5529412, 0.5137255, 0.5058824, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mnnu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otrat"]
+bg_color = Color(0.41960785, 0.1882353, 0.29411766, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="StatusBar" type="MarginContainer" unique_id=2098570777]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_gnigj")
+
+[node name="MainBar" type="ProgressBar" parent="." unique_id=1536747990]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 12)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_otrat")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4mnnu")
+value = 60.0
+fill_mode = 1
+show_percentage = false
+
+[node name="DamageBar" type="ProgressBar" parent="MainBar" unique_id=335998361]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_4mnnu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_otrat")
+value = 30.0
+fill_mode = 1
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainBar" unique_id=900712646]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrentLabel" type="Label" parent="MainBar/HBoxContainer" unique_id=834646225]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "10"
+
+[node name="Label" type="Label" parent="MainBar/HBoxContainer" unique_id=1933989527]
+layout_mode = 2
+text = "/"
+
+[node name="MaxLabel" type="Label" parent="MainBar/HBoxContainer" unique_id=983961466]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100"

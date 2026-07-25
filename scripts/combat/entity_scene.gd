@@ -1,25 +1,17 @@
 extends MarginContainer
 class_name EntityScene
 
-@onready var _health_bar : ProgressBar = %HealthBar
-@onready var _armor_bar : ProgressBar = %ArmorBar
-@onready var _shield_bar : ProgressBar = %ShieldBar
-
-@onready var _current_hp_label : Label = %CurrentHpLabel
-@onready var _max_hp_label : Label = %MaxHpLabel
-@onready var _current_armor_label : Label = %CurrentArmorLabel
-@onready var _max_armor_label : Label = %MaxArmorLabel
-@onready var _current_shield_label : Label = %CurrentShieldLabel
-@onready var _max_shield_label : Label = %MaxShieldLabel
+@onready var _health_bar : StatusBar = %HealthBar
+@onready var _armor_bar : StatusBar = %ArmorBar
+@onready var _shield_bar : StatusBar = %ShieldBar
 
 @onready var _sprite : TextureRect = %Sprite
 
 const animation_attack_duration : float = 0.3
-const animation_damage_duration : float = 0.3
+const animation_damage_duration : float = 2.0
 
 var _tween : Tween
 
-@export var bar_animation_duration : float = 2.0
 @export var death_animation_duration : float = 0.5
 
 signal death_animation_complete
@@ -31,70 +23,49 @@ func init(entity_stats: EntityStats):
     offset_transform_enabled = true
 
     stats = entity_stats
-    stats.hp_changed.connect(animate_health_bar)
-    stats.armor_changed.connect(animate_armor_bar)
-    stats.shield_changed.connect(animate_shield_bar)
 
-    _health_bar.max_value = stats.max_health
-    %HealthPossibleDmgBar.max_value = stats.max_health
-    _health_bar.value = stats.health
-    _current_hp_label.text = str(stats.health)
-    _max_hp_label.text = str(stats.max_health)
+    _health_bar.init(stats.health, stats.max_health)
+    _armor_bar.init(stats.armor, stats.max_armor)
+    _shield_bar.init(stats.shield, stats.max_shield)
 
-    _armor_bar.max_value = stats.max_armor
-    if not stats.max_armor:
-        %ArmourPossibleDmgBar.visible = false
-    else:
-        %ArmourPossibleDmgBar.max_value = stats.max_armor
-    _armor_bar.value = stats.armor
-    _current_armor_label.text = str(stats.armor)
-    _max_armor_label.text = str(stats.max_armor)
+    stats.hp_changed.connect(_health_bar.animate_change.bind(animation_damage_duration))
+    stats.armor_changed.connect(_armor_bar.animate_change.bind(animation_damage_duration))
+    stats.shield_changed.connect(_shield_bar.animate_change.bind(animation_damage_duration))
 
-    _shield_bar.max_value = stats.max_shield
-    if not stats.max_shield:
-        %ShieldPossibleDmgBar.visible = false
-    else:
-        %ShieldPossibleDmgBar.max_value = stats.max_shield
-    _shield_bar.value = stats.shield
-    _current_shield_label.text = str(stats.shield)
-    _max_shield_label.text = str(stats.max_shield)
+    if stats.shield == 0:
+        _shield_bar.hide()
+
+    if stats.armor == 0:
+        _armor_bar.hide()
 
     _sprite.texture = entity_stats.sprite
     
-    possible_damage.connect(_show_possible_damage)
+    possible_damage.connect(_show_damage_indication)
 
     animate_idle()
 
-func _show_possible_damage(hp: int, armour: int, shield: int):
-    if not shield:
-        _show_dmg(%PossibleShieldDmgLabel, shield)
-        _show_dmg_bar(%ShieldPossibleDmgBar, shield)
-    if not armour:
-        _show_dmg(%PossibleArmourDmgLabel, armour)
-        _show_dmg_bar(%ArmourPossibleDmgBar, armour)
-    if not hp:
-        _show_dmg(%PossibleHpDmgLabel, hp)
-        _show_dmg_bar(%HealthPossibleDmgBar, hp)
-        
-    if _shield_bar.value > 0:
-        _show_dmg(%PossibleShieldDmgLabel, shield)
-        _show_dmg_bar(%ShieldPossibleDmgBar, shield)
-    if _shield_bar.value == 0 or _shield_bar.value <= shield:
-        if _armor_bar.value > 0:
-            _show_dmg(%PossibleArmourDmgLabel, armour)
-            _show_dmg_bar(%ArmourPossibleDmgBar, armour)
-        if _armor_bar.value == 0 or _armor_bar.value <= armour:
-            _show_dmg(%PossibleHpDmgLabel, hp)
-            _show_dmg_bar(%HealthPossibleDmgBar, hp)
+func _show_damage_indication(hp_damage: int, armor_damage: int, shield_damage: int):
+    if shield_damage != 0:
+        _shield_bar.indicate_damage(shield_damage)
 
-func _show_dmg_bar(node: ProgressBar, dmg: int):
-    node.value = dmg
+    var remaining_shield = max(stats.shield - shield_damage, 0)
+    if remaining_shield != 0:
+        return
 
-func _show_dmg(node: Label, dmg: int):
-    if not dmg:
-        node.text = ""
-    else:
-        node.text = "- %s" % dmg
+    if armor_damage != 0:
+        _armor_bar.indicate_damage(armor_damage)
+    
+    var remaining_armor = max(stats.armor - armor_damage, 0)
+    if remaining_armor != 0:
+        return
+
+    if hp_damage != 0:
+        _health_bar.indicate_damage(hp_damage)
+
+func clear_damage_indication():
+    _health_bar.clear_damage_indication()
+    _armor_bar.clear_damage_indication()
+    _shield_bar.clear_damage_indication()
 
 func animate_idle():
     var tween = create_tween()
@@ -132,27 +103,6 @@ func animate_take_damage():
     _tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 0.0, 0.1)
     _tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 1.0, 0.1)
     _tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 0.0, 0.1)
-
-func _animate_bar(bar: ProgressBar, label: Label, old_value: int, new_value : int):
-    var tween = create_tween()
-
-    tween.set_trans(Tween.TRANS_BACK)
-    tween.set_ease(Tween.EASE_OUT)
-
-    tween.tween_property(bar, "value", new_value, bar_animation_duration)
-    tween.parallel().tween_method(_tween_label.bind(label), old_value, new_value, bar_animation_duration)
-
-func _tween_label(new_value: int, label: Label):
-    label.text = str(new_value)
-
-func animate_health_bar(old_value: int, new_value: int):
-    _animate_bar(_health_bar, _current_hp_label, old_value, new_value)
-
-func animate_armor_bar(old_value: int, new_value: int):
-    _animate_bar(_armor_bar, _current_armor_label, old_value, new_value)
-
-func animate_shield_bar(old_value: int, new_value: int):
-    _animate_bar(_shield_bar, _current_shield_label, old_value, new_value)
 
 func animate_death():
     var tween = create_tween()

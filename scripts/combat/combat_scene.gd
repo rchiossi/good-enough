@@ -156,7 +156,7 @@ func _show_possible_dmg(ability_name : StringName):
     enemy.possible_damage.emit(ability.health_damage, ability.armor_damage, ability.shield_damage)
 
 func _hide_possible_dmg():
-    enemy.possible_damage.emit(0, 0, 0)
+    enemy.clear_damage_indication()
 
 # Combat Flow --------------------
 

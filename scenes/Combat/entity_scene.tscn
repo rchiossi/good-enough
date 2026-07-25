@@ -2,79 +2,11 @@
 
 [ext_resource type="Script" uid="uid://rnxjcfv0re2a" path="res://scripts/combat/entity_scene.gd" id="1_fm8sl"]
 [ext_resource type="Texture2D" uid="uid://ckxwuklnhuldg" path="res://assets/combat/hp.png" id="2_c153h"]
+[ext_resource type="PackedScene" uid="uid://cjmpxumv44t3n" path="res://scenes/Combat/status_bar.tscn" id="3_6yqqy"]
 [ext_resource type="Texture2D" uid="uid://dvlsd6i5qeehe" path="res://assets/combat/armor.png" id="3_vovsn"]
 [ext_resource type="Texture2D" uid="uid://5p535fe5dxkt" path="res://assets/combat/shield.png" id="4_6yqqy"]
 [ext_resource type="Shader" uid="uid://bjudakokgcufk" path="res://shaders/combat/damage_flash.gdshader" id="5_vovsn"]
 [ext_resource type="Texture2D" uid="uid://d0p6syokv5sd7" path="res://assets/combat/Hero/hero.png" id="6_vovsn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eksbq"]
-bg_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3rwb"]
-bg_color = Color(0.7019608, 0.28627452, 0.2784314, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6yqqy"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6yqqy"]
-bg_color = Color(0.41960785, 0.1882353, 0.29411766, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffb1n"]
-bg_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxl6h"]
-bg_color = Color(0.8117647, 0.627451, 0.33333334, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix566"]
-bg_color = Color(0.7019608, 0.3882353, 0.24313726, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icwo2"]
-bg_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gg7b"]
-bg_color = Color(0.32156864, 0.45882353, 0.6392157, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vovsn"]
-bg_color = Color(0.23921569, 0.28235295, 0.4392157, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8oqs"]
 resource_local_to_scene = true
@@ -106,58 +38,10 @@ layout_mode = 2
 texture = ExtResource("2_c153h")
 expand_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=1897674245]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=2142605283]
+[node name="HealthBar" parent="VBoxContainer/HBoxContainer" unique_id=2098570777 instance=ExtResource("3_6yqqy")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_eksbq")
-theme_override_styles/fill = SubResource("StyleBoxFlat_d3rwb")
-step = 1.0
-value = 100.0
-fill_mode = 1
-show_percentage = false
-
-[node name="HealthPossibleDmgBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=1770824248]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxEmpty_6yqqy")
-theme_override_styles/fill = SubResource("StyleBoxFlat_6yqqy")
-step = 1.0
-fill_mode = 1
-show_percentage = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=229736841]
-layout_mode = 2
-
-[node name="CurrentHpLabel" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2066335853]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-text = "10"
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2015084037]
-layout_mode = 2
-text = "/"
-
-[node name="MaxHpLabel" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2007491071]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-text = "10"
-
-[node name="PossibleHpDmgLabel" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=644975958]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 14)
-custom_maximum_size = Vector2(40, 14)
-layout_mode = 2
-size_flags_horizontal = 8
+main_color = Color(0.41960785, 0.1882353, 0.29411766, 1)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1669485683]
 layout_mode = 2
@@ -167,58 +51,10 @@ layout_mode = 2
 texture = ExtResource("3_vovsn")
 expand_mode = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer2" unique_id=1929207996]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ArmorBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=990116961]
+[node name="ArmorBar" parent="VBoxContainer/HBoxContainer2" unique_id=140780883 instance=ExtResource("3_6yqqy")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_ffb1n")
-theme_override_styles/fill = SubResource("StyleBoxFlat_gxl6h")
-step = 1.0
-value = 100.0
-fill_mode = 1
-show_percentage = false
-
-[node name="ArmourPossibleDmgBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=1871739710]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxEmpty_6yqqy")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ix566")
-step = 1.0
-fill_mode = 1
-show_percentage = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=192968150]
-layout_mode = 2
-
-[node name="CurrentArmorLabel" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/HBoxContainer" unique_id=1426969349]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-text = "10"
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/HBoxContainer" unique_id=915510615]
-layout_mode = 2
-text = "/"
-
-[node name="MaxArmorLabel" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/HBoxContainer" unique_id=1139428485]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-text = "10"
-
-[node name="PossibleArmourDmgLabel" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=1375327371]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 14)
-custom_maximum_size = Vector2(40, 14)
-layout_mode = 2
-size_flags_horizontal = 8
+main_color = Color(0.7019608, 0.3882353, 0.24313726, 1)
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=929568068]
 layout_mode = 2
@@ -228,58 +64,10 @@ layout_mode = 2
 texture = ExtResource("4_6yqqy")
 expand_mode = 3
 
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer3" unique_id=1672715345]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer3/MarginContainer3" unique_id=102897590]
+[node name="ShieldBar" parent="VBoxContainer/HBoxContainer3" unique_id=786333322 instance=ExtResource("3_6yqqy")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_icwo2")
-theme_override_styles/fill = SubResource("StyleBoxFlat_6gg7b")
-step = 1.0
-value = 100.0
-fill_mode = 1
-show_percentage = false
-
-[node name="ShieldPossibleDmgBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer3/MarginContainer3" unique_id=1816110272]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxEmpty_6yqqy")
-theme_override_styles/fill = SubResource("StyleBoxFlat_vovsn")
-step = 1.0
-fill_mode = 1
-show_percentage = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer3/MarginContainer3" unique_id=955553678]
-layout_mode = 2
-
-[node name="CurrentShieldLabel" type="Label" parent="VBoxContainer/HBoxContainer3/MarginContainer3/HBoxContainer" unique_id=73085806]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-text = "10"
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer3/MarginContainer3/HBoxContainer" unique_id=170613544]
-layout_mode = 2
-text = "/"
-
-[node name="MaxShieldLabel" type="Label" parent="VBoxContainer/HBoxContainer3/MarginContainer3/HBoxContainer" unique_id=2080195497]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-text = "10"
-
-[node name="PossibleShieldDmgLabel" type="Label" parent="VBoxContainer/HBoxContainer3/MarginContainer3" unique_id=1770640248]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 14)
-custom_maximum_size = Vector2(40, 14)
-layout_mode = 2
-size_flags_horizontal = 8
+main_color = Color(0.23921569, 0.28235295, 0.4392157, 1)
 
 [node name="Sprite" type="TextureRect" parent="VBoxContainer" unique_id=935468676]
 unique_name_in_owner = true
