@@ -22,7 +22,7 @@ var types_definitions: Dictionary[GameState.NodeTypes, Dictionary] = {
         "scene": "uid://8m56dhcqa170",
     },
     GameState.NodeTypes.Count: {
-        "icon": preload("uid://drev3okyfa374"),
+        "icon": preload("uid://7qq1f1402bi7"),
         "scene": "uid://csqef5bpcx1cc",
     },
 }
@@ -46,7 +46,7 @@ func update_count():
     if node_type != GameState.NodeTypes.Count:
         return
     %ButtonTexture.custom_minimum_size *= Vector2(3, 3)
-    %ButtonTexture.material.set("shader_parameter/Width", 3)
+    %ButtonTexture.material.set("shader_parameter/Width", 1)
 
 func on_pressed():
     SceneLoader.load_scene(types_definitions[node_type]["scene"])
