@@ -358,3 +358,12 @@ func _init_abilities():
     quick_mend.cooldown = 3
     quick_mend.ability_type = Ability.AbilityType.MAGIC
     _add_ability(quick_mend)
+
+func calculate_game_stage_for_turn(turn: int) -> int:
+    if turn == GameState.max_turns:
+        return 4
+    elif turn == GameState.max_turns + 1:
+        return 5
+    else:
+        var threshold = int(float(GameState.max_turns - 1) / 3)
+        return max(ceil(float(turn) / threshold) , 1)

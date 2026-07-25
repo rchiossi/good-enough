@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clbwkwgl87jnm"
-path="res://.godot/imported/ui_icon 55.png-ff688e6a8971694f924e4ee7cab2ff74.ctex"
+uid="uid://q1ai2p3kgxt7"
+path="res://.godot/imported/turn_1.png-01a76905620cb1014378ffec0ea6980d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/ui_icon 55.png"
-dest_files=["res://.godot/imported/ui_icon 55.png-ff688e6a8971694f924e4ee7cab2ff74.ctex"]
+source_file="res://assets/map/turn_1.png"
+dest_files=["res://.godot/imported/turn_1.png-01a76905620cb1014378ffec0ea6980d.ctex"]
 
 [params]
 

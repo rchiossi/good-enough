@@ -5,8 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="3_a2pkv"]
 [ext_resource type="Material" uid="uid://88dmy0l0iwxt" path="res://shaders/map/burning_material_v2.tres" id="3_fcby6"]
 [ext_resource type="AudioStream" uid="uid://cqqte8khf02jn" path="res://assets/music/Piano 8.ogg" id="4_sqgf4"]
-[ext_resource type="Texture2D" uid="uid://q1ai2p3kgxt7" path="res://assets/map/ui_icon 21.png" id="5_vvrx0"]
-[ext_resource type="Texture2D" uid="uid://clbwkwgl87jnm" path="res://assets/map/ui_icon 55.png" id="6_f17u5"]
+[ext_resource type="PackedScene" uid="uid://bsfv6cyo6e14t" path="res://scenes/map/count_down_label.tscn" id="5_f17u5"]
 [ext_resource type="PackedScene" uid="uid://cvm36ryb3n5mj" path="res://scenes/map/map_line.tscn" id="6_jcaow"]
 [ext_resource type="Texture2D" uid="uid://d0p6syokv5sd7" path="res://assets/combat/Hero/hero.png" id="6_sqgf4"]
 [ext_resource type="Script" uid="uid://br4iwnaapjuvt" path="res://scripts/sounds/bg_music.gd" id="7_04w0f"]
@@ -58,52 +57,11 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 100
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=901952316]
-visible = false
-custom_minimum_size = Vector2(136, 64)
-layout_mode = 2
-text = "20"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer/RichTextLabel" unique_id=1978640650]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_vvrx0")
-expand_mode = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=1185614933]
-visible = false
-custom_minimum_size = Vector2(136, 64)
-layout_mode = 2
-text = "Count"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer/RichTextLabel4" unique_id=377614296]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_f17u5")
-expand_mode = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=258612128]
+[node name="CountDownLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=1106166169 instance=ExtResource("5_f17u5")]
 visible = false
 layout_mode = 2
-text = "The Count"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=2020559813]
+[node name="CountDownLabel2" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=1598751401 instance=ExtResource("5_f17u5")]
 visible = false
 layout_mode = 2
 

@@ -2,6 +2,7 @@ extends Control
 
 var level_scene: PackedScene = preload("uid://00urot6twxdg")
 var line_scene: PackedScene = preload("res://scenes/map/map_line.tscn")
+var header_scene: PackedScene = preload("uid://bsfv6cyo6e14t")
 
 var max_nodes = 4
 var show_line = false
@@ -10,11 +11,11 @@ func _ready() -> void:
     _generate_paths()
     for i in range(GameState.max_turns):
         add_node(i)
-        add_countdown_label(str(GameState.max_turns - i))
+        add_countdown_label(i)
 
     # add Count
     add_node(GameState.max_turns)
-    add_countdown_label("Count")
+    add_countdown_label(GameState.max_turns)
 
     # enable initial nodes
     for n in GameState.connections[GameState.current_position]["children"]:
@@ -96,15 +97,9 @@ func _input(event: InputEvent) -> void:
     if Input.is_action_just_released("show_paths") or event is InputEventMouseButton:
         hide_paths()
 
-func add_countdown_label(countdown: String):
-    var header_label = RichTextLabel.new()
-    header_label.text = "%s" % countdown
-    header_label.custom_minimum_size.x = 136
-    header_label.custom_maximum_size.x = 136
-    header_label.custom_minimum_size.y = 64
-    header_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    header_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    header_label.theme_type_variation = "MapRichTextLabel"
+func add_countdown_label(countdown: int):
+    var header_label: CountdownLabel = header_scene.instantiate()
+    header_label.set_level(countdown)
     %HeaderContainer.add_child(header_label)
 
 func add_node(countdown: int):

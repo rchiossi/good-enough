@@ -106,15 +106,7 @@ func _input(event: InputEvent) -> void:
         _settings_panel.fade_in()
 
 func _calculate_game_stage():
-    if GameState.current_turn == GameState.max_turns:
-        _game_stage = 4
-    elif GameState.current_turn == GameState.max_turns + 1:
-        _game_stage = 5
-    else:
-        var threshold = int(float(GameState.max_turns - 1) / 3)
-        _game_stage = ceil(float(GameState.current_turn) / threshold)
-        if _game_stage < 1:
-            _game_stage = 1 #Allows running directly from the combat scene
+    _game_stage = GameState.calculate_game_stage_for_turn(GameState.current_turn)
 
 func _load_music():
     if _game_stage == 4:
