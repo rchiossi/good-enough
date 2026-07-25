@@ -87,8 +87,10 @@ func init_combat(entities: Dictionary[String, EntityStats], active_entity: Strin
         if entity.is_player:
             _player = entity.name
             entity.damage_dealt.connect( _resolve_player_action)
+            entity.heal_received.connect( _resolve_player_action)
         else:
             entity.damage_dealt.connect(_resolve_enemy_action)
+            entity.heal_received.connect(_resolve_enemy_action)
 
     print(_turn_order)
             
@@ -125,13 +127,14 @@ func take_player_action(ability_name : String, targets : Array[String]) -> void:
         action_taken.emit(_player, target.name, ability.name)
         # This will trigger a damage_taken signal that will call _resolve_player_action
 
-func _resolve_player_action(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int):
+func _resolve_player_action(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int, ability_name: String):
     var event = CombatEvent.new()
 
     event.type = CombatEvent.CombatEventType.DAMAGE
     event.shield_damage = shield_damage
     event.armor_damage = armor_damage
     event.hp_damage = hp_damage
+    event.ability = GameState.all_abilities[ability_name]
 
     event.source = source
     event.target = target
@@ -161,13 +164,14 @@ func take_enemy_action() -> void:
     # This will trigger a damage_taken signal that will call _resolve_enemy_action
 
 
-func _resolve_enemy_action(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int):
+func _resolve_enemy_action(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int, ability_name: String):
     var event = CombatEvent.new()
 
     event.type = CombatEvent.CombatEventType.DAMAGE
     event.shield_damage = shield_damage
     event.armor_damage = armor_damage
     event.hp_damage = hp_damage
+    event.ability = GameState.all_abilities[ability_name]
 
     event.source = source
     event.target = target
@@ -194,4 +198,13 @@ func _check_combat_end() -> bool:
 
 func get_active_entity_name() -> String:
     return _active
+
+func print_event_log() -> void:
+    for event : CombatEvent in combat_events:
+        print(event.source.name
+        + " casted " + event.ability.name
+        + " on " + event.target.name
+        +" dealing " + str(event.shield_damage) + "a,"
+        + str(event.armor_damage) + "a,"
+        + str(event.hp_damage) + "h damage.")
     

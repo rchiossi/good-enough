@@ -182,7 +182,7 @@ func _activate_ability(ability_name):
     _update_abilities_cooldown()
     #This will trigger damage taken, which will call _on_damage_taken
 
-func _on_damage_taken(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int):
+func _on_damage_taken(source: EntityStats, target: EntityStats, shield_damage: int, armor_damage: int, hp_damage: int, _ability_name: String):
     var target_scene = _entity_scenes[target.name]
 
     target_scene.animate_take_damage()
@@ -329,6 +329,8 @@ func _on_death():
         end_panel = defeat_panel
     else:
         end_panel = victory_panel
+
+    _combat_manager.print_event_log()
     
     end_panel.show()
 

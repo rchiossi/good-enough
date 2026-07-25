@@ -22,18 +22,19 @@ var shield : int
 signal hp_changed(old : int, new : int)
 signal armor_changed(old : int, new : int)
 signal shield_changed(old : int, new : int)
-signal damage_dealt(source: EntityStats, target: EntityStats, shield: int, armor: int, hp: int)
-signal damage_taken(source: EntityStats, target: EntityStats, shield: int, armor: int, hp: int)
+signal damage_dealt(source: EntityStats, target: EntityStats, shield: int, armor: int, hp: int, ability_name: String)
+signal damage_taken(source: EntityStats, target: EntityStats, shield: int, armor: int, hp: int, ability_name: String)
+signal heal_received(source: EntityStats, target: EntityStats, shield: int, armor: int, hp: int, ability_name: String)
 
 func init() -> void:
     health = max_health
     armor = max_armor
     shield = max_shield
 
-func deal_damage(target: EntityStats, shield_damage: int, armor_damage: int, health_damage: int):
-    damage_dealt.emit(self, target, shield_damage, armor_damage, health_damage)
+func deal_damage(target: EntityStats, shield_damage: int, armor_damage: int, health_damage: int, ability_name: String):
+    damage_dealt.emit(self, target, shield_damage, armor_damage, health_damage, ability_name)
 
-func take_damage(source: EntityStats, shield_damage: int, armor_damage: int, health_damage: int):
+func take_damage(source: EntityStats, shield_damage: int, armor_damage: int, health_damage: int, ability_name: String):
     var total_shield_damage = 0
     var total_armor_damage = 0
     var total_hp_damage = 0
@@ -44,7 +45,7 @@ func take_damage(source: EntityStats, shield_damage: int, armor_damage: int, hea
         total_shield_damage = shield - new_shield
     shield = new_shield
     if shield > 0:
-        damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage)
+        damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage, ability_name)
         return
 
     var new_armor : int = max(armor - armor_damage, 0)
@@ -53,7 +54,7 @@ func take_damage(source: EntityStats, shield_damage: int, armor_damage: int, hea
         total_armor_damage = armor - new_armor
     armor = new_armor
     if armor > 0:
-        damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage)
+        damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage, ability_name)
         return
 
     var new_health : int = max(health - health_damage, 0)
@@ -63,9 +64,11 @@ func take_damage(source: EntityStats, shield_damage: int, armor_damage: int, hea
     health = new_health
 
     #Always emit, or the turn can get stuck
-    damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage)
+    damage_taken.emit(source, self, total_shield_damage, total_armor_damage, total_hp_damage, ability_name)
 
-func heal(shield_regeneration: int, armor_regeneration: int, health_regeneration: int):
+func heal(source: EntityStats, target: EntityStats, shield_regeneration: int, armor_regeneration: int, health_regeneration: int, ability_name: String):
     shield = min(shield + shield_regeneration, max_shield)
     armor = min(armor + armor_regeneration, max_armor)
     health = min(health + health_regeneration, max_health)
+
+    heal_received.emit(source, target, shield_regeneration, armor_regeneration, health_regeneration, ability_name)

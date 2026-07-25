@@ -43,7 +43,10 @@ var animation_type: AnimationType = AnimationType.CELESTIAL_BONK
 var effect_scene: PackedScene = preload("uid://bpx7ga87e5jcc")
 
 func take_action(source: EntityStats, target: EntityStats) -> void:
-    source.deal_damage(source, shield_damage, armor_damage, health_damage)
-    target.take_damage(source, shield_damage, armor_damage, health_damage)
-    source.heal(shield_regeneration, armor_regeneration, health_regeneration)
+    if source.name == target.name:
+        source.heal(source, target, shield_regeneration, armor_regeneration, health_regeneration, name)
+    else:
+        source.deal_damage(target, shield_damage, armor_damage, health_damage, name)
+        target.take_damage(source, shield_damage, armor_damage, health_damage, name)
+
     remaining_cooldown[source.name] = cooldown
