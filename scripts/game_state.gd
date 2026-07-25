@@ -338,3 +338,23 @@ func _init_abilities():
     fire_spike.cooldown = 3
     fire_spike.ability_type = Ability.AbilityType.PIERCING
     _add_ability(fire_spike)
+
+    var heal_wounds := Ability.new()
+    heal_wounds.health_regeneration = 70
+    heal_wounds.name = "Heal Wounds"
+    heal_wounds.icon = preload("uid://bmotw7e36xw2m")
+    heal_wounds.description = "You take a moment to heal your deepest wounds. Significantly restoring health."
+    heal_wounds.cooldown = 10
+    heal_wounds.ability_type = Ability.AbilityType.MAGIC
+    _add_ability(heal_wounds)
+
+    var quick_mend := Ability.new()
+    quick_mend.health_regeneration = 5
+    quick_mend.shield_regeneration = 5
+    quick_mend.armor_regeneration = 5
+    quick_mend.name = "Quick Mend"
+    quick_mend.icon = preload("uid://5jahvm77bwuj")
+    quick_mend.description = "You take a moment to heal your deepest wounds. Significantly restoring health."
+    quick_mend.cooldown = 3
+    quick_mend.ability_type = Ability.AbilityType.MAGIC
+    _add_ability(quick_mend)
