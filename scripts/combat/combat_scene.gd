@@ -151,7 +151,7 @@ func _load_portraits():
     _enemy_portrait.texture = _enemy_stats.portrait
 
 func _skip_combat():
-    SceneLoader.load_scene("uid://clhtpadgac6l7")
+    SceneLoader.load_scene("uid://bdqa7w342rmg8")
 
 func _show_ability_info(ability_name : String):
     _ability_info.set_ability(ability_name)
