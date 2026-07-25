@@ -3,7 +3,6 @@ extends Node2D
 class_name SunStrikeAnimation
 
 @onready var demon_bite_animation: AnimatedSprite2D = $DemonBiteAnimation
-@onready var explosion_animation: AnimatedSprite2D = $ExplosionAnimation
 @onready var lightning_bolt_animation: AnimatedSprite2D = $LightningBoltAnimation
 @onready var celestial_bonk_animation: AnimatedSprite2D = $CelestialBonkAnimation
 @onready var lightning_bolt_sound: AudioStreamPlayer2D = $LightningBoltSound
@@ -36,8 +35,6 @@ func play(animation_type: Ability.AnimationType, position_to_paint : Vector2, si
     print("ANIMATION_TYPE=", animation_type)
     if animation_type == Ability.AnimationType.SUN_BLAST:
         animation = demon_bite_animation
-    if animation_type == Ability.AnimationType.EXPLOSION:
-        animation = explosion_animation
     if animation_type == Ability.AnimationType.LIGHTNING_BOLT:
         sound = lightning_bolt_sound
         animation = lightning_bolt_animation
