@@ -8,7 +8,7 @@ class_name EntityScene
 @onready var _sprite : TextureRect = %Sprite
 
 const animation_attack_duration : float = 0.3
-const animation_damage_duration : float = 2.0
+const animation_damage_duration : float = 1.5
 
 var _tween : Tween
 

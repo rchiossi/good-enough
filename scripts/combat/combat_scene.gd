@@ -42,6 +42,8 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var damage_number_duration : float = 2.0
 @export var damage_number_spread : int = 50
 
+@export var enemy_attack_delay : float = 2.0
+
 var _game_stage : int = 1
 
 var _backgrounds : Dictionary[String, Texture2D]= {
@@ -223,7 +225,7 @@ func _on_state_changed(state):
                 _update_turn_indicator(player.stats.name)
         CombatManager.CombatState.WAITING_FOR_ENEMY_ACTION:
             var tween = create_tween()
-            tween.tween_interval(1.0)
+            tween.tween_interval(enemy_attack_delay)
             tween.tween_callback(_combat_manager.take_enemy_action)
         CombatManager.CombatState.ENEMY_ACTION_STARTED:
             _update_turn_indicator(player.stats.name)
