@@ -27,7 +27,7 @@ scale_curve = SubResource("CurveTexture_jjces")
 color_ramp = SubResource("GradientTexture1D_pejcq")
 
 [node name="SimpleExplosion" type="GPUParticles2D" unique_id=1198174664]
-self_modulate = Color(0.6804141, 0, 0.14666626, 1)
+self_modulate = Color(0.7019608, 0.28627452, 0.2784314, 1)
 emitting = false
 amount = 50
 one_shot = true
