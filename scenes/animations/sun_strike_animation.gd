@@ -35,6 +35,9 @@ class_name SunStrikeAnimation
 @onready var abyssal_pain_sound: AudioStreamPlayer2D = $AbyssalPainSound
 @onready var abyssal_pain_animation: AnimatedSprite2D = $AbyssalPainAnimation
 
+@onready var tornado_animation: AnimatedSprite2D = $TornadoAnimation
+@onready var tornado_sound: AudioStreamPlayer2D = $TornadoSound
+
 signal animation_completed
 
 var _is_sound_done = false
@@ -81,6 +84,12 @@ func play(animation_type: Ability.AnimationType, position_to_paint : Vector2, si
     if animation_type == Ability.AnimationType.FROST_TOMB:
         animation = ice_tomb_animation
         sound = ice_tomb_sound
+    if animation_type == Ability.AnimationType.TORNADO:
+        animation = tornado_animation
+        sound = tornado_sound
+    if animation_type == Ability.AnimationType.ABYSSAL_SURGE:
+        animation = abyssal_pain_animation
+        sound = abyssal_pain_sound
 
     animation.animation_finished.connect(_on_animation_completed)
 

@@ -21,7 +21,8 @@ enum AnimationType {
     BLOOD_BEND_BIG,
     BLOOD_BEND_MEDIUM,
     FROST_TOMB,
-    ABYSSAL_SURGE
+    ABYSSAL_SURGE,
+    TORNADO
 }
 
 var shield_damage: int = 0

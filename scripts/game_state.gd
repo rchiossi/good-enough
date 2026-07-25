@@ -404,15 +404,28 @@ func _init_abilities():
     _add_ability(water_surge)
 
     var abyssal_pain := Ability.new()
-    water_surge.shield_damage = 25
-    water_surge.armor_damage = 25
-    water_surge.health_damage = 0
-    water_surge.name = "Abyssal Pain"
-    water_surge.icon = preload("uid://3y2w3lbr8rck")
-    water_surge.cooldown = 5
-    water_surge.ability_type = Ability.AbilityType.PIERCING
-    water_surge.animation_type = Ability.AnimationType.ABYSSAL_SURGE
-    _add_ability(water_surge)
+    abyssal_pain.shield_damage = 25
+    abyssal_pain.armor_damage = 25
+    abyssal_pain.health_damage = 0
+    abyssal_pain.name = "Abyssal Pain"
+    abyssal_pain.icon = preload("uid://3y2w3lbr8rck")
+    abyssal_pain.description = "You forge a magical pain onto your enemy."
+    abyssal_pain.cooldown = 5
+    abyssal_pain.ability_type = Ability.AbilityType.PIERCING
+    abyssal_pain.animation_type = Ability.AnimationType.ABYSSAL_SURGE
+    _add_ability(abyssal_pain)
+
+    var tornado := Ability.new()
+    tornado.shield_damage = 10
+    tornado.armor_damage = 10
+    tornado.health_damage = 10
+    tornado.name = "Fury Tornado"
+    tornado.description = "You cast a massive tornado. It destroys everything in its path."
+    tornado.icon = preload("uid://b0knc0runeucs")
+    tornado.cooldown = 5
+    tornado.ability_type = Ability.AbilityType.PIERCING
+    tornado.animation_type = Ability.AnimationType.TORNADO
+    _add_ability(tornado)
 
 
 func calculate_game_stage_for_turn(turn: int) -> int:
