@@ -22,8 +22,8 @@ func _ready():
 
 func node_selected(button: MapChoiceButton):
     print("[%s] selected" % [level_id, ])
-    GameState.map[level_id]["status"]  = 0
     GameState.current_position = button.coords
     GameState.current_turn = button.coords.x
+    GameState.map[GameState.current_position.x]["status"]  = 0
     GameState.map[GameState.current_position.x]["nodes"][GameState.current_position.y]["visited"] = 1
     button.on_pressed()

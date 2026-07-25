@@ -39,6 +39,8 @@ func set_coords(c: Vector2i):
     node_type = GameState.map[coords.x]["nodes"][coords.y]["type"]
     icon = types_definitions[node_type]["icon"]
     tooltip_text = GameState.NodeTypes.keys()[node_type]
+    if GameState.DEBUG:
+        tooltip_text += " (%s, %s)" % [coords.x, coords.y]
     if GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1:
         %DoneHighlight.visible = true
     material.set("shader_parameter/ColorParameter", color_disabled)
@@ -55,14 +57,10 @@ func hide_highlight():
         material.set("shader_parameter/ColorParameter", color_disabled)
     else:
         material.set("shader_parameter/ColorParameter", color_enabled)
-        
 
 func enable_button():
     disabled = false
-    if coords.x == GameState.max_turns:
-        material.set("shader_parameter/Width", 0)
-    else:
-        material.set("shader_parameter/ColorParameter", color_enabled)
+    material.set("shader_parameter/ColorParameter", color_enabled)
 
 func _on_mouse_entered() -> void:
     show_highlight()

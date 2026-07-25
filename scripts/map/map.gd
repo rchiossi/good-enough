@@ -24,6 +24,12 @@ func _ready() -> void:
     else:
         %PlayerSprite2D.visible = true
     show_line = true
+    if GameState.DEBUG:
+        $MarginContainer.visible = true
+        %Day.placeholder_text = str(GameState.current_position.x)
+        %Node.placeholder_text = str(GameState.current_position.y)
+    else:
+        $MarginContainer.visible = false
 
 func _process(_delta: float) -> void:
     var current_node: MapChoiceButton = GameState.nodes.get(GameState.current_position)
@@ -219,3 +225,17 @@ func _get_next_neighbours(coords: Vector2i) -> Array[Vector2i]:
         if GameState.map[coords.x + 1]["nodes"][j]["type"] != GameState.NodeTypes.Null:
             neighbours.append(Vector2i(coords.x + 1, j))
     return neighbours
+
+func _on_skip_button_pressed() -> void:
+    var x = int(%Day.text)
+    var y = int(%Node.text)
+    goto(Vector2i(x, y))
+
+func goto(node: Vector2i) -> void:
+    if not GameState.nodes.get(node) or GameState.nodes[node].node_type == GameState.NodeTypes.Null:
+        return
+    GameState.current_position = node
+    GameState.current_turn = GameState.current_position.x
+    GameState.map[GameState.current_position.x]["status"]  = 0
+    GameState.map[GameState.current_position.x]["nodes"][GameState.current_position.y]["visited"] = 1
+    SceneLoader.load_scene("res://scenes/map/map.tscn")
