@@ -53,14 +53,11 @@ var _combat_manager : CombatManager = CombatManager.new()
 var _entity_scenes : Dictionary[String, EntityScene] = {}
 
 func _ready() -> void:
+    _calculate_game_stage()
+
     _player_stats = GameState.player_stats
     _player_stats.damage_taken.connect(_on_damage_taken)
     _player_stats.init()
-
-    var threshold = int(float(GameState.max_turns - 1) / 3)
-    _game_stage = ceil(float(GameState.current_turn) / threshold)
-    if _game_stage < 1:
-        _game_stage = 1 #Allows running directly from the combat scene
 
     _enemy_stats = GameState.enemy_list.values().filter(func(e): return e.stage == _game_stage).pick_random()
     _enemy_stats.damage_taken.connect(_on_damage_taken)
@@ -101,6 +98,17 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):
         _settings_panel.fade_in()
+
+func _calculate_game_stage():
+    if GameState.current_turn == GameState.max_turns:
+        _game_stage = 4
+    elif GameState.current_turn == GameState.max_turns + 1:
+        _game_stage = 5
+    else:
+        var threshold = int(float(GameState.max_turns - 1) / 3)
+        _game_stage = ceil(float(GameState.current_turn) / threshold)
+        if _game_stage < 1:
+            _game_stage = 1 #Allows running directly from the combat scene
 
 func _on_new_turn(turn_count: int):
     if turn_count % 2 != 0:
