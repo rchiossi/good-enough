@@ -4,9 +4,12 @@
 [ext_resource type="Script" uid="uid://crwlg463ssqi4" path="res://scripts/map/map.gd" id="2_ph54e"]
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="3_a2pkv"]
 [ext_resource type="AudioStream" uid="uid://cqqte8khf02jn" path="res://assets/music/Piano 8.ogg" id="4_sqgf4"]
+[ext_resource type="PackedScene" uid="uid://bsfv6cyo6e14t" path="res://scenes/map/count_down_label.tscn" id="5_sqgf4"]
 [ext_resource type="PackedScene" uid="uid://cvm36ryb3n5mj" path="res://scenes/map/map_line.tscn" id="6_jcaow"]
 [ext_resource type="Texture2D" uid="uid://d0p6syokv5sd7" path="res://assets/combat/Hero/hero.png" id="6_sqgf4"]
 [ext_resource type="Script" uid="uid://br4iwnaapjuvt" path="res://scripts/sounds/bg_music.gd" id="7_04w0f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sqgf4"]
 
 [node name="MapScene" type="Control" unique_id=1321419604]
 layout_mode = 3
@@ -55,8 +58,13 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 100
 
+[node name="CountDownLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=1106166169 instance=ExtResource("5_sqgf4")]
+visible = false
+layout_mode = 2
+
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/PanelContainer/VBoxContainer" unique_id=1155381053]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_sqgf4")
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/PanelContainer/VBoxContainer" unique_id=10030059]
 layout_mode = 2
