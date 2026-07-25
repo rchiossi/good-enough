@@ -21,6 +21,8 @@ signal possible_damage(hp: int, armour: int, shield: int)
 
 var stats : EntityStats
 
+signal reverse_death_complete
+
 func init(entity_stats: EntityStats):
     offset_transform_enabled = true
 
@@ -117,3 +119,21 @@ func animate_death():
     tween.parallel().tween_property(_stats_panel, "modulate:a", 0.0, death_animation_duration)
 
     tween.tween_callback(func(): death_animation_complete.emit())
+
+func animate_reverse_death():
+    var tween = create_tween()
+
+    tween.set_trans(Tween.TRANS_SINE)
+    tween.set_ease(Tween.EASE_OUT)
+
+    _shield_bar._main_bar.value = 0
+    _armor_bar._main_bar.value = 0
+    _health_bar._main_bar.value = 0
+    _shield_bar.animate_change(0, stats.max_shield, 2.0, true)
+    _armor_bar.animate_change(0, stats.max_armor, 2.0, true)
+    _health_bar.animate_change(0, stats.max_health, 2.0, true)
+
+    tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 0.0, death_animation_duration)
+    tween.parallel().tween_property(_stats_panel, "modulate:a", 1.0, death_animation_duration)
+
+    tween.tween_callback(func(): reverse_death_complete.emit())

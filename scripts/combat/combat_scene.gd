@@ -60,6 +60,7 @@ var _entity_scenes : Dictionary[String, EntityScene] = {}
 
 func _ready() -> void:
     _calculate_game_stage()
+    _game_stage = 4
 
     _load_music()
 
@@ -309,7 +310,20 @@ func _play_death_animation():
     tween.tween_interval(death_animation_delay)
     tween.tween_callback(_on_death)
 
+func _play_reverse_death_animation():
+    var tween = create_tween()
+
+    tween.set_trans(Tween.TRANS_BACK)
+    tween.set_ease(Tween.EASE_OUT)
+
+    tween.tween_property(_background, "material:shader_parameter/flash_percentage", 0.1, 1.0)
+    tween.tween_property(_background, "material:shader_parameter/flash_color", Color("#eff29b"), 1.0)
+
 func _on_death():
+    if _game_stage == 4:
+        _load_boss_phase2()
+        return
+
     var end_panel : MarginContainer
     if player.stats.health == 0:
         end_panel = defeat_panel
@@ -331,3 +345,32 @@ func _on_action_taken(_source_name: String, target_name: String, ability_name: S
     var target = _entity_scenes[target_name]
 
     _play_ability_effect(source, target, ability)
+
+func _load_boss_phase2():
+    _game_stage = 5
+
+    _load_music()
+
+    _enemy_stats = GameState.enemy_list.values().filter(func(e): return e.stage == _game_stage).pick_random()
+    _enemy_stats.damage_taken.connect(_on_damage_taken)
+    _enemy_stats.init()
+
+    enemy.init(_enemy_stats)
+    _entity_scenes[enemy.stats.name] = enemy
+
+    _load_portraits()
+
+    var entities : Dictionary[String, EntityStats] = {}
+    entities[_player_stats.name] = _player_stats
+    entities[_enemy_stats.name] = _enemy_stats
+    _combat_manager.init_combat(entities, _player_stats.name)
+
+    enemy.reverse_death_complete.connect(_proceed_with_phase2)
+
+    _update_turn_indicator(_player_stats.name)
+
+    enemy.animate_reverse_death()
+
+func _proceed_with_phase2():
+    _play_reverse_death_animation()
+    _animate_start_combat.call_deferred()

@@ -39,9 +39,7 @@ func indicate_damage(damage: int):
 func clear_damage_indication():
     _damage_bar.value = _main_bar.value
 
-func animate_change(old_value: int, new_value: int, duration: float):
-    var total_duration : float = lead_percentage + tail_percentage
-
+func animate_change(old_value: int, new_value: int, duration: float, immediate: bool = false):
     clear_damage_indication()
 
     var tween = create_tween()
@@ -49,7 +47,12 @@ func animate_change(old_value: int, new_value: int, duration: float):
     #tween.set_trans(Tween.TRANS_SINE)
     #tween.set_ease(Tween.EASE_OUT)
 
-    tween.tween_property(_damage_bar, "value", new_value, duration * lead_percentage)
-    tween.tween_interval(duration * pause_percentage)
-    tween.tween_property(_main_bar, "value", new_value, duration * tail_percentage)
-    tween.parallel().tween_method(func (value): _current_label.text = str(value), old_value, new_value, total_duration)
+    if immediate:
+        tween.tween_property(_damage_bar, "value", new_value, duration)
+        tween.parallel().tween_property(_main_bar, "value", new_value, duration)
+        tween.parallel().tween_method(func (value): _current_label.text = str(value), old_value, new_value, duration)
+    else:
+        tween.tween_property(_damage_bar, "value", new_value, duration * lead_percentage)
+        tween.tween_interval(duration * pause_percentage)
+        tween.tween_property(_main_bar, "value", new_value, duration * tail_percentage)
+        tween.parallel().tween_method(func (value): _current_label.text = str(value), old_value, new_value, duration)
