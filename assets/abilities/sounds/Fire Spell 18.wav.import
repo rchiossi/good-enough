@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bcpxkelhqbh4q"
+path="res://.godot/imported/Fire Spell 18.wav-63b0f1068631b54f71a85d89fe4eeebd.sample"
+
+[deps]
+
+source_file="res://assets/abilities/sounds/Fire Spell 18.wav"
+dest_files=["res://.godot/imported/Fire Spell 18.wav-63b0f1068631b54f71a85d89fe4eeebd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

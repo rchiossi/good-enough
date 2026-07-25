@@ -41,7 +41,7 @@ texture = ExtResource("1_nbg2d")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Fireball"
+text = "Cursed Explosion"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=802000312]
 layout_mode = 2

@@ -7,7 +7,7 @@ class_name CombatAbilityTooltip
 @onready var armor_damage_label : Label = %ArmorDamageLabel
 @onready var shield_damage_label : Label = %ShieldDamageLabel
 
-var ability_name : String = "Fireball"
+var ability_name : String = "Cursed Explosion"
 
 func _ready() -> void:
     load_ability()

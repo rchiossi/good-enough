@@ -10,7 +10,7 @@ class_name CombatAbilityScene
 @onready var _animation_hover: AnimationScaleTwitch = %AnimationScaleTwitch
 @onready var _animation_click: AnimationScaleBounce = %AnimationScaleBounce
 
-var _ability_name : String = "Fireball"
+var _ability_name : String = "Cursed Explosion"
 var _tooltip_scene : PackedScene = preload("res://scenes/Combat/combat_ability_tooltip.tscn")
 var _in_combat : bool = true
 

@@ -26,6 +26,15 @@ class_name SunStrikeAnimation
 @onready var blood_bend_medium_sound: AudioStreamPlayer2D = $BloodBendMediumSound
 @onready var blood_bend_medium_animation: AnimatedSprite2D = $BloodBendMediumAnimation
 
+@onready var dark_spike_animation: AnimatedSprite2D = $DarkSpikeAnimation
+@onready var dark_spike_sound: AudioStreamPlayer2D = $DarkSpikeSound
+
+@onready var ice_tomb_animation: AnimatedSprite2D = $IceTombAnimation
+@onready var ice_tomb_sound: AudioStreamPlayer2D = $IceTombSound
+
+@onready var abyssal_pain_sound: AudioStreamPlayer2D = $AbyssalPainSound
+@onready var abyssal_pain_animation: AnimatedSprite2D = $AbyssalPainAnimation
+
 signal animation_completed
 
 var _is_sound_done = false
@@ -42,8 +51,9 @@ func play(animation_type: Ability.AnimationType, position_to_paint : Vector2, si
     var sound : AudioStreamPlayer2D = null
 
     print("ANIMATION_TYPE=", animation_type)
-    if animation_type == Ability.AnimationType.SUN_BLAST:
-        animation = demon_bite_animation
+    if animation_type == Ability.AnimationType.DARK_SPIKE_EXPLOSION:
+        animation = dark_spike_animation
+        sound = dark_spike_sound
     if animation_type == Ability.AnimationType.LIGHTNING_BOLT:
         sound = lightning_bolt_sound
         animation = lightning_bolt_animation
@@ -68,6 +78,9 @@ func play(animation_type: Ability.AnimationType, position_to_paint : Vector2, si
     if animation_type == Ability.AnimationType.BLOOD_BEND_MEDIUM:
         animation = blood_bend_medium_animation
         sound = blood_bend_medium_sound
+    if animation_type == Ability.AnimationType.FROST_TOMB:
+        animation = ice_tomb_animation
+        sound = ice_tomb_sound
 
     animation.animation_finished.connect(_on_animation_completed)
 

@@ -114,7 +114,7 @@ func _init_enemies() -> void:
     enemy.is_player = false
     enemy.stage = 2
     _register_ability(enemy, "Punch")
-    _register_ability(enemy, "Fireball")
+    _register_ability(enemy, "Cursed Explosion")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -157,7 +157,7 @@ func _init_enemies() -> void:
     enemy.stage = 3
     _register_ability(enemy, "Punch")
     _register_ability(enemy, "Blood Weave")
-    _register_ability(enemy, "Fireball")
+    _register_ability(enemy, "Cursed Explosion")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -187,7 +187,7 @@ func _init_enemies() -> void:
     enemy.stage = 3
     _register_ability(enemy, "Punch")
     _register_ability(enemy, "Ice Dart")
-    _register_ability(enemy, "Fireball")
+    _register_ability(enemy, "Cursed Explosion")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -200,7 +200,7 @@ func _init_enemies() -> void:
     enemy.max_shield = 200
     enemy.is_player = false
     enemy.stage = 4
-    _register_ability(enemy, "Fireball")
+    _register_ability(enemy, "Cursed Explosion")
     _register_ability(enemy, "Ice Dart")
     _register_ability(enemy, "Visceral Bleed")
     _register_ability(enemy, "Incinerate")
@@ -246,16 +246,17 @@ func _init_abilities():
     punch.ability_type = Ability.AbilityType.NORMAL
     _add_ability(punch)
 
-    var fireball := Ability.new()
-    fireball.name = "Fireball"
-    fireball.shield_damage = 15
-    fireball.armor_damage = 5
-    fireball.health_damage = 5
-    fireball.icon = preload("uid://n1peuh4vn6i0")
-    fireball.description = "Some description"
-    fireball.cooldown = 2
-    fireball.ability_type = Ability.AbilityType.MAGIC
-    _add_ability(fireball)
+    var cursed_explosion := Ability.new()
+    cursed_explosion.name = "Cursed Explosion"
+    cursed_explosion.shield_damage = 15
+    cursed_explosion.armor_damage = 5
+    cursed_explosion.health_damage = 5
+    cursed_explosion.icon = preload("uid://du33uf7su8cdy")
+    cursed_explosion.description = "An explosive curse is unleashed upon your enemy."
+    cursed_explosion.cooldown = 4
+    cursed_explosion.ability_type = Ability.AbilityType.MAGIC
+    cursed_explosion.animation_type = Ability.AnimationType.DARK_SPIKE_EXPLOSION
+    _add_ability(cursed_explosion)
 
     var ice_dart := Ability.new()
     ice_dart.shield_damage = 25
@@ -326,16 +327,16 @@ func _init_abilities():
     blood_transfusion.ability_type = Ability.AbilityType.BLUNT
     _add_ability(blood_transfusion)
 
-    var frost_storm := Ability.new()
-    frost_storm.health_damage = 5
-    frost_storm.shield_damage = 50
-    frost_storm.health_regeneration = -5
-    frost_storm.name = "Frost Storm"
-    frost_storm.icon = preload("uid://dj785vcffstom")
-    frost_storm.description = "You cast a large storm of ice causing significant shield damage. Also induces frostbite 5 damage to the target and yourself."
-    frost_storm.cooldown = 4
-    frost_storm.ability_type = Ability.AbilityType.MAGIC
-    _add_ability(frost_storm)
+    var frost_tomb := Ability.new()
+    frost_tomb.health_damage = 5
+    frost_tomb.shield_damage = 50
+    frost_tomb.name = "Frost Tomb"
+    frost_tomb.icon = preload("uid://cm8yuipv7sih1")
+    frost_tomb.description = "You create a large frost tomb and trap your enemy."
+    frost_tomb.cooldown = 4
+    frost_tomb.ability_type = Ability.AbilityType.MAGIC
+    frost_tomb.animation_type = Ability.AnimationType.FROST_TOMB
+    _add_ability(frost_tomb)
 
     var phoenix_flame := Ability.new()
     phoenix_flame.health_damage = 0
@@ -400,6 +401,17 @@ func _init_abilities():
     water_surge.cooldown = 3
     water_surge.ability_type = Ability.AbilityType.PIERCING
     water_surge.animation_type = Ability.AnimationType.WATER_SURGE
+    _add_ability(water_surge)
+
+    var abyssal_pain := Ability.new()
+    water_surge.shield_damage = 25
+    water_surge.armor_damage = 25
+    water_surge.health_damage = 0
+    water_surge.name = "Abyssal Pain"
+    water_surge.icon = preload("uid://3y2w3lbr8rck")
+    water_surge.cooldown = 5
+    water_surge.ability_type = Ability.AbilityType.PIERCING
+    water_surge.animation_type = Ability.AnimationType.ABYSSAL_SURGE
     _add_ability(water_surge)
 
 

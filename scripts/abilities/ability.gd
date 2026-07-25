@@ -10,8 +10,8 @@ enum AbilityType {
 
 enum AnimationType {
     NONE,
-    SUN_BLAST,
-    EXPLOSION,
+    DEMON_BITE,
+    DARK_SPIKE_EXPLOSION,
     LIGHTNING_BOLT,
     CELESTIAL_BONK,
     FIRE_TORNADO,
@@ -19,7 +19,9 @@ enum AnimationType {
     WATER_SURGE,
     PHOENIX_FLAME,
     BLOOD_BEND_BIG,
-    BLOOD_BEND_MEDIUM
+    BLOOD_BEND_MEDIUM,
+    FROST_TOMB,
+    ABYSSAL_SURGE
 }
 
 var shield_damage: int = 0
