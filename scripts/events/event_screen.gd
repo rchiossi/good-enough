@@ -155,16 +155,25 @@ func _ready() -> void:
     well_event.take_action_func = Callable(well_event_callback)
     available_events.append(well_event)
 
-    choose_random_event() 
+    while not choose_random_event():
+        assert(len(available_events) != len(GameState.used_events))
+        continue
 
-func choose_random_event():
+func choose_random_event() -> bool:
     var event_index = randi_range(0, len(available_events)-1)
+
+    if event_index in GameState.used_events:
+        return false
+
+    GameState.used_events.append(event_index)
+
     var picked_event = available_events[event_index]
     %FirstPageText.text = picked_event.text
     %AcceptButtonText.text = picked_event.accept_text
-    
     accept_button.pressed.connect(picked_event.take_action_func)
     reject_button.text = picked_event.reject_text
+    
+    return true
 
 #event1callback
 func existential_event_callback(ability_to_toss: String):

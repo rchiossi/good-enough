@@ -9,6 +9,8 @@ enum NodeTypes {
     Count,
 }
 
+var used_events: Array[int] = []
+
 var map: Dictionary = {}
 var current_position: Vector2i = Vector2i(-1, -1)
 var nodes: Dictionary[Vector2i, MapChoiceButton] = {}
