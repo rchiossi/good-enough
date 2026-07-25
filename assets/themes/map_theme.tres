@@ -1,12 +1,20 @@
 [gd_resource type="Theme" format=3 uid="uid://81xj75vwbcjg"]
 
 [ext_resource type="Texture2D" uid="uid://bqf71fb8v22c3" path="res://assets/map/backgound_proposal/Castle_Background.png" id="1_8b0q7"]
+[ext_resource type="Texture2D" uid="uid://dcudta8tyvg00" path="res://assets/map/progress meter.png" id="1_qyls5"]
 [ext_resource type="FontFile" uid="uid://bep51vmupui4e" path="res://assets/BoldPixels.ttf" id="2_8b0q7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8b0q7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdhkq"]
 texture = SubResource("CompressedTexture2D_8b0q7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqgf4"]
+texture = ExtResource("1_qyls5")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxwrl"]
 bg_color = Color(0.06666667, 0.8, 0.007843138, 0.1764706)
@@ -23,7 +31,9 @@ modulate_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
 MapBackground/base_type = &"Panel"
 MapBackground/styles/panel = SubResource("StyleBoxTexture_fdhkq")
 MapChoiceButton/base_type = &"CheckBox"
-MapChoiceButton/constants/icon_max_width = 108
+MapChoiceButton/constants/icon_max_width = 114
+MapHeaderPanelContainer/base_type = &"PanelContainer"
+MapHeaderPanelContainer/styles/panel = SubResource("StyleBoxTexture_sqgf4")
 MapHighlightPanelContainer/base_type = &"PanelContainer"
 MapHighlightPanelContainer/styles/panel = SubResource("StyleBoxFlat_vxwrl")
 MapMarginContainer/base_type = &"MarginContainer"

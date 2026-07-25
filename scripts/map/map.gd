@@ -23,6 +23,10 @@ func _ready() -> void:
         GameState.nodes[Vector2i(0, 0)].enable_button()
     else:
         %PlayerSprite2D.visible = true
+        await get_tree().process_frame
+        %ScrollContainer.ensure_control_visible(GameState.nodes[GameState.current_position])
+        if %ScrollContainer.scroll_horizontal:
+            %ScrollContainer.scroll_horizontal += 360
     show_line = true
     if GameState.DEBUG:
         $MarginContainer.visible = true
@@ -102,17 +106,11 @@ func add_countdown_label(countdown: String):
     header_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     header_label.theme_type_variation = "MapRichTextLabel"
     %HeaderContainer.add_child(header_label)
-    var separator2 = VSeparator.new()
-    separator2.custom_minimum_size.x = 96
-    %HeaderContainer.add_child(separator2)
 
 func add_node(countdown: int):
     var level = level_scene.instantiate()
     level.level_id = countdown
     %MapNodesContainer.add_child(level)
-    var separator = VSeparator.new()
-    separator.custom_minimum_size.x = 96
-    %MapNodesContainer.add_child(separator)
 
 func generate_map():
     if GameState.map:

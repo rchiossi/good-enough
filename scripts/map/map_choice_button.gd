@@ -37,31 +37,31 @@ func _ready() -> void:
 func set_coords(c: Vector2i):
     coords = c
     node_type = GameState.map[coords.x]["nodes"][coords.y]["type"]
-    icon = types_definitions[node_type]["icon"]
+    %ButtonTexture.texture = types_definitions[node_type]["icon"]
     tooltip_text = GameState.NodeTypes.keys()[node_type]
     if GameState.DEBUG:
         tooltip_text += " (%s, %s)" % [coords.x, coords.y]
     if GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1:
         %DoneHighlight.visible = true
-    material.set("shader_parameter/ColorParameter", color_disabled)
+    %ButtonTexture.material.set("shader_parameter/ColorParameter", color_disabled)
 
 func on_pressed():
     SceneLoader.load_scene(types_definitions[node_type]["scene"])
 
 func show_highlight():
     if disabled:
-        material.set("shader_parameter/ColorParameter", color_highlight)
+        %ButtonTexture.material.set("shader_parameter/ColorParameter", color_highlight)
     
 func hide_highlight():
     if disabled:
-        material.set("shader_parameter/ColorParameter", color_disabled)
+        %ButtonTexture.material.set("shader_parameter/ColorParameter", color_disabled)
     else:
-        material.set("shader_parameter/ColorParameter", color_enabled)
+        %ButtonTexture.material.set("shader_parameter/ColorParameter", color_enabled)
 
 func enable_button():
     disabled = false
     animate_idle()
-    material.set("shader_parameter/ColorParameter", color_enabled)
+    %ButtonTexture.material.set("shader_parameter/ColorParameter", color_enabled)
 
 func _on_mouse_entered() -> void:
     show_highlight()

@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="3_a2pkv"]
 [ext_resource type="Material" uid="uid://88dmy0l0iwxt" path="res://shaders/map/burning_material_v2.tres" id="3_fcby6"]
 [ext_resource type="AudioStream" uid="uid://cqqte8khf02jn" path="res://assets/music/Piano 8.ogg" id="4_sqgf4"]
+[ext_resource type="Texture2D" uid="uid://q1ai2p3kgxt7" path="res://assets/map/ui_icon 21.png" id="5_vvrx0"]
+[ext_resource type="Texture2D" uid="uid://clbwkwgl87jnm" path="res://assets/map/ui_icon 55.png" id="6_f17u5"]
 [ext_resource type="PackedScene" uid="uid://cvm36ryb3n5mj" path="res://scenes/map/map_line.tscn" id="6_jcaow"]
 [ext_resource type="Texture2D" uid="uid://d0p6syokv5sd7" path="res://assets/combat/Hero/hero.png" id="6_sqgf4"]
 [ext_resource type="Script" uid="uid://br4iwnaapjuvt" path="res://scripts/sounds/bg_music.gd" id="7_04w0f"]
@@ -28,6 +30,7 @@ hover_sound = ExtResource("4_sqgf4")
 metadata/_custom_type_script = "uid://br4iwnaapjuvt"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1277744514]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,29 +45,86 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"MapPanelContainer"
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/PanelContainer" unique_id=10030059]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/PanelContainer" unique_id=437135677]
+layout_mode = 2
+
+[node name="HeaderPanelContainer" type="PanelContainer" parent="ScrollContainer/PanelContainer/VBoxContainer" unique_id=522200397]
+layout_mode = 2
+theme_type_variation = &"MapHeaderPanelContainer"
+
+[node name="HeaderContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer" unique_id=605262278]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 100
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=901952316]
+visible = false
+custom_minimum_size = Vector2(136, 64)
+layout_mode = 2
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer/RichTextLabel" unique_id=1978640650]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_vvrx0")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=1185614933]
+visible = false
+custom_minimum_size = Vector2(136, 64)
+layout_mode = 2
+text = "Count"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer/RichTextLabel4" unique_id=377614296]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_f17u5")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=258612128]
+visible = false
+layout_mode = 2
+text = "The Count"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=2020559813]
+visible = false
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/PanelContainer/VBoxContainer" unique_id=1155381053]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/PanelContainer/VBoxContainer" unique_id=10030059]
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"MapMarginContainer"
+theme_override_constants/margin_left = 30
 theme_override_constants/margin_right = 166
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/PanelContainer/MarginContainer" unique_id=437135677]
-layout_mode = 2
-
-[node name="HeaderContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=605262278]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1155381053]
-layout_mode = 2
-
-[node name="MapNodesContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=955652825]
+[node name="MapNodesContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/VBoxContainer/MarginContainer" unique_id=955652825]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 100
 
 [node name="SettingsPanel" parent="." unique_id=1446633356 instance=ExtResource("3_a2pkv")]
 unique_name_in_owner = true
@@ -142,6 +202,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="FirePanel" type="Panel" parent="FireEffectLayer" unique_id=532340985]
 unique_name_in_owner = true
+visible = false
 material = ExtResource("3_fcby6")
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -167,8 +228,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
+offset_left = -201.0
+offset_top = 65.0
+offset_right = -1.0
+offset_bottom = 165.0
 grow_horizontal = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=205561871]

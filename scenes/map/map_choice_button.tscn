@@ -13,10 +13,17 @@
 resource_local_to_scene = true
 shader = ExtResource("1_je7sh")
 shader_parameter/ColorParameter = Color(0.9960608, 0.5078196, 0.41898406, 1)
-shader_parameter/Width = 12.0
+shader_parameter/Width = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_csech"]
+resource_local_to_scene = true
+shader = ExtResource("1_je7sh")
+shader_parameter/ColorParameter = Color(0, 0, 0, 1)
+shader_parameter/Width = 2.0
 
 [node name="MapChoiceButton" type="Button" unique_id=135015083]
 material = SubResource("ShaderMaterial_jcaow")
+custom_minimum_size = Vector2(136, 72)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,8 +34,31 @@ theme = ExtResource("1_7pqfr")
 theme_type_variation = &"MapChoiceButton"
 disabled = true
 toggle_mode = true
-icon = ExtResource("3_je7sh")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("3_nsik4")
+
+[node name="ButtonTexture" type="TextureRect" parent="." unique_id=970390843]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_csech")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_je7sh")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="AnimationScaleTwitch" type="Control" parent="." unique_id=840345928]
 anchors_preset = 0
@@ -54,22 +84,24 @@ metadata/_custom_type_script = "uid://ota37prga8g7"
 [node name="DoneHighlight" type="PanelContainer" parent="." unique_id=1524537327]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.8208333
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_7pqfr")
 theme_type_variation = &"MapHighlightPanelContainer"
-metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="DoneHighlight" unique_id=2141475729]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("5_vxwrl")
 expand_mode = 1
-stretch_mode = 4
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
