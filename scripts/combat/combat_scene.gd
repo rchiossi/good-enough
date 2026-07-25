@@ -29,6 +29,8 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @onready var _hero_portrait : TextureRect = %HeroPortrait
 @onready var _enemy_portrait : TextureRect = %EnemyPortrait
 
+@onready var _bg_music : CombatBgMusic = %BgMusic
+
 @export var end_battle_animation_duration : float = 0.5
 
 @export var turn_indicator_offset : Vector2 = Vector2(0, -75)
@@ -54,6 +56,8 @@ var _entity_scenes : Dictionary[String, EntityScene] = {}
 
 func _ready() -> void:
     _calculate_game_stage()
+
+    _load_music()
 
     _player_stats = GameState.player_stats
     _player_stats.damage_taken.connect(_on_damage_taken)
@@ -109,6 +113,14 @@ func _calculate_game_stage():
         _game_stage = ceil(float(GameState.current_turn) / threshold)
         if _game_stage < 1:
             _game_stage = 1 #Allows running directly from the combat scene
+
+func _load_music():
+    if _game_stage == 4:
+        _bg_music._play_boss_phase_1()
+    elif _game_stage == 5:
+        _bg_music._play_boss_phase_2()
+    else:
+        _bg_music._play_normal()
 
 func _on_new_turn(turn_count: int):
     if turn_count % 2 != 0:

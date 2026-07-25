@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d4b6rgp3dtcuu" path="res://scenes/Combat/defeat_panel.tscn" id="8_j8oqs"]
 [ext_resource type="Script" uid="uid://dcwybhvhic1fi" path="res://scripts/ui_animations/screen_shake.gd" id="9_338db"]
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="10_vhh5q"]
+[ext_resource type="Script" uid="uid://b4pgsjevfq6h1" path="res://scripts/combat/bg_music.gd" id="15_4rekb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8b0q7"]
 resource_local_to_scene = true
@@ -394,3 +395,7 @@ offset_top = -312.5
 offset_right = 420.0
 offset_bottom = 312.5
 show_main_menu_button = true
+
+[node name="BgMusic" type="Node" parent="." unique_id=366010099]
+unique_name_in_owner = true
+script = ExtResource("15_4rekb")
