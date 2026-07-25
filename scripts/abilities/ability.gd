@@ -16,7 +16,8 @@ enum AnimationType {
     CELESTIAL_BONK,
     FIRE_TORNADO,
     WATER_BLAST,
-    WATER_SURGE
+    WATER_SURGE,
+    PHOENIX_FLAME
 }
 
 var shield_damage: int = 0

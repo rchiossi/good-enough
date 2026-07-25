@@ -17,6 +17,9 @@ class_name SunStrikeAnimation
 @onready var water_surge_animation: AnimatedSprite2D = $WaterSurgeAnimation
 @onready var water_surge_sound: AudioStreamPlayer2D = $WaterSurgeSound
 
+@onready var phoenix_flame_animation: AnimatedSprite2D = $PhoenixFlameAnimation
+@onready var phoenix_flame_sound: AudioStreamPlayer2D = $PhoenixFlameSound
+
 signal animation_completed
 
 var _is_sound_done = false
@@ -50,6 +53,9 @@ func play(animation_type: Ability.AnimationType, position_to_paint : Vector2, si
     if animation_type == Ability.AnimationType.WATER_SURGE:
         sound = water_surge_sound
         animation = water_surge_animation
+    if animation_type == Ability.AnimationType.PHOENIX_FLAME:
+        sound = phoenix_flame_sound
+        animation = phoenix_flame_animation
 
     animation.animation_finished.connect(_on_animation_completed)
 
