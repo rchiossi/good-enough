@@ -67,7 +67,7 @@ var combat_events : Array[CombatEvent]
 signal new_turn(turn_count : int)
 signal action_taken(source: String, target: String, ability_name: String)
 
-func init_combat(entities: Dictionary[String, EntityStats], active_entity: String):
+func init_combat(entities: Dictionary[String, EntityStats], active_entity: String, reload: bool = false):
     state = CombatState.PRE_COMBAT
 
     _entities = entities
@@ -81,6 +81,9 @@ func init_combat(entities: Dictionary[String, EntityStats], active_entity: Strin
         else:
             _turn_order.push_back(entity.name)
         
+        if reload:
+            continue
+
         if entity.is_player:
             _player = entity.name
             entity.damage_dealt.connect( _resolve_player_action)

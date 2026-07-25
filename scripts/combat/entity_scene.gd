@@ -23,7 +23,7 @@ var stats : EntityStats
 
 signal reverse_death_complete
 
-func init(entity_stats: EntityStats):
+func init(entity_stats: EntityStats, reload: bool = false):
     offset_transform_enabled = true
 
     stats = entity_stats
@@ -44,7 +44,8 @@ func init(entity_stats: EntityStats):
 
     _sprite.texture = entity_stats.sprite
     
-    possible_damage.connect(_show_damage_indication)
+    if not reload:
+        possible_damage.connect(_show_damage_indication)
 
     animate_idle()
 

@@ -355,7 +355,7 @@ func _load_boss_phase2():
     _enemy_stats.damage_taken.connect(_on_damage_taken)
     _enemy_stats.init()
 
-    enemy.init(_enemy_stats)
+    enemy.init(_enemy_stats, true)
     _entity_scenes[enemy.stats.name] = enemy
 
     _load_portraits()
@@ -363,7 +363,7 @@ func _load_boss_phase2():
     var entities : Dictionary[String, EntityStats] = {}
     entities[_player_stats.name] = _player_stats
     entities[_enemy_stats.name] = _enemy_stats
-    _combat_manager.init_combat(entities, _player_stats.name)
+    _combat_manager.init_combat(entities, _player_stats.name, true)
 
     enemy.reverse_death_complete.connect(_proceed_with_phase2)
 
