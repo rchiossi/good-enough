@@ -11,8 +11,13 @@ var _tooltip_scene : PackedScene = preload("res://scenes/Combat/combat_ability_t
 signal show_tooltip(ability_name : String)
 signal ability_activated(ability_name: String)
 
+signal ability_hover(ability_name : String)
+signal ability_hover_exit()
+
 func _ready() -> void:
     mouse_entered.connect(func(): show_tooltip.emit(_ability_name))
+    mouse_entered.connect(func(): ability_hover.emit(_ability_name))
+    mouse_exited.connect(func(): ability_hover_exit.emit())
     sprite.pressed.connect(_on_sprite_pressed)
 
 func set_ability(ability_name : String):

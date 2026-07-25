@@ -135,6 +135,8 @@ func _load_abilities_to_grid():
         _ability_grid.add_item(scene)
         scene.set_ability(ability.name)
         scene.show_tooltip.connect(_show_ability_info)
+        scene.ability_hover.connect(_show_possible_dmg)
+        scene.ability_hover_exit.connect(_hide_possible_dmg)
         scene.ability_activated.connect(_activate_ability)
 
 func _load_portraits():
@@ -148,6 +150,13 @@ func _show_ability_info(ability_name : String):
     _ability_info.set_ability(ability_name)
 
     _ability_info.show()
+
+func _show_possible_dmg(ability_name : StringName):
+    var ability : Ability = GameState.all_abilities[ability_name]
+    enemy.possible_damage.emit(ability.health_damage, ability.armor_damage, ability.shield_damage)
+
+func _hide_possible_dmg():
+    enemy.possible_damage.emit(0, 0, 0)
 
 # Combat Flow --------------------
 

@@ -23,6 +23,7 @@ var _tween : Tween
 @export var death_animation_duration : float = 0.5
 
 signal death_animation_complete
+signal possible_damage(hp: int, armour: int, shield: int)
 
 var stats : EntityStats
 
@@ -35,23 +36,65 @@ func init(entity_stats: EntityStats):
     stats.shield_changed.connect(animate_shield_bar)
 
     _health_bar.max_value = stats.max_health
+    %HealthPossibleDmgBar.max_value = stats.max_health
     _health_bar.value = stats.health
     _current_hp_label.text = str(stats.health)
     _max_hp_label.text = str(stats.max_health)
 
     _armor_bar.max_value = stats.max_armor
+    if not stats.max_armor:
+        %ArmourPossibleDmgBar.visible = false
+    else:
+        %ArmourPossibleDmgBar.max_value = stats.max_armor
     _armor_bar.value = stats.armor
     _current_armor_label.text = str(stats.armor)
     _max_armor_label.text = str(stats.max_armor)
 
     _shield_bar.max_value = stats.max_shield
+    if not stats.max_shield:
+        %ShieldPossibleDmgBar.visible = false
+    else:
+        %ShieldPossibleDmgBar.max_value = stats.max_shield
     _shield_bar.value = stats.shield
     _current_shield_label.text = str(stats.shield)
     _max_shield_label.text = str(stats.max_shield)
 
     _sprite.texture = entity_stats.sprite
+    
+    possible_damage.connect(_show_possible_damage)
 
     animate_idle()
+
+func _show_possible_damage(hp: int, armour: int, shield: int):
+    if not shield:
+        _show_dmg(%PossibleShieldDmgLabel, shield)
+        _show_dmg_bar(%ShieldPossibleDmgBar, shield)
+    if not armour:
+        _show_dmg(%PossibleArmourDmgLabel, armour)
+        _show_dmg_bar(%ArmourPossibleDmgBar, armour)
+    if not hp:
+        _show_dmg(%PossibleHpDmgLabel, hp)
+        _show_dmg_bar(%HealthPossibleDmgBar, hp)
+        
+    if _shield_bar.value > 0:
+        _show_dmg(%PossibleShieldDmgLabel, shield)
+        _show_dmg_bar(%ShieldPossibleDmgBar, shield)
+    if _shield_bar.value == 0 or _shield_bar.value <= shield:
+        if _armor_bar.value > 0:
+            _show_dmg(%PossibleArmourDmgLabel, armour)
+            _show_dmg_bar(%ArmourPossibleDmgBar, armour)
+        if _armor_bar.value == 0 or _armor_bar.value <= armour:
+            _show_dmg(%PossibleHpDmgLabel, hp)
+            _show_dmg_bar(%HealthPossibleDmgBar, hp)
+
+func _show_dmg_bar(node: ProgressBar, dmg: int):
+    node.value = dmg
+
+func _show_dmg(node: Label, dmg: int):
+    if not dmg:
+        node.text = ""
+    else:
+        node.text = "- %s" % dmg
 
 func animate_idle():
     var tween = create_tween()

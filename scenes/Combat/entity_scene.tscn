@@ -7,6 +7,32 @@
 [ext_resource type="Shader" uid="uid://bjudakokgcufk" path="res://shaders/combat/damage_flash.gdshader" id="5_vovsn"]
 [ext_resource type="Texture2D" uid="uid://d0p6syokv5sd7" path="res://assets/combat/Hero/hero.png" id="6_vovsn"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6yqqy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6yqqy"]
+bg_color = Color(0.7019608, 0.28627452, 0.2784314, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix566"]
+bg_color = Color(0.8117647, 0.627451, 0.33333334, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vovsn"]
+bg_color = Color(0.32156864, 0.45882353, 0.6392157, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8oqs"]
 resource_local_to_scene = true
 shader = ExtResource("5_vovsn")
@@ -51,6 +77,17 @@ value = 100.0
 fill_mode = 1
 show_percentage = false
 
+[node name="HealthPossibleDmgBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=1770824248]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_6yqqy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6yqqy")
+step = 1.0
+fill_mode = 1
+show_percentage = false
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=229736841]
 layout_mode = 2
 
@@ -69,6 +106,13 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 text = "10"
+
+[node name="PossibleHpDmgLabel" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=644975958]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 14)
+custom_maximum_size = Vector2(40, 14)
+layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1669485683]
 layout_mode = 2
@@ -92,6 +136,17 @@ value = 100.0
 fill_mode = 1
 show_percentage = false
 
+[node name="ArmourPossibleDmgBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=1871739710]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_6yqqy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ix566")
+step = 1.0
+fill_mode = 1
+show_percentage = false
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=192968150]
 layout_mode = 2
 
@@ -110,6 +165,13 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 text = "10"
+
+[node name="PossibleArmourDmgLabel" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=1375327371]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 14)
+custom_maximum_size = Vector2(40, 14)
+layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=929568068]
 layout_mode = 2
@@ -133,6 +195,17 @@ value = 100.0
 fill_mode = 1
 show_percentage = false
 
+[node name="ShieldPossibleDmgBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer3/MarginContainer3" unique_id=1816110272]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_6yqqy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vovsn")
+step = 1.0
+fill_mode = 1
+show_percentage = false
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer3/MarginContainer3" unique_id=955553678]
 layout_mode = 2
 
@@ -151,6 +224,13 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 text = "10"
+
+[node name="PossibleShieldDmgLabel" type="Label" parent="VBoxContainer/HBoxContainer3/MarginContainer3" unique_id=1770640248]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 14)
+custom_maximum_size = Vector2(40, 14)
+layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="Sprite" type="TextureRect" parent="VBoxContainer" unique_id=935468676]
 unique_name_in_owner = true
