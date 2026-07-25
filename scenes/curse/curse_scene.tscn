@@ -29,6 +29,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_grx3l")
 
+[node name="BgMusic" type="Control" parent="." unique_id=973615668]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("9_vhmq7")
+hover_sound = ExtResource("10_jugwp")
+start_time = 3.0
+metadata/_custom_type_script = "uid://br4iwnaapjuvt"
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=614627650]
 layout_mode = 2
 texture = ExtResource("2_5b1xd")
@@ -311,10 +319,3 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[node name="BgMusic" type="Control" parent="." unique_id=973615668]
-layout_mode = 2
-script = ExtResource("9_vhmq7")
-hover_sound = ExtResource("10_jugwp")
-start_time = 3.0
-metadata/_custom_type_script = "uid://br4iwnaapjuvt"
