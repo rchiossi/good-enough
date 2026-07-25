@@ -334,16 +334,17 @@ func _init_abilities():
     frost_storm.ability_type = Ability.AbilityType.MAGIC
     _add_ability(frost_storm)
 
-    var fire_spike := Ability.new()
-    fire_spike.health_damage = 0
-    fire_spike.armor_damage = 40
-    fire_spike.shield_damage = 0
-    fire_spike.name = "Fire Spike"
-    fire_spike.icon = preload("uid://dbqy1spahhy5o")
-    fire_spike.description = "You send a large spike of fire towards your enemy, it pierces their armor."
-    fire_spike.cooldown = 3
-    fire_spike.ability_type = Ability.AbilityType.PIERCING
-    _add_ability(fire_spike)
+    var phoenix_flame := Ability.new()
+    phoenix_flame.health_damage = 0
+    phoenix_flame.armor_damage = 40
+    phoenix_flame.shield_damage = 0
+    phoenix_flame.name = "Phoenix Flame"
+    phoenix_flame.icon = preload("uid://dcqtsgnni83fl")
+    phoenix_flame.description = "You summon the fire of a phoenix, causing damage to your enemy."
+    phoenix_flame.cooldown = 4
+    phoenix_flame.ability_type = Ability.AbilityType.PIERCING
+    phoenix_flame.animation_type = Ability.AnimationType.PHOENIX_FLAME
+    _add_ability(phoenix_flame)
 
     var heal_wounds := Ability.new()
     heal_wounds.health_regeneration = 70
