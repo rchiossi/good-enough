@@ -138,3 +138,16 @@ func animate_reverse_death():
     tween.parallel().tween_property(_stats_panel, "modulate:a", 1.0, death_animation_duration)
 
     tween.tween_callback(func(): reverse_death_complete.emit())
+
+func hide_stats_panel():
+    _stats_panel.hide()
+
+func _fade_in(duration: float = 1.0):
+    modulate.a = 0.0
+
+    var tween = create_tween()
+
+    tween.set_trans(Tween.TRANS_SINE)
+    tween.set_ease(Tween.EASE_OUT)
+
+    tween.tween_property(self, "modulate:a", 1.0, duration)
