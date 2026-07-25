@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bpbfj2dmc1kmt" path="res://scripts/map/count_down_label.gd" id="1_ej42l"]
 [ext_resource type="Texture2D" uid="uid://q1ai2p3kgxt7" path="res://assets/map/turn_1.png" id="1_wwmgp"]
+[ext_resource type="Shader" uid="uid://kvexuplhuex8" path="res://scenes/map/map_hightlight.tres" id="2_f2eux"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6j6h0"]
+resource_local_to_scene = true
+shader = ExtResource("2_f2eux")
+shader_parameter/ColorParameter = Color(0, 0, 0, 1)
+shader_parameter/Width = 0.0
 
 [node name="CountDownLabel" type="RichTextLabel" unique_id=1106166169]
 custom_minimum_size = Vector2(136, 64)
@@ -9,12 +16,13 @@ custom_maximum_size = Vector2(136, -1)
 theme_type_variation = &"MapRichTextLabel"
 text = "1"
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 script = ExtResource("1_ej42l")
 
 [node name="CountdownTexture" type="TextureRect" parent="." unique_id=1706731634]
 unique_name_in_owner = true
 show_behind_parent = true
+material = SubResource("ShaderMaterial_6j6h0")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

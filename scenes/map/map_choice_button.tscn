@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://81xj75vwbcjg" path="res://assets/themes/map_theme.tres" id="1_7pqfr"]
 [ext_resource type="Shader" uid="uid://kvexuplhuex8" path="res://scenes/map/map_hightlight.tres" id="1_je7sh"]
-[ext_resource type="Texture2D" uid="uid://c7j2jmc6jv7cv" path="res://assets/map/fight.png" id="3_je7sh"]
 [ext_resource type="Script" uid="uid://cv4jscks5yj32" path="res://scripts/map/map_choice_button.gd" id="3_nsik4"]
+[ext_resource type="Texture2D" uid="uid://drev3okyfa374" path="res://assets/map/evil_count_castle.png" id="4_je7sh"]
 [ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="4_pqsog"]
 [ext_resource type="Script" uid="uid://bp3ukxo6aqps6" path="res://scripts/sounds/hover_sound.gd" id="5_nr205"]
 [ext_resource type="Texture2D" uid="uid://3p1x75pjx6qk" path="res://assets/map/done.png" id="5_vxwrl"]
@@ -19,7 +19,7 @@ shader_parameter/Width = 2.0
 resource_local_to_scene = true
 shader = ExtResource("1_je7sh")
 shader_parameter/ColorParameter = Color(0, 0, 0, 1)
-shader_parameter/Width = 2.0
+shader_parameter/Width = 1.0
 
 [node name="MapChoiceButton" type="Button" unique_id=135015083]
 material = SubResource("ShaderMaterial_jcaow")
@@ -43,22 +43,23 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_csech")
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+anchors_preset = -1
+anchor_left = 0.46666667
+anchor_top = 0.44074073
+anchor_right = 0.53333336
+anchor_bottom = 0.55925924
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_je7sh")
+texture = ExtResource("4_je7sh")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationScaleTwitch" type="Control" parent="." unique_id=840345928]
 anchors_preset = 0
@@ -102,6 +103,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("5_vxwrl")
 expand_mode = 1
+stretch_mode = 5
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

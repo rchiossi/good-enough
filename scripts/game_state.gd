@@ -14,6 +14,10 @@ var current_position: Vector2i = Vector2i(-1, -1)
 var nodes: Dictionary[Vector2i, MapChoiceButton] = {}
 var connections: Dictionary[Vector2i, Dictionary] = {}
 
+var color_enabled: Color = Color("#5bb362")
+var color_disabled: Color = Color("#b34947")
+var color_highlight: Color = Color("#5275a3")
+
 var player_stats : EntityStats = EntityStats.new()
 
 const max_turns : int = 10

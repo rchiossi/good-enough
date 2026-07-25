@@ -14,3 +14,6 @@ func set_level(countdown: int):
         text = "%s" %  (GameState.max_turns - countdown)
     var gstage = GameState.calculate_game_stage_for_turn(countdown)
     %CountdownTexture.texture = textures.get(gstage, preload("uid://q1ai2p3kgxt7"))
+    if GameState.current_turn + 1 == countdown:
+        %CountdownTexture.material.set("shader_parameter/ColorParameter", GameState.color_enabled)
+        %CountdownTexture.material.set("shader_parameter/Width", 1)
