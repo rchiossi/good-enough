@@ -145,9 +145,9 @@ offset_transform_enabled = true
 texture = ExtResource("6_sqgf4")
 metadata/_edit_use_anchors_ = true
 
-[node name="FireEffectLayer" type="CanvasLayer" parent="." unique_id=1740088739]
+[node name="PathsLayer" type="CanvasLayer" parent="." unique_id=1740088739]
 
-[node name="Paths" type="Control" parent="FireEffectLayer" unique_id=1141169718]
+[node name="Paths" type="Control" parent="PathsLayer" unique_id=1141169718]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -157,7 +157,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Line2D" parent="FireEffectLayer/Paths" unique_id=1491142998 instance=ExtResource("6_jcaow")]
+[node name="Line2D" parent="PathsLayer/Paths" unique_id=1491142998 instance=ExtResource("6_jcaow")]
 visible = false
 position = Vector2(13, -1)
 
