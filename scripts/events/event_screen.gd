@@ -153,7 +153,6 @@ func _ready() -> void:
     well_event.accept_text += "\n[color=red](30% you gain [i]20 Health[/i] 70% you lose [i]20 Health[/i])[/color]"
     well_event.reject_text = "Pretend You Didn't See It"
     well_event.take_action_func = Callable(well_event_callback)
-    available_events.clear()
     available_events.append(well_event)
 
     choose_random_event() 
@@ -222,4 +221,4 @@ func well_event_callback():
     SceneLoader.load_scene("res://scenes/map/map.tscn") 
 
 func _on_reject_button_pressed() -> void:
-    SceneLoader.load_scene("res://scenes/abilities_window.tscn")
+    SceneLoader.load_scene("res://scenes/curse/curse_scene.tscn")
