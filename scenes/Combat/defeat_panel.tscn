@@ -2,14 +2,22 @@
 
 [ext_resource type="Script" uid="uid://ddbgehrje53rs" path="res://scripts/combat/defeat_panel.gd" id="1_13q6g"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m8fq"]
+
 [node name="DefeatPanel" type="MarginContainer" unique_id=2057956013]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -400.0
+offset_right = 600.0
+offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 200
@@ -17,11 +25,15 @@ theme_override_constants/margin_bottom = 200
 script = ExtResource("1_13q6g")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1212721838]
+custom_minimum_size = Vector2(800, 400)
 layout_mode = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.12941177, 0.13333334, 0.15686275, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=660287822]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0m8fq")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1323681116]
 layout_mode = 2
@@ -37,6 +49,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.5529412, 0.5137255, 0.5058824, 1)
 theme_override_font_sizes/font_size = 200
 text = "Defeat"
 
