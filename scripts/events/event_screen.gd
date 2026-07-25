@@ -35,12 +35,18 @@ func _ready() -> void:
     if ability_to_remove:
         var existential_event: GameEvent = GameEvent.new()
         existential_event.text = "
-            You eat a strange mushroom.
-            Moments later you're wondering whether your 
-            enemies are merely projections of your own
-            subconscious.
+        A strange mushroom hums with forbidden knowledge.
 
-            You gain + 25 health but can't ever cast " + ability_to_remove + "."
+        The spores have already taken root.
+        Whether you embrace them or fight them, a piece of your
+        magic will be erased forever.
+
+        Accepting gives you 50% chance to gain +25 health
+        Unfortunately, your brain permanently forgets how to cast " + ability_to_remove + ".
+            
+        Reject the mushrooms gift and choose an ability to sacrife. 
+        "
+            
         existential_event.accept_text = "Accept enlightment"
         existential_event.accept_text += "\n[color=red](Lose [i]%s[/i])[/color]" % ability_to_remove
         existential_event.reject_text = "Purge"
@@ -50,16 +56,24 @@ func _ready() -> void:
     #event2
     var unionized_event: GameEvent = GameEvent.new()
     unionized_event.text = "
-        You stumble upon a gang of bandits picketing instead of pillaging.
-        <<Fair pay for fair plunder>>
-        Their leader hands you a pamphlet.
+    You stumble upon a gang of bandits holding signs instead of swords.
+    
+    <<Fair Pay for Fair Plunder!>>
+    
+    Their leader cracks his knuckles and politely shoves a petition into your hands.
+    <<You are going to sign this...voluntarily>>
 
-        You gain + 15 on your armor when you help unionizing the bandits"
-    unionized_event.accept_text = "Unionize bandits!"
+    Join the union and gain + 15 armor but have 75% chance to lose " + ability_to_remove + " because it gets redistributed.
+    
+    Refuse and bandits peacefully reposses an ability of your choosing
+    " 
+       
+    unionized_event.accept_text = "Join the union!"
     if ability_to_remove:
-        unionized_event.accept_text += "\n[color=red](Lose [i]%s[/i])[/color]" % ability_to_remove
-    unionized_event.reject_text = "Not my problem"
+        unionized_event.accept_text += "\n[color=red](Gain +15 Armor, possibly lose [i]%s[/i])[/color]" % ability_to_remove
+    unionized_event.reject_text = "Hand over one ability"
     unionized_event.take_action_func = Callable(unionized_event_callback.bind(ability_to_remove))
+    available_events.clear()
     available_events.append(unionized_event)
     
     #event3
@@ -138,14 +152,18 @@ func choose_random_event():
 func existential_event_callback(ability_to_toss: String):
     if ability_to_toss != null:
         GameState.player_stats.abilities[ability_to_toss].is_disabled = true
-    GameState.player_stats.max_health += 25
-    GameState.player_stats.health += 25
+    var healthChance = randi_range(1,2)
+    if healthChance == 1:
+        GameState.player_stats.max_health += 25
+        GameState.player_stats.health += 25
     SceneLoader.load_scene("res://scenes/map/map.tscn")
 
 #event2callback
 func unionized_event_callback(ability_to_toss: String):
-    if ability_to_toss != null:
-        GameState.player_stats.abilities[ability_to_toss].is_disabled = true
+    var abilityChance = randi_range(1,4)
+    if abilityChance >= 2:
+        if ability_to_toss != null:
+            GameState.player_stats.abilities[ability_to_toss].is_disabled = true
     GameState.player_stats.max_armor += 15
     GameState.player_stats.armor += 15
     SceneLoader.load_scene("res://scenes/map/map.tscn")
