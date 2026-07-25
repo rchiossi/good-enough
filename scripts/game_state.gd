@@ -287,6 +287,7 @@ func _init_abilities():
     pillar_bonk.cooldown = 5
     pillar_bonk.remaining_cooldown = 0
     pillar_bonk.ability_type = Ability.AbilityType.PIERCING
+    pillar_bonk.animation_type = Ability.AnimationType.CELESTIAL_BONK
     _add_ability(pillar_bonk)
 
     var incinerate := Ability.new()
@@ -298,6 +299,7 @@ func _init_abilities():
     incinerate.description = "You set your enemy on fire burning through their magical shield. This also affects health due to the severe heat."
     incinerate.cooldown = 3
     incinerate.ability_type = Ability.AbilityType.MAGIC
+    incinerate.animation_type = Ability.AnimationType.FIRE_TORNADO
     _add_ability(incinerate)
 
     var blood_weave := Ability.new()
@@ -362,6 +364,40 @@ func _init_abilities():
     quick_mend.cooldown = 3
     quick_mend.ability_type = Ability.AbilityType.MAGIC
     _add_ability(quick_mend)
+
+    var lightning_bolt := Ability.new()
+    lightning_bolt.shield_damage = 50
+    lightning_bolt.armor_damage = 20
+    lightning_bolt.name = "Ligthning Bolt"
+    lightning_bolt.icon = preload("uid://386kl84jfkoh")
+    lightning_bolt.description = "The clouds darken, the hollowing noise of the wind and clouds are followed by a flash and a loud explosion. A string of lightning bolts into your enemy."
+    lightning_bolt.cooldown = 7
+    lightning_bolt.ability_type = Ability.AbilityType.MAGIC
+    lightning_bolt.animation_type = Ability.AnimationType.LIGHTNING_BOLT
+    _add_ability(lightning_bolt)
+
+    var water_canon := Ability.new()
+    water_canon.shield_damage = 10
+    water_canon.armor_damage = 25
+    water_canon.health_damage = 5
+    water_canon.name = "Water Canon"
+    water_canon.icon = preload("uid://012has2563fj")
+    water_canon.cooldown = 4
+    water_canon.ability_type = Ability.AbilityType.PIERCING
+    water_canon.animation_type = Ability.AnimationType.WATER_BLAST
+    _add_ability(water_canon)
+
+    var water_surge := Ability.new()
+    water_surge.shield_damage = 15
+    water_surge.armor_damage = 20
+    water_surge.health_damage = 0
+    water_surge.name = "Water Surge"
+    water_surge.icon = preload("uid://dfdql4dj4hdm7")
+    water_surge.cooldown = 3
+    water_surge.ability_type = Ability.AbilityType.PIERCING
+    water_surge.animation_type = Ability.AnimationType.WATER_SURGE
+    _add_ability(water_surge)
+
 
 func calculate_game_stage_for_turn(turn: int) -> int:
     if turn == GameState.max_turns:

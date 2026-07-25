@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dco0lwbyqem84"
+path="res://.godot/imported/Water Spell 13.wav-e57d7fc8c14911ba90793a9e88b4522a.sample"
+
+[deps]
+
+source_file="res://assets/abilities/sounds/Water Spell 13.wav"
+dest_files=["res://.godot/imported/Water Spell 13.wav-e57d7fc8c14911ba90793a9e88b4522a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

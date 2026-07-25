@@ -8,6 +8,17 @@ enum AbilityType {
     PIERCING
 }
 
+enum AnimationType {
+    NONE,
+    SUN_BLAST,
+    EXPLOSION,
+    LIGHTNING_BOLT,
+    CELESTIAL_BONK,
+    FIRE_TORNADO,
+    WATER_BLAST,
+    WATER_SURGE
+}
+
 var shield_damage: int = 0
 var armor_damage: int = 0
 var health_damage: int = 0
@@ -21,6 +32,7 @@ var cooldown: int = 0
 var remaining_cooldown: int = 0
 var ability_type: AbilityType = AbilityType.NORMAL
 var is_disabled: bool = false
+var animation_type: AnimationType = AnimationType.CELESTIAL_BONK
 
 var effect_scene: PackedScene = preload("uid://bpx7ga87e5jcc")
 

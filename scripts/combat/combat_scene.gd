@@ -45,6 +45,7 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var enemy_attack_delay : float = 2.0
 
 @export var death_animation_delay : float = 1.0
+var sprite_effect_scene: PackedScene = preload("uid://cxtb24nigdrwy")
 
 var _game_stage : int = 1
 
@@ -272,6 +273,10 @@ func _update_turn_indicator(target_name: String):
 
 func _play_ability_effect(_source: EntityScene, target: EntityScene, ability: Ability):
     var effect : GPUParticles2D = ability.effect_scene.instantiate()
+    if ability.animation_type != Ability.AnimationType.NONE:
+        var sprite_effect: SunStrikeAnimation = sprite_effect_scene.instantiate()
+        add_child(sprite_effect)
+        sprite_effect.play(ability.animation_type, target.global_position + target.size / 2, target.size)
 
     effect.global_position = target.global_position + target.size / 2
     effect.emitting = true

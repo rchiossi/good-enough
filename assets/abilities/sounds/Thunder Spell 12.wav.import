@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dgh3q2c68c7iy"
+path="res://.godot/imported/Thunder Spell 12.wav-565f72b4b252acfd8f41655bf47294dc.sample"
+
+[deps]
+
+source_file="res://assets/abilities/sounds/Thunder Spell 12.wav"
+dest_files=["res://.godot/imported/Thunder Spell 12.wav-565f72b4b252acfd8f41655bf47294dc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
