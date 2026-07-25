@@ -6,4 +6,4 @@ func _ready() -> void:
     _continue_button.pressed.connect(_on_continue)
 
 func _on_continue() -> void:
-    SceneLoader.load_scene("uid://clhtpadgac6l7")
+    SceneLoader.load_scene("uid://bdqa7w342rmg8")

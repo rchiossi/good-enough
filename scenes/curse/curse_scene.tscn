@@ -1,0 +1,320 @@
+[gd_scene format=3 uid="uid://bdqa7w342rmg8"]
+
+[ext_resource type="Script" uid="uid://by5ib3g5cxefw" path="res://scripts/curse/curse_scene.gd" id="1_grx3l"]
+[ext_resource type="Texture2D" uid="uid://cmv17j7e1qqa5" path="res://assets/curse/background.png" id="2_5b1xd"]
+[ext_resource type="Texture2D" uid="uid://b45tmh0yjosba" path="res://assets/curse/hourglass.png" id="2_tt2cq"]
+[ext_resource type="PackedScene" uid="uid://bdhkv4bcpgrhy" path="res://scenes/Combat/combat_ability.tscn" id="3_tt2cq"]
+[ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="4_tbyts"]
+[ext_resource type="Texture2D" uid="uid://dceogqb6nyl5p" path="res://assets/curse/panel.png" id="6_vduy7"]
+[ext_resource type="Shader" uid="uid://dq6es7vaxq2va" path="res://shaders/menu/vignette.gdshader" id="7_vduy7"]
+[ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="8_02ih4"]
+[ext_resource type="Script" uid="uid://br4iwnaapjuvt" path="res://scripts/sounds/bg_music.gd" id="9_vhmq7"]
+[ext_resource type="AudioStream" uid="uid://g3mwcnpg6ch2" path="res://assets/music/Piano 7.ogg" id="10_jugwp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_02ih4"]
+shader = ExtResource("7_vduy7")
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/radius = 0.2470000117325
+shader_parameter/softness = 0.7470000354825
+shader_parameter/intensity = 1.0
+shader_parameter/correct_aspect_ratio = false
+
+[node name="CurseScene" type="MarginContainer" unique_id=2046102992]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_grx3l")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=614627650]
+layout_mode = 2
+texture = ExtResource("2_5b1xd")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1320175061]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer" unique_id=1005165765]
+layout_mode = 2
+
+[node name="Hourglass" type="TextureRect" parent="MarginContainer/AspectRatioContainer" unique_id=11841617]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.42745098)
+layout_mode = 2
+texture = ExtResource("2_tt2cq")
+
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1134095536]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer3" unique_id=1632750382]
+layout_mode = 2
+color = Color(0.12941177, 0.13333334, 0.16078432, 0.7647059)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer3" unique_id=1105088385]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3/MarginContainer" unique_id=1713018714]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="MarginContainer3/MarginContainer/VBoxContainer" unique_id=541755277]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "Pick and ability to forget:"
+
+[node name="SelectionGrid" type="GridContainer" parent="MarginContainer3/MarginContainer/VBoxContainer" unique_id=51099186]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="CombatAbility" parent="MarginContainer3/MarginContainer/VBoxContainer/SelectionGrid" unique_id=458995651 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility2" parent="MarginContainer3/MarginContainer/VBoxContainer/SelectionGrid" unique_id=1548327577 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility3" parent="MarginContainer3/MarginContainer/VBoxContainer/SelectionGrid" unique_id=605222237 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="." unique_id=1244821258]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 50
+
+[node name="Label" type="Label" parent="MarginContainer4" unique_id=315320404]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "The curse takes its toll..."
+
+[node name="MarginContainer5" type="MarginContainer" parent="." unique_id=1527037186]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer5" unique_id=583803734]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer5/MarginContainer2" unique_id=1739638245]
+layout_mode = 2
+color = Color(0.12941177, 0.13333334, 0.15686275, 0.73333335)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer5" unique_id=1889332765]
+layout_mode = 2
+theme_override_constants/margin_top = 54
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer5/MarginContainer" unique_id=1504406844]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer5/MarginContainer/HBoxContainer" unique_id=1116830334]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AbilityGrid" type="GridContainer" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer" unique_id=1252792870]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 8
+
+[node name="CombatAbility" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=1546287525 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility2" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=229232493 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility3" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=968361750 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility4" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=1675144148 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility5" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=1970420614 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility6" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=1479744883 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility7" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=633801920 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility8" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=2025433882 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility9" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=138994139 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility10" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=1888012890 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility11" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=949200054 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility12" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=2045512864 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility13" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=1091539579 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility14" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=359464842 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility15" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=1960580365 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility16" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=544143926 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer5/MarginContainer/HBoxContainer" unique_id=1885277182]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="Tooltip" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer2" unique_id=1931624610 instance=ExtResource("4_tbyts")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer5" unique_id=1744085146]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_vduy7")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=811367214]
+layer = 3
+
+[node name="ConfirmationDialog" type="MarginContainer" parent="CanvasLayer2" unique_id=982208895]
+unique_name_in_owner = true
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2/ConfirmationDialog" unique_id=486138641]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.12941177, 0.13333334, 0.16078432, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/ConfirmationDialog" unique_id=430275005]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/ConfirmationDialog/MarginContainer" unique_id=795917728]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="Label2" type="Label" parent="CanvasLayer2/ConfirmationDialog/MarginContainer/VBoxContainer" unique_id=1456402633]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Is it your destiny to forget ?"
+
+[node name="ConfirmationTooltip" parent="CanvasLayer2/ConfirmationDialog/MarginContainer/VBoxContainer" unique_id=1414754758 instance=ExtResource("4_tbyts")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/ConfirmationDialog/MarginContainer/VBoxContainer" unique_id=1188031394]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ConfirmButton" type="Button" parent="CanvasLayer2/ConfirmationDialog/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1731174833]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Confirm
+"
+
+[node name="AnimationScaleTwitch" type="Control" parent="CanvasLayer2/ConfirmationDialog/MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton" unique_id=1911153232]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_02ih4")
+metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
+
+[node name="CancelButton" type="Button" parent="CanvasLayer2/ConfirmationDialog/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2071797485]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Cancel
+"
+
+[node name="AnimationScaleTwitch" type="Control" parent="CanvasLayer2/ConfirmationDialog/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" unique_id=2140926674]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_02ih4")
+metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=314518405]
+layer = 4
+
+[node name="VignetteColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1630617435]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_02ih4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BgMusic" type="Control" parent="." unique_id=973615668]
+layout_mode = 2
+script = ExtResource("9_vhmq7")
+hover_sound = ExtResource("10_jugwp")
+start_time = 3.0
+metadata/_custom_type_script = "uid://br4iwnaapjuvt"

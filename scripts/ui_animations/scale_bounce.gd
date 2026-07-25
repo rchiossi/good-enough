@@ -4,6 +4,8 @@ class_name AnimationScaleBounce
 @export var duration : float = 0.3
 @export var scale_percentage : float = 1.5
 
+@export var disabled: bool = false
+
 var _target : TextureButton
 
 func _ready() -> void:
@@ -16,6 +18,9 @@ func _ready() -> void:
     _target.button_up.connect(_animate_out)
 
 func _animate_in():
+    if disabled:
+        return
+
     _target.z_index += 1
 
     var tween = create_tween()
@@ -26,6 +31,9 @@ func _animate_in():
     tween.tween_property(_target, "offset_transform_scale", Vector2.ONE * scale_percentage, duration)
     
 func _animate_out():
+    if disabled:
+        return
+
     var tween = create_tween()
 
     tween.set_trans(Tween.TRANS_SINE)

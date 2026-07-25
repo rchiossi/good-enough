@@ -6,6 +6,8 @@ class_name HoverSound
 
 var player: AudioStreamPlayer2D
 
+var disabled: bool = false
+
 var _target : Control
 
 func _ready() -> void:
@@ -19,4 +21,5 @@ func _ready() -> void:
     _target.mouse_entered.connect(on_hover)
 
 func on_hover():
-    player.play()
+    if not disabled:
+        player.play()

@@ -12,6 +12,8 @@ class_name AnimationScaleTwitch
 @export var enable_twitch : bool = false
 @export var twitch_strength : float = 2.0
 
+var disabled : bool = false
+
 var _target : Control
 
 func _ready() -> void:
@@ -27,6 +29,9 @@ func _ready() -> void:
     _target.focus_exited.connect(_animate_out)
 
 func _animate_in():
+    if disabled:
+        return 
+
     if not enable_scale and not enable_twitch:
         return
 
@@ -43,6 +48,9 @@ func _animate_in():
         tween.parallel().tween_property(_target, "offset_transform_rotation", deg_to_rad(twitch_strength * [-1.0, 1.0].pick_random()), duration)
 
 func _animate_out():
+    if disabled:
+        return
+
     if not enable_scale and not enable_twitch:
         return
 

@@ -8,6 +8,8 @@ var player: AudioStreamPlayer2D
 
 var _target : Control
 
+var disabled: bool = false
+
 func _ready() -> void:
     _target = get_parent()
     player = AudioStreamPlayer2D.new()
@@ -19,4 +21,5 @@ func _ready() -> void:
     _target.pressed.connect(on_button_pressed)
 
 func on_button_pressed()->void:
-    player.play()
+    if not disabled:
+        player.play()

@@ -23,11 +23,13 @@ texture_normal = ExtResource("1_8tubs")
 stretch_mode = 4
 
 [node name="AnimationScaleTwitch" type="Control" parent="AbilitySprite" unique_id=1680481521]
+unique_name_in_owner = true
 anchors_preset = 0
 script = ExtResource("2_8yx28")
 metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
 
 [node name="AnimationScaleBounce" type="Control" parent="AbilitySprite" unique_id=741037614]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 0
 script = ExtResource("4_xaxtc")
