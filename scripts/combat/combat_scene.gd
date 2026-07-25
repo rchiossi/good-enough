@@ -60,7 +60,6 @@ var _entity_scenes : Dictionary[String, EntityScene] = {}
 
 func _ready() -> void:
     _calculate_game_stage()
-    _game_stage = 4
 
     _load_music()
 
