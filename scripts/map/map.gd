@@ -195,6 +195,8 @@ func _generate_paths():
                 GameState.connections[Vector2i(i, j)]["children"].append(n)
                 if not neighbours:
                     break
+    
+    _sanity_check_paths()
 
 func _get_nr_of_nodes(level: int) -> int:
     var result: int = 0
@@ -213,6 +215,25 @@ func _get_next_neighbours(coords: Vector2i) -> Array[Vector2i]:
         if GameState.map[coords.x + 1]["nodes"][j]["type"] != GameState.NodeTypes.Null:
             neighbours.append(Vector2i(coords.x + 1, j))
     return neighbours
+
+func _sanity_check_paths():
+    for i in GameState.map:
+        for j in GameState.map[i]["nodes"]:
+            if GameState.map[i]["nodes"][j]["type"] == GameState.NodeTypes.Null:
+                continue
+            if i == 0:
+                continue
+            var ok = false
+            var possible_connections: Array = []
+            for k in GameState.map[i - 1]["nodes"]:
+                if  GameState.map[i - 1]["nodes"][k]["type"] == GameState.NodeTypes.Null:
+                    continue
+                possible_connections.append(Vector2i(i -1, k))
+                if Vector2i(i, j) in GameState.connections.get(Vector2i(i -1, k), {}).get("children", {}):
+                    ok = true
+                    break
+            if not ok:
+                GameState.connections[possible_connections.pick_random()]["children"].append(Vector2i(i, j))
 
 func _on_skip_button_pressed() -> void:
     var x = int(%Day.text)
