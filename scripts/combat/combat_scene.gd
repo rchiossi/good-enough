@@ -31,7 +31,7 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 
 @onready var _bg_music : CombatBgMusic = %BgMusic
 
-@export var end_battle_animation_duration : float = 0.5
+@export var end_battle_animation_duration : float = 1.0
 
 @export var turn_indicator_offset : Vector2 = Vector2(0, -75)
 @export var turn_indicator_speed : float = 0.5
@@ -43,6 +43,8 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 @export var damage_number_spread : int = 50
 
 @export var enemy_attack_delay : float = 2.0
+
+@export var death_animation_delay : float = 1.0
 
 var _game_stage : int = 1
 
@@ -70,11 +72,9 @@ func _ready() -> void:
     _enemy_stats.init()
 
     player.init(_player_stats)
-    player.death_animation_complete.connect(_on_player_death)
     _entity_scenes[player.stats.name] = player
 
     enemy.init(_enemy_stats)
-    enemy.death_animation_complete.connect(_on_enemy_death)
     _entity_scenes[enemy.stats.name] = enemy
 
     _load_portraits()
@@ -86,7 +86,7 @@ func _ready() -> void:
     _load_background()
 
     # Debug Panel --
-    _attack_button.pressed.connect(player.animate_attack)
+    _attack_button.pressed.connect(_play_death_animation)
     _damage_button.pressed.connect(enemy.animate_take_damage)
     _skip_button.pressed.connect(_skip_combat)
     # -------------
@@ -306,28 +306,24 @@ func _play_death_animation():
     tween.set_ease(Tween.EASE_OUT)
 
     tween.tween_property(_background, "material:shader_parameter/flash_percentage", 1.0, 0.5)
+    tween.tween_interval(death_animation_delay)
+    tween.tween_callback(_on_death)
 
-func _on_player_death():
-    defeat_panel.modulate.a = 0.0
-    defeat_panel.show()
-
-    var tween = create_tween()
-
-    tween.set_trans(Tween.TRANS_SINE)
-    tween.set_ease(Tween.EASE_OUT)
-
-    tween.tween_property(defeat_panel, "modulate:a", 1.0, end_battle_animation_duration)
-
-func _on_enemy_death():
-    victory_panel.modulate.a = 0.0
-    victory_panel.show()
+func _on_death():
+    var end_panel : MarginContainer
+    if player.stats.health == 0:
+        end_panel = defeat_panel
+    else:
+        end_panel = victory_panel
+    
+    end_panel.show()
 
     var tween = create_tween()
 
     tween.set_trans(Tween.TRANS_SINE)
     tween.set_ease(Tween.EASE_OUT)
 
-    tween.tween_property(victory_panel, "modulate:a", 1.0, end_battle_animation_duration)
+    tween.tween_property(end_panel, "modulate:a", 1.0, end_battle_animation_duration)
 
 func _on_action_taken(_source_name: String, target_name: String, ability_name: String):
     var ability = GameState.all_abilities[ability_name]

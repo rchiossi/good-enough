@@ -7,6 +7,8 @@ class_name EntityScene
 
 @onready var _sprite : TextureRect = %Sprite
 
+@onready var _stats_panel : VBoxContainer = %StatsPanel
+
 const animation_attack_duration : float = 0.3
 const animation_damage_duration : float = 1.5
 
@@ -110,8 +112,8 @@ func animate_death():
     tween.set_trans(Tween.TRANS_SINE)
     tween.set_ease(Tween.EASE_OUT)
 
-    tween.tween_property(_sprite, "material:shader_parameter/flash_color", Color.RED, death_animation_duration)
+    tween.tween_property(_sprite, "material:shader_parameter/flash_color", Color("#b34947"), death_animation_duration)
     tween.parallel().tween_property(_sprite, "material:shader_parameter/flash_percentage", 1.0, death_animation_duration)
-    tween.parallel().tween_property(self, "modulate:a", 0.0, death_animation_duration)
+    tween.parallel().tween_property(_stats_panel, "modulate:a", 0.0, death_animation_duration)
 
     tween.tween_callback(func(): death_animation_complete.emit())

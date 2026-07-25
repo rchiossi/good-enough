@@ -30,41 +30,44 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=626022878]
+[node name="StatsPanel" type="VBoxContainer" parent="VBoxContainer" unique_id=1304560795]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=1595864002]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/StatsPanel" unique_id=626022878]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/StatsPanel/HBoxContainer" unique_id=1595864002]
 layout_mode = 2
 texture = ExtResource("2_c153h")
 expand_mode = 3
 
-[node name="HealthBar" parent="VBoxContainer/HBoxContainer" unique_id=2098570777 instance=ExtResource("3_6yqqy")]
+[node name="HealthBar" parent="VBoxContainer/StatsPanel/HBoxContainer" unique_id=2098570777 instance=ExtResource("3_6yqqy")]
 unique_name_in_owner = true
 layout_mode = 2
-main_color = Color(0.41960785, 0.1882353, 0.29411766, 1)
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1669485683]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/StatsPanel" unique_id=1669485683]
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer2" unique_id=1515456972]
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/StatsPanel/HBoxContainer2" unique_id=1515456972]
 layout_mode = 2
 texture = ExtResource("3_vovsn")
 expand_mode = 3
 
-[node name="ArmorBar" parent="VBoxContainer/HBoxContainer2" unique_id=140780883 instance=ExtResource("3_6yqqy")]
+[node name="ArmorBar" parent="VBoxContainer/StatsPanel/HBoxContainer2" unique_id=140780883 instance=ExtResource("3_6yqqy")]
 unique_name_in_owner = true
 layout_mode = 2
 main_color = Color(0.7019608, 0.3882353, 0.24313726, 1)
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=929568068]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/StatsPanel" unique_id=929568068]
 layout_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer3" unique_id=1939718767]
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/StatsPanel/HBoxContainer3" unique_id=1939718767]
 layout_mode = 2
 texture = ExtResource("4_6yqqy")
 expand_mode = 3
 
-[node name="ShieldBar" parent="VBoxContainer/HBoxContainer3" unique_id=786333322 instance=ExtResource("3_6yqqy")]
+[node name="ShieldBar" parent="VBoxContainer/StatsPanel/HBoxContainer3" unique_id=786333322 instance=ExtResource("3_6yqqy")]
 unique_name_in_owner = true
 layout_mode = 2
 main_color = Color(0.23921569, 0.28235295, 0.4392157, 1)
