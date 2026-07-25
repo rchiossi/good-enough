@@ -11,8 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://1te6rbscntg1" path="res://assets/sounds/Hover Bad.ogg" id="8_olwxs"]
 [ext_resource type="AudioStream" uid="uid://b27m15acm32jt" path="res://assets/sounds/Bad 3.ogg" id="9_pmglp"]
 
-[node name="AbilitiesWindow" type="Control" unique_id=1256689411]
-layout_mode = 3
+[node name="AbilitiesWindow" type="MarginContainer" unique_id=1298436320]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,50 +19,57 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3rflj")
 
-[node name="AbilitiesList" type="HBoxContainer" parent="." unique_id=934910264]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 222.0
-offset_right = 1846.0
-offset_bottom = 427.0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=178079690]
+layout_mode = 2
+color = Color(0.12941177, 0.13333334, 0.16078432, 1)
 
-[node name="TitleLabel" type="Label" parent="." unique_id=1513729093]
-layout_mode = 0
-offset_left = 310.0
-offset_top = 50.0
-offset_right = 1615.0
-offset_bottom = 169.0
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1153014032]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1685133041]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=1513729093]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Choose an ability to forget"
 
-[node name="AbilityDetails" type="Control" parent="." unique_id=878899343]
-anchors_preset = 0
+[node name="AbilitiesList" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=934910264]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="NameLabel" type="Label" parent="AbilityDetails" unique_id=202549696]
-layout_mode = 0
-offset_left = 198.0
-offset_top = 437.0
-offset_right = 1503.0
-offset_bottom = 518.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=57362056]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/VBoxContainer" unique_id=2073535270]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="NameLabel" type="Label" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer" unique_id=202549696]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_font_sizes/font_size = 48
+text = "Ability Name"
 
-[node name="DescriptionText" type="RichTextLabel" parent="AbilityDetails" unique_id=1630121528]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 624.0
-offset_right = 1577.0
-offset_bottom = 890.0
-theme_override_font_sizes/normal_font_size = 32
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer" unique_id=556635994]
+layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="ShieldDamageContainer" type="HBoxContainer" parent="AbilityDetails" unique_id=139086952]
-layout_mode = 0
-offset_left = 208.0
-offset_top = 521.0
-offset_right = 351.0
-offset_bottom = 590.0
+[node name="ShieldDamageContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=139086952]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme_override_constants/separation = 16
 
-[node name="ShieldDamageIcon" type="TextureRect" parent="AbilityDetails/ShieldDamageContainer" unique_id=1622227457]
+[node name="ShieldDamageIcon" type="TextureRect" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ShieldDamageContainer" unique_id=1622227457]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Shield Damage"
@@ -71,20 +77,19 @@ texture = ExtResource("2_vkpq0")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="ShieldDamageLabel" type="Label" parent="AbilityDetails/ShieldDamageContainer" unique_id=1585401239]
+[node name="ShieldDamageLabel" type="Label" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ShieldDamageContainer" unique_id=1585401239]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
 
-[node name="ArmorDamageContainer" type="HBoxContainer" parent="AbilityDetails" unique_id=1912459471]
-layout_mode = 0
-offset_left = 365.0
-offset_top = 521.0
-offset_right = 508.0
-offset_bottom = 590.0
+[node name="ArmorDamageContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1912459471]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme_override_constants/separation = 16
 
-[node name="ArmorDamageIcon" type="TextureRect" parent="AbilityDetails/ArmorDamageContainer" unique_id=1389324949]
+[node name="ArmorDamageIcon" type="TextureRect" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ArmorDamageContainer" unique_id=1389324949]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Armor Damage"
@@ -92,20 +97,19 @@ texture = ExtResource("3_olwxs")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="ArmorDamageLabel" type="Label" parent="AbilityDetails/ArmorDamageContainer" unique_id=502815030]
+[node name="ArmorDamageLabel" type="Label" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/ArmorDamageContainer" unique_id=502815030]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
 
-[node name="HealthDamageContainer" type="HBoxContainer" parent="AbilityDetails" unique_id=153672073]
-layout_mode = 0
-offset_left = 524.0
-offset_top = 521.0
-offset_right = 667.0
-offset_bottom = 590.0
+[node name="HealthDamageContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=153672073]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme_override_constants/separation = 16
 
-[node name="HealthDamageIcon" type="TextureRect" parent="AbilityDetails/HealthDamageContainer" unique_id=480841617]
+[node name="HealthDamageIcon" type="TextureRect" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HealthDamageContainer" unique_id=480841617]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Health Damage"
@@ -113,55 +117,64 @@ texture = ExtResource("4_pmglp")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="HealthDamageLabel" type="Label" parent="AbilityDetails/HealthDamageContainer" unique_id=576032071]
+[node name="HealthDamageLabel" type="Label" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HealthDamageContainer" unique_id=576032071]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
 
-[node name="CooldownContainer" type="HBoxContainer" parent="AbilityDetails" unique_id=2006836530]
-layout_mode = 0
-offset_left = 679.0
-offset_top = 521.0
-offset_right = 822.0
-offset_bottom = 590.0
+[node name="CooldownContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=2006836530]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme_override_constants/separation = 16
 
-[node name="CooldownIcon" type="TextureRect" parent="AbilityDetails/CooldownContainer" unique_id=1208983891]
+[node name="CooldownIcon" type="TextureRect" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/CooldownContainer" unique_id=1208983891]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Ability cooldown"
 texture = ExtResource("5_vt126")
 stretch_mode = 5
 
-[node name="CooldownLabel" type="Label" parent="AbilityDetails/CooldownContainer" unique_id=1182671763]
+[node name="CooldownLabel" type="Label" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/CooldownContainer" unique_id=1182671763]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
 
-[node name="ConfirmationDialog" parent="." unique_id=312538735 instance=ExtResource("5_1ijv4")]
-visible = false
-layout_mode = 1
+[node name="DescriptionText" type="RichTextLabel" parent="MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer" unique_id=1630121528]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 32
+text = "Description Text"
 
-[node name="HoverSound1" type="AudioStreamPlayer2D" parent="." unique_id=869664974]
+[node name="ConfirmationDialog" parent="MarginContainer2" unique_id=312538735 instance=ExtResource("5_1ijv4")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="HoverSound" type="AudioStreamPlayer2D" parent="MarginContainer2" unique_id=869664974]
+unique_name_in_owner = true
 stream = ExtResource("6_j5keh")
 
-[node name="HoverBadSound" type="AudioStreamPlayer2D" parent="." unique_id=1661843286]
+[node name="HoverBadSound" type="AudioStreamPlayer2D" parent="MarginContainer2" unique_id=1661843286]
+unique_name_in_owner = true
 stream = ExtResource("8_olwxs")
 
-[node name="ClickBadSound" type="AudioStreamPlayer2D" parent="." unique_id=137922998]
+[node name="ClickBadSound" type="AudioStreamPlayer2D" parent="MarginContainer2" unique_id=137922998]
+unique_name_in_owner = true
 stream = ExtResource("9_pmglp")
 
-[node name="ClickSound" type="AudioStreamPlayer2D" parent="." unique_id=1251974734]
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="MarginContainer2" unique_id=1251974734]
+unique_name_in_owner = true
 stream = ExtResource("7_q1qg4")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1091060597]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=990564115]
 custom_minimum_size = Vector2(200, 100)

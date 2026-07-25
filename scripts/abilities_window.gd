@@ -1,20 +1,21 @@
 extends Control
-@onready var title_label: Label = $TitleLabel
-@onready var name_label: Label = $AbilityDetails/NameLabel
-@onready var description_text: RichTextLabel = $AbilityDetails/DescriptionText
+@onready var title_label: Label = %TitleLabel
+@onready var name_label: Label = %NameLabel
+@onready var description_text: RichTextLabel = %DescriptionText
 
-@onready var shield_damage_label: Label = $AbilityDetails/ShieldDamageContainer/ShieldDamageLabel
-@onready var armor_damage_label: Label = $AbilityDetails/ArmorDamageContainer/ArmorDamageLabel
-@onready var health_damage_label: Label = $AbilityDetails/HealthDamageContainer/HealthDamageLabel
-@onready var cooldown_label: Label = $AbilityDetails/CooldownContainer/CooldownLabel
-@onready var confirmation_dialog: SimpleDialog = $ConfirmationDialog
-@onready var hover_sound_1: AudioStreamPlayer2D = $HoverSound1
-@onready var hover_bad_sound: AudioStreamPlayer2D = $HoverBadSound
-@onready var click_sound: AudioStreamPlayer2D = $ClickSound
-@onready var click_bad_sound: AudioStreamPlayer2D = $ClickBadSound
+@onready var shield_damage_label: Label = %ShieldDamageLabel
+@onready var armor_damage_label: Label = %ArmorDamageLabel
+@onready var health_damage_label: Label = %HealthDamageLabel
+@onready var cooldown_label: Label = %CooldownLabel
+@onready var confirmation_dialog: SimpleDialog = %ConfirmationDialog
+@onready var hover_sound_1: AudioStreamPlayer2D = %HoverSound
+@onready var hover_bad_sound: AudioStreamPlayer2D = %HoverBadSound
+@onready var click_sound: AudioStreamPlayer2D = %ClickSound
+@onready var click_bad_sound: AudioStreamPlayer2D = %ClickBadSound
+@onready var abilities_list: HBoxContainer = %AbilitiesList
+
 @onready var skip_button: Button = %SkipButton
 
-@onready var abilities_list: HBoxContainer = $AbilitiesList
 const ICON_SIZE := 128
 
 var selected_ability: Ability = null
