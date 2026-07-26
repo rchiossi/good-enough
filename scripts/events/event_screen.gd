@@ -1,8 +1,8 @@
 extends Control
 @onready var event_text: RichTextLabel = $EventText
-@onready var accept_button: Button = $ButtonContainer/AcceptButton
-@onready var reject_button: Button = $ButtonContainer/RejectButton
-@onready var continue_button: Button = $ButtonContainer/ContinueButton
+@onready var accept_button: TextureButton = $ButtonContainer/AcceptButton
+@onready var reject_button: TextureButton = $ButtonContainer/RejectButton
+@onready var continue_button: TextureButton = $ButtonContainer/ContinueButton
 @onready var chance_ex_text: RichTextLabel = $ButtonContainer/ChanceExText
 
 var available_events: Array[GameEvent] = []
@@ -30,8 +30,6 @@ func _get_removeable_ability_name():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    accept_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    reject_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     var ability_to_remove: String = _get_removeable_ability_name()
     #event1
     if ability_to_remove:
@@ -182,7 +180,7 @@ func choose_random_event() -> bool:
 
     var picked_event = available_events[event_index]
     %FirstPageText.text = picked_event.text
-    %AcceptButtonText.text = picked_event.accept_text
+    accept_button.text = picked_event.accept_text
     accept_button.pressed.connect(picked_event.take_action_func)
     reject_button.text = picked_event.reject_text
     

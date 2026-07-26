@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://2oitao7v0x7"]
+
+[ext_resource type="Texture2D" uid="uid://b37rsp7jj0cxt" path="res://assets/buttons/UI_Flat_Banner04a.png" id="1_nxt8e"]
+[ext_resource type="Script" uid="uid://bp3ukxo6aqps6" path="res://scripts/sounds/hover_sound.gd" id="2_ccv42"]
+[ext_resource type="Script" uid="uid://dwnmfrh2lrakr" path="res://scripts/events/custom_button.gd" id="2_xl27c"]
+[ext_resource type="Script" uid="uid://ota37prga8g7" path="res://scripts/sounds/press_sound.gd" id="3_ra2sv"]
+[ext_resource type="Script" uid="uid://ccrs8miu2ao26" path="res://scripts/ui_animations/scale_bounce.gd" id="4_xl27c"]
+[ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="5_ra2sv"]
+
+[node name="ContinueButton" type="TextureButton" unique_id=1550096079]
+custom_minimum_size = Vector2(164, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_nxt8e")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_xl27c")
+
+[node name="ButtonText" type="RichTextLabel" parent="." unique_id=1846789882]
+unique_name_in_owner = true
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.071354166
+anchor_top = 0.325
+anchor_right = 0.97447914
+anchor_bottom = 0.7277778
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+text = "Continue"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HoverSound" type="Control" parent="." unique_id=161471708]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_ccv42")
+metadata/_custom_type_script = "uid://bp3ukxo6aqps6"
+
+[node name="PressSound" type="Control" parent="." unique_id=1690333518]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ra2sv")
+metadata/_custom_type_script = "uid://ota37prga8g7"
+
+[node name="AnimationScaleBounce" type="Control" parent="." unique_id=787011847]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_xl27c")
+metadata/_custom_type_script = "uid://ccrs8miu2ao26"
+
+[node name="AnimationScaleTwitch" type="Control" parent="." unique_id=1202224002]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_ra2sv")
+metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
