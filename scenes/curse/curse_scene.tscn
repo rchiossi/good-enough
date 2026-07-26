@@ -144,11 +144,11 @@ size_flags_horizontal = 3
 
 [node name="AbilityGrid" type="GridContainer" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer" unique_id=1252792870]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(700, 170)
+custom_minimum_size = Vector2(750, 145)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-columns = 8
+columns = 10
 
 [node name="CombatAbility" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=1546287525 instance=ExtResource("3_tt2cq")]
 visible = false
@@ -214,6 +214,14 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="CombatAbility17" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=1039495443 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
+[node name="CombatAbility18" parent="MarginContainer5/MarginContainer/HBoxContainer/MarginContainer/AbilityGrid" unique_id=518442947 instance=ExtResource("3_tt2cq")]
+visible = false
+layout_mode = 2
+
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer5/MarginContainer/HBoxContainer" unique_id=1885277182]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -226,7 +234,6 @@ theme_override_constants/margin_bottom = 20
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer5" unique_id=1744085146]
 layout_mode = 2
