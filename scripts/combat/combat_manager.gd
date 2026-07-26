@@ -83,10 +83,7 @@ func init_combat(entities: Dictionary[String, EntityStats], active_entity: Strin
         else:
             _turn_order.push_back(entity.name)
         
-        if reload:
-            continue
-
-        if entity.is_player:
+        if entity.is_player and not reload:
             _player = entity.name
             entity.damage_dealt.connect( _resolve_player_action)
             entity.heal_received.connect( _resolve_player_action)
@@ -94,8 +91,6 @@ func init_combat(entities: Dictionary[String, EntityStats], active_entity: Strin
             _enemy = entity.name
             entity.damage_dealt.connect(_resolve_enemy_action)
             entity.heal_received.connect(_resolve_enemy_action)
-
-    print(_turn_order)
             
     step() #Move to COMBAT_READY
 
