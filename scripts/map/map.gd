@@ -107,7 +107,7 @@ func generate_map():
         return
     var rng = RandomNumberGenerator.new()
     var possible_nodes = [GameState.NodeTypes.Null, GameState.NodeTypes.Fight, GameState.NodeTypes.Event]
-    var weights = PackedFloat32Array([1, 1, 0.5])
+    var weights = PackedFloat32Array([0.75, 1, 0.25])
     var map = {
         0: {
             "nodes": {

@@ -112,9 +112,9 @@ func _init_enemies() -> void:
     enemy.name = "Skeletal Sludge"
     enemy.sprite = preload("uid://bs6dmy37eey6f")
     enemy.portrait = preload("uid://6ocbbtxsmq4e")
-    enemy.max_health = 50
+    enemy.max_health = 180
     enemy.max_armor = 0
-    enemy.max_shield = 30
+    enemy.max_shield = 90
     enemy.is_player = false
     enemy.stage = 2
     _register_ability(enemy, "Punch")
@@ -126,9 +126,9 @@ func _init_enemies() -> void:
     enemy.name = "Wraith"
     enemy.sprite = preload("uid://i8x6ipktxrdk")
     enemy.portrait = preload("uid://xjyskh6ypqon")
-    enemy.max_health = 30
-    enemy.max_armor = 10
-    enemy.max_shield = 50
+    enemy.max_health = 90
+    enemy.max_armor = 60
+    enemy.max_shield = 120
     enemy.is_player = false
     enemy.stage = 2
     _register_ability(enemy, "Punch")
@@ -140,9 +140,9 @@ func _init_enemies() -> void:
     enemy.name = "Cursed Book"
     enemy.sprite = preload("uid://wuhsiig2xuve")
     enemy.portrait = preload("uid://ct82304pdnvs3")
-    enemy.max_health = 10
-    enemy.max_armor = 70
-    enemy.max_shield = 20
+    enemy.max_health = 40
+    enemy.max_armor = 140
+    enemy.max_shield = 90
     enemy.is_player = false
     enemy.stage = 2
     _register_ability(enemy, "Punch")
@@ -155,7 +155,7 @@ func _init_enemies() -> void:
     enemy.sprite = preload("uid://1q2o5e4hg3hx")
     enemy.portrait = preload("uid://ccjo8vvetkel0")
     enemy.max_health = 200
-    enemy.max_armor = 100
+    enemy.max_armor = 50
     enemy.max_shield = 200
     enemy.is_player = false
     enemy.stage = 3
@@ -169,7 +169,7 @@ func _init_enemies() -> void:
     enemy.name = "Death Warrior"
     enemy.sprite = preload("uid://dolrgr2cb6kqm")
     enemy.portrait = preload("uid://berxvfyr26g1t")
-    enemy.max_health = 300
+    enemy.max_health = 250
     enemy.max_armor = 200
     enemy.max_shield = 0
     enemy.is_player = false
@@ -186,7 +186,7 @@ func _init_enemies() -> void:
     enemy.portrait = preload("uid://cio1h6ddhn6hs")
     enemy.max_health = 50
     enemy.max_armor = 200
-    enemy.max_shield = 250
+    enemy.max_shield = 200
     enemy.is_player = false
     enemy.stage = 3
     _register_ability(enemy, "Punch")
