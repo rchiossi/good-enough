@@ -111,3 +111,5 @@ size_flags_vertical = 3
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
+
+[connection signal="pressed" from="ButtonContainer/RejectButton" to="." method="_on_reject_button_pressed"]
