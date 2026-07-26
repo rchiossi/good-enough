@@ -3,6 +3,7 @@ class_name CombatAbilityScene
 
 @onready var sprite : TextureButton = %AbilitySprite
 @onready var _cooldown_label: Label = %CooldownLabel
+@onready var _cooldown_panel: Control = %CooldownPanel
 
 @onready var _press_sound: PressSound = %PressSound
 @onready var _hover_sound: HoverSound = %HoverSound
@@ -11,7 +12,6 @@ class_name CombatAbilityScene
 @onready var _animation_click: AnimationScaleBounce = %AnimationScaleBounce
 
 var _ability_name : String = "Cursed Explosion"
-var _tooltip_scene : PackedScene = preload("res://scenes/Combat/combat_ability_tooltip.tscn")
 var _in_combat : bool = true
 
 signal show_tooltip(ability_name : String)
@@ -58,12 +58,10 @@ func update_cooldown():
     var ability = GameState.all_abilities[_ability_name]
     var cooldown : int = ability.remaining_cooldown.get_or_add(GameState.player_stats.name, 0)
     if cooldown > 0:
-        sprite.self_modulate = Color(0.45, 0.45, 0.45)
         _cooldown_label.text = str(cooldown)
-        _cooldown_label.show()
+        _cooldown_panel.show()
     else:
-        _cooldown_label.hide()
-        sprite.self_modulate = Color.WHITE
+        _cooldown_panel.hide()
 
 func _on_sprite_pressed() -> void:
     var ability = GameState.all_abilities[_ability_name]
