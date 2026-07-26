@@ -27,8 +27,10 @@ func _ready() -> void:
         await get_tree().process_frame
         var next = GameState.nodes[GameState.connections[GameState.current_position]["children"][0]]
         %ScrollContainer.ensure_control_visible(next)
-        if %ScrollContainer.scroll_horizontal:
-            %ScrollContainer.scroll_horizontal += 120
+        if GameState.current_position.x > 5:
+            %ScrollContainer.scroll_horizontal += 180
+        else:
+            %ScrollContainer.scroll_horizontal += 60
     show_line = true
     if GameState.DEBUG:
         $MarginContainer.visible = true

@@ -31,7 +31,7 @@ const player_shield : int = 100
 
 var enemy_list : Dictionary = {}
 
-var DEBUG: bool = true
+var DEBUG: bool = false
 
 func _ready() -> void:
     reset()
