@@ -430,6 +430,9 @@ func _proceed_with_phase2():
 func _enable_abilities_highlight():
     for scene : CombatAbilityScene in _ability_grid.ability_scenes:
         var ability : Ability = GameState.all_abilities[scene._ability_name]
+        if ability.remaining_cooldown[_player_stats.name] != 0:
+            continue 
+
         if _combat_manager.can_damage(ability, _enemy_stats):
             scene.enable_highlight()
         elif ability.has_heals():
