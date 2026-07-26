@@ -41,8 +41,15 @@ class_name SunStrikeAnimation
 @onready var heal_animation: AnimatedSprite2D = $HealAnimation
 @onready var heal_sound: AudioStreamPlayer2D = $HealSound
 
+@onready var armor_heal_animation: AnimatedSprite2D = $ArmorHealAnimation
+@onready var armor_heal_sound: AudioStreamPlayer2D = $ArmorHealSound
+
+@onready var electric_torpedo_animation: AnimatedSprite2D = $ElectricTorpedoAnimation
+@onready var electric_torpedo_sound: AudioStreamPlayer2D = $ElectricTorpedoSound
+
 signal animation_completed
 
+var _active_animation: AnimatedSprite2D = null
 var _is_sound_done = false
 var _is_animation_done = false
 
@@ -53,62 +60,67 @@ func _ready() -> void:
 func play(animation_type: Ability.AnimationType, position_to_paint : Vector2, size: Vector2):
     assert(animation_type != Ability.AnimationType.NONE)
 
-    var animation : AnimatedSprite2D = null
     var sound : AudioStreamPlayer2D = null
 
     print("ANIMATION_TYPE=", animation_type)
     if animation_type == Ability.AnimationType.DARK_SPIKE_EXPLOSION:
-        animation = dark_spike_animation
+        _active_animation = dark_spike_animation
         sound = dark_spike_sound
     if animation_type == Ability.AnimationType.LIGHTNING_BOLT:
         sound = lightning_bolt_sound
-        animation = lightning_bolt_animation
+        _active_animation = lightning_bolt_animation
     if animation_type == Ability.AnimationType.CELESTIAL_BONK:
         sound = celestial_bonk_sound
-        animation = celestial_bonk_animation
+        _active_animation = celestial_bonk_animation
     if animation_type == Ability.AnimationType.FIRE_TORNADO:
         sound = fire_tornado_sound
-        animation = fire_tornado_animation
+        _active_animation = fire_tornado_animation
     if animation_type == Ability.AnimationType.WATER_BLAST:
         sound = water_blast_sound
-        animation = water_blast_animation
+        _active_animation = water_blast_animation
     if animation_type == Ability.AnimationType.WATER_SURGE:
         sound = water_surge_sound
-        animation = water_surge_animation
+        _active_animation = water_surge_animation
     if animation_type == Ability.AnimationType.PHOENIX_FLAME:
         sound = phoenix_flame_sound
-        animation = phoenix_flame_animation
+        _active_animation = phoenix_flame_animation
     if animation_type == Ability.AnimationType.BLOOD_BEND_BIG:
-        animation = blood_bend_big_animation
+        _active_animation = blood_bend_big_animation
         sound = blood_bend_big_sound
     if animation_type == Ability.AnimationType.BLOOD_BEND_MEDIUM:
-        animation = blood_bend_medium_animation
+        _active_animation = blood_bend_medium_animation
         sound = blood_bend_medium_sound
     if animation_type == Ability.AnimationType.FROST_TOMB:
-        animation = ice_tomb_animation
+        _active_animation = ice_tomb_animation
         sound = ice_tomb_sound
     if animation_type == Ability.AnimationType.TORNADO:
-        animation = tornado_animation
+        _active_animation = tornado_animation
         sound = tornado_sound
     if animation_type == Ability.AnimationType.ABYSSAL_SURGE:
-        animation = abyssal_pain_animation
+        _active_animation = abyssal_pain_animation
         sound = abyssal_pain_sound
     if animation_type == Ability.AnimationType.HEAL:
-        animation = heal_animation
+        _active_animation = heal_animation
         sound = heal_sound
+    if animation_type == Ability.AnimationType.HEAL_ARMOR:
+        _active_animation = armor_heal_animation
+        sound = armor_heal_sound
+    if animation_type == Ability.AnimationType.ELECTRIC_TORPEDO:
+        _active_animation = electric_torpedo_animation
+        sound = electric_torpedo_sound
 
-    animation.animation_finished.connect(_on_animation_completed)
+    _active_animation.animation_finished.connect(_on_animation_completed)
 
-    animation.visible = true
+    _active_animation.visible = true
     global_position = position_to_paint
-    var frames := animation.sprite_frames
-    var tex := frames.get_frame_texture(animation.animation, animation.frame)
+    var frames := _active_animation.sprite_frames
+    var tex := frames.get_frame_texture(_active_animation.animation, _active_animation.frame)
     var native_size := tex.get_size()
 
     var ratio := size / native_size
     var uniform : float = min(ratio.x, ratio.y)   # fit inside the enemy's box
-    animation.scale = Vector2(uniform, uniform)
-    animation.play()
+    _active_animation.scale = Vector2(uniform, uniform)
+    _active_animation.play()
     if sound != null:
         sound.finished.connect(_on_sound_finished)
         sound.play()
@@ -122,6 +134,7 @@ func _on_animation_completed() -> void:
         queue_free()
     else:
         _is_animation_done = true
+        _active_animation.visible = false
 
 func _on_sound_finished() -> void:
     if _is_animation_done:

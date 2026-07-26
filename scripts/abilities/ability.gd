@@ -23,7 +23,9 @@ enum AnimationType {
     FROST_TOMB,
     ABYSSAL_SURGE,
     TORNADO,
-    HEAL
+    HEAL,
+    HEAL_ARMOR,
+    ELECTRIC_TORPEDO
 }
 
 var shield_damage: int = 0

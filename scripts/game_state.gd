@@ -355,20 +355,21 @@ func _init_abilities():
     heal_wounds.name = "Heal Wounds"
     heal_wounds.icon = preload("uid://bmotw7e36xw2m")
     heal_wounds.description = "You take a moment to heal your deepest wounds. Significantly restoring health."
-    heal_wounds.cooldown = 10
+    heal_wounds.cooldown = 8
     heal_wounds.ability_type = Ability.AbilityType.MAGIC
     heal_wounds.animation_type = Ability.AnimationType.HEAL
     _add_ability(heal_wounds)
 
     var quick_mend := Ability.new()
-    quick_mend.health_regeneration = 5
-    quick_mend.shield_regeneration = 5
-    quick_mend.armor_regeneration = 5
-    quick_mend.name = "Quick Mend"
+    quick_mend.health_regeneration = 0
+    quick_mend.shield_regeneration = 0
+    quick_mend.armor_regeneration = 75
+    quick_mend.name = "Mend Armor"
     quick_mend.icon = preload("uid://5jahvm77bwuj")
-    quick_mend.description = "You take a moment to heal your deepest wounds. Significantly restoring health."
-    quick_mend.cooldown = 3
+    quick_mend.description = "You fix your armor, prepared to take more blows."
+    quick_mend.cooldown = 5
     quick_mend.ability_type = Ability.AbilityType.MAGIC
+    quick_mend.animation_type = Ability.AnimationType.HEAL_ARMOR
     _add_ability(quick_mend)
 
     var lightning_bolt := Ability.new()
@@ -427,6 +428,18 @@ func _init_abilities():
     tornado.ability_type = Ability.AbilityType.PIERCING
     tornado.animation_type = Ability.AnimationType.TORNADO
     _add_ability(tornado)
+
+    var electric_torpedo := Ability.new()
+    electric_torpedo.shield_damage = 35
+    electric_torpedo.armor_damage = 20
+    electric_torpedo.health_damage = 0
+    electric_torpedo.name = "Electric Torpedo"
+    electric_torpedo.description = "You channel your energy through the ground, it travels underground towards your enemy blasting them with a large electrical bolt."
+    electric_torpedo.icon = preload("uid://4on43jh0nvcq")
+    electric_torpedo.cooldown = 6
+    electric_torpedo.ability_type = Ability.AbilityType.PIERCING
+    electric_torpedo.animation_type = Ability.AnimationType.ELECTRIC_TORPEDO
+    _add_ability(electric_torpedo)
 
 
 func calculate_game_stage_for_turn(turn: int) -> int:
