@@ -89,6 +89,8 @@ func _ready() -> void:
     _load_background()
 
     # Debug Panel --
+    if GameState.DEBUG:
+        $DebugContainer.visible = true
     _attack_button.pressed.connect(_play_death_animation)
     _damage_button.pressed.connect(enemy.animate_take_damage)
     _skip_button.pressed.connect(_skip_combat)
