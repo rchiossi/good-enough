@@ -3,9 +3,14 @@ class_name CombatAbilityTooltip
 
 @onready var ability_name_label : Label = %AbilityNameLabel
 @onready var ability_sprite : TextureRect = %AbilitySprite
+
 @onready var hp_damage_label : Label = %HpDamageLabel
 @onready var armor_damage_label : Label = %ArmorDamageLabel
 @onready var shield_damage_label : Label = %ShieldDamageLabel
+
+@onready var hp_regen_label : Label = %HpRegenLabel
+@onready var armor_regen_label : Label = %ArmorRegenLabel
+@onready var shield_regen_label : Label = %ShieldRegenLabel
 
 var ability_name : String = "Cursed Explosion"
 
@@ -25,3 +30,7 @@ func load_ability():
     hp_damage_label.text = str(ability.health_damage)
     armor_damage_label.text = str(ability.armor_damage)
     shield_damage_label.text = str(ability.shield_damage)
+    
+    hp_regen_label.text = str(ability. health_regeneration)
+    armor_regen_label.text = str(ability.armor_regeneration)
+    shield_regen_label.text = str(ability.shield_regeneration)

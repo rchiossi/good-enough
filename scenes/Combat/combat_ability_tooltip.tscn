@@ -11,15 +11,21 @@
 [node name="CombatAbilityTooltip" type="MarginContainer" unique_id=1931624610]
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_6n13o")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1707224012]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5b1xd")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1076125214]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -27,6 +33,8 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=557158731]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1129791013]
 layout_mode = 2
@@ -46,16 +54,22 @@ text = "Cursed Explosion"
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=802000312]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1544711535]
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1054314643]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1531087525]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer" unique_id=1544711535]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2035724065]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer/HBoxContainer2" unique_id=2035724065]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HP Damage        "
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=773719006]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer/HBoxContainer2" unique_id=773719006]
 custom_minimum_size = Vector2(20, 20)
 custom_maximum_size = Vector2(20, 20)
 layout_mode = 2
@@ -65,22 +79,22 @@ texture = ExtResource("3_y4psc")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="HpDamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=379138728]
+[node name="HpDamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer/HBoxContainer2" unique_id=379138728]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "10"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1285489235]
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer" unique_id=1285489235]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1950499498]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer/HBoxContainer3" unique_id=1950499498]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Armor Damage "
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=889913374]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer/HBoxContainer3" unique_id=889913374]
 custom_minimum_size = Vector2(20, 20)
 custom_maximum_size = Vector2(20, 20)
 layout_mode = 2
@@ -90,23 +104,23 @@ texture = ExtResource("4_x6avr")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="ArmorDamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1553623445]
+[node name="ArmorDamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer/HBoxContainer3" unique_id=1553623445]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "10"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=89155815]
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer" unique_id=89155815]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1567716473]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer/HBoxContainer4" unique_id=1567716473]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Shield Damage "
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=2086968780]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer/HBoxContainer4" unique_id=2086968780]
 custom_minimum_size = Vector2(20, 20)
 custom_maximum_size = Vector2(20, 20)
 layout_mode = 2
@@ -116,7 +130,91 @@ texture = ExtResource("5_fcowo")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="ShieldDamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=902273316]
+[node name="ShieldDamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer/HBoxContainer4" unique_id=902273316]
 unique_name_in_owner = true
 layout_mode = 2
 text = "10"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=783680974]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1605951876]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2" unique_id=839648527]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="HpRegenLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2/HBoxContainer2" unique_id=690860330]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2/HBoxContainer2" unique_id=1859415815]
+custom_minimum_size = Vector2(20, 20)
+custom_maximum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_y4psc")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2/HBoxContainer2" unique_id=724857949]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HP Regen"
+horizontal_alignment = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2" unique_id=1064524885]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ArmorRegenLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2/HBoxContainer3" unique_id=725184818]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "10"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2/HBoxContainer3" unique_id=1691986483]
+custom_minimum_size = Vector2(20, 20)
+custom_maximum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("4_x6avr")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2/HBoxContainer3" unique_id=1932549810]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Armor Regen"
+horizontal_alignment = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2" unique_id=391922566]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ShieldRegenLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2/HBoxContainer4" unique_id=352014310]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2/HBoxContainer4" unique_id=1542628644]
+custom_minimum_size = Vector2(20, 20)
+custom_maximum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_fcowo")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2/HBoxContainer4" unique_id=421810431]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shield Regen"
