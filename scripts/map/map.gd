@@ -25,9 +25,10 @@ func _ready() -> void:
     else:
         %PlayerSprite2D.visible = true
         await get_tree().process_frame
-        %ScrollContainer.ensure_control_visible(GameState.nodes[GameState.current_position])
+        var next = GameState.nodes[GameState.connections[GameState.current_position]["children"][0]]
+        %ScrollContainer.ensure_control_visible(next)
         if %ScrollContainer.scroll_horizontal:
-            %ScrollContainer.scroll_horizontal += 360
+            %ScrollContainer.scroll_horizontal += 120
     show_line = true
     if GameState.DEBUG:
         $MarginContainer.visible = true
