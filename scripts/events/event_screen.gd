@@ -153,7 +153,6 @@ func _ready() -> void:
     well_event.reject_text = "Pretend You Didn't See It"
     well_event.take_action_func = Callable(well_event_callback)
     available_events.append(well_event)
-    available_events.clear()
     if len(available_events) == len(GameState.used_events):
         SceneLoader.load_scene("uid://csqef5bpcx1cc")
         return
