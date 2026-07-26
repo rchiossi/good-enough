@@ -31,7 +31,7 @@ shader_parameter/density = 0.1890000089775
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_otrat"]
 shader = ExtResource("9_jk1qb")
 shader_parameter/vignette_color = Color(0, 0, 0, 1)
-shader_parameter/radius = 0.2470000117325
+shader_parameter/radius = 0.33600001596
 shader_parameter/softness = 0.7470000354825
 shader_parameter/intensity = 1.0
 shader_parameter/correct_aspect_ratio = false
@@ -86,16 +86,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 250
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 150
 
 [node name="TextureRect" type="TextureRect" parent="Ui/MarginContainer" unique_id=384231740]
 custom_minimum_size = Vector2(0, 350)
 custom_maximum_size = Vector2(1200, -1)
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 4
+size_flags_vertical = 8
 texture = ExtResource("4_tbmy8")
 expand_mode = 3
 stretch_mode = 4
