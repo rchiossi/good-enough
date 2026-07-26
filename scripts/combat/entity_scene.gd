@@ -31,6 +31,8 @@ func init(entity_stats: EntityStats, reload: bool = false):
     stats = entity_stats
 
     _name_label.text = stats.name
+    if stats.name == "Player":
+        _name_label.text = "Hero"
 
     _health_bar.init(stats.health, stats.max_health)
     _armor_bar.init(stats.armor, stats.max_armor)
