@@ -28,7 +28,7 @@ func _load_abilities_to_grid():
     for ability in player.abilities.values():
         var new_ability : CombatAbilityScene = ability_scene.instantiate()
 
-        if not ability.is_disabled:
+        if not ability.is_disabled and ability.name != "Punch":
             _selectable_abilities.append(ability)
         else:
             pass #Show locked status
