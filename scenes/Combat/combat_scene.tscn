@@ -4,10 +4,13 @@
 [ext_resource type="Shader" uid="uid://bjudakokgcufk" path="res://shaders/combat/damage_flash.gdshader" id="2_e66v7"]
 [ext_resource type="PackedScene" uid="uid://8j2q7im3vpa3" path="res://scenes/Combat/entity_scene.tscn" id="2_njxow"]
 [ext_resource type="Texture2D" uid="uid://7uxcl0v0ljwg" path="res://assets/combat/bg_dead forest.png" id="3_e66v7"]
+[ext_resource type="Texture2D" uid="uid://1435d0dqu266" path="res://assets/combat/battle_log.png" id="4_8fwbi"]
 [ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="4_idueh"]
 [ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="5_h64lv"]
+[ext_resource type="Script" uid="uid://ccrs8miu2ao26" path="res://scripts/ui_animations/scale_bounce.gd" id="5_wbk3d"]
 [ext_resource type="Texture2D" uid="uid://curnbgbe7hmci" path="res://assets/combat/turn_indicator.png" id="6_4v6y1"]
 [ext_resource type="PackedScene" uid="uid://bdhkv4bcpgrhy" path="res://scenes/Combat/combat_ability.tscn" id="6_kbemr"]
+[ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="6_mrrpd"]
 [ext_resource type="Texture2D" uid="uid://ndqn73oovwp7" path="res://assets/combat/fg_panel.png" id="7_2wlmd"]
 [ext_resource type="Texture2D" uid="uid://b6vdmyguytleb" path="res://assets/combat/portraits/hero.png" id="7_d1w0n"]
 [ext_resource type="PackedScene" uid="uid://c8f3ytn0h5rs6" path="res://scenes/Combat/victory_panel.tscn" id="7_jaejr"]
@@ -21,6 +24,9 @@ resource_local_to_scene = true
 shader = ExtResource("2_e66v7")
 shader_parameter/flash_color = Color(0.12941177, 0.13333334, 0.16078432, 1)
 shader_parameter/flash_percentage = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fwbi"]
+bg_color = Color(0.12941177, 0.13333334, 0.16078432, 0.9490196)
 
 [node name="CombatScene" type="Control" unique_id=1486274649]
 layout_mode = 3
@@ -301,6 +307,39 @@ layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("7_2wlmd")
 
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1240134105]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -168.0
+offset_bottom = 168.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="BattleLogButton" type="TextureButton" parent="MarginContainer2" unique_id=90674314]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("4_8fwbi")
+
+[node name="AnimationScaleBounce" type="Control" parent="MarginContainer2/BattleLogButton" unique_id=187887915]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_wbk3d")
+metadata/_custom_type_script = "uid://ccrs8miu2ao26"
+
+[node name="AnimationScaleTwitch" type="Control" parent="MarginContainer2/BattleLogButton" unique_id=434965281]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_mrrpd")
+metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
+
 [node name="DebugContainer" type="MarginContainer" parent="." unique_id=1701603087]
 visible = false
 layout_mode = 1
@@ -362,6 +401,60 @@ layout_mode = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+
+[node name="BattleLog" type="MarginContainer" parent="." unique_id=273737955]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="BattleLog" unique_id=1828819587]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8fwbi")
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleLog/PanelContainer" unique_id=1386897489]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleLog/PanelContainer/MarginContainer" unique_id=1394779311]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="BattleLog/PanelContainer/MarginContainer/VBoxContainer" unique_id=859952769]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Battle Log"
+
+[node name="HSeparator" type="HSeparator" parent="BattleLog/PanelContainer/MarginContainer/VBoxContainer" unique_id=557136673]
+layout_mode = 2
+
+[node name="BattleLogLabel" type="RichTextLabel" parent="BattleLog/PanelContainer/MarginContainer/VBoxContainer" unique_id=1133670795]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
+
+[node name="HSeparator2" type="HSeparator" parent="BattleLog/PanelContainer/MarginContainer/VBoxContainer" unique_id=699182899]
+layout_mode = 2
+
+[node name="BattleLogCloseButton" type="Button" parent="BattleLog/PanelContainer/MarginContainer/VBoxContainer" unique_id=1861271707]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Close"
 
 [node name="AnimationScreenShake" type="Control" parent="." unique_id=1664222064]
 unique_name_in_owner = true

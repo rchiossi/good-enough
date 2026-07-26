@@ -18,6 +18,7 @@ enum CombatState {
 var state : CombatState = CombatState.PRE_COMBAT
 
 signal state_changed(state : CombatState)
+signal new_event(event: CombatEvent)
 
 func step():
     match state:
@@ -131,15 +132,17 @@ func _resolve_player_action(source: EntityStats, target: EntityStats, shield_dam
     var event = CombatEvent.new()
 
     event.type = CombatEvent.CombatEventType.DAMAGE
-    event.shield_damage = shield_damage
-    event.armor_damage = armor_damage
-    event.hp_damage = hp_damage
+    event.shield_change = shield_damage
+    event.armor_change = armor_damage
+    event.hp_change = hp_damage
     event.ability = GameState.all_abilities[ability_name]
 
     event.source = source
     event.target = target
 
     combat_events.push_back(event)
+
+    new_event.emit(event)
 
     #NOTE: Do not updage state here. The UI may still be animating
 
@@ -168,15 +171,17 @@ func _resolve_enemy_action(source: EntityStats, target: EntityStats, shield_dama
     var event = CombatEvent.new()
 
     event.type = CombatEvent.CombatEventType.DAMAGE
-    event.shield_damage = shield_damage
-    event.armor_damage = armor_damage
-    event.hp_damage = hp_damage
+    event.shield_change = shield_damage
+    event.armor_change = armor_damage
+    event.hp_change = hp_damage
     event.ability = GameState.all_abilities[ability_name]
 
     event.source = source
     event.target = target
 
     combat_events.push_back(event)
+
+    new_event.emit(event)
 
     #NOTE: Do not updage state here. The UI may still be animating
 
@@ -204,7 +209,7 @@ func print_event_log() -> void:
         print(event.source.name
         + " casted " + event.ability.name
         + " on " + event.target.name
-        +" dealing " + str(event.shield_damage) + "a,"
-        + str(event.armor_damage) + "a,"
-        + str(event.hp_damage) + "h damage.")
+        +" dealing " + str(event.shield_change) + "a,"
+        + str(event.armor_change) + "a,"
+        + str(event.hp_change) + "h damage.")
     

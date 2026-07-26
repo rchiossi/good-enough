@@ -14,7 +14,7 @@ enum CombatEventType {
 @export var ability : Ability
 
 # For Damage Events
-@export var shield_damage : int
-@export var armor_damage : int
-@export var hp_damage : int
+@export var shield_change : int
+@export var armor_change : int
+@export var hp_change : int
 

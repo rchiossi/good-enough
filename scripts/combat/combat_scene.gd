@@ -31,6 +31,11 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 
 @onready var _bg_music : CombatBgMusic = %BgMusic
 
+@onready var _battlelog_button : TextureButton = %BattleLogButton
+@onready var _battlelog_panel : MarginContainer = %BattleLog
+@onready var _battlelog_label : RichTextLabel = %BattleLogLabel
+@onready var _battlelog_close_button : Button = %BattleLogCloseButton
+
 @export var end_battle_animation_duration : float = 1.0
 
 @export var turn_indicator_offset : Vector2 = Vector2(0, -75)
@@ -96,19 +101,26 @@ func _ready() -> void:
     _skip_button.pressed.connect(_skip_combat)
     # -------------
 
+    _battlelog_button.pressed.connect(_show_battlelog)
+    _battlelog_close_button.pressed.connect(_hide_battlelog)
+
     var entities : Dictionary[String, EntityStats] = {}
     entities[_player_stats.name] = _player_stats
     entities[_enemy_stats.name] = _enemy_stats
     _combat_manager.state_changed.connect(_on_state_changed)
     _combat_manager.new_turn.connect(_on_new_turn)
     _combat_manager.action_taken.connect(_on_action_taken)
+    _combat_manager.new_event.connect(_on_new_combat_event)
     _combat_manager.init_combat(entities, _player_stats.name)
 
     _animate_start_combat.call_deferred()
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):
-        _settings_panel.fade_in()
+        if _battlelog_panel.visible:
+            _battlelog_panel.hide()
+        else:
+            _settings_panel.fade_in()
 
 func _calculate_game_stage():
     _game_stage = GameState.calculate_game_stage_for_turn(GameState.current_turn)
@@ -362,8 +374,6 @@ func _on_death():
             return
 
         end_panel = victory_panel
-
-    _combat_manager.print_event_log()
     
     end_panel.show()
 
@@ -414,3 +424,62 @@ func _load_boss_phase2():
 func _proceed_with_phase2():
     _play_reverse_death_animation()
     _animate_start_combat.call_deferred()
+
+func _show_battlelog():
+    # var text : String = ""
+
+    # for event in _combat_manager.combat_events:
+    #     text += " - "
+    #     text += event.source.name
+    #     text += " casted " + event.ability.name
+    #     text += " on " + event.target.name
+    #     text += " dealing " + str(event.shield_damage) + "a,"
+    #     text += str(event.armor_damage) + "a,"
+    #     text += str(event.hp_damage) + "h damage.\n"
+
+    # _battlelog_label.text = text
+
+    _battlelog_panel.show()
+
+func _hide_battlelog():
+    _battlelog_panel.hide()
+
+func _on_new_combat_event(event: CombatEvent):
+
+    if event.ability.has_heals():
+        if event.source.name == _player_stats.name:
+            _battlelog_label.append_text(" - [color=#4ca180]%s[/color] used [color=#e3ae52]%s[/color] " %
+                [event.source.name, event.ability.name])
+        else:
+            _battlelog_label.append_text(" - [color=#ba75a6]%s[/color] used [color=#e3ae52]%s[/color] " %
+                [event.source.name, event.ability.name])
+
+        _battlelog_label.append_text("healing ")
+
+        if event.shield_change != 0:
+            _battlelog_label.append_text("[color=#5275a3]%d shield[/color] " % [event.shield_change])
+        if event.armor_change != 0:
+            _battlelog_label.append_text("[color=#e3d5af]%d armor[/color] " % [event.armor_change])
+        if event.hp_change != 0:
+            _battlelog_label.append_text("[color=#b34947]%d health[/color] " % [event.hp_change])
+
+        _battlelog_label.append_text(".\n")
+    else:
+        if event.source.name == _player_stats.name:
+            _battlelog_label.append_text(" - [color=#4ca180]%s[/color] used [color=#e3ae52]%s[/color] on [color=#ba75a6]%s[/color] " %
+                [event.source.name, event.ability.name, event.target.name])
+        else:
+            _battlelog_label.append_text(" - [color=#ba75a6]%s[/color] used [color=#e3ae52]%s[/color] on [color=#4ca180]%s[/color] " %
+                [event.source.name, event.ability.name, event.target.name])
+
+        _battlelog_label.append_text("dealing ")
+
+        if event.shield_change != 0:
+            _battlelog_label.append_text("[color=#5275a3]%d shield[/color] " % [event.shield_change])
+        if event.armor_change != 0:
+            _battlelog_label.append_text("[color=#e3d5af]%d armor[/color] " % [event.armor_change])
+        if event.hp_change != 0:
+            _battlelog_label.append_text("[color=#b34947]%d health[/color] " % [event.hp_change])
+
+        _battlelog_label.append_text("damage.\n")
+    
