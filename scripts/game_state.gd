@@ -29,9 +29,9 @@ const player_health : int = 100
 const player_armor : int = 100
 const player_shield : int = 100
 
-var enemy_list : Dictionary = {}
+var enemy_list : Dictionary[StringName, EntityStats] = {}
 
-var DEBUG: bool = false
+var DEBUG: bool = true
 
 var health_scale = {
     1: [1,1,1],
@@ -234,9 +234,9 @@ func _init_enemies() -> void:
     
     for en in enemy_list.values():
         var scales = health_scale.get(en.stage, [1, 1, 1])
-        enemy.max_health = enemy.max_health * scales[0]
-        enemy.max_armor = enemy.max_armor * scales[1]
-        enemy.max_shield = enemy.max_shield * scales[2]
+        en.max_health = en.max_health * scales[0]
+        en.max_armor = en.max_armor * scales[1]
+        en.max_shield = en.max_shield * scales[2]
 
 func _register_ability(enemy: EntityStats, ability_name: String):
     var ability = all_abilities[ability_name]
