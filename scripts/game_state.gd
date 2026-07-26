@@ -237,9 +237,9 @@ func _add_ability(ability):
 func _init_abilities():
     var punch := Ability.new()
     punch.name = "Punch"
-    punch.shield_damage = 2
-    punch.armor_damage = 2
-    punch.health_damage = 2
+    punch.shield_damage = 10
+    punch.armor_damage = 10
+    punch.health_damage = 10
     punch.icon = preload("uid://ddpt2hr3n7xhd")
     punch.description = "You punch with all your might. Not your strongsuit, but hey. At least we deal some damage!"
     punch.cooldown = 0
@@ -248,9 +248,9 @@ func _init_abilities():
 
     var cursed_explosion := Ability.new()
     cursed_explosion.name = "Cursed Explosion"
-    cursed_explosion.shield_damage = 15
-    cursed_explosion.armor_damage = 5
-    cursed_explosion.health_damage = 5
+    cursed_explosion.shield_damage = 75
+    cursed_explosion.armor_damage = 25
+    cursed_explosion.health_damage = 25
     cursed_explosion.icon = preload("uid://du33uf7su8cdy")
     cursed_explosion.description = "An explosive curse is unleashed upon your enemy."
     cursed_explosion.cooldown = 4
@@ -259,9 +259,9 @@ func _init_abilities():
     _add_ability(cursed_explosion)
 
     var ice_dart := Ability.new()
-    ice_dart.shield_damage = 25
+    ice_dart.shield_damage = 125
     ice_dart.armor_damage = 0
-    ice_dart.health_damage = 10
+    ice_dart.health_damage = 50
     ice_dart.name = "Ice Dart"
     ice_dart.icon = preload("uid://qscf336gkfa4")
     ice_dart.description = "An ice dart that shoots towards your enemy. Piercing them dealing significant magic damage, but fails to penetrate armor."
@@ -273,7 +273,7 @@ func _init_abilities():
     var visceral_bleed := Ability.new()
     visceral_bleed.shield_damage = 0
     visceral_bleed.armor_damage = 0
-    visceral_bleed.health_damage = 25
+    visceral_bleed.health_damage = 125
     visceral_bleed.name = "Visceral Bleed"
     visceral_bleed.icon = preload("uid://bxm2bno0ekkfh")
     visceral_bleed.description = "You cut the veins of your enemies from the inside. Inflicts massive health damage."
@@ -284,8 +284,8 @@ func _init_abilities():
 
     var pillar_bonk := Ability.new()
     pillar_bonk.shield_damage = 0
-    pillar_bonk.armor_damage = 40
-    pillar_bonk.health_damage = 10
+    pillar_bonk.armor_damage = 200
+    pillar_bonk.health_damage = 50
     pillar_bonk.name = "Pillar Bonk"
     pillar_bonk.icon = preload("uid://b4u3ocj05xk2e")
     pillar_bonk.description = "You smash a giant pillar onto the enemy. Dealing significant armor damage."
@@ -295,9 +295,9 @@ func _init_abilities():
     _add_ability(pillar_bonk)
 
     var incinerate := Ability.new()
-    incinerate.shield_damage = 30
+    incinerate.shield_damage = 150
     incinerate.armor_damage = 0
-    incinerate.health_damage = 10
+    incinerate.health_damage = 50
     incinerate.name = "Incinerate"
     incinerate.icon = preload("uid://5abb2wxisclh")
     incinerate.description = "You set your enemy on fire burning through their magical shield. This also affects health due to the severe heat."
@@ -309,7 +309,7 @@ func _init_abilities():
     var blood_weave := Ability.new()
     blood_weave.shield_damage = 0
     blood_weave.armor_damage = 0
-    blood_weave.health_damage = 50
+    blood_weave.health_damage = 250
     blood_weave.name = "Blood Weave"
     blood_weave.icon = preload("uid://dyxfch1jvsk5x")
     blood_weave.description = "You manipulate the blood of your enemies, causing it to leak into their muscle. Significantly damaging their ability to breathe."
@@ -319,8 +319,8 @@ func _init_abilities():
     _add_ability(blood_weave)
 
     var frost_tomb := Ability.new()
-    frost_tomb.health_damage = 5
-    frost_tomb.shield_damage = 50
+    frost_tomb.health_damage = 25
+    frost_tomb.shield_damage = 250
     frost_tomb.name = "Frost Tomb"
     frost_tomb.icon = preload("uid://cm8yuipv7sih1")
     frost_tomb.description = "You create a large frost tomb and trap your enemy."
@@ -331,7 +331,7 @@ func _init_abilities():
 
     var phoenix_flame := Ability.new()
     phoenix_flame.health_damage = 0
-    phoenix_flame.armor_damage = 40
+    phoenix_flame.armor_damage = 200
     phoenix_flame.shield_damage = 0
     phoenix_flame.name = "Phoenix Flame"
     phoenix_flame.icon = preload("uid://dcqtsgnni83fl")
@@ -342,7 +342,7 @@ func _init_abilities():
     _add_ability(phoenix_flame)
 
     var heal_wounds := Ability.new()
-    heal_wounds.health_regeneration = 50
+    heal_wounds.health_regeneration = 250
     heal_wounds.name = "Heal Wounds"
     heal_wounds.icon = preload("uid://bmotw7e36xw2m")
     heal_wounds.description = "You take a moment to heal your deepest wounds. Significantly restoring health."
@@ -354,7 +354,7 @@ func _init_abilities():
     var quick_mend := Ability.new()
     quick_mend.health_regeneration = 0
     quick_mend.shield_regeneration = 0
-    quick_mend.armor_regeneration = 50
+    quick_mend.armor_regeneration = 250
     quick_mend.name = "Mend Armor"
     quick_mend.icon = preload("uid://5jahvm77bwuj")
     quick_mend.description = "You fix your armor, prepared to take more blows."
@@ -364,8 +364,8 @@ func _init_abilities():
     _add_ability(quick_mend)
 
     var lightning_bolt := Ability.new()
-    lightning_bolt.shield_damage = 50
-    lightning_bolt.armor_damage = 20
+    lightning_bolt.shield_damage = 250
+    lightning_bolt.armor_damage = 100
     lightning_bolt.name = "Ligthning Bolt"
     lightning_bolt.icon = preload("uid://386kl84jfkoh")
     lightning_bolt.description = "The clouds darken, the hollowing noise of the wind and clouds are followed by a flash and a loud explosion."
@@ -375,9 +375,9 @@ func _init_abilities():
     _add_ability(lightning_bolt)
 
     var water_canon := Ability.new()
-    water_canon.shield_damage = 10
-    water_canon.armor_damage = 25
-    water_canon.health_damage = 5
+    water_canon.shield_damage = 50
+    water_canon.armor_damage = 125
+    water_canon.health_damage = 25
     water_canon.name = "Water Canon"
     water_canon.icon = preload("uid://012has2563fj")
     water_canon.cooldown = 4
@@ -386,8 +386,8 @@ func _init_abilities():
     _add_ability(water_canon)
 
     var water_surge := Ability.new()
-    water_surge.shield_damage = 15
-    water_surge.armor_damage = 20
+    water_surge.shield_damage = 75
+    water_surge.armor_damage = 100
     water_surge.health_damage = 0
     water_surge.name = "Water Surge"
     water_surge.icon = preload("uid://dfdql4dj4hdm7")
@@ -397,8 +397,8 @@ func _init_abilities():
     _add_ability(water_surge)
 
     var abyssal_pain := Ability.new()
-    abyssal_pain.shield_damage = 25
-    abyssal_pain.armor_damage = 25
+    abyssal_pain.shield_damage = 125
+    abyssal_pain.armor_damage = 225
     abyssal_pain.health_damage = 0
     abyssal_pain.name = "Abyssal Pain"
     abyssal_pain.icon = preload("uid://3y2w3lbr8rck")
@@ -409,9 +409,9 @@ func _init_abilities():
     _add_ability(abyssal_pain)
 
     var tornado := Ability.new()
-    tornado.shield_damage = 10
-    tornado.armor_damage = 10
-    tornado.health_damage = 10
+    tornado.shield_damage = 50
+    tornado.armor_damage = 50
+    tornado.health_damage = 50
     tornado.name = "Fury Tornado"
     tornado.description = "You cast a massive tornado. It destroys everything in its path."
     tornado.icon = preload("uid://b0knc0runeucs")
@@ -421,8 +421,8 @@ func _init_abilities():
     _add_ability(tornado)
 
     var electric_torpedo := Ability.new()
-    electric_torpedo.shield_damage = 35
-    electric_torpedo.armor_damage = 20
+    electric_torpedo.shield_damage = 175
+    electric_torpedo.armor_damage = 100
     electric_torpedo.health_damage = 0
     electric_torpedo.name = "Electric Torpedo"
     electric_torpedo.description = "You channel your energy through the ground, it travels underground towards your enemy blasting them with a large electrical bolt."
