@@ -1,6 +1,7 @@
 extends MarginContainer
 
 @onready var _player : TextureRect = %Player
+@onready var _count : TextureRect = %Count
 
 @onready var _m1 : RichTextLabel = %M1
 @onready var _m2 : RichTextLabel = %M2
@@ -34,6 +35,7 @@ var tween: Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     _player.modulate.a = 0.0
+    _count.modulate.a = 0.0
 
     _m1.modulate.a = 0.0
     _m2.modulate.a = 0.0
@@ -71,6 +73,7 @@ func play():
     tween.tween_property(_player, "modulate:a", 1.0, step_duration)
     tween.tween_property(_m1, "modulate:a", 1.0, step_duration)
     tween.tween_property(_m2, "modulate:a", 1.0, step_duration * 2)
+    tween.parallel().tween_property(_count, "modulate:a", 1.0, step_duration)
     tween.tween_property(_m3, "modulate:a", 1.0, step_duration)
     tween.tween_property(_m4, "modulate:a", 1.0, step_duration * 2)
     tween.tween_property(_m5, "modulate:a", 1.0, step_duration)
