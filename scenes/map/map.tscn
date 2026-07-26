@@ -116,19 +116,29 @@ text = "Controls:
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1251448186]
-custom_minimum_size = Vector2(0, 32)
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=740619320]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0052083335
-anchor_top = 0.97037035
-anchor_right = 1.0
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_top = -98.0
+offset_right = 40.0
 grow_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer2" unique_id=1251448186]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
 bbcode_enabled = true
-text = "[b]H[/b] - help [b]I[/b] - inventory [b]P[/b] - paths"
+text = "[b]H[/b] - Help [b]I[/b] - Inventory [b]P[/b] - Paths"
+fit_content = true
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
