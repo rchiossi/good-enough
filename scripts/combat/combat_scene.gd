@@ -226,7 +226,7 @@ func _on_damage_taken(source: EntityStats, target: EntityStats, shield_damage: i
     else:
         tween.tween_callback(_on_enemy_animation_complete)
 
-func _on_heal_received(source: EntityStats, target: EntityStats, shield_regen: int, armor_regen: int, hp_regen: int, _ability_name: String):
+func _on_heal_received(source: EntityStats, _target: EntityStats, shield_regen: int, armor_regen: int, hp_regen: int, _ability_name: String):
     print("On heal received")
     var source_scene = _entity_scenes[source.name]
 

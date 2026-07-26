@@ -148,7 +148,3 @@ func _on_sound_finished() -> void:
         queue_free()
     else:
         _is_sound_done = true
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-    pass
