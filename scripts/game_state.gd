@@ -83,7 +83,7 @@ func _init_enemies() -> void:
     enemy.is_player = false
     enemy.stage = 1
     _register_ability(enemy, "Punch")
-    _register_ability(enemy, "Incinerate")
+    _register_ability(enemy, "Cursed Explosion")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -97,7 +97,7 @@ func _init_enemies() -> void:
     enemy.is_player = false
     enemy.stage = 1
     _register_ability(enemy, "Punch")
-    _register_ability(enemy, "Visceral Bleed")
+    _register_ability(enemy, "Fury Tornado")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -126,6 +126,7 @@ func _init_enemies() -> void:
     enemy.stage = 2
     _register_ability(enemy, "Punch")
     _register_ability(enemy, "Cursed Explosion")
+    _register_ability(enemy, "Fury Tornado")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -140,6 +141,7 @@ func _init_enemies() -> void:
     enemy.stage = 2
     _register_ability(enemy, "Punch")
     _register_ability(enemy, "Visceral Bleed")
+    _register_ability(enemy, "Frost Tomb")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -154,6 +156,7 @@ func _init_enemies() -> void:
     enemy.stage = 2
     _register_ability(enemy, "Punch")
     _register_ability(enemy, "Incinerate")
+    _register_ability(enemy, "Cursed Explosion")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -167,8 +170,9 @@ func _init_enemies() -> void:
     enemy.is_player = false
     enemy.stage = 3
     _register_ability(enemy, "Punch")
-    _register_ability(enemy, "Blood Weave")
+    _register_ability(enemy, "Abyssal Pain")
     _register_ability(enemy, "Cursed Explosion")
+    _register_ability(enemy, "Fury Tornado")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -184,6 +188,7 @@ func _init_enemies() -> void:
     _register_ability(enemy, "Punch")
     _register_ability(enemy, "Ice Dart")
     _register_ability(enemy, "Incinerate")
+    _register_ability(enemy, "Fury Tornado")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -199,6 +204,7 @@ func _init_enemies() -> void:
     _register_ability(enemy, "Punch")
     _register_ability(enemy, "Ice Dart")
     _register_ability(enemy, "Cursed Explosion")
+    _register_ability(enemy, "Ligthning Bolt")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -230,6 +236,8 @@ func _init_enemies() -> void:
     enemy.stage = 5
     _register_ability(enemy, "Incinerate")
     _register_ability(enemy, "Pillar Bonk")
+    _register_ability(enemy, "Fury Tornado")
+    _register_ability(enemy, "Cursed Explosion")
     enemy.init()
     enemy_list[enemy.name] = enemy
     
