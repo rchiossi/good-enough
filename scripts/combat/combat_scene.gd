@@ -66,10 +66,12 @@ func _ready() -> void:
 
     _player_stats = GameState.player_stats
     _player_stats.damage_taken.connect(_on_damage_taken)
+    _player_stats.heal_received.connect(_on_heal_received)
     _player_stats.init()
 
     _enemy_stats = GameState.enemy_list.values().filter(func(e): return e.stage == _game_stage).pick_random()
     _enemy_stats.damage_taken.connect(_on_damage_taken)
+    _enemy_stats.heal_received.connect(_on_heal_received)
     _enemy_stats.init()
 
     player.init(_player_stats)
@@ -208,6 +210,31 @@ func _on_damage_taken(source: EntityStats, target: EntityStats, shield_damage: i
     else:
         tween.tween_callback(_on_enemy_animation_complete)
 
+func _on_heal_received(source: EntityStats, target: EntityStats, shield_regen: int, armor_regen: int, hp_regen: int, _ability_name: String):
+    print("On heal received")
+    var source_scene = _entity_scenes[source.name]
+
+    source_scene.animate_receive_heal()
+
+    if shield_regen != 0:
+        var offset = Vector2(source_scene.size.x / 2 - damage_number_spread, 0)
+        show_damage_numbers(shield_regen, Color.LIGHT_BLUE, offset, source_scene)
+
+    if armor_regen != 0:
+        var offset = Vector2(source_scene.size.x / 2, 0)
+        show_damage_numbers(armor_regen, Color.LIGHT_GRAY, offset, source_scene)
+
+    if hp_regen != 0:
+        var offset = Vector2(source_scene.size.x / 2 + damage_number_spread, 0)
+        show_damage_numbers(hp_regen, Color.LIGHT_SALMON, offset, source_scene)
+
+    var tween = create_tween()
+    tween.tween_interval(turn_indicator_speed)
+    if source.is_player:
+        tween.tween_callback(_on_player_animation_complete)
+    else:
+        tween.tween_callback(_on_enemy_animation_complete)
+
 func _on_player_animation_complete():
     _combat_manager.conclude_player_action()
 
@@ -271,7 +298,7 @@ func _update_turn_indicator(target_name: String):
 
     tween.tween_property(_turn_indicator, "position", indicator_position, turn_indicator_speed)
 
-func _play_ability_effect(_source: EntityScene, target: EntityScene, ability: Ability):
+func _play_ability_effect(target: EntityScene, ability: Ability):
     var effect : GPUParticles2D = ability.effect_scene.instantiate()
     if ability.animation_type != Ability.AnimationType.NONE:
         var sprite_effect: SunStrikeAnimation = sprite_effect_scene.instantiate()
@@ -346,7 +373,11 @@ func _on_action_taken(_source_name: String, target_name: String, ability_name: S
     var source = _entity_scenes[_source_name]
     var target = _entity_scenes[target_name]
 
-    _play_ability_effect(source, target, ability)
+    if ability.has_heals():
+        _play_ability_effect(source, ability)
+    else:
+        _play_ability_effect(target, ability)
+
 
 func _load_boss_phase2():
     _game_stage = 5
@@ -355,6 +386,7 @@ func _load_boss_phase2():
 
     _enemy_stats = GameState.enemy_list.values().filter(func(e): return e.stage == _game_stage).pick_random()
     _enemy_stats.damage_taken.connect(_on_damage_taken)
+    _enemy_stats.heal_received.connect(_on_heal_received)
     _enemy_stats.init()
 
     enemy.init(_enemy_stats, true)
