@@ -59,6 +59,7 @@ func _change_state(_state : CombatState):
 var _entities : Dictionary[String, EntityStats] = {}
 var _active : String
 var _player : String
+var _enemy : String
 
 var _turn_order : Array[String] = []
 var _turn_count : int = 0
@@ -90,6 +91,7 @@ func init_combat(entities: Dictionary[String, EntityStats], active_entity: Strin
             entity.damage_dealt.connect( _resolve_player_action)
             entity.heal_received.connect( _resolve_player_action)
         else:
+            _enemy = entity.name
             entity.damage_dealt.connect(_resolve_enemy_action)
             entity.heal_received.connect(_resolve_enemy_action)
 
@@ -158,7 +160,7 @@ func take_enemy_action() -> void:
     step() #Move to ENEMY_ACTION_STARTED
 
     var enemy : EntityStats = _entities[_turn_order.front()]
-    var ability : Ability = enemy.abilities.values().pick_random()
+    var ability : Ability = _select_best_ability()
     var target : EntityStats = _entities[_player] 
 
     ability.take_action(enemy, target)
@@ -212,4 +214,92 @@ func print_event_log() -> void:
         +" dealing " + str(event.shield_change) + "a,"
         + str(event.armor_change) + "a,"
         + str(event.hp_change) + "h damage.")
+    
+func _select_best_ability() -> Ability:
+    var game_stage = GameState.calculate_game_stage_for_turn(GameState.current_turn)
+    
+    match game_stage:
+        1:
+            return _ai_lvl2()
+        2:
+            return _ai_lvl3()
+        3:
+            return _ai_lvl3()
+        4:
+            return _ai_lvl4()
+        5:
+            return _ai_lvl4()
+
+    return _ai_lvl1()
+
+func can_damage(ability : Ability, target: EntityStats) -> bool:
+    if ability.shield_damage > 0 and target.shield > 0:
+        return true
+
+    if target.shield:
+        return false
+
+    if ability.armor_damage > 0 and target.armor > 0:
+        return true
+
+    if target.armor > 0:
+        return false
+
+    return ability.health_damage > 0
+
+func _ai_lvl1() -> Ability:
+    return _entities[_enemy].abilities.values().pick_random()
+
+func _ai_lvl2() -> Ability:
+    var ability = _entities[_enemy].abilities.values().pick_random()
+    if not can_damage(ability, _entities[_player]):
+        ability = _entities[_enemy].abilities.values().pick_random()
+
+    return ability
+
+func _ai_lvl3() -> Ability:
+    var ability = _entities[_enemy].abilities.values().pick_random()
+    while not can_damage(ability, _entities[_player]):
+        ability = _entities[_enemy].abilities.values().pick_random()
+
+    return ability
+
+func calculate_total_damage(ability: Ability, target: EntityStats):
+    var total_damage = 0
+    var shield_damage = 0
+    if target.shield > 0:
+        shield_damage += min(ability.shield_damage, target.shield)
+        total_damage += shield_damage
+
+    if target.shield > shield_damage:
+        print(1)
+        return total_damage
+
+    var armor_damage = 0
+    if target.armor > 0:
+        armor_damage += min(ability.armor_damage, target.armor)
+        total_damage += armor_damage
+
+    if target.armor > armor_damage:
+        return total_damage
+
+    var health_damage = min(ability.health_damage, target.health)
+    total_damage += health_damage
+
+    return total_damage
+
+func _ai_lvl4() -> Ability:
+    var best_ability : Ability = null
+    var best_damage = 0
+
+    for ability in _entities[_enemy].abilities.values():
+        var damage = calculate_total_damage(ability, _entities[_player])
+        print(damage)
+        if damage > best_damage:
+            best_damage = damage
+            best_ability = ability
+
+    return best_ability
+
+
     
