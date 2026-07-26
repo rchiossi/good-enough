@@ -1,62 +1,55 @@
 [gd_scene format=3 uid="uid://d4b6rgp3dtcuu"]
 
 [ext_resource type="Script" uid="uid://ddbgehrje53rs" path="res://scripts/combat/defeat_panel.gd" id="1_13q6g"]
+[ext_resource type="Texture2D" uid="uid://ost7tc3dn6de" path="res://assets/combat/defeat_panel.png" id="2_fqj2a"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m8fq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vn8bj"]
+bg_color = Color(0.12941177, 0.13333334, 0.16078432, 0.67058825)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_12q8y"]
 
 [node name="DefeatPanel" type="MarginContainer" unique_id=2057956013]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -600.0
-offset_top = -400.0
-offset_right = 600.0
-offset_bottom = 400.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 200
 script = ExtResource("1_13q6g")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1212721838]
-custom_minimum_size = Vector2(800, 400)
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1733489752]
 layout_mode = 2
-color = Color(0.21960784, 0.21568628, 0.30588236, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_vn8bj")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=660287822]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2059160967]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_0m8fq")
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_12q8y")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1323681116]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1260171559]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 300
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=559990946]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1912933678]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1039560983]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0.5529412, 0.5137255, 0.5058824, 1)
-theme_override_font_sizes/font_size = 200
-text = "Defeat"
-
-[node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1256254439]
+[node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1676425175]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Main Menu"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2045361850]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_fqj2a")
+expand_mode = 3
