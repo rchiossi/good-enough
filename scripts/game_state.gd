@@ -280,7 +280,7 @@ func _init_abilities():
     cursed_explosion.health_damage = 25
     cursed_explosion.icon = preload("uid://du33uf7su8cdy")
     cursed_explosion.description = "An explosive curse is unleashed upon your enemy."
-    cursed_explosion.cooldown = 4
+    cursed_explosion.cooldown = 3
     cursed_explosion.ability_type = Ability.AbilityType.MAGIC
     cursed_explosion.animation_type = Ability.AnimationType.DARK_SPIKE_EXPLOSION
     _add_ability(cursed_explosion)
@@ -316,7 +316,7 @@ func _init_abilities():
     pillar_bonk.name = "Pillar Bonk"
     pillar_bonk.icon = preload("uid://b4u3ocj05xk2e")
     pillar_bonk.description = "You smash a giant pillar onto the enemy. Dealing significant armor damage."
-    pillar_bonk.cooldown = 5
+    pillar_bonk.cooldown = 4
     pillar_bonk.ability_type = Ability.AbilityType.PIERCING
     pillar_bonk.animation_type = Ability.AnimationType.CELESTIAL_BONK
     _add_ability(pillar_bonk)
@@ -340,7 +340,7 @@ func _init_abilities():
     blood_weave.name = "Blood Weave"
     blood_weave.icon = preload("uid://dyxfch1jvsk5x")
     blood_weave.description = "You manipulate the blood of your enemies, causing it to leak into their muscle. Significantly damaging their ability to breathe."
-    blood_weave.cooldown = 6
+    blood_weave.cooldown = 4
     blood_weave.ability_type = Ability.AbilityType.BLUNT
     blood_weave.animation_type = Ability.AnimationType.BLOOD_BEND_BIG
     _add_ability(blood_weave)
@@ -351,7 +351,7 @@ func _init_abilities():
     frost_tomb.name = "Frost Tomb"
     frost_tomb.icon = preload("uid://cm8yuipv7sih1")
     frost_tomb.description = "You create a large frost tomb and trap your enemy."
-    frost_tomb.cooldown = 4
+    frost_tomb.cooldown = 3
     frost_tomb.ability_type = Ability.AbilityType.MAGIC
     frost_tomb.animation_type = Ability.AnimationType.FROST_TOMB
     _add_ability(frost_tomb)
@@ -363,7 +363,7 @@ func _init_abilities():
     phoenix_flame.name = "Phoenix Flame"
     phoenix_flame.icon = preload("uid://dcqtsgnni83fl")
     phoenix_flame.description = "You summon the fire of a phoenix, causing damage to your enemy."
-    phoenix_flame.cooldown = 4
+    phoenix_flame.cooldown = 3
     phoenix_flame.ability_type = Ability.AbilityType.PIERCING
     phoenix_flame.animation_type = Ability.AnimationType.PHOENIX_FLAME
     _add_ability(phoenix_flame)
@@ -373,7 +373,7 @@ func _init_abilities():
     heal_wounds.name = "Heal Wounds"
     heal_wounds.icon = preload("uid://bmotw7e36xw2m")
     heal_wounds.description = "You take a moment to heal your deepest wounds. Significantly restoring health."
-    heal_wounds.cooldown = 8
+    heal_wounds.cooldown = 2
     heal_wounds.ability_type = Ability.AbilityType.MAGIC
     heal_wounds.animation_type = Ability.AnimationType.HEAL
     _add_ability(heal_wounds)
@@ -385,7 +385,7 @@ func _init_abilities():
     quick_mend.name = "Mend Armor"
     quick_mend.icon = preload("uid://5jahvm77bwuj")
     quick_mend.description = "You fix your armor, prepared to take more blows."
-    quick_mend.cooldown = 5
+    quick_mend.cooldown = 2
     quick_mend.ability_type = Ability.AbilityType.MAGIC
     quick_mend.animation_type = Ability.AnimationType.HEAL_ARMOR
     _add_ability(quick_mend)
@@ -396,7 +396,7 @@ func _init_abilities():
     lightning_bolt.name = "Ligthning Bolt"
     lightning_bolt.icon = preload("uid://386kl84jfkoh")
     lightning_bolt.description = "The clouds darken, the hollowing noise of the wind and clouds are followed by a flash and a loud explosion."
-    lightning_bolt.cooldown = 7
+    lightning_bolt.cooldown = 5
     lightning_bolt.ability_type = Ability.AbilityType.MAGIC
     lightning_bolt.animation_type = Ability.AnimationType.LIGHTNING_BOLT
     _add_ability(lightning_bolt)
@@ -407,7 +407,7 @@ func _init_abilities():
     water_canon.health_damage = 25
     water_canon.name = "Water Canon"
     water_canon.icon = preload("uid://012has2563fj")
-    water_canon.cooldown = 4
+    water_canon.cooldown = 3
     water_canon.ability_type = Ability.AbilityType.PIERCING
     water_canon.animation_type = Ability.AnimationType.WATER_BLAST
     _add_ability(water_canon)
@@ -418,7 +418,7 @@ func _init_abilities():
     water_surge.health_damage = 0
     water_surge.name = "Water Surge"
     water_surge.icon = preload("uid://dfdql4dj4hdm7")
-    water_surge.cooldown = 3
+    water_surge.cooldown = 2
     water_surge.ability_type = Ability.AbilityType.PIERCING
     water_surge.animation_type = Ability.AnimationType.WATER_SURGE
     _add_ability(water_surge)
@@ -430,7 +430,7 @@ func _init_abilities():
     abyssal_pain.name = "Abyssal Pain"
     abyssal_pain.icon = preload("uid://3y2w3lbr8rck")
     abyssal_pain.description = "You forge a magical pain onto your enemy."
-    abyssal_pain.cooldown = 5
+    abyssal_pain.cooldown = 4
     abyssal_pain.ability_type = Ability.AbilityType.PIERCING
     abyssal_pain.animation_type = Ability.AnimationType.ABYSSAL_SURGE
     _add_ability(abyssal_pain)
@@ -442,7 +442,7 @@ func _init_abilities():
     tornado.name = "Fury Tornado"
     tornado.description = "You cast a massive tornado. It destroys everything in its path."
     tornado.icon = preload("uid://b0knc0runeucs")
-    tornado.cooldown = 5
+    tornado.cooldown = 4
     tornado.ability_type = Ability.AbilityType.PIERCING
     tornado.animation_type = Ability.AnimationType.TORNADO
     _add_ability(tornado)
@@ -454,7 +454,7 @@ func _init_abilities():
     electric_torpedo.name = "Electric Torpedo"
     electric_torpedo.description = "You channel your energy through the ground, it travels underground towards your enemy blasting them with a large electrical bolt."
     electric_torpedo.icon = preload("uid://4on43jh0nvcq")
-    electric_torpedo.cooldown = 6
+    electric_torpedo.cooldown = 5
     electric_torpedo.ability_type = Ability.AbilityType.PIERCING
     electric_torpedo.animation_type = Ability.AnimationType.ELECTRIC_TORPEDO
     _add_ability(electric_torpedo)
