@@ -49,6 +49,8 @@ func _ready() -> void:
     print("ready on ", self, " label=", shield_damage_label)
 
     # Debug ----
+    if GameState.DEBUG:
+        $MarginContainerDebug.visible = true
     skip_button.pressed.connect(_debug_skip)
 
 func _debug_skip():
