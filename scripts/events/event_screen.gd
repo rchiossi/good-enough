@@ -1,8 +1,8 @@
 extends Control
 @onready var event_text: RichTextLabel = $EventText
-@onready var accept_button: Button = $ButtonContainer/AcceptButton
-@onready var reject_button: Button = $ButtonContainer/RejectButton
-@onready var continue_button: Button = $ButtonContainer/ContinueButton
+@onready var accept_button: TextureButton = $ButtonContainer/AcceptButton
+@onready var reject_button: TextureButton = $ButtonContainer/RejectButton
+@onready var continue_button: TextureButton = $ButtonContainer/ContinueButton
 @onready var chance_ex_text: RichTextLabel = $ButtonContainer/ChanceExText
 
 var available_events: Array[GameEvent] = []
@@ -30,30 +30,27 @@ func _get_removeable_ability_name():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    accept_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    reject_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     var ability_to_remove: String = _get_removeable_ability_name()
     #event1
-    if ability_to_remove:
-        var existential_event: GameEvent = GameEvent.new()
-        existential_event.text = "
-        A strange mushroom hums with forbidden knowledge.
+    var existential_event: GameEvent = GameEvent.new()
+    existential_event.text = "
+    A strange mushroom hums with forbidden knowledge.
 
-        The spores have already taken root.
-        Whether you embrace them or fight them, a piece of your
-        magic will be erased forever.
+    The spores have already taken root.
+    Whether you embrace them or fight them, a piece of your
+    magic will be erased forever.
 
-        Accepting gives you 50% chance to gain +25 health
-        Unfortunately, your brain permanently forgets how to cast " + ability_to_remove + ".
-            
-        Reject the mushrooms gift and choose an ability to sacrife. 
-        "
-            
-        existential_event.accept_text = "Accept enlightment"
-        existential_event.accept_text += "\n[color=red](Lose [i]%s[/i])[/color]" % ability_to_remove
-        existential_event.reject_text = "Purge"
-        existential_event.take_action_func = Callable(existential_event_callback.bind(ability_to_remove))
-        available_events.append(existential_event)
+    Accepting gives you 50% chance to gain +25 health
+    Unfortunately, your brain permanently forgets how to cast " + ability_to_remove + ".
+        
+    Reject the mushrooms gift and choose an ability to sacrife. 
+    "
+        
+    existential_event.accept_text = "Accept enlightment"
+    existential_event.accept_text += "\n[color=red](Lose [i]%s[/i])[/color]" % ability_to_remove
+    existential_event.reject_text = "Purge"
+    existential_event.take_action_func = Callable(existential_event_callback.bind(ability_to_remove))
+    available_events.append(existential_event)
     
     #event2
     var unionized_event: GameEvent = GameEvent.new()
@@ -156,7 +153,10 @@ func _ready() -> void:
     well_event.reject_text = "Pretend You Didn't See It"
     well_event.take_action_func = Callable(well_event_callback)
     available_events.append(well_event)
-
+    available_events.clear()
+    if len(available_events) == len(GameState.used_events):
+        SceneLoader.load_scene("uid://csqef5bpcx1cc")
+        return
     while not choose_random_event():
         assert(len(available_events) != len(GameState.used_events))
         continue
@@ -182,7 +182,7 @@ func choose_random_event() -> bool:
 
     var picked_event = available_events[event_index]
     %FirstPageText.text = picked_event.text
-    %AcceptButtonText.text = picked_event.accept_text
+    accept_button.text = picked_event.accept_text
     accept_button.pressed.connect(picked_event.take_action_func)
     reject_button.text = picked_event.reject_text
     

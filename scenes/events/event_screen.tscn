@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://tg46uqpcaerm" path="res://scripts/events/event_screen.gd" id="1_opc24"]
 [ext_resource type="Texture2D" uid="uid://dal1d4dnol780" path="res://assets/main_menu/bg_castle.png" id="2_fp55m"]
 [ext_resource type="Texture2D" uid="uid://qquh3iw2p3xl" path="res://assets/map/event_background.png" id="3_ga23d"]
+[ext_resource type="PackedScene" uid="uid://2oitao7v0x7" path="res://scenes/events/custom_button.tscn" id="4_ga23d"]
 
 [sub_resource type="Theme" id="Theme_fp55m"]
 
@@ -98,46 +99,15 @@ text = "Chance Explanation Text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AcceptButton" type="Button" parent="ButtonContainer" unique_id=795525899]
-custom_minimum_size = Vector2(120, 0)
+[node name="AcceptButton" parent="ButtonContainer" unique_id=1550096079 instance=ExtResource("4_ga23d")]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
 
-[node name="AcceptButtonText" type="RichTextLabel" parent="ButtonContainer/AcceptButton" unique_id=1223270072]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 32
-theme_override_font_sizes/bold_italics_font_size = 32
-theme_override_font_sizes/italics_font_size = 32
-theme_override_font_sizes/mono_font_size = 32
-bbcode_enabled = true
-text = "Accept
-[color=red](Lose [i]ability[/i])[/color]"
-fit_content = true
-autowrap_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RejectButton" type="Button" parent="ButtonContainer" unique_id=1810824781]
+[node name="RejectButton" parent="ButtonContainer" unique_id=1916626807 instance=ExtResource("4_ga23d")]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Reject"
 
-[node name="ContinueButton" type="Button" parent="ButtonContainer" unique_id=2039773821]
+[node name="ContinueButton" parent="ButtonContainer" unique_id=1603962912 instance=ExtResource("4_ga23d")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Continue"
-
-[connection signal="pressed" from="ButtonContainer/RejectButton" to="." method="_on_reject_button_pressed"]
