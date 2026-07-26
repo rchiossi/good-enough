@@ -17,6 +17,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_fahkb")
 
+[node name="BgMusic" type="Control" parent="." unique_id=1876534030]
+layout_mode = 2
+script = ExtResource("4_tumds")
+hover_sound = ExtResource("5_qeoni")
+start_time = 1.0
+metadata/_custom_type_script = "uid://br4iwnaapjuvt"
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1935337759]
 layout_mode = 2
 color = Color(0.12941177, 0.13333334, 0.16078432, 1)
@@ -179,10 +186,3 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 10
 text = "Main Menu"
-
-[node name="BgMusic" type="Control" parent="." unique_id=1876534030]
-layout_mode = 2
-script = ExtResource("4_tumds")
-hover_sound = ExtResource("5_qeoni")
-start_time = 1.0
-metadata/_custom_type_script = "uid://br4iwnaapjuvt"
