@@ -21,6 +21,8 @@ extends MarginContainer
 @onready var fight_info : HBoxContainer = %FightInfo
 @onready var _m15 : RichTextLabel = %M15
 
+@onready var _good_luck : RichTextLabel = %GoodLuck
+
 @onready var _main_menu_button : Button = %Continue
 
 @onready var _title : TextureRect = %Title
@@ -50,6 +52,7 @@ func _ready() -> void:
     health_info.modulate.a = 0.0
     event_info.modulate.a = 0.0
     fight_info.modulate.a = 0.0
+    _good_luck.modulate.a = 0.0
 
     _main_menu_button.modulate.a = 0.0
     _main_menu_button.disabled = true
@@ -68,12 +71,11 @@ func play():
     tween.tween_property(_player, "modulate:a", 1.0, step_duration)
     tween.tween_property(_m1, "modulate:a", 1.0, step_duration)
     tween.tween_property(_m2, "modulate:a", 1.0, step_duration * 2)
-    tween.tween_interval(1.0)
     tween.tween_property(_m3, "modulate:a", 1.0, step_duration)
     tween.tween_property(_m4, "modulate:a", 1.0, step_duration * 2)
     tween.tween_property(_m5, "modulate:a", 1.0, step_duration)
     tween.tween_property(_m6, "modulate:a", 1.0, step_duration * 2)
-    tween.tween_interval(2.0)
+    tween.tween_interval(1.0)
     tween.tween_property(_m7, "modulate:a", 1.0, step_duration)
     tween.tween_interval(1.0)
     tween.tween_property(_m14, "modulate:a", 1.0, step_duration)
@@ -87,6 +89,7 @@ func play():
     tween.tween_property(shield_info, "modulate:a", 1.0, step_duration)
     tween.tween_property(armor_info, "modulate:a", 1.0, step_duration)
     tween.tween_property(health_info, "modulate:a", 1.0, step_duration)
+    tween.tween_property(_good_luck, "modulate:a", 1.0, step_duration * 2)
     tween.parallel().tween_property(_main_menu_button, "modulate:a", 1.0, step_duration)
     tween.parallel().tween_property(_title, "modulate:a", 1.0, step_duration)
     tween.tween_callback(func(): 
@@ -106,4 +109,4 @@ func _on_skip_pressed() -> void:
 func _on_skip_all_pressed() -> void:
     if tween and tween.is_valid():
         step_duration = 0
-        tween.custom_step(200)
+        tween.custom_step(500)
