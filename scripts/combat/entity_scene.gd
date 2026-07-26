@@ -1,6 +1,8 @@
 extends MarginContainer
 class_name EntityScene
 
+@onready var _name_label : Label = %NameLabel
+
 @onready var _health_bar : StatusBar = %HealthBar
 @onready var _armor_bar : StatusBar = %ArmorBar
 @onready var _shield_bar : StatusBar = %ShieldBar
@@ -27,6 +29,8 @@ func init(entity_stats: EntityStats, reload: bool = false):
     offset_transform_enabled = true
 
     stats = entity_stats
+
+    _name_label.text = stats.name
 
     _health_bar.init(stats.health, stats.max_health)
     _armor_bar.init(stats.armor, stats.max_armor)
