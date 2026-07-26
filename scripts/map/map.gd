@@ -112,10 +112,11 @@ func generate_map():
         0: {
             "nodes": {
                 0: {
-                    "type": GameState.NodeTypes.Start
+                    "type": GameState.NodeTypes.Start,
+                    "visited": 1,
                 }
             },
-            "status": 1,
+            "status": 0,
         }
     }
     for i in range(1, GameState.max_turns):
@@ -154,7 +155,7 @@ func generate_map():
         "status": 1,
     }
     GameState.map = map
-    GameState.current_position = Vector2i(-1, -1)
+    GameState.current_position = Vector2i(0, 0)
     GameState.current_turn = -1
     _generate_paths()
 
@@ -251,7 +252,6 @@ func goto(node: Vector2i) -> void:
     GameState.map[GameState.current_position.x]["status"]  = 0
     GameState.map[GameState.current_position.x]["nodes"][GameState.current_position.y]["visited"] = 1
     SceneLoader.load_scene("res://scenes/map/map.tscn")
-
 
 func animate_idle():
     var tween = create_tween()

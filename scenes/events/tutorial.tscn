@@ -1,0 +1,420 @@
+[gd_scene format=3 uid="uid://b5pd5quurjtqd"]
+
+[ext_resource type="Script" uid="uid://dkedku6apjg76" path="res://scripts/events/tutorial.gd" id="1_o2uva"]
+[ext_resource type="Script" uid="uid://br4iwnaapjuvt" path="res://scripts/sounds/bg_music.gd" id="2_o137t"]
+[ext_resource type="AudioStream" uid="uid://df0n5wlswsdnr" path="res://assets/music/Plains3.ogg" id="3_lmsrj"]
+[ext_resource type="Texture2D" uid="uid://d1ksm2430qlyh" path="res://assets/main_menu/Title.png" id="4_m2ele"]
+[ext_resource type="Script" uid="uid://m4shjygky4h1" path="res://scripts/ui_animations/float.gd" id="5_pce2u"]
+[ext_resource type="Texture2D" uid="uid://d0p6syokv5sd7" path="res://assets/combat/Hero/hero.png" id="6_k2sem"]
+[ext_resource type="Texture2D" uid="uid://2xwi22qnlxkx" path="res://assets/map/event.png" id="7_e4ffp"]
+[ext_resource type="Texture2D" uid="uid://bb54l43n3ccqs" path="res://assets/combat/health_damage.png" id="7_qrfcb"]
+[ext_resource type="Texture2D" uid="uid://ralfwn4ppd7c" path="res://assets/combat/shield_damage.png" id="8_0da5i"]
+[ext_resource type="Texture2D" uid="uid://c7j2jmc6jv7cv" path="res://assets/map/fight.png" id="8_e4ffp"]
+[ext_resource type="Texture2D" uid="uid://c4m3tbus0iavt" path="res://assets/combat/armor_damage.png" id="9_e4ffp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vw600"]
+
+[node name="TutorialScene" type="MarginContainer" unique_id=395720033]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_o2uva")
+
+[node name="BgMusic" type="Control" parent="." unique_id=1876534030]
+layout_mode = 2
+script = ExtResource("2_o137t")
+hover_sound = ExtResource("3_lmsrj")
+start_time = 1.0
+metadata/_custom_type_script = "uid://br4iwnaapjuvt"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1935337759]
+layout_mode = 2
+color = Color(0.12941177, 0.13333334, 0.16078432, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1338638887]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=451297177]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=273113417]
+custom_maximum_size = Vector2(600, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 100
+
+[node name="Title" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer" unique_id=1996863107]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_m2ele")
+stretch_mode = 4
+
+[node name="AnimationFloat" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer/Title" unique_id=198957711]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_pce2u")
+metadata/_custom_type_script = "uid://m4shjygky4h1"
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=375688536]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Player" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer2" unique_id=956828654]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("6_k2sem")
+stretch_mode = 3
+
+[node name="AnimationFloat" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer2/Player" unique_id=809947708]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_pce2u")
+duration = 5.0
+metadata/_custom_type_script = "uid://m4shjygky4h1"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1056969641]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=271058081]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3" unique_id=534389900]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="M1" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=2087540146]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "I will stop you [color=#c9884b]Ct. Downcula[/color], your days are numbered!"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="M2" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1861404770]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+bbcode_enabled = true
+text = "[color=#c9884b][i]You are too late, hahahaha![/i][/color]"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="M3" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=759665291]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+bbcode_enabled = true
+text = "... huh ..."
+fit_content = true
+horizontal_alignment = 2
+
+[node name="M4" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=649550758]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+bbcode_enabled = true
+text = "[color=#c9884b][i]You are under my curse! Your powers are draining as we speek![/i][/color]"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="M5" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=992064251]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+bbcode_enabled = true
+text = ".... [i](you start to feel weaker)[/i] ..."
+fit_content = true
+horizontal_alignment = 2
+
+[node name="M6" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=802288884]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+bbcode_enabled = true
+text = " [color=#c9884b][i]Your final countdown has started! Come to me if you dare![/i][/color]"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="M7" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1213453517]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+bbcode_enabled = true
+text = "[i]The [color=#c9884b]Count[/color] is waiting for you at the end of the path. Proceed with care.[/i]"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer/VBoxContainer3" unique_id=533999636]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_vw600")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3" unique_id=447988365]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="MapExplainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer3" unique_id=1164664583]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="M14" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer3/MapExplainer" unique_id=508656785]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "[i]While all paths lead down to the count, not all are the same:[/i]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EventInfo" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer3/MapExplainer" unique_id=390896596]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="M11" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer3/MapExplainer/EventInfo" unique_id=867584905]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "[i]risk a random encounter, it could save your life, or doom it[/i]"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer3/MapExplainer/EventInfo" unique_id=111845522]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("7_e4ffp")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="FightInfo" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer3/MapExplainer" unique_id=786666611]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="M12" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer3/MapExplainer/FightInfo" unique_id=1664242525]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "[i]face your enemies directly[/i]"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer3/MapExplainer/FightInfo" unique_id=38611544]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("8_e4ffp")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="M15" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer3" unique_id=701563193]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "[i]Remember to plan ahead, not everything is connected.[/i]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3" unique_id=1973344453]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="M8" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=369499798]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "[i]After every battle you lose some of your power, make sure you dont lose too much![/i]
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="M9" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=835913680]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "[i]Because while your powers are [color=#c9884b]counting down[/color], your enemies are only becoming stronger![/i]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DmgExplainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=616799929]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="M10" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer" unique_id=2051448927]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "[i]The enemies will be strong, you need to go through their defences, one at a time:"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShieldInfo" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer" unique_id=1602215924]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="M11" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer/ShieldInfo" unique_id=1532904815]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "first their shield"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer/ShieldInfo" unique_id=294704934]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("8_0da5i")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ArmorInfo" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer" unique_id=2083604324]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="M12" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer/ArmorInfo" unique_id=1227340915]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "then their armor"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer/ArmorInfo" unique_id=728166253]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("9_e4ffp")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HealthInfo" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer" unique_id=1872700153]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="M13" type="RichTextLabel" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer/HealthInfo" unique_id=1322836876]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/italics_font_size = 35
+bbcode_enabled = true
+text = "and finally their health"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer3/VBoxContainer2/DmgExplainer/HealthInfo" unique_id=1115372845]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("7_qrfcb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3" unique_id=117937529]
+layout_mode = 2
+alignment = 2
+
+[node name="Continue" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer3/HBoxContainer" unique_id=680258263]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "Continue"
+
+[node name="Skip" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer3/HBoxContainer" unique_id=1924482126]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "Skip
+"
+
+[node name="SkipAll" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer3/HBoxContainer" unique_id=2098975126]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "Skip All
+"
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer3/HBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer3/HBoxContainer/Skip" to="." method="_on_skip_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer3/HBoxContainer/SkipAll" to="." method="_on_skip_all_pressed"]

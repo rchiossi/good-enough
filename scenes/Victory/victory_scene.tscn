@@ -103,7 +103,8 @@ horizontal_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 40
-text = "The Count is finally down."
+bbcode_enabled = true
+text = "The [color=#c9884b]Count[/color] is finally [color=#c9884b]down[/color]."
 fit_content = true
 horizontal_alignment = 2
 

@@ -38,7 +38,7 @@ func _on_start_button_pressed() -> void:
         print("autoload", autoload)
         if autoload.has_method("reset"):
             autoload.call("reset")
-    SceneLoader.load_scene("res://scenes/map/map.tscn")
+    SceneLoader.load_scene("res://scenes/events/tutorial.tscn")
 
 func _on_settings_button_pressed() -> void:
     _settings_panel.fade_in()
