@@ -26,6 +26,8 @@
 [ext_resource type="AudioStream" uid="uid://7cnsbvb5sj2c" path="res://assets/abilities/sounds/Curse Spell 18.wav" id="23_bes7q"]
 [ext_resource type="Texture2D" uid="uid://dsh5rqiub80ko" path="res://assets/abilities/animations/tornadoswirl.png" id="25_4kqs4"]
 [ext_resource type="AudioStream" uid="uid://dm0igmygtkeqa" path="res://assets/abilities/sounds/Air Spell 15.wav" id="25_n7143"]
+[ext_resource type="Texture2D" uid="uid://tj7akqv4tvj6" path="res://assets/abilities/animations/heal.png" id="27_y8t7o"]
+[ext_resource type="AudioStream" uid="uid://d3hrr712bofbh" path="res://assets/abilities/sounds/Heal Spell 14.wav" id="28_6nsgq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bes7q"]
 atlas = ExtResource("2_fsjn3")
@@ -2154,6 +2156,126 @@ animations = [{
 "speed": 18.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouw3p"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(162, 81, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qai8"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(324, 81, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc8d5"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(324, 0, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jtdk"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(243, 162, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qejio"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(243, 81, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdyxe"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(243, 0, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibtu7"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(162, 162, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djs5f"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(324, 162, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcxqd"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(162, 0, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52h7s"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(81, 162, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlsrh"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(81, 81, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uodgj"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(81, 0, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2st8g"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(0, 162, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xc5m"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(0, 81, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffamd"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(0, 0, 81, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13tng"]
+atlas = ExtResource("27_y8t7o")
+region = Rect2(405, 0, 81, 81)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ayukh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouw3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qai8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc8d5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jtdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qejio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdyxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibtu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djs5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcxqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52h7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlsrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uodgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2st8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xc5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffamd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13tng")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="AbilityCombatAnimation" type="Node2D" unique_id=1336474477]
 script = ExtResource("1_0ilo2")
 
@@ -2288,4 +2410,14 @@ frame_progress = 1.0
 
 [node name="TornadoSound" type="AudioStreamPlayer2D" parent="." unique_id=1016191686]
 stream = ExtResource("25_n7143")
+bus = &"Sfx"
+
+[node name="HealAnimation" type="AnimatedSprite2D" parent="." unique_id=2077616232]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ayukh")
+frame = 15
+frame_progress = 1.0
+
+[node name="HealSound" type="AudioStreamPlayer2D" parent="." unique_id=1780901757]
+stream = ExtResource("28_6nsgq")
 bus = &"Sfx"

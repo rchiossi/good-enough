@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3hrr712bofbh"
+path="res://.godot/imported/Heal Spell 14.wav-523476877735e453db0a00ac69c7a94f.sample"
+
+[deps]
+
+source_file="res://assets/abilities/sounds/Heal Spell 14.wav"
+dest_files=["res://.godot/imported/Heal Spell 14.wav-523476877735e453db0a00ac69c7a94f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

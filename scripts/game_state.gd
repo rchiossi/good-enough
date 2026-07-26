@@ -351,12 +351,13 @@ func _init_abilities():
     _add_ability(phoenix_flame)
 
     var heal_wounds := Ability.new()
-    heal_wounds.health_regeneration = 70
+    heal_wounds.health_regeneration = 100
     heal_wounds.name = "Heal Wounds"
     heal_wounds.icon = preload("uid://bmotw7e36xw2m")
     heal_wounds.description = "You take a moment to heal your deepest wounds. Significantly restoring health."
     heal_wounds.cooldown = 10
     heal_wounds.ability_type = Ability.AbilityType.MAGIC
+    heal_wounds.animation_type = Ability.AnimationType.HEAL
     _add_ability(heal_wounds)
 
     var quick_mend := Ability.new()
