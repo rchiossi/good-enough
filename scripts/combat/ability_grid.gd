@@ -29,4 +29,3 @@ func add_item(control_node : CombatAbilityScene):
 func update_abilities() -> void:
     for scene : CombatAbilityScene in ability_scenes:
         scene.update_cooldown()
-
