@@ -50,6 +50,7 @@ func _reset_map() -> void:
     connections = {}
 
 func _init_player() -> void:
+    player_stats = EntityStats.new()
     player_stats.name = "Player"
     player_stats.sprite = preload("uid://d0p6syokv5sd7")
     player_stats.portrait = preload("uid://b6vdmyguytleb")
@@ -69,12 +70,13 @@ func _init_enemies() -> void:
     enemy.name = "Goblin"
     enemy.sprite = preload("uid://bihigvwvvgnm3")
     enemy.portrait = preload("uid://7kdx45dvnur8")
-    enemy.max_health = 10
-    enemy.max_armor = 5
+    enemy.max_health = 30
+    enemy.max_armor = 60
     enemy.max_shield = 0
     enemy.is_player = false
     enemy.stage = 1
     _register_ability(enemy, "Punch")
+    _register_ability(enemy, "Incinerate")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -82,12 +84,13 @@ func _init_enemies() -> void:
     enemy.name = "Wolf"
     enemy.sprite = preload("uid://catthopdua8g4")
     enemy.portrait = preload("uid://bniyhx2w6u431")
-    enemy.max_health = 15
-    enemy.max_armor = 10
-    enemy.max_shield = 10
+    enemy.max_health = 70
+    enemy.max_armor = 20
+    enemy.max_shield = 0
     enemy.is_player = false
     enemy.stage = 1
     _register_ability(enemy, "Punch")
+    _register_ability(enemy, "Visceral Bleed")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -95,12 +98,13 @@ func _init_enemies() -> void:
     enemy.name = "Skeleton"
     enemy.sprite = preload("uid://dyjemcig3qw8q")
     enemy.portrait = preload("uid://erkrb87cardp")
-    enemy.max_health = 5
-    enemy.max_armor = 5
-    enemy.max_shield = 5
+    enemy.max_health = 30
+    enemy.max_armor = 0
+    enemy.max_shield = 60
     enemy.is_player = false
     enemy.stage = 1
     _register_ability(enemy, "Punch")
+    _register_ability(enemy, "Ice Dart")
     enemy.init()
     enemy_list[enemy.name] = enemy
 
@@ -235,6 +239,7 @@ func _add_ability(ability):
     all_abilities.get_or_add(ability.name, ability)
 
 func _init_abilities():
+    all_abilities.clear()
     var punch := Ability.new()
     punch.name = "Punch"
     punch.shield_damage = 10
@@ -431,7 +436,6 @@ func _init_abilities():
     electric_torpedo.ability_type = Ability.AbilityType.PIERCING
     electric_torpedo.animation_type = Ability.AnimationType.ELECTRIC_TORPEDO
     _add_ability(electric_torpedo)
-
 
 func calculate_game_stage_for_turn(turn: int) -> int:
     if turn == GameState.max_turns:
