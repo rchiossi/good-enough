@@ -47,6 +47,9 @@ class_name SunStrikeAnimation
 @onready var electric_torpedo_animation: AnimatedSprite2D = $ElectricTorpedoAnimation
 @onready var electric_torpedo_sound: AudioStreamPlayer2D = $ElectricTorpedoSound
 
+@onready var ice_dart_sound: AudioStreamPlayer2D = $IceDartSound
+@onready var ice_dart_animation: AnimatedSprite2D = $IceDartAnimation
+
 signal animation_completed
 
 var _active_animation: AnimatedSprite2D = null
@@ -108,6 +111,9 @@ func play(animation_type: Ability.AnimationType, position_to_paint : Vector2, si
     if animation_type == Ability.AnimationType.ELECTRIC_TORPEDO:
         _active_animation = electric_torpedo_animation
         sound = electric_torpedo_sound
+    if animation_type == Ability.AnimationType.ICE_DART:
+        _active_animation = ice_dart_animation
+        sound = ice_dart_sound
 
     _active_animation.animation_finished.connect(_on_animation_completed)
 

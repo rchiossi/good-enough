@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cf5n3suql0nrw"
+path="res://.godot/imported/Ice Spell 10.wav-b9aa4df2ea5fbee5cb421e264c92a876.sample"
+
+[deps]
+
+source_file="res://assets/abilities/sounds/Ice Spell 10.wav"
+dest_files=["res://.godot/imported/Ice Spell 10.wav-b9aa4df2ea5fbee5cb421e264c92a876.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

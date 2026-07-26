@@ -267,6 +267,7 @@ func _init_abilities():
     ice_dart.description = "An ice dart that shoots towards your enemy. Piercing them dealing significant magic damage, but fails to penetrate armor."
     ice_dart.cooldown = 3
     ice_dart.ability_type = Ability.AbilityType.MAGIC
+    ice_dart.animation_type = Ability.AnimationType.ICE_DART
     _add_ability(ice_dart)
 
     var visceral_bleed := Ability.new()
@@ -316,16 +317,6 @@ func _init_abilities():
     blood_weave.ability_type = Ability.AbilityType.BLUNT
     blood_weave.animation_type = Ability.AnimationType.BLOOD_BEND_BIG
     _add_ability(blood_weave)
-
-    var blood_transfusion := Ability.new()
-    blood_transfusion.health_damage = 30
-    blood_transfusion.health_regeneration = 15
-    blood_transfusion.name = "Blood Transfusion"
-    blood_transfusion.icon = preload("uid://b4wibg24bkciq")
-    blood_transfusion.description = "You wound your target and ingest their blood. Causing you to heal for 50% of the damage dealt."
-    blood_transfusion.cooldown = 5
-    blood_transfusion.ability_type = Ability.AbilityType.BLUNT
-    _add_ability(blood_transfusion)
 
     var frost_tomb := Ability.new()
     frost_tomb.health_damage = 5

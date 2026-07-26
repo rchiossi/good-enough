@@ -25,7 +25,8 @@ enum AnimationType {
     TORNADO,
     HEAL,
     HEAL_ARMOR,
-    ELECTRIC_TORPEDO
+    ELECTRIC_TORPEDO,
+    ICE_DART
 }
 
 var shield_damage: int = 0
