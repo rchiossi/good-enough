@@ -51,13 +51,6 @@ func update_cooldown():
         _cooldown_label.hide()
         sprite.self_modulate = Color.WHITE
 
-func _make_custom_tooltip(for_text: String) -> Object:
-    var tooltip : CombatAbilityTooltip = _tooltip_scene.instantiate()
-
-    tooltip.ability_name = for_text
-
-    return tooltip
-
 func _on_sprite_pressed() -> void:
     var ability = GameState.all_abilities[_ability_name]
     var cooldown : int = ability.remaining_cooldown.get_or_add(GameState.player_stats.name, 0)
