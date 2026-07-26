@@ -30,10 +30,12 @@ func _load_abilities_to_grid():
 
         if not ability.is_disabled and ability.name != "Punch":
             _selectable_abilities.append(ability)
-        else:
-            pass #Show locked status
 
         _ability_grid.add_child(new_ability)
+
+        if ability.is_disabled:
+            new_ability.show_cursed()
+
         new_ability.set_ability(ability.name)
         new_ability.set_click_disabled(true)
         new_ability.ability_hover.connect(_on_hover)

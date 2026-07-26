@@ -4,6 +4,8 @@ class_name CombatAbilityTooltip
 @onready var ability_name_label : Label = %AbilityNameLabel
 @onready var ability_sprite : TextureRect = %AbilitySprite
 
+@onready var cursed_label : RichTextLabel = %CursedLabel
+
 @onready var hp_damage_label : Label = %HpDamageLabel
 @onready var armor_damage_label : Label = %ArmorDamageLabel
 @onready var shield_damage_label : Label = %ShieldDamageLabel
@@ -27,6 +29,11 @@ func set_ability(id : String):
 
 func load_ability():
     var ability : Ability = GameState.all_abilities[ability_name]
+
+    if ability.is_disabled:
+        cursed_label.show()
+    else:
+        cursed_label.hide()
 
     ability_name_label.text = ability.name
     ability_sprite.texture = ability.icon

@@ -5,6 +5,8 @@ class_name CombatAbilityScene
 @onready var _cooldown_label: Label = %CooldownLabel
 @onready var _cooldown_panel: Control = %CooldownPanel
 
+@onready var _cursed_container: Control = %CursedContainer
+
 @onready var _press_sound: PressSound = %PressSound
 @onready var _hover_sound: HoverSound = %HoverSound
 
@@ -100,3 +102,9 @@ func disable_highlight() -> void:
 
     if _highlight_tween:
         _highlight_tween.kill()
+
+func show_cursed() -> void:
+    _cursed_container.show()
+
+func hide_cursed() -> void:
+    _cursed_container.hide()

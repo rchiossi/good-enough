@@ -152,15 +152,17 @@ func _load_background():
 
 func _load_abilities_to_grid():
     for ability in _player_stats.abilities.values():
-        if ability.is_disabled:
-            continue
         var scene : CombatAbilityScene = _ability_scene.instantiate()
         _ability_grid.add_item(scene)
         scene.set_ability(ability.name)
         scene.show_tooltip.connect(_show_ability_info)
         scene.ability_hover.connect(_show_possible_dmg)
         scene.ability_hover_exit.connect(_hide_possible_dmg)
-        scene.ability_activated.connect(_activate_ability)
+        if ability.is_disabled:
+            scene.show_cursed()
+        else:
+            scene.hide_cursed()
+            scene.ability_activated.connect(_activate_ability)
 
 func _load_portraits():
     _hero_portrait.texture = _player_stats.portrait
@@ -334,6 +336,9 @@ func _play_ability_effect(target: EntityScene, ability: Ability, with_blood: boo
 
 func _update_abilities_cooldown():
     for ability in GameState.player_stats.abilities.values():
+        if ability.is_disabled:
+            ability.remaining_cooldown[GameState.player_stats.name] -= 0
+
         var cooldown = ability.remaining_cooldown.get_or_add(GameState.player_stats.name, 0)
         if cooldown > 0:
             ability.remaining_cooldown[GameState.player_stats.name] -= 1
@@ -432,6 +437,9 @@ func _enable_abilities_highlight():
         var ability : Ability = GameState.all_abilities[scene._ability_name]
         if ability.remaining_cooldown[_player_stats.name] != 0:
             continue 
+
+        if ability.is_disabled:
+            continue
 
         if _combat_manager.can_damage(ability, _enemy_stats):
             scene.enable_highlight()
