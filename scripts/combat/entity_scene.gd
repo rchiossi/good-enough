@@ -104,6 +104,8 @@ func animate_take_damage():
     _tween.set_trans(Tween.TRANS_BOUNCE)
     _tween.set_ease(Tween.EASE_OUT)
 
+    _sprite.material.set_shader_parameter('flash_color', Color("#ddebe8"))
+
     _tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 1.0, 0.1)
     _tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 0.0, 0.1)
     _tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 1.0, 0.1)
@@ -117,7 +119,8 @@ func animate_receive_heal():
     _tween.set_trans(Tween.TRANS_BOUNCE)
     _tween.set_ease(Tween.EASE_OUT)
 
-    _tween.tween_property(_sprite, "material:shader_parameter/flash_color", Color("#4ca180"), death_animation_duration)
+    _sprite.material.set_shader_parameter('flash_color', Color("#4ca180"))
+
     _tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 1.0, 0.1)
     _tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 0.0, 0.1)
     _tween.tween_property(_sprite, "material:shader_parameter/flash_percentage", 1.0, 0.1)
