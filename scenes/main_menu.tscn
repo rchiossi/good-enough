@@ -28,6 +28,9 @@ shader_parameter/smoke_color = Color(1, 1, 1, 1)
 shader_parameter/distortion_speed = 0.4770000226575
 shader_parameter/density = 0.1890000089775
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qeoni"]
+bg_color = Color(0.12941177, 0.13333334, 0.16078432, 0.9137255)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_otrat"]
 shader = ExtResource("9_jk1qb")
 shader_parameter/vignette_color = Color(0, 0, 0, 1)
@@ -190,12 +193,13 @@ offset_bottom = 40.0
 script = ExtResource("9_rcqid")
 metadata/_custom_type_script = "uid://ota37prga8g7"
 
-[node name="Button" type="Button" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2" unique_id=1116495345]
+[node name="CreditsButton" type="Button" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2" unique_id=1116495345]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 text = "Credits"
 
-[node name="AnimationScaleTwitch2" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/Button" unique_id=503260432]
+[node name="AnimationScaleTwitch2" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/CreditsButton" unique_id=503260432]
 anchors_preset = 0
 offset_top = -70.0
 offset_bottom = -70.0
@@ -204,14 +208,14 @@ enable_scale = false
 scale_amount = 1.05
 metadata/_custom_type_script = "uid://cdv8tc4yuh41w"
 
-[node name="HoverSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/Button" unique_id=138023905]
+[node name="HoverSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/CreditsButton" unique_id=138023905]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_flqon")
 metadata/_custom_type_script = "uid://bp3ukxo6aqps6"
 
-[node name="PressSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/Button" unique_id=1458382829]
+[node name="PressSound" type="Control" parent="Ui/MarginContainer/MarginContainer/MarginContainer/VBoxContainer2/CreditsButton" unique_id=1458382829]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -266,6 +270,59 @@ offset_left = -500.0
 offset_top = -312.5
 offset_right = 500.0
 offset_bottom = 312.5
+
+[node name="CreditsPanel" type="MarginContainer" parent="Ui" unique_id=492908706]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -125.0
+offset_right = 200.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Ui/CreditsPanel" unique_id=615060074]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qeoni")
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui/CreditsPanel/PanelContainer" unique_id=734762369]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/CreditsPanel/PanelContainer/MarginContainer" unique_id=2145821565]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Ui/CreditsPanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=293473688]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[color=#4ca180]Thank you for playing! [/color]
+[color=#94568f]p1ra -
+Br3aker -
+CatManMale -
+VisForVictory -[/color]"
+horizontal_alignment = 2
+
+[node name="CreditsCloseButton" type="Button" parent="Ui/CreditsPanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=170338049]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Close"
 
 [node name="VignetteLayer" type="CanvasLayer" parent="." unique_id=1664271634]
 layer = 3

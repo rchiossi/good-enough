@@ -7,12 +7,19 @@ extends Control
 @onready var _exit_dialog : SimpleDialog = %ExitDialog
 @onready var _settings_panel : SettingsPanel = %SettingsPanel
 
+@onready var _credits_panel : MarginContainer = %CreditsPanel
+@onready var _credits_button : Button = %CreditsButton
+@onready var _credits_close_button : Button = %CreditsCloseButton
+
 func _ready() -> void:
     exit_button.pressed.connect(_on_exit_button_pressed)
     settings_button.pressed.connect(_on_settings_button_pressed)
     start_button.pressed.connect(_on_start_button_pressed)
 
     _exit_dialog.confirmed.connect(_on_exit)
+
+    _credits_button.pressed.connect(_on_credits_open)
+    _credits_close_button.pressed.connect(_on_credits_close)
 
     start_button.grab_focus.call_deferred()
 
@@ -35,3 +42,9 @@ func _on_start_button_pressed() -> void:
 
 func _on_settings_button_pressed() -> void:
     _settings_panel.fade_in()
+
+func _on_credits_open() -> void:
+    _credits_panel.show()
+
+func _on_credits_close() -> void:
+    _credits_panel.hide()
