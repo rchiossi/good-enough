@@ -298,13 +298,16 @@ func _update_turn_indicator(target_name: String):
 
     tween.tween_property(_turn_indicator, "position", indicator_position, turn_indicator_speed)
 
-func _play_ability_effect(target: EntityScene, ability: Ability):
-    var effect : GPUParticles2D = ability.effect_scene.instantiate()
+func _play_ability_effect(target: EntityScene, ability: Ability, with_blood: bool = true):
     if ability.animation_type != Ability.AnimationType.NONE:
         var sprite_effect: SunStrikeAnimation = sprite_effect_scene.instantiate()
         add_child(sprite_effect)
         sprite_effect.play(ability.animation_type, target.global_position + target.size / 2, target.size)
 
+    if not with_blood:
+
+        return
+    var effect : GPUParticles2D = ability.effect_scene.instantiate()
     effect.global_position = target.global_position + target.size / 2
     effect.emitting = true
     effect.finished.connect(effect.queue_free)
@@ -374,7 +377,7 @@ func _on_action_taken(_source_name: String, target_name: String, ability_name: S
     var target = _entity_scenes[target_name]
 
     if ability.has_heals():
-        _play_ability_effect(source, ability)
+        _play_ability_effect(source, ability, false)
     else:
         _play_ability_effect(target, ability)
 
