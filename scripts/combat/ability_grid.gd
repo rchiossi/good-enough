@@ -5,7 +5,7 @@ const MAX_COLOUMNS = 10
 const MAX_ROWS = 2
 
 var _slots : Dictionary = {}
-var _ability_scenes : Array[CombatAbilityScene] = []
+var ability_scenes : Array[CombatAbilityScene] = []
 var current_size : int = 0
 
 func _ready() -> void:
@@ -23,9 +23,10 @@ func add_item(control_node : CombatAbilityScene):
         return
 
     _slots[current_size].add_child(control_node)
-    _ability_scenes.append(control_node)
+    ability_scenes.append(control_node)
     current_size += 1
 
 func update_abilities() -> void:
-    for scene : CombatAbilityScene in _ability_scenes:
+    for scene : CombatAbilityScene in ability_scenes:
         scene.update_cooldown()
+

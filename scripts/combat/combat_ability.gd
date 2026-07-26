@@ -20,6 +20,10 @@ signal ability_activated(ability_name: String)
 signal ability_hover(ability_name : String)
 signal ability_hover_exit()
 
+var pulse_duration : float = 0.5
+
+var _highlight_tween : Tween
+
 func _ready() -> void:
     mouse_entered.connect(func(): show_tooltip.emit(_ability_name))
     mouse_entered.connect(func(): ability_hover.emit(_ability_name))
@@ -35,7 +39,17 @@ func set_ability(ability_name : String, in_combat: bool = true):
 
     tooltip_text = ability_name
 
+    _set_highlight_color()
+
     update_cooldown()
+
+func _set_highlight_color():
+    var ability : Ability = GameState.all_abilities[_ability_name]
+
+    if ability.has_heals():
+        sprite.material.set_shader_parameter("highlight_color", Color("#5bb362"))
+    else:
+        sprite.material.set_shader_parameter("highlight_color", Color("#cfa055"))
 
 func update_cooldown():
     if not _in_combat:
@@ -66,3 +80,25 @@ func set_click_disabled(disabled: bool) -> void:
 func set_hover_disabled(disabled: bool) -> void:
     _animation_hover.disabled = disabled
     _hover_sound.disabled = disabled
+
+func enable_highlight() -> void:
+    if _highlight_tween:
+        _highlight_tween.kill()
+
+    _highlight_tween = create_tween()
+
+    _highlight_tween.set_loops()
+
+    _highlight_tween.set_trans(Tween.TRANS_SINE)
+    _highlight_tween.set_ease(Tween.EASE_OUT)
+
+    sprite.material.set_shader_parameter("enabled", true)
+
+    _highlight_tween.tween_property(sprite, "material:shader_parameter/alpha", 0.6, pulse_duration)
+    _highlight_tween.tween_property(sprite, "material:shader_parameter/alpha", 1.0, pulse_duration)
+
+func disable_highlight() -> void:
+    sprite.material.set_shader_parameter("enabled", false)
+
+    if _highlight_tween:
+        _highlight_tween.kill()

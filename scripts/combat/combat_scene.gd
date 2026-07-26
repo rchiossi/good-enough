@@ -255,9 +255,12 @@ func _on_player_animation_complete():
 func _on_state_changed(state):
     match state:
         CombatManager.CombatState.WAITING_FOR_PLAYER_ACTION:
+            _enable_abilities_highlight()
             if not _turn_indicator.visible:
                 _update_turn_indicator(player.stats.name)
         CombatManager.CombatState.WAITING_FOR_ENEMY_ACTION:
+            _clear_abilities_highlights()
+
             var tween = create_tween()
             tween.tween_interval(enemy_attack_delay)
             tween.tween_callback(_combat_manager.take_enemy_action)
@@ -423,6 +426,18 @@ func _load_boss_phase2():
 func _proceed_with_phase2():
     _play_reverse_death_animation()
     _animate_start_combat.call_deferred()
+
+func _enable_abilities_highlight():
+    for scene : CombatAbilityScene in _ability_grid.ability_scenes:
+        var ability : Ability = GameState.all_abilities[scene._ability_name]
+        if _combat_manager.can_damage(ability, _enemy_stats):
+            scene.enable_highlight()
+        elif ability.has_heals():
+            scene.enable_highlight()
+
+func _clear_abilities_highlights():
+    for scene : CombatAbilityScene in _ability_grid.ability_scenes:
+        scene.disable_highlight()
 
 func _show_battlelog():
     # var text : String = ""

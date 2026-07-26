@@ -3,9 +3,18 @@
 [ext_resource type="Texture2D" uid="uid://n1peuh4vn6i0" path="res://assets/abilities/Fire Spell Pack64.png" id="1_8tubs"]
 [ext_resource type="Script" uid="uid://h2hj2t66tejv" path="res://scripts/combat/combat_ability.gd" id="1_8yx28"]
 [ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="2_8yx28"]
+[ext_resource type="Shader" uid="uid://dkxbwsffdy0gd" path="res://shaders/combat/highlight_shader.gdshader" id="2_hlkpl"]
 [ext_resource type="Script" uid="uid://ccrs8miu2ao26" path="res://scripts/ui_animations/scale_bounce.gd" id="4_xaxtc"]
 [ext_resource type="Script" uid="uid://bp3ukxo6aqps6" path="res://scripts/sounds/hover_sound.gd" id="5_i4rwy"]
 [ext_resource type="Script" uid="uid://ota37prga8g7" path="res://scripts/sounds/press_sound.gd" id="6_hlkpl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1i4hq"]
+resource_local_to_scene = true
+shader = ExtResource("2_hlkpl")
+shader_parameter/highlight_color = Color(1, 1, 0, 1)
+shader_parameter/border_size_px = 2.0
+shader_parameter/alpha = 1.0
+shader_parameter/enabled = false
 
 [node name="CombatAbility" type="MarginContainer" unique_id=1546287525]
 offset_right = 40.0
@@ -16,6 +25,7 @@ script = ExtResource("1_8yx28")
 
 [node name="AbilitySprite" type="TextureButton" parent="." unique_id=1402096819]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1i4hq")
 layout_mode = 2
 offset_transform_enabled = true
 mouse_filter = 1
