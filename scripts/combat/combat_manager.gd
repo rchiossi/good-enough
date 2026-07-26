@@ -221,8 +221,20 @@ func _select_best_ability() -> Ability:
         3:
             return _ai_lvl3()
         4:
+            var roll = randf()
+            print("rolled " + str(roll))
+            if roll < 0.3:
+                return _ai_lvl2()
+            if roll < 0.6:
+                return _ai_lvl3()
             return _ai_lvl4()
         5:
+            var roll = randf()
+            print("rolled " + str(roll))
+            if roll < 0.2:
+                return _ai_lvl2()
+            if roll < 0.5:
+                return _ai_lvl3()
             return _ai_lvl4()
 
     return _ai_lvl1()
@@ -289,7 +301,6 @@ func _ai_lvl4() -> Ability:
 
     for ability in _entities[_enemy].abilities.values():
         var damage = calculate_total_damage(ability, _entities[_player])
-        print(damage)
         if damage > best_damage:
             best_damage = damage
             best_ability = ability
