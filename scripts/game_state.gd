@@ -236,7 +236,7 @@ func _init_enemies() -> void:
     enemy.is_player = false
     enemy.stage = 5
     _register_ability(enemy, "Incinerate")
-    _register_ability(enemy, "Pillar Bonk")
+    _register_ability(enemy, "Electric Torpedo")
     _register_ability(enemy, "Fury Tornado")
     _register_ability(enemy, "Cursed Explosion")
     enemy.init()
