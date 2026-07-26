@@ -2,6 +2,8 @@ extends Control
 @onready var event_text: RichTextLabel = $EventText
 @onready var accept_button: Button = $ButtonContainer/AcceptButton
 @onready var reject_button: Button = $ButtonContainer/RejectButton
+@onready var continue_button: Button = $ButtonContainer/ContinueButton
+@onready var chance_ex_text: RichTextLabel = $ButtonContainer/ChanceExText
 
 var available_events: Array[GameEvent] = []
 
@@ -159,6 +161,17 @@ func _ready() -> void:
         assert(len(available_events) != len(GameState.used_events))
         continue
 
+func _load_map_scene():
+    SceneLoader.load_scene("res://scenes/map/map.tscn")
+
+func _show_continue_container(result_text: String):
+    accept_button.visible = false
+    reject_button.visible = false
+    chance_ex_text.visible = true
+    chance_ex_text.text = result_text
+    continue_button.visible = true
+    continue_button.pressed.connect(_load_map_scene)
+
 func choose_random_event() -> bool:
     var event_index = randi_range(0, len(available_events)-1)
 
@@ -183,17 +196,35 @@ func existential_event_callback(ability_to_toss: String):
     if healthChance == 1:
         GameState.player_stats.max_health += 25
         GameState.player_stats.health += 25
-    SceneLoader.load_scene("res://scenes/map/map.tscn")
+        _show_continue_container("For a brief, glorious moment, the universe makes perfect sense.
+    Your body feels stronger. You gained +25 health!
+    Unfortunately, the revelation comes at a cost.
+    You can no longer remember how to cast " + ability_to_toss)
+    else:
+        _show_continue_container("You wait for enlightment. 
+    Nothing happens..
+    Somehow you still mange to forget how to cast " +ability_to_toss)
 
 #event2callback
 func unionized_event_callback(ability_to_toss: String):
     var abilityChance = randi_range(1,4)
+    var ability_disabled : bool = false
     if abilityChance >= 2:
         if ability_to_toss != null:
             GameState.player_stats.abilities[ability_to_toss].is_disabled = true
+            ability_disabled = true
     GameState.player_stats.max_armor += 15
     GameState.player_stats.armor += 15
-    SceneLoader.load_scene("res://scenes/map/map.tscn")
+    if ability_disabled:
+        _show_continue_container("The bandits cheer as you sign the petition.
+    <<Welcome to the union, comrade!>>
+                                
+    You gained +15 Armor but " + ability_to_toss + " is your price to pay.")
+    else:
+        _show_continue_container("The bandits cheer as you sign the petition.
+    <<Welcome to the union, comrade!>>
+    You gained +15 Armor
+    After a lengthy discussion, the committee decides your abilities are already distributed fairly.")
 
 #event3callback
 func helpmove_event_callback():
@@ -201,10 +232,21 @@ func helpmove_event_callback():
     if armorChance == 1:
         GameState.player_stats.max_shield += 25
         GameState.player_stats.shield += 25
+        _show_continue_container("Granny smiles. 
+    <<Oh, you're a dear.>>
+    The couch slides into place with surprising ease.
+    Before you can catch your breath, Granny pats you on the shoulder and mutters an old blessing.
+    You gained +25 Magic Shield")
     else:
         GameState.player_stats.max_shield = max(GameState.player_stats.max_shield - 25, 1)
         GameState.player_stats.shield = max(GameState.player_stats.shield - 25, 1)
-    SceneLoader.load_scene("res://scenes/map/map.tscn")
+        _show_continue_container("The couch is only the beginning..
+    One chair becomes a table.
+    One table becomes a wardrobe.
+    One wardrobe becomes an entire house.
+
+    Several exhausting hours later, Granny finally smiles.
+    You stagger away completely drained and lose -25 Magic Shield.")
     
 #event4callback
 func tax_event_callback():
@@ -223,11 +265,20 @@ func well_event_callback():
     var chance = randi_range(1,10)
     if chance <= 7:
         GameState.player_stats.max_health = max(GameState.player_stats.max_health - 20, 1)
-        GameState.player_stats.health = max(GameState.player_stats.max_health - 20, 1)  
+        GameState.player_stats.health = max(GameState.player_stats.max_health - 20, 1)
+        _show_continue_container("You toss a coin into the well.
+    The water glows..
+    Then bubbles...
+    Then explodes in your face.
+    You lose -20 Health")
     else:
         GameState.player_stats.max_health += 20
-        GameState.player_stats.health += 20            
-    SceneLoader.load_scene("res://scenes/map/map.tscn") 
+        GameState.player_stats.health += 20
+        _show_continue_container("You toss a coin into the well.
+    The water glows with a warm, golden light.
+    A cheerful voice echoes from below.
+    <<Finally! Someone read the sign!>>
+    You feel rejuvenated and gain +20 Health.")
 
 func _on_reject_button_pressed() -> void:
     SceneLoader.load_scene("res://scenes/curse/curse_scene.tscn")
