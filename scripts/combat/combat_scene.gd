@@ -38,7 +38,7 @@ var _ability_scene : PackedScene = preload("res://scenes/Combat/combat_ability.t
 
 @export var end_battle_animation_duration : float = 1.0
 
-@export var turn_indicator_offset : Vector2 = Vector2(0, -75)
+@export var turn_indicator_offset : Vector2 = Vector2(0, -25)
 @export var turn_indicator_speed : float = 0.5
 
 @export var damage_font_size : int = 30
@@ -300,7 +300,7 @@ func _update_turn_indicator(target_name: String):
     var indicator_position : Vector2
     var target = _entity_scenes[target_name]
     
-    indicator_position = target.global_position + Vector2(target.size.x / 2, 0)
+    indicator_position = target.global_position + Vector2(target.size.x / 2, 0) - _turn_indicator.size / 2
     indicator_position += turn_indicator_offset
 
     if not _turn_indicator.visible:

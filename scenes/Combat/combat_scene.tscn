@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://dhwoj3eyim4e3" path="res://scripts/combat/ability_grid.gd" id="4_idueh"]
 [ext_resource type="PackedScene" uid="uid://cmoy6iwwyo4qd" path="res://scenes/Combat/combat_ability_tooltip.tscn" id="5_h64lv"]
 [ext_resource type="Script" uid="uid://ccrs8miu2ao26" path="res://scripts/ui_animations/scale_bounce.gd" id="5_wbk3d"]
-[ext_resource type="Texture2D" uid="uid://curnbgbe7hmci" path="res://assets/combat/turn_indicator.png" id="6_4v6y1"]
 [ext_resource type="PackedScene" uid="uid://bdhkv4bcpgrhy" path="res://scenes/Combat/combat_ability.tscn" id="6_kbemr"]
 [ext_resource type="Script" uid="uid://cdv8tc4yuh41w" path="res://scripts/ui_animations/scale_twitch.gd" id="6_mrrpd"]
 [ext_resource type="Texture2D" uid="uid://ndqn73oovwp7" path="res://assets/combat/fg_panel.png" id="7_2wlmd"]
@@ -17,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://d4b6rgp3dtcuu" path="res://scenes/Combat/defeat_panel.tscn" id="8_j8oqs"]
 [ext_resource type="Script" uid="uid://dcwybhvhic1fi" path="res://scripts/ui_animations/screen_shake.gd" id="9_338db"]
 [ext_resource type="PackedScene" uid="uid://0jodrnubuj3x" path="res://scenes/settings_panel.tscn" id="10_vhh5q"]
+[ext_resource type="Texture2D" uid="uid://dcoxac5ol14iy" path="res://assets/combat/indicator2.png" id="13_8fwbi"]
 [ext_resource type="Script" uid="uid://b4pgsjevfq6h1" path="res://scripts/combat/bg_music.gd" id="15_4rekb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8b0q7"]
@@ -384,13 +384,15 @@ text = "Skip Combat"
 [node name="TurnIndicator" type="TextureRect" parent="." unique_id=327042807]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(100, 100)
 custom_maximum_size = Vector2(50, 50)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 offset_transform_enabled = true
-texture = ExtResource("6_4v6y1")
+texture = ExtResource("13_8fwbi")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="VictoryPanel" parent="." unique_id=2026097363 instance=ExtResource("7_jaejr")]
 unique_name_in_owner = true
