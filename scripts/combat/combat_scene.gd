@@ -361,14 +361,13 @@ func _play_reverse_death_animation():
     tween.tween_property(_background, "material:shader_parameter/flash_color", Color("#eff29b"), 1.0)
 
 func _on_death():
-    if _game_stage == 4:
-        _load_boss_phase2()
-        return
-
     var end_panel : MarginContainer
     if player.stats.health == 0:
         end_panel = defeat_panel
     else:
+        if _game_stage == 4:
+            _load_boss_phase2()
+            return
         if _game_stage == 5:
             SceneLoader.load_scene("uid://106t2sncjqc7")
             return
