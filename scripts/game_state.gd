@@ -25,8 +25,8 @@ var player_stats : EntityStats = EntityStats.new()
 const max_turns : int = 10
 var current_turn : int = -1
 
-const player_health : int = 100
-const player_armor : int = 100
+const player_health : int = 150
+const player_armor : int = 200
 const player_shield : int = 100
 
 var enemy_list : Dictionary[StringName, EntityStats] = {}
