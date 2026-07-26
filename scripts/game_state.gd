@@ -368,7 +368,7 @@ func _init_abilities():
     lightning_bolt.armor_damage = 20
     lightning_bolt.name = "Ligthning Bolt"
     lightning_bolt.icon = preload("uid://386kl84jfkoh")
-    lightning_bolt.description = "The clouds darken, the hollowing noise of the wind and clouds are followed by a flash and a loud explosion. A string of lightning bolts into your enemy."
+    lightning_bolt.description = "The clouds darken, the hollowing noise of the wind and clouds are followed by a flash and a loud explosion."
     lightning_bolt.cooldown = 7
     lightning_bolt.ability_type = Ability.AbilityType.MAGIC
     lightning_bolt.animation_type = Ability.AnimationType.LIGHTNING_BOLT
