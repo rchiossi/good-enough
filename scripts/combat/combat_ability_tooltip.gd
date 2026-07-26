@@ -14,6 +14,8 @@ class_name CombatAbilityTooltip
 
 @onready var description_label : RichTextLabel = %DescriptionLabel
 
+@onready var cooldown_label : Label = %CooldownLabel
+
 var ability_name : String = "Cursed Explosion"
 
 func _ready() -> void:
@@ -38,3 +40,5 @@ func load_ability():
     shield_regen_label.text = str(ability.shield_regeneration)
 
     description_label.text = ability.description
+
+    cooldown_label.text = str(ability.cooldown)

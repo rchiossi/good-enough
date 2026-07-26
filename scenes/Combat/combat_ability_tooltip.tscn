@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bof2v1eb6a2nt" path="res://scripts/combat/combat_ability_tooltip.gd" id="1_6n13o"]
 [ext_resource type="Texture2D" uid="uid://n1peuh4vn6i0" path="res://assets/abilities/Fire Spell Pack64.png" id="1_nbg2d"]
+[ext_resource type="Texture2D" uid="uid://d0h1jkgdmnksi" path="res://assets/combat/cooldown.png" id="3_x6avr"]
 [ext_resource type="Texture2D" uid="uid://ckxwuklnhuldg" path="res://assets/combat/hp.png" id="3_y4psc"]
 [ext_resource type="Texture2D" uid="uid://dvlsd6i5qeehe" path="res://assets/combat/armor.png" id="4_x6avr"]
 [ext_resource type="Texture2D" uid="uid://5p535fe5dxkt" path="res://assets/combat/shield.png" id="5_fcowo"]
@@ -36,20 +37,40 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1129791013]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2083861110]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1129791013]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="AbilitySprite" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1057015291]
+[node name="AbilitySprite" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=1057015291]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_nbg2d")
 
-[node name="AbilityNameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85195068]
+[node name="AbilityNameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=85195068]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Cursed Explosion"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1110110467]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="CooldownLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer2" unique_id=736080774]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer2" unique_id=1570332020]
+layout_mode = 2
+texture = ExtResource("3_x6avr")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer2" unique_id=161763188]
+layout_mode = 2
+text = "Cooldown"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=802000312]
 layout_mode = 2
