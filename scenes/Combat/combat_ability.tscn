@@ -66,6 +66,7 @@ metadata/_custom_type_script = "uid://ota37prga8g7"
 
 [node name="CooldownPanel" type="PanelContainer" parent="AbilitySprite" unique_id=1763041185]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
