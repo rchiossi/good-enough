@@ -350,14 +350,15 @@ func _on_death():
     if _game_stage == 4:
         _load_boss_phase2()
         return
-    elif _game_stage == 5:
-        SceneLoader.load_scene("uid://106t2sncjqc7")
-        return
 
     var end_panel : MarginContainer
     if player.stats.health == 0:
         end_panel = defeat_panel
     else:
+        if _game_stage == 5:
+            SceneLoader.load_scene("uid://106t2sncjqc7")
+            return
+
         end_panel = victory_panel
 
     _combat_manager.print_event_log()
