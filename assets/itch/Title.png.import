@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8hbpp4300up2"
-path="res://.godot/imported/bg_castle-expor2t.png-9a20da4b33ae856a061076777aa2dd5f.ctex"
+uid="uid://xe4ila6lu7aw"
+path="res://.godot/imported/Title.png-fd81ed5b57cb348450747c87854bd317.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_menu/bg_castle-expor2t.png"
-dest_files=["res://.godot/imported/bg_castle-expor2t.png-9a20da4b33ae856a061076777aa2dd5f.ctex"]
+source_file="res://assets/itch/Title.png"
+dest_files=["res://.godot/imported/Title.png-fd81ed5b57cb348450747c87854bd317.ctex"]
 
 [params]
 

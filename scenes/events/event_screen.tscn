@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8m56dhcqa170"]
 
 [ext_resource type="Script" uid="uid://tg46uqpcaerm" path="res://scripts/events/event_screen.gd" id="1_opc24"]
-[ext_resource type="Texture2D" uid="uid://dal1d4dnol780" path="res://assets/main_menu/bg_castle.png" id="2_fp55m"]
+[ext_resource type="Texture2D" uid="uid://bq0ry2cdwpsse" path="res://assets/combat/bg_castle.png" id="2_ga23d"]
 [ext_resource type="Texture2D" uid="uid://qquh3iw2p3xl" path="res://assets/map/event_background.png" id="3_ga23d"]
 [ext_resource type="PackedScene" uid="uid://2oitao7v0x7" path="res://scenes/events/custom_button.tscn" id="4_ga23d"]
 
@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_fp55m")
+texture = ExtResource("2_ga23d")
 metadata/_edit_use_anchors_ = true
 
 [node name="EventBackground" type="TextureRect" parent="." unique_id=2024914844]
@@ -77,11 +77,12 @@ theme_override_font_sizes/mono_font_size = 32
 
 [node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=2078956809]
 layout_mode = 0
-offset_left = 1045.0
-offset_top = 156.0
-offset_right = 1637.0
-offset_bottom = 742.0
+anchor_left = 0.5442708
+anchor_top = 0.14444445
+anchor_right = 0.85260415
+anchor_bottom = 0.68703705
 alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ChanceExText" type="RichTextLabel" parent="ButtonContainer" unique_id=1724957203]
 visible = false

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c7f7ypqju21gh"]
 
 [ext_resource type="Script" uid="uid://cl54il7y10sna" path="res://scripts/events/start_event.gd" id="1_roqhu"]
-[ext_resource type="Texture2D" uid="uid://dal1d4dnol780" path="res://assets/main_menu/bg_castle.png" id="2_34ga4"]
+[ext_resource type="Texture2D" uid="uid://bq0ry2cdwpsse" path="res://assets/combat/bg_castle.png" id="2_24dt1"]
 [ext_resource type="Texture2D" uid="uid://qquh3iw2p3xl" path="res://assets/map/event_background.png" id="3_goenu"]
 [ext_resource type="PackedScene" uid="uid://2oitao7v0x7" path="res://scenes/events/custom_button.tscn" id="4_24dt1"]
 
@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_34ga4")
+texture = ExtResource("2_24dt1")
 metadata/_edit_use_anchors_ = true
 
 [node name="EventBackground" type="TextureRect" parent="." unique_id=2131790430]
