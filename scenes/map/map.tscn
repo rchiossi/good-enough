@@ -27,6 +27,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_04w0f")
 hover_sound = ExtResource("4_sqgf4")
+start_time = 1.0
 metadata/_custom_type_script = "uid://br4iwnaapjuvt"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1277744514]
