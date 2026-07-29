@@ -1,24 +1,16 @@
 [gd_scene format=3 uid="uid://cvm36ryb3n5mj"]
 
 [ext_resource type="Script" uid="uid://csnm2ybexbtvc" path="res://scripts/map/map_line.gd" id="1_dc1r2"]
-[ext_resource type="Texture2D" uid="uid://dov5hg0xl4ydq" path="res://assets/map/ui_icon 42.png" id="1_hx6oq"]
+[ext_resource type="Shader" uid="uid://b8y7ui1dhngwq" path="res://shaders/map/map_line.gdshader" id="1_n0g2s"]
 
-[node name="Line2D" type="Line2D" unique_id=1491142998]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqgf4"]
+resource_local_to_scene = true
+shader = ExtResource("1_n0g2s")
+shader_parameter/density = 10.0
+
+[node name="MapLine2D" type="Line2D" unique_id=1491142998]
+material = SubResource("ShaderMaterial_sqgf4")
 width = 8.0
 default_color = Color(0.2856653, 0, 0.038872294, 1)
+texture_mode = 2
 script = ExtResource("1_dc1r2")
-
-[node name="ArrowHead" type="TextureRect" parent="." unique_id=108956560]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(32, 32)
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(16, 16)
-texture = ExtResource("1_hx6oq")
-expand_mode = 1
-stretch_mode = 4
-metadata/_edit_use_anchors_ = true

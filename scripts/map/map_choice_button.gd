@@ -45,6 +45,7 @@ func set_coords(c: Vector2i):
 func update_count():
     if node_type != GameState.NodeTypes.Count:
         return
+    %TextureVillage.visible = false
     %ButtonTexture.custom_minimum_size *= Vector2(3, 3)
     %ButtonTexture.material.set("shader_parameter/Width", 1)
 

@@ -6,7 +6,9 @@ var header_scene: PackedScene = preload("uid://bsfv6cyo6e14t")
 
 var max_nodes = 4
 var show_line = false
+
 func _ready() -> void:
+    
     generate_map()
     _generate_paths()
     for i in range(GameState.max_turns):
@@ -16,6 +18,7 @@ func _ready() -> void:
     # add Count
     add_node(GameState.max_turns)
     add_countdown_label(GameState.max_turns)
+    await get_tree().process_frame
 
     # enable initial nodes
     for n in GameState.connections[GameState.current_position]["children"]:
@@ -41,6 +44,9 @@ func _ready() -> void:
         
     %PlayerSprite2D.offset_transform_enabled = true
     animate_idle()
+    %MapCanvas.custom_minimum_size = %MapNodesContainer.size
+    await get_tree().process_frame
+    show_paths()
 
 func _process(_delta: float) -> void:
     var current_node: MapChoiceButton = GameState.nodes.get(GameState.current_position)
@@ -50,6 +56,7 @@ func _process(_delta: float) -> void:
         current_node.global_position.x +  2 * current_node.size.x / 3,
         current_node.global_position.y
     )
+
 
 func show_paths():
     var offsets = {
@@ -62,20 +69,15 @@ func show_paths():
         var current = GameState.nodes[n]
         for c in GameState.connections.get(n, {}).get("children", []):
             var next = GameState.nodes[c]
-            var start = current.global_position
-            start.x += current.size.x
-            start.y += current.size.y / 2
-            var end = next.global_position
-            end.x -= 12
-            end.y += next.size.y / 2 + offsets[n.y]
+            var start = current.global_position + Vector2(current.size.x - 5, current.size.y / 2)
+            var end = next.global_position + Vector2(next.size.x, next.size.y / 2)
             var line = line_scene.instantiate()
-            line.default_color = Color.BLACK
             line.add(start, end)
-            %Paths.add_child(line)
+            %MapCanvas.add_child(line)
 
 func hide_paths():
-    for c in %Paths.get_children():
-        %Paths.remove_child(c)
+
+    pass
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):
