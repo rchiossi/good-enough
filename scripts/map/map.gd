@@ -49,14 +49,10 @@ func _ready() -> void:
     else:
         %PlayerSprite2D.visible = true
         await get_tree().process_frame
-        var next = GameState.nodes[GameState.connections[GameState.current_position]["children"][0]]
+        var current = GameState.nodes[GameState.current_position]
         if GameState.current_position.x > 2:
-            %ScrollContainer.ensure_control_visible(next)
-            if GameState.current_position.x > 5:
-                %ScrollContainer.scroll_horizontal += 180
-            else:
-                %ScrollContainer.scroll_horizontal += 60
-
+            %ScrollContainer.ensure_control_visible(current)
+            %ScrollContainer.scroll_horizontal += get_viewport_rect().size.x * (3.0 / 4.0)
 
 func show_paths():
     for n in GameState.nodes.keys():
