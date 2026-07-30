@@ -31,7 +31,7 @@ const player_shield : int = 100
 
 var enemy_list : Dictionary[StringName, EntityStats] = {}
 
-var DEBUG: bool = false
+var DEBUG: bool = true
 
 var health_scale = {
     1: [2, 2, 2],
