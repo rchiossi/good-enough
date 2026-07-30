@@ -69,7 +69,7 @@ theme_type_variation = &"MapHeaderPanelContainer"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/separation = 100
+theme_override_constants/separation = 300
 
 [node name="CountDownLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=1106166169 instance=ExtResource("5_sqgf4")]
 visible = false
@@ -84,7 +84,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"MapMarginContainer"
-theme_override_constants/margin_left = 30
+theme_override_constants/margin_left = 48
 theme_override_constants/margin_right = 166
 
 [node name="MapNodesContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/VBoxContainer/MarginContainer" unique_id=955652825]
@@ -93,6 +93,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_constants/separation = 300
+alignment = 1
 
 [node name="PlayerSprite2D" type="TextureRect" parent="ScrollContainer/PanelContainer" unique_id=148198626]
 unique_name_in_owner = true

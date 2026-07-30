@@ -8,7 +8,6 @@ var line_scene: PackedScene = preload("res://scenes/map/map_line.tscn")
 var header_scene: PackedScene = preload("uid://bsfv6cyo6e14t")
 
 var max_nodes = 4
-var show_line = false
 
 func _ready() -> void:
     generate_map()
@@ -25,19 +24,7 @@ func _ready() -> void:
     # enable initial nodes
     for n in GameState.connections[GameState.current_position]["children"]:
         GameState.nodes[n].enable_button()
-    if GameState.current_position == Vector2i(-1, -1):
-        GameState.nodes[Vector2i(0, 0)].enable_button()
-    else:
-        %PlayerSprite2D.visible = true
-        await get_tree().process_frame
-        var next = GameState.nodes[GameState.connections[GameState.current_position]["children"][0]]
-        if GameState.current_position.x > 2:
-            %ScrollContainer.ensure_control_visible(next)
-            if GameState.current_position.x > 5:
-                %ScrollContainer.scroll_horizontal += 180
-            else:
-                %ScrollContainer.scroll_horizontal += 60
-    show_line = true
+
     if GameState.DEBUG:
         $MarginContainer.visible = true
         %Day.placeholder_text = str(GameState.current_position.x)
@@ -57,6 +44,19 @@ func _ready() -> void:
         current_node.global_position.x +  2 * current_node.size.x / 3,
         current_node.global_position.y
     )
+    if GameState.current_position == Vector2i(-1, -1):
+        GameState.nodes[Vector2i(0, 0)].enable_button()
+    else:
+        %PlayerSprite2D.visible = true
+        await get_tree().process_frame
+        var next = GameState.nodes[GameState.connections[GameState.current_position]["children"][0]]
+        if GameState.current_position.x > 2:
+            %ScrollContainer.ensure_control_visible(next)
+            if GameState.current_position.x > 5:
+                %ScrollContainer.scroll_horizontal += 180
+            else:
+                %ScrollContainer.scroll_horizontal += 60
+
 
 func show_paths():
     for n in GameState.nodes.keys():
