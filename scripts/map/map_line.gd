@@ -1,11 +1,8 @@
 class_name MapLine2D extends Line2D
 
 func add(start: Vector2, end: Vector2):
-    #add_point(start)
-    #add_point(end)
     create_map_path(start, end)
-    default_color = Color(0.286, 0.0, 0.039, 1.0)
-
+    default_color = GameState.color_not_visited
 
 func create_map_path(start_pos: Vector2, end_pos: Vector2) -> void:
     var curve: Curve2D = Curve2D.new()

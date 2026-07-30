@@ -20,6 +20,9 @@ var color_enabled: Color = Color("#5bb362")
 var color_disabled: Color = Color("#b34947")
 var color_highlight: Color = Color("#5275a3")
 
+var color_visited: Color = Color("512f47")
+var color_not_visited: Color = Color("8d8381")
+
 var player_stats : EntityStats = EntityStats.new()
 
 const max_turns : int = 10

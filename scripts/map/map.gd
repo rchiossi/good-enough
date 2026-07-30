@@ -67,6 +67,8 @@ func show_paths():
             var end = next.global_position + next.size / 2
             var line = line_scene.instantiate()
             line.add(start, end)
+            if current.visited and next.visited:
+                line.default_color = GameState.color_visited
             %MapCanvas.add_child(line)
 
 func _input(event: InputEvent) -> void:

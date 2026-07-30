@@ -4,6 +4,8 @@ var node_type: GameState.NodeTypes
 
 var coords: Vector2i
 
+var visited: bool = false
+
 var types_definitions: Dictionary[GameState.NodeTypes, Dictionary] = {
     GameState.NodeTypes.Start: {
         "icon": preload("uid://drwkrq24ebc0n"),
@@ -38,7 +40,8 @@ func set_coords(c: Vector2i):
     tooltip_text = GameState.NodeTypes.keys()[node_type]
     if GameState.DEBUG:
         tooltip_text += " (%s, %s)" % [coords.x, coords.y]
-    if GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1:
+    visited = GameState.map[coords.x]["nodes"][coords.y].get("visited") == 1
+    if visited:
         %DoneHighlight.visible = true
     %ButtonTexture.material.set("shader_parameter/ColorParameter", GameState.color_disabled)
 
