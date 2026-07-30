@@ -8,8 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://cvm36ryb3n5mj" path="res://scenes/map/map_line.tscn" id="6_jcaow"]
 [ext_resource type="Texture2D" uid="uid://d0p6syokv5sd7" path="res://assets/combat/Hero/hero.png" id="6_sqgf4"]
 [ext_resource type="Script" uid="uid://br4iwnaapjuvt" path="res://scripts/sounds/bg_music.gd" id="7_04w0f"]
+[ext_resource type="Shader" uid="uid://b8y7ui1dhngwq" path="res://shaders/map/map_line.gdshader" id="9_vvrx0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sqgf4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvrx0"]
+resource_local_to_scene = true
+shader = ExtResource("9_vvrx0")
+shader_parameter/density = 10.0
 
 [node name="MapScene" type="Control" unique_id=1321419604]
 layout_mode = 3
@@ -46,6 +52,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"MapPanelContainer"
 
+[node name="MapCanvas" type="Control" parent="ScrollContainer/PanelContainer" unique_id=242226898]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/PanelContainer" unique_id=437135677]
 layout_mode = 2
 
@@ -57,7 +69,7 @@ theme_type_variation = &"MapHeaderPanelContainer"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/separation = 100
+theme_override_constants/separation = 300
 
 [node name="CountDownLabel" parent="ScrollContainer/PanelContainer/VBoxContainer/HeaderPanelContainer/HeaderContainer" unique_id=1106166169 instance=ExtResource("5_sqgf4")]
 visible = false
@@ -72,15 +84,26 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"MapMarginContainer"
-theme_override_constants/margin_left = 30
+theme_override_constants/margin_left = 48
 theme_override_constants/margin_right = 166
 
 [node name="MapNodesContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/VBoxContainer/MarginContainer" unique_id=955652825]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 100
+size_flags_vertical = 4
+theme_override_constants/separation = 300
+alignment = 1
+
+[node name="PlayerSprite2D" type="TextureRect" parent="ScrollContainer/PanelContainer" unique_id=148198626]
+unique_name_in_owner = true
+custom_maximum_size = Vector2(128, 128)
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("6_sqgf4")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="SettingsPanel" parent="." unique_id=1446633356 instance=ExtResource("3_a2pkv")]
 unique_name_in_owner = true
@@ -143,27 +166,6 @@ fit_content = true
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerSprite2D" type="TextureRect" parent="." unique_id=148198626]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -111.0
-offset_top = -144.0
-offset_right = 111.0
-offset_bottom = 144.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.30666667, 0.3125)
-pivot_offset = Vector2(110.86957, 140.80002)
-offset_transform_enabled = true
-texture = ExtResource("6_sqgf4")
-metadata/_edit_use_anchors_ = true
-
 [node name="PathsLayer" type="CanvasLayer" parent="." unique_id=1740088739]
 
 [node name="Paths" type="Control" parent="PathsLayer" unique_id=1141169718]
@@ -178,6 +180,7 @@ mouse_filter = 2
 
 [node name="Line2D" parent="PathsLayer/Paths" unique_id=1491142998 instance=ExtResource("6_jcaow")]
 visible = false
+material = SubResource("ShaderMaterial_vvrx0")
 position = Vector2(13, -1)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=35581914]

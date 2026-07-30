@@ -1,11 +1,14 @@
 extends Control
 
+var possible_nodes = [GameState.NodeTypes.Null, GameState.NodeTypes.Fight, GameState.NodeTypes.Event]
+@export var weights = PackedFloat32Array([0.75, 1, 0.25])
+
 var level_scene: PackedScene = preload("uid://00urot6twxdg")
 var line_scene: PackedScene = preload("res://scenes/map/map_line.tscn")
 var header_scene: PackedScene = preload("uid://bsfv6cyo6e14t")
 
 var max_nodes = 4
-var show_line = false
+
 func _ready() -> void:
     generate_map()
     _generate_paths()
@@ -16,22 +19,12 @@ func _ready() -> void:
     # add Count
     add_node(GameState.max_turns)
     add_countdown_label(GameState.max_turns)
+    await get_tree().process_frame
 
     # enable initial nodes
     for n in GameState.connections[GameState.current_position]["children"]:
         GameState.nodes[n].enable_button()
-    if GameState.current_position == Vector2i(-1, -1):
-        GameState.nodes[Vector2i(0, 0)].enable_button()
-    else:
-        %PlayerSprite2D.visible = true
-        await get_tree().process_frame
-        var next = GameState.nodes[GameState.connections[GameState.current_position]["children"][0]]
-        %ScrollContainer.ensure_control_visible(next)
-        if GameState.current_position.x > 5:
-            %ScrollContainer.scroll_horizontal += 180
-        else:
-            %ScrollContainer.scroll_horizontal += 60
-    show_line = true
+
     if GameState.DEBUG:
         $MarginContainer.visible = true
         %Day.placeholder_text = str(GameState.current_position.x)
@@ -41,8 +34,9 @@ func _ready() -> void:
         
     %PlayerSprite2D.offset_transform_enabled = true
     animate_idle()
-
-func _process(_delta: float) -> void:
+    %MapCanvas.custom_minimum_size = %MapNodesContainer.size
+    await get_tree().process_frame
+    show_paths()
     var current_node: MapChoiceButton = GameState.nodes.get(GameState.current_position)
     if not current_node:
         return
@@ -50,32 +44,28 @@ func _process(_delta: float) -> void:
         current_node.global_position.x +  2 * current_node.size.x / 3,
         current_node.global_position.y
     )
+    if GameState.current_position == Vector2i(-1, -1):
+        GameState.nodes[Vector2i(0, 0)].enable_button()
+    else:
+        %PlayerSprite2D.visible = true
+        await get_tree().process_frame
+        var current = GameState.nodes[GameState.current_position]
+        if GameState.current_position.x > 2:
+            %ScrollContainer.ensure_control_visible(current)
+            %ScrollContainer.scroll_horizontal += get_viewport_rect().size.x * (3.0 / 4.0)
 
 func show_paths():
-    var offsets = {
-        0: -16,
-        1: -6,
-        2: 6,
-        3: 16
-    }
     for n in GameState.nodes.keys():
         var current = GameState.nodes[n]
         for c in GameState.connections.get(n, {}).get("children", []):
             var next = GameState.nodes[c]
-            var start = current.global_position
-            start.x += current.size.x
-            start.y += current.size.y / 2
-            var end = next.global_position
-            end.x -= 12
-            end.y += next.size.y / 2 + offsets[n.y]
+            var start = current.global_position + current.size / 2
+            var end = next.global_position + next.size / 2
             var line = line_scene.instantiate()
-            line.default_color = Color.BLACK
             line.add(start, end)
-            %Paths.add_child(line)
-
-func hide_paths():
-    for c in %Paths.get_children():
-        %Paths.remove_child(c)
+            if current.visited and next.visited:
+                line.default_color = GameState.color_visited
+            %MapCanvas.add_child(line)
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_cancel"):
@@ -87,10 +77,10 @@ func _input(event: InputEvent) -> void:
         SceneLoader.load_scene("uid://81rbkmiw7hyl")
     if event.is_action_pressed("show_help"):
         %HelpContainer.visible = not %HelpContainer.visible
-    if Input.is_action_just_pressed("show_paths"):
-        show_paths()
-    if Input.is_action_just_released("show_paths") or event is InputEventMouseButton:
-        hide_paths()
+    if GameState.DEBUG and event.is_action_pressed("show_paths"):
+        GameState.map = {}
+        GameState.connections = {}
+        get_tree().reload_current_scene()
 
 func add_countdown_label(countdown: int):
     var header_label: CountdownLabel = header_scene.instantiate()
@@ -106,8 +96,6 @@ func generate_map():
     if GameState.map:
         return
     var rng = RandomNumberGenerator.new()
-    var possible_nodes = [GameState.NodeTypes.Null, GameState.NodeTypes.Fight, GameState.NodeTypes.Event]
-    var weights = PackedFloat32Array([0.75, 1, 0.25])
     var map = {
         0: {
             "nodes": {
@@ -181,16 +169,15 @@ func _generate_paths():
                         GameState.connections[Vector2i(i, j)]["children"].append(Vector2i(i+1, n))
                 continue
             if not neighbours:
-                var nodes =  []
+                var closest_node = null
                 for node in  GameState.map[i + 1]["nodes"]:
                     if GameState.map[i + 1]["nodes"][node]["type"] != GameState.NodeTypes.Null:
-                        nodes.append(Vector2i(i+1, node))
-                for r in range(randi_range(1, 2)):
-                    var n = nodes[randi() % nodes.size()]
-                    nodes.erase(n)
-                    GameState.connections[Vector2i(i, j)]["children"].append(n)
-                    if not nodes:
-                        break
+                        if not closest_node:
+                            closest_node = Vector2i(i + 1, node)
+                        else:
+                            if abs(node - j) < abs(closest_node.y - j):
+                                closest_node = Vector2i(i + 1, node)
+                GameState.connections[Vector2i(i, j)]["children"].append(_get_closest_next(Vector2i(i, j)))
                 continue
     
             for r in range(randi_range(1, 2)):
@@ -211,7 +198,7 @@ func _get_nr_of_nodes(level: int) -> int:
 
 func _get_next_neighbours(coords: Vector2i) -> Array[Vector2i]:
     var neighbours: Array[Vector2i] = []
-    for j in range(coords.y - 1, coords.y + 1):
+    for j in range(coords.y - 1, coords.y + 2):
         if j < 0 :
             continue
         if j > 3:
@@ -223,21 +210,44 @@ func _get_next_neighbours(coords: Vector2i) -> Array[Vector2i]:
 func _sanity_check_paths():
     for i in GameState.map:
         for j in GameState.map[i]["nodes"]:
+            if Vector2i(i + 1, j + 1) in GameState.connections.get(Vector2i(i, j), {}).get("children", {}):
+                if Vector2i(i + 1, j) in GameState.connections.get(Vector2i(i, j + 1), {}).get("children", {}):
+                    GameState.connections[Vector2i(i, j)]["children"].erase(Vector2i(i + 1, j + 1))
+    for i in GameState.map:
+        for j in GameState.map[i]["nodes"]:
             if GameState.map[i]["nodes"][j]["type"] == GameState.NodeTypes.Null:
                 continue
             if i == 0:
                 continue
+            if not GameState.connections.get(Vector2i(i, j), {}).get("children", {}) and i != GameState.max_turns:
+                GameState.connections[Vector2i(i, j)]["children"] = [_get_closest_next(Vector2i(i, j))]
             var ok = false
-            var possible_connections: Array = []
             for k in GameState.map[i - 1]["nodes"]:
                 if  GameState.map[i - 1]["nodes"][k]["type"] == GameState.NodeTypes.Null:
                     continue
-                possible_connections.append(Vector2i(i -1, k))
                 if Vector2i(i, j) in GameState.connections.get(Vector2i(i -1, k), {}).get("children", {}):
                     ok = true
                     break
             if not ok:
-                GameState.connections[possible_connections.pick_random()]["children"].append(Vector2i(i, j))
+                GameState.connections[_get_closest_previous(Vector2i(i, j))]["children"].append(Vector2i(i, j))
+
+func _get_closest(current: Vector2i, direction: int = 1) -> Vector2i:
+    var closest_node = Vector2i(-1, -1)
+    var x = current.x + direction * 1
+    for node in  GameState.map[x]["nodes"]:
+        if GameState.map[x]["nodes"][node]["type"] != GameState.NodeTypes.Null:
+            if closest_node.x < 0:
+                closest_node = Vector2i(x, node)
+            else:
+                if abs(node - current.y) < abs(closest_node.y - current.y):
+                    closest_node = Vector2i(x, node)
+    return closest_node
+
+func _get_closest_previous(current: Vector2i) -> Vector2i:
+    return _get_closest(current, -1)
+
+func _get_closest_next(current: Vector2i) -> Vector2i:
+    return _get_closest(current, 1)
 
 func _on_skip_button_pressed() -> void:
     var x = int(%Day.text)

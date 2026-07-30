@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://v8lop30wa1hj"]
+
+[ext_resource type="Texture2D" uid="uid://v5xwsrlokse8" path="res://assets/map/villages/villageRuin00.png" id="1_3d5d8"]
+[ext_resource type="Texture2D" uid="uid://cx1spu8fxeaur" path="res://assets/map/Fire.png" id="1_r3ta0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8wof"]
+atlas = ExtResource("1_r3ta0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1gwu"]
+atlas = ExtResource("1_r3ta0")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdctk"]
+atlas = ExtResource("1_r3ta0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4men"]
+atlas = ExtResource("1_r3ta0")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iesak"]
+atlas = ExtResource("1_r3ta0")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b0nu"]
+atlas = ExtResource("1_r3ta0")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcbqi"]
+atlas = ExtResource("1_r3ta0")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vw600"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8wof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1gwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdctk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4men")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iesak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b0nu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcbqi")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MapFire" type="Control" unique_id=1217038345]
+custom_minimum_size = Vector2(136, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1121112285]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3d5d8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1263850456]
+visible = false
+modulate = Color(1, 1, 1, 0.60784316)
+sprite_frames = SubResource("SpriteFrames_vw600")
+autoplay = "default"
+centered = false
